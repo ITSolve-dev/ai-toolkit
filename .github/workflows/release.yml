@@ -3,7 +3,7 @@ name: Release
 on:
   push:
     tags:
-      - '*/[0-9]*'
+      - '*--v[0-9]*'
 
 permissions:
   contents: write
@@ -12,6 +12,11 @@ jobs:
   release:
     runs-on: ubuntu-latest
     steps:
+      - name: Compose release name
+        id: rel
+        run: echo "name=${GITHUB_REF_NAME/--v/ v}" >> "$GITHUB_OUTPUT"
+
       - uses: softprops/action-gh-release@v3
         with:
+          name: ${{ steps.rel.outputs.name }}
           generate_release_notes: true
