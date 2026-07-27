@@ -1,0 +1,11 @@
+# Normalize line endings: text is LF in the repo (CRLF locally on Windows is fine).
+# Critical for the plugin's shell/python hook & adapter scripts to run on Unix.
+* text=auto eol=lf
+
+# Binary assets — never touch line endings.
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.pdf binary
+*.ico binary
