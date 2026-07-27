@@ -6,5 +6,13 @@
   "description": "ITSolve-dev shared AI toolkit — reusable skills, agents and plugins across projects.",
   "version": "0.1.0",
   "renames": {},
-  "plugins": []
+  "plugins": [
+    {
+      "name": "llm-wiki",
+      "source": "./plugins/llm-wiki",
+      "description": "LLM-maintained knowledge wiki following Andrej Karpathy's llm-wiki pattern: ingest sources, compile durable pages, query, lint. Includes the wiki-keeper expert agent, a local browser preview, and adapters for the common source formats.",
+      "version": "0.1.0",
+      "category": "knowledge"
+    }
+  ]
 }

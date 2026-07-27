@@ -1,0 +1,37 @@
+{
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Write|Edit",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "uv run --no-project \"${CLAUDE_PLUGIN_ROOT}/hooks/allow_wiki_writes.py\"",
+            "description": "Approve writes to a wiki's own files (wiki/, raw/, SCHEMA.md, log.md, the manifest and configs) so one ingest doesn't prompt per page. Silent for every other path, and the user's deny rules still take precedence."
+          }
+        ]
+      }
+    ],
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "uv run --no-project \"${CLAUDE_PLUGIN_ROOT}/skills/wiki-lint/scripts/build_index.py\" --auto",
+            "description": "Regenerate wiki/index.md from page frontmatter. No-op if the current directory is not inside a wiki (no SCHEMA.md found)."
+          },
+          {
+            "type": "command",
+            "command": "uv run --no-project \"${CLAUDE_PLUGIN_ROOT}/skills/wiki-lint/scripts/build_manifest.py\" --auto",
+            "description": "Regenerate .manifest.json (source provenance: origin + sha256) from raw/ frontmatter. Derived like the index, so it can't drift. No-op outside a wiki."
+          },
+          {
+            "type": "command",
+            "command": "uv run --no-project \"${CLAUDE_PLUGIN_ROOT}/skills/wiki-lint/scripts/lint_mechanical.py\" --auto --quiet",
+            "description": "Run deterministic mechanical lint (broken links, orphans, missing frontmatter). No-op outside a wiki. Deep/semantic lint is the wiki-lint skill, run on demand."
+          }
+        ]
+      }
+    ]
+  }
+}
