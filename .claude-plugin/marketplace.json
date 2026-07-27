@@ -1,0 +1,10 @@
+{
+  "name": "ai-toolkit",
+  "owner": {
+    "name": "ITSolve-dev"
+  },
+  "description": "ITSolve-dev shared AI toolkit — reusable skills, agents and plugins across projects.",
+  "version": "0.1.0",
+  "renames": {},
+  "plugins": []
+}
