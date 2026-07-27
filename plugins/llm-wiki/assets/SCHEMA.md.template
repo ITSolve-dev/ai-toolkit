@@ -1,0 +1,77 @@
+# <WIKI NAME> — SCHEMA
+
+<!--
+This file is the CHARTER and the ROOT MARKER: its presence marks this directory as a wiki
+root, and its contents are the lens ingest uses to decide what to keep.
+
+Per Karpathy, the schema is "what makes the LLM a disciplined wiki maintainer rather than a
+generic chatbot" — and it is a LIVING document you and the LLM co-evolve as you learn what
+works for this domain. The generic structure/conventions/workflows live in the llm-wiki
+plugin; this file holds the DOMAIN-SPECIFIC charter and any local overrides. Fill every
+section, then keep refining it.
+-->
+
+## Purpose
+
+<One short paragraph: what this wiki is for, and whom/what it serves.>
+
+## Scope — the ingestion lens
+
+Ingest judges every candidate fact from a source against this. Be specific — this is what
+separates signal from noise for THIS wiki.
+
+**In scope (keep):**
+- <topics, claims, artifacts that matter here>
+
+**Out of scope (drop):**
+- <what to deliberately filter out>
+
+## Domain extraction schema
+
+From each source, extract these kinds of knowledge (tailor to the domain — this overrides
+the generic default):
+
+- <e.g. frameworks, decision rules, trade-offs, definitions, failure modes, ...>
+
+## Grouping principle
+
+Pages live in subdirectories of `wiki/`, named by this domain's own topics, so the folder tree
+is self-documenting (e.g. `strategic-design/`, not `concepts/`). Rather than enumerate every
+group, state the **principle** by which this wiki splits pages into groups; new groups are
+created as topics appear, and the emerging tree shows what exists. A page's `category`
+frontmatter equals its folder name.
+
+<State this wiki's grouping principle — e.g. "Group by top-level topic area of the domain; a
+page goes where a reader would look for it.">
+
+
+## Languages
+
+- **Wiki language** — the language the pages are written in. **English is recommended** (widest
+  source coverage, and the cleanest, still-meaningful slugs and cross-links); choose another only
+  with reason. Ingest, filed-back query answers, and lint all follow it.
+- **Communication language** — how the LLM talks to you (questions, surfaced takeaways, reports).
+  Whatever you prefer; defaults to the language you use here.
+
+<e.g. Wiki language: English · Communication language: Russian>
+
+## Conventions
+
+- Pages, frontmatter, and `[[wikilinks]]` follow the `llm-wiki` plugin's page conventions.
+- Link style: `[[slug]]` (Obsidian-style).
+
+## Workflow customizations
+
+Per-wiki overrides to the plugin's default ingest / query / lint behavior. Leave empty to
+use the defaults; add rules here as you and the LLM discover what this domain needs. E.g.:
+
+- Ingest: <e.g. "always create a source page even for short articles">
+- Query: <e.g. "prefer primary sources; flag any claim without a citation">
+- Lint cadence: <e.g. "deep semantic lint after every 10 ingests">
+
+## Notes
+
+<Anything wiki-specific: preferred/authoritative sources, review cadence, naming quirks.>
+
+<!-- Co-evolution log: record decisions about how THIS wiki is run as they emerge. -->
+

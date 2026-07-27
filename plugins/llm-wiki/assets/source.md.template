@@ -1,0 +1,18 @@
+---
+type: source
+title: ""
+source_kind: ""       # open human category — book | paper | web-page | talk | document | ...
+origin: ""            # original path or URL
+authors: []
+published: ""
+retrieved: YYYY-MM-DD
+sha256: ""            # hash of the source as ingested — recorded in .manifest.json (provenance)
+structure: []        # structural map: chapters / sections / timestamps (for citations)
+---
+
+<!--
+Normalized markdown body, produced by a read-* adapter per the adapter contract.
+Preserve structure: headings, lists, tables, code blocks, and the structural anchors that
+citations pin to. Download images locally and reference them.
+Do NOT filter for relevance — faithful extraction only; deciding what matters is wiki-ingest's job.
+-->

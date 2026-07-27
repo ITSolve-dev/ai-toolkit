@@ -1,0 +1,20 @@
+site_name: Wiki                # set to this wiki's name
+docs_dir: wiki                 # serve the compiled wiki/ markdown
+use_directory_urls: false
+# generated catalog: keep it as the '/' home, hide it from the sidebar
+not_in_nav: |
+  index.md
+theme:
+  name: material
+  features:
+    - navigation.tabs        # top-level page groups as tabs
+    - navigation.sections
+    - navigation.top
+plugins:
+  - search
+  - roamlinks                  # makes [[wikilinks]] clickable
+markdown_extensions:
+  - admonition
+  - tables
+  - fenced_code
+  - toc

@@ -1,0 +1,34 @@
+---
+title: ""
+category: ""
+summary: ""
+tags: []
+sources: []
+created: YYYY-MM-DD
+updated: YYYY-MM-DD
+---
+
+<!--
+Field notes — delete this block once the page is written.
+  category  this page's group; MUST equal its folder name (wiki/<group>/)
+  summary   one sentence; used verbatim in the generated index
+  tags      topic tags, plus the page kind if useful (e.g. comparison)
+  sources   bare slugs of source pages / raw files — not [[wikilinks]]
+In a value, an unquoted ` #` starts a comment and is stripped; quote the value when a literal
+`#` has to survive.
+-->
+
+# Title
+
+<Lead paragraph: a clear, self-contained, encyclopedic definition of this one thing.>
+
+## <A substantive section>
+
+<Body. One page = one thing. Carry the source's actual substance — the reasoning behind a
+claim, the numbers, the mechanism, the named example, the trade-off, the conditions under
+which it breaks — not just a definition. Cross-link liberally with [[slug]]. Link out for
+tangential concepts, but explain this page's own subject properly, here.>
+
+> <A short verbatim quote, where a definition or a load-bearing claim carries the weight.>
+
+— [[<source-slug>]], `L120-L138`
