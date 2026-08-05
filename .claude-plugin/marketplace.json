@@ -13,6 +13,13 @@
       "description": "LLM-maintained knowledge wiki following Andrej Karpathy's llm-wiki pattern: ingest sources, compile durable pages, query, lint. Includes the wiki-keeper expert agent, a local browser preview, and adapters for the common source formats.",
       "version": "0.1.0",
       "category": "knowledge"
+    },
+    {
+      "name": "domain-driven-guide",
+      "source": "./plugins/domain-driven-guide",
+      "description": "Domain-Driven Design guidance grounded in a curated knowledge base bundled with the plugin: questions answered with citations, and skills for modelling and reviewing a domain.",
+      "version": "0.1.0",
+      "category": "knowledge"
     }
   ]
 }
