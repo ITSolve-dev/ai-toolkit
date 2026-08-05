@@ -1,4 +1,7 @@
 #!/usr/bin/env python3
+# /// script
+# requires-python = ">=3.10"
+# ///
 """Regenerate <wiki-root>/.manifest.json from raw/ source frontmatter.
 
 The manifest is a DERIVED index — like wiki/index.md — so it cannot drift from the sources it

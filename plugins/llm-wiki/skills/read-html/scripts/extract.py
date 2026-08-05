@@ -1,4 +1,7 @@
 #!/usr/bin/env python3
+# /// script
+# requires-python = ">=3.10"
+# ///
 """read-html adapter: web page (or multi-page web work) or local HTML -> normalized raw/<slug>.md.
 
 Faithful extraction only — no relevance filtering (that is wiki-ingest's job). Uses Trafilatura,

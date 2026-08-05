@@ -1,4 +1,7 @@
 #!/usr/bin/env python3
+# /// script
+# requires-python = ">=3.10"
+# ///
 """Scaffold a new llm-wiki from the plugin's asset templates.
 
 Creates the layout described in references/directory-layout.md:

@@ -1,4 +1,7 @@
 #!/usr/bin/env python3
+# /// script
+# requires-python = ">=3.10"
+# ///
 """Deterministic (mechanical) lint for an llm-wiki.
 
 Tier 1 of the two-tier lint (see lint-workflow.md): catches only the things a machine can
