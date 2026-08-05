@@ -22,3 +22,23 @@ jobs:
           for dir in plugins/*/; do
             claude plugin validate "$dir" --strict
           done
+
+  wiki-index:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+      - uses: astral-sh/setup-uv@v9.0.0
+
+      # A bundled wiki ships its generated index.md; rebuild it and fail if it drifted.
+      - name: Check bundled wiki indexes are current
+        run: |
+          for schema in plugins/*/knowledge/SCHEMA.md; do
+            [ -e "$schema" ] || continue
+            uv run --no-project \
+              plugins/llm-wiki/skills/wiki-lint/scripts/build_index.py "$(dirname "$schema")"
+          done
+          if ! git diff --quiet; then
+            echo "::error::A bundled wiki index is stale — regenerate and commit it."
+            git diff
+            exit 1
+          fi
