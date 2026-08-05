@@ -1,4 +1,7 @@
 #!/usr/bin/env python3
+# /// script
+# requires-python = ">=3.10"
+# ///
 """Regenerate wiki/index.md from page frontmatter.
 
 The index is a DERIVED artifact — never hand-edited, gitignored — so it can't drift. Pages

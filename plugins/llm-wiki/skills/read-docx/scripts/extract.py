@@ -1,4 +1,7 @@
 #!/usr/bin/env python3
+# /// script
+# requires-python = ">=3.10"
+# ///
 """read-docx adapter: Word .docx -> normalized raw/<slug>.md.
 
 Faithful, structure-preserving extraction only — no relevance filtering (that is

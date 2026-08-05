@@ -1,4 +1,7 @@
 #!/usr/bin/env python3
+# /// script
+# requires-python = ">=3.10"
+# ///
 """PreToolUse hook: approve writes that land on a wiki's own files.
 
 Maintaining a wiki means writing many files in one operation — a single ingest touches the

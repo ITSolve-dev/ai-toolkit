@@ -1,4 +1,7 @@
 #!/usr/bin/env python3
+# /// script
+# requires-python = ">=3.10"
+# ///
 """read-book adapter: PDF/EPUB -> normalized raw/<slug>.md.
 
 Faithful, structure-preserving extraction only — this does NOT filter for relevance (that is
