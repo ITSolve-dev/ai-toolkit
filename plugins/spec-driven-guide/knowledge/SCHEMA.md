@@ -99,6 +99,31 @@ to review, and what goes wrong.
 - Pages, frontmatter, and `[[wikilinks]]` follow the `llm-wiki` plugin's page conventions.
 - Link style: `[[slug]]` (Obsidian-style).
 
+### Page kinds
+
+The first entry in `tags` is the page's kind. Eight are in use here, beyond the generic set:
+
+| Kind | What it holds |
+|---|---|
+| `summary` | One per ingested source |
+| `concept` | An idea, defined and situated |
+| `rule` | A prescription, with the symptom that reveals its violation in a text |
+| `method` | A procedure to run against a document |
+| `decision-rule` | A test deciding between two courses |
+| `mechanism` | A device that makes something else work |
+| `position` | A stance a source takes, where the wiki records it as contested |
+| `failure-mode` | A defect, with its symptom |
+
+`comparison` is available for a page whose subject is a disagreement between sources, and is
+currently unused.
+
+### Pages this wiki authored itself
+
+Some pages carry `sources: []` and an explicit provenance note. They exist where the charter names
+something in scope, no ingested source treats it, and leaving the gap open made the base unusable
+for review. They are marked so a reader can tell a distilled claim from an invented one, and each
+says what would have to be found to ground it. Their number should go down, not up.
+
 ## Workflow customizations
 
 Per-wiki overrides to the plugin's default ingest / query / lint behavior. Leave empty to
@@ -114,6 +139,17 @@ use the defaults; add rules here as you and the LLM discover what this domain ne
 - **Query: when an answer draws a boundary, give a case on each side of it.** Boundary questions
   are the hard ones in this domain, and a criterion stated without a near-miss on either side is
   not usable by a reviewer.
+- **Writing: any sentence extending a quotation opens with an explicit subject.** "This wiki reads
+  that as…", "the transfer here is ours…", "a hypothesis of this wiki's…". Nearly every source this
+  base draws on argues about code, or about diagrams, or about one organisation's practice, so
+  almost every page must extend its source to reach a claim about writing. A block quote followed
+  by unbroken declarative prose makes that extension read as the source's — the single failure mode
+  most damaging to a base whose whole value is that a reader can go and check.
+- **Symptom rule, applied strictly.** A rule page keeps its rule only with a symptom checkable
+  **against a piece of text**. A check that requires observing a reader, forecasting the future, or
+  knowing current practice is not a textual symptom; such a page must say so in the check itself
+  rather than claiming detectability. Source-summary pages are exempt — they describe a source
+  rather than prescribe anything.
 
 ## Notes
 
@@ -141,3 +177,20 @@ altitude), Wiegers on requirement quality, Brooks on essence versus accident.
 - 2026-08-06 — Charter written to be genre-neutral on purpose. The discipline is expected to
   serve a second consumer outside this plugin; keeping the charter free of any one genre is what
   makes moving it later cost a directory move rather than a rewrite.
+
+- 2026-08-07 — Six read-only reviewers audited the base after its first nine sources. Three rules
+  above were added as a result: the explicit-subject rule after a quotation, the strict reading of
+  the symptom requirement, and the exemption for source summaries. The audit's own conclusion is
+  worth keeping: **a base built for review is judged differently from a base built for reference.**
+  Recording a disagreement between sources and telling the reader to hold both is honest for a
+  reference and useless for review — it returns exactly the hard cases and answers only the easy
+  ones. Where two rules here collide on the same passage, a page must resolve the collision rather
+  than name it.
+
+- 2026-08-07 — Known and open, so the next pass does not rediscover them: `failure-modes/` groups
+  by page kind rather than by question and should be dissolved into the question groups, with the
+  kind kept in tags; there are no before/after rewrite pairs anywhere, though the extraction schema
+  above calls them this domain's most valuable artifact; Diátaxis is uningested, which leaves
+  "combining two documents, or splitting one in half" covered only by a page this wiki wrote
+  itself; and no source on requirement quality or on altitude proper has been obtained, so both
+  rest on thin material.
