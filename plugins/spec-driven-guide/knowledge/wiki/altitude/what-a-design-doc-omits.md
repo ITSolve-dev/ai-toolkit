@@ -70,3 +70,10 @@ The section headings — "APIs", "Data storage", "Code and pseudo-code" — read
 a design doc should contain, and are frequently cited that way. The text under each heading argues
 the opposite. Anyone invoking this source as licence for pasted definitions is citing the table of
 contents.
+
+## Where the ban stops
+
+This source states the ceiling and never states its exception, which makes it easy to read as a ban
+on precision. [[when-a-snippet-beats-prose]] holds the other half: a fragment that encodes the
+decision more exactly than prose can — a schema, a state machine, a type shape — is a commitment
+stated exactly, and stating commitments exactly is what the document is for.

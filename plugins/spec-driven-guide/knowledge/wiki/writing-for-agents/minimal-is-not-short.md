@@ -48,3 +48,14 @@ Brevity is also a poor proxy in the other direction. A document can be long and 
 its length is worked examples rather than hedging — see
 [[canonical-examples-not-edge-cases]], where the recommended fix for a failure is *more* text of a
 specific kind. Length is not the variable being optimised in either direction.
+
+## The ceiling that stands opposite this floor
+
+This page is the floor; [[sprawl]] is the ceiling, and the two are only usable together. Sprawl is
+the failure of a document that is too long **while every line in it is live and unique** — so its
+repair is relocation, never the cut this page forbids. A reviewer applying one without the other
+gets it wrong in a predictable direction: the floor alone excuses length, the ceiling alone excuses
+deletion.
+
+The mechanical checks that shorten a document without touching obligations are in
+[[pruning-a-document]].

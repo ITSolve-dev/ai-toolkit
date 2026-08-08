@@ -14,8 +14,9 @@ each supplies; [[information-hiding]] is Parnas's method for reaching it;
 [[abstract-interface-vs-representation]] draws the line and [[the-changeability-test]] is how you
 apply it to a specific text. [[resolving-a-scale-conflict]] handles the case where two rules here
 disagree about the same passage — read it before applying either alone.
-[[parnas-criteria-for-decomposing-systems]] is the source summary, and it is where the transfer
-from modules to prose is argued rather than assumed.
+[[when-a-snippet-beats-prose]] is the one stated exception — the schema or state machine that is a
+commitment rather than an implementation. [[parnas-criteria-for-decomposing-systems]] is the source
+summary, and it is where the transfer from modules to prose is argued rather than assumed.
 
 **altitude — how high to write and how to stay there.** [[defining-a-level]] fixes what a level is
 and makes the audience the discriminator. [[what-a-design-doc-omits]] sets the ceiling for one
@@ -27,26 +28,33 @@ genres treated in depth, with entry tests in [[when-to-write-a-design-doc]] and 
 [[non-goals]] and [[alternatives-considered]]. [[state-marks-authority]] and
 [[timely-rather-than-polished]] cover documents that are not finished; read them together, neither
 is safe alone. [[splitting-a-document]] handles a file carrying two genres.
-[[design-docs-at-google]] is the source summary.
+[[design-docs-at-google]] and [[skills-for-real-engineers-formats]] are the source summaries.
 
 **decision-records — how to record a decision so it outlives the document that made it.**
 [[decision-record]] and [[madr-template]] give the two standard forms;
 [[architecturally-significant]] is the entry test and records the disagreement about whether there
 should be one. The checkable rules are [[consequences-include-the-negative]],
 [[every-argument-carries-a-because]] and [[confirmation]]; [[superseding-not-editing]] governs
-reversal and [[decision-log]] the collection. [[documenting-architecture-decisions]] is the source
-summary.
+reversal and [[decision-log]] the collection. [[a-record-can-be-one-paragraph]] is the dissenting
+position on how much of that a record owes, and carries the sharpest entry gate here.
+[[documenting-architecture-decisions]] is the source summary.
 
 **statement-quality — how to phrase something so it can be checked.** [[obligation-language]] for
 force, [[imperatives-constrain-outcomes-not-methods]] for when force is earned,
-[[imprecise-terminology]] for the words that make a claim unfalsifiable.
-[[rfc-2119-requirement-levels]] is the source summary and is candid about how little it covers.
+[[imprecise-terminology]] for the words that make a claim unfalsifiable. [[completion-criteria]]
+grades the bound a statement sets, which varies independently of its force; [[leading-words]] is the
+one lever that shortens a statement and sharpens it at the same time, and carries the rule against
+steering by prohibition. [[rfc-2119-requirement-levels]] is the source summary and is candid about
+how little it covers.
 
 **writing-for-agents — how to write for a reader that will not ask.**
 [[the-right-altitude-for-an-agent]] names both failure modes, which no other group here does.
-[[minimal-is-not-short]] is the floor under every cutting rule in this wiki;
+[[minimal-is-not-short]] is the floor under every cutting rule in this wiki and [[sprawl]] the
+ceiling opposite it — read them together, either alone misleads.
 [[canonical-examples-not-edge-cases]] and [[attention-budget]] are the genre's own constraints.
-[[effective-context-engineering]] is the source summary.
+[[the-information-hierarchy]] decides where a piece of material sits, [[context-pointer]] how it is
+reached, and [[the-two-loads]] which budget the choice spends.
+[[effective-context-engineering]] and [[writing-for-agents-reference]] are the source summaries.
 
 **failure-modes — what goes wrong.** [[over-specification]],
 [[processing-order-is-not-a-structure]], [[implementation-manual]],
@@ -59,7 +67,8 @@ sound documents.
 only one that finds what was never written. [[unresolvable-references]] and
 [[a-problem-with-no-decision]] are the cheap textual checks; [[consistency-across-a-set]] covers
 defects that exist only between files; [[ranking-findings]] decides what order to report them in.
-Four of these five are this wiki's own work and say so — no ingested source treats reviewing.
+[[pruning-a-document]] is the sentence-by-sentence pass and the only page here with a source behind
+it — the other five are this wiki's own work and say so.
 
 ## Where to start
 

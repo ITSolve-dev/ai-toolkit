@@ -194,3 +194,21 @@ altitude), Wiegers on requirement quality, Brooks on essence versus accident.
   "combining two documents, or splitting one in half" covered only by a page this wiki wrote
   itself; and no source on requirement quality or on altitude proper has been obtained, so both
   rest on thin material.
+
+- 2026-08-08 — Two practitioner sources ingested (`writing-for-agents`, and the ADR/spec formats
+  from the same toolkit), closing the gap the audit named first: **the base had no argument about
+  volume, only about kind.** [[sprawl]] supplies it, and it turned out to need a rule of its own
+  rather than a stronger cutting rule — a document can be too long while every line in it is live,
+  and there the repair is relocation, not deletion. That is now stated on the floor page as well, so
+  neither can be applied alone.
+
+  Two consequences for how this wiki is run. **A practitioner source is graded on its mechanisms,
+  not its magnitudes** — these two argue from observed behaviour with no study behind them, so a
+  claim is kept when it names something checkable in a text and dropped when it only asserts a size
+  of effect. And **a contested claim now gets resolved on the page that raises it**: the minimal-ADR
+  position collides with this wiki's own rule on consequences, and per the 2026-08-07 entry the
+  collision is settled there rather than reported.
+
+  Still open from the entry above, unchanged: `failure-modes/`, before/after pairs, Diátaxis,
+  Cockburn. Requirement quality is now partly served from an adjacent direction
+  (`completion-criteria`, `leading-words`) but still has no source that studies it directly.

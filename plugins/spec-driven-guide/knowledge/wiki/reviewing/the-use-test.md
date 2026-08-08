@@ -71,3 +71,7 @@ prepared questions — where the textual checks need one person and the file. Th
 under-specification failure is systematically under-detected, and why a base whose rules almost all
 point toward cutting is dangerous without it: **the failure it catches is the one every other rule
 here makes more likely.**
+
+Its opposite number is [[pruning-a-document]]: this test finds what the document never said, that
+pass finds what it said and did not need. Run them in that order — pruning first would delete lines
+the use test is about to prove load-bearing.

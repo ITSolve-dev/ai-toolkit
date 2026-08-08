@@ -56,3 +56,6 @@ describes a decision made in ignorance of them.
 Related: [[architecturally-significant]] for what earns a record, and
 [[design-doc]] for the neighbouring genre — a design doc argues one design at length and decays
 with the system; a decision record fixes one point of that argument and outlives it.
+
+For the opposite end of the spectrum — the same obligations discharged in a title and three
+sentences, with every section optional — see [[a-record-can-be-one-paragraph]].

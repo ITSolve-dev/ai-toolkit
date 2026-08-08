@@ -83,3 +83,7 @@ chosen — so the gate is a question of volume, not of purpose.
 Related: [[decision-record]] for what to write once the test passes,
 [[when-to-write-a-design-doc]] for the parallel entry test in the neighbouring genre — there the
 trigger is ambiguity, here it is reach.
+
+A second entry test, from a different source and answerable today rather than in principle, is on
+[[a-record-can-be-one-paragraph]]: hard to reverse, surprising without context, the result of a real
+trade-off. It selects an overlapping but different set from this one.

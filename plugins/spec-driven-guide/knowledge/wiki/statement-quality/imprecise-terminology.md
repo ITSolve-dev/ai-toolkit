@@ -65,3 +65,6 @@ Related: [[mixed-levels-of-abstraction]] uses generic vocabulary as the surface 
 description has lost its level. That is consistent with this page — the source's stated direction
 is vocabulary → confusion — so the repair order is fixed: **define the word first**, and see
 whether the level question survives it.
+
+Also related: [[leading-words]], the constructive counterpart — where this page removes a word that
+cannot be checked, that one installs a word that names an observable state.

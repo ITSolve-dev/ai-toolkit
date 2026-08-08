@@ -69,3 +69,6 @@ This wiki covers the argument document and, by charter, not the execution docume
 decomposition and task breakdown are excluded. So it can say a split is needed and say what goes on
 each side; it cannot say whether the execution half is any good. A reviewer working from this base
 should say so rather than leave the impression that the whole document was assessed.
+
+Related: [[the-information-hierarchy]], for the cut made when the material is one genre on two rungs
+rather than two genres in one file — the placement question, not the genre question.

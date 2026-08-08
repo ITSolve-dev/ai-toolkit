@@ -54,3 +54,6 @@ paid by the rest of the document — not the particular measurements behind it.
 
 For a human reader, the older arguments carry the weight instead: [[information-hiding]] and
 [[the-changeability-test]] say to omit the same material for entirely different reasons.
+
+Related: [[sprawl]], which is this cost stated as a defect a reviewer can look for, and
+[[pruning-a-document]], which removes load without touching what the document commits to.

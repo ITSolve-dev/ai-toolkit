@@ -62,3 +62,6 @@ it.
 It is not a count. Three ceiling violations do not outrank one broken decision chain, and a
 document with many third-rank findings can be in better shape than one with a single first-rank
 finding. Report the counts, but rank by the axis.
+
+One pass is exempt. [[pruning-a-document]] produces findings that are all the same severity and all
+the same repair, so its output is a list rather than a ranking.

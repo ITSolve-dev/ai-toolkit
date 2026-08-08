@@ -11,6 +11,7 @@
 
 ## Decision Records
 
+- [A record can be one paragraph](decision-records/a-record-can-be-one-paragraph.md) — One source holds that a decision record is a title and one to three sentences, with every named section optional — a position that contests the templates and that this wiki resolves rather than reports.
 - [Architecturally significant](decision-records/architecturally-significant.md) — The entry test for what earns a decision record — a decision affecting structure, non-functional characteristics, dependencies, interfaces, or construction techniques.
 - [Confirmation](decision-records/confirmation.md) — How compliance with a decision will be checked — the section that makes a decision record verifiable instead of merely recorded.
 - [Consequences include the negative](decision-records/consequences-include-the-negative.md) — A consequences section listing only benefits has not been written honestly — and the omission disarms the future reader the record exists to serve.
@@ -28,6 +29,7 @@
 - [Design Docs at Google (Malte Ubl)](document-types/design-docs-at-google.md) — The most widely cited account of the design-doc genre — what it carries, what it deliberately omits, when not to write one, and how it ages.
 - [Non-goals](document-types/non-goals.md) — Things that could reasonably have been goals and were deliberately chosen not to be — not negated goals, which is the distinction that makes the section checkable.
 - [Oxide RFD 1 — Requests for Discussion](document-types/oxide-rfd-process.md) — A document genre that deliberately admits unfinished work, and the state field that makes doing so safe.
+- [ADR-FORMAT and to-spec (Skills for Real Engineers)](document-types/skills-for-real-engineers-formats.md) — Two working document formats from one practitioner toolkit — the shortest decision-record format this wiki holds, and a spec format that draws the detail line and then states its exception.
 - [Splitting a document](document-types/splitting-a-document.md) — When a document carries two genres, the repair is usually a split rather than a deletion — the procedural half is legitimate output that belongs in its own document, not a defect to be cut.
 - [State marks authority](document-types/state-marks-authority.md) — A declared state tells a reader how settled a document is — the mechanism that lets unfinished work be published without being mistaken for a decision.
 - [Timely rather than polished](document-types/timely-rather-than-polished.md) — A deliberate lowering of the bar for what may be written down, with the two failure modes it exists to prevent named explicitly.
@@ -49,19 +51,23 @@
 - [Resolving a scale conflict](obligation-and-mechanism/resolving-a-scale-conflict.md) — When one rule says a passage states the obligation and another says it leaks the mechanism, the two are answering at different grains — separate the grain question from the form question and both resolve.
 - [State the commitment, not the means](obligation-and-mechanism/state-the-commitment-not-the-means.md) — The rule several unrelated sources arrive at, the two grounds it rests on, and the tests each ground supplies — held apart from the method that first produced it.
 - [The changeability test](obligation-and-mechanism/the-changeability-test.md) — Decide whether something belongs in a description by listing the changes likely to happen and tracing how far each one propagates.
+- [When a snippet beats prose](obligation-and-mechanism/when-a-snippet-beats-prose.md) — The one stated exception to the rule against code in a document — a fragment earns its place when it encodes the decision more exactly than sentences can, and is trimmed to the part that decides.
 
 ## Reviewing
 
 - [A problem with no decision](reviewing/a-problem-with-no-decision.md) — Every problem a document names must be answered by something the document decides — an orphaned problem is a defect, and the check is a coverage pass over the document's own opening.
 - [Consistency across a set](reviewing/consistency-across-a-set.md) — A collection of documents has defects no single document has — inconsistent naming, no stated reading order, and no transition from one to the next.
+- [Pruning a document](reviewing/pruning-a-document.md) — Four line-by-line checks that remove load without removing obligation — duplication, material the environment already holds, lost relevance, and instructions the reader would follow anyway.
 - [Ranking findings](reviewing/ranking-findings.md) — Rank by how far the damage travels — first outside the document, then to the reader implementing, then within the text — because a report ordered by how easy a defect was to find gets stopped reading.
 - [The use test](reviewing/the-use-test.md) — Give the document to a reader with no outside context and a decision to make — what they cannot decide marks a missing obligation, and where they choose arbitrarily marks its location.
 - [Unresolvable references](reviewing/unresolvable-references.md) — A document naming something it never introduces — the cheapest defect to detect mechanically, and evidence that content was lost between drafting and publication.
 
 ## Statement Quality
 
+- [Completion criteria](statement-quality/completion-criteria.md) — The condition that tells a reader the work is done, graded on two independent properties — whether done can be told from not-done, and how much is demanded.
 - [Imperatives constrain outcomes, not methods](statement-quality/imperatives-constrain-outcomes-not-methods.md) — A binding statement is legitimate only where it is required for things to work together or to prevent harm — never to impose a method the outcome does not depend on.
 - [Imprecise terminology](statement-quality/imprecise-terminology.md) — A word used for several things at once makes statements containing it unfalsifiable — and the demand for more structure is usually a demand to avoid defining the word.
+- [Leading words](statement-quality/leading-words.md) — One word the reader already holds a concept for can carry a behaviour that a paragraph defines badly — and the word must be repeated as a token, never restated as a sentence.
 - [Obligation language](statement-quality/obligation-language.md) — Three levels — absolute, defeasible with reasons, and truly optional — each committing the reader to something different, and each defeated by the same failure to choose deliberately.
 - [RFC 2119 — Key words to indicate requirement levels](statement-quality/rfc-2119-requirement-levels.md) — Three pages fixing what MUST, SHOULD and MAY mean, plus a rule restricting when an imperative may be used at all.
 
@@ -69,7 +75,12 @@
 
 - [Attention budget](writing-for-agents/attention-budget.md) — A model reader's ability to use what it is given degrades as the amount grows — so for this reader, economy is a mechanical constraint rather than a stylistic preference.
 - [Canonical examples, not edge cases](writing-for-agents/canonical-examples-not-edge-cases.md) — A curated set of diverse representative examples outperforms an exhaustive list of every rule the reader should follow — and the exhaustive list is the more common instinct.
+- [Context pointer](writing-for-agents/context-pointer.md) — The reference by which a reader reaches material held outside the document — and the wording of the reference, not the quality of the target, decides whether it is ever reached.
 - [Effective context engineering for AI agents (Anthropic)](writing-for-agents/effective-context-engineering.md) — Vendor guidance on writing instructions a model will act on — it names the altitude problem directly and gives both failure modes bounding it.
 - [Minimal is not short](writing-for-agents/minimal-is-not-short.md) — The target is the smallest set of information that fully specifies the expected behaviour — cutting past that point removes obligations, not verbosity.
+- [Sprawl](writing-for-agents/sprawl.md) — A document too long even though every line in it is live, unique and correct — the one failure in this wiki that is about volume rather than about the kind of content.
+- [The information hierarchy](writing-for-agents/the-information-hierarchy.md) — Material sits on one of three rungs — an in-file step, in-file reference, or reference pushed behind a pointer — and the placement decision is made by which branches need it, not by how long it is.
 - [The right altitude for an agent](writing-for-agents/the-right-altitude-for-an-agent.md) — Instructions fail at both ends — hardcoded brittle logic at one, vague guidance assuming shared context at the other — and the target is the band between them.
+- [The two loads](writing-for-agents/the-two-loads.md) — A document spends either the reader's attention or the reader's memory of what exists — and only the first of the two is a cost to minimise.
+- [writing-for-agents (Skills for Real Engineers)](writing-for-agents/writing-for-agents-reference.md) — A practitioner reference on documents an agent reads, and the only source here that argues about a document's volume rather than about the kind of content in it.
 

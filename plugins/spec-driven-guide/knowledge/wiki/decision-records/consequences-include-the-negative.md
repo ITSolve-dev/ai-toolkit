@@ -53,3 +53,6 @@ present.
   option existed.
 - [[non-goals]] bound what the work is judged on, before the fact. Consequences report what
   happened to be true after the decision, including things nobody wanted and accepted anyway.
+
+One source makes this section optional — see [[a-record-can-be-one-paragraph]], where the collision
+with this rule is stated and resolved: the obligation is on the decision, not on the heading.

@@ -57,3 +57,10 @@ survive the cutting, and a document that has removed its obligations along with 
 failed differently but no less completely — [[minimal-is-not-short]],
 [[the-right-altitude-for-an-agent]]. The asymmetry is real: this wiki's sources are preoccupied
 with saying too much and nearly silent about saying too little.
+
+## Two applications worth reaching separately
+
+[[when-a-snippet-beats-prose]] applies the rule to content that looks like implementation and is
+not — the schema, the state machine, the type shape. [[pruning-a-document]] applies it to content
+the surrounding environment already states, where the ground is discoverability rather than
+volatility, and the check is therefore cheap to run.

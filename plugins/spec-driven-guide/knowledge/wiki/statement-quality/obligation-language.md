@@ -56,3 +56,6 @@ reader will decide instead.
 The second symptom is the mirror: **levels applied uniformly**, every statement a MUST. This
 carries no more information than none at all, and it runs into
 [[imperatives-constrain-outcomes-not-methods]], which restricts when the strong form is legitimate.
+
+Related: [[completion-criteria]], which grades the bound a statement sets rather than the force it
+carries — the two vary independently, and a MUST with a vague bound obliges nothing.
