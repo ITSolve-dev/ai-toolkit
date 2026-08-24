@@ -1,6 +1,6 @@
 {
   "name": "llm-wiki",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Build and maintain an LLM-curated knowledge wiki — Andrej Karpathy's llm-wiki pattern. Context-aware ingestion of any source into durable, cross-linked markdown pages, with query, lint, source-scouting and local serve. Ships the wiki-keeper expert agent.",
   "author": {
     "name": "ITSolve-dev"

@@ -10,9 +10,9 @@ This repository is a **Claude Code plugin marketplace**: one repo, many plugins 
 
 | Plugin | Version | What it does |
 |--------|---------|--------------|
-| [`llm-wiki`](plugins/llm-wiki) | 0.1.0 | LLM-maintained knowledge wiki (Karpathy pattern): ingest → compile → query → lint, local serve, multi-source adapters (book/html/docx). Ships the `wiki-keeper` expert agent. |
-| [`domain-driven-guide`](plugins/domain-driven-guide) | 0.1.0 | Ask DDD questions against a bundled, curated knowledge base — answers with citations via the read-only `guide` agent, plus design skills. Built on `llm-wiki`. |
-| [`spec-driven-guide`](plugins/spec-driven-guide) | 0.1.0 | Write design docs, decision records and agent instructions that keep their obligations and shed the mechanism. Bundled base with citations, section-by-section authoring, fan-out review. Built on `llm-wiki`. |
+| [`llm-wiki`](plugins/llm-wiki) | 0.1.1 | LLM-maintained knowledge wiki (Karpathy pattern): ingest → compile → query → lint, local serve, multi-source adapters (book/html/docx). Ships the `wiki-keeper` expert agent. |
+| [`domain-driven-guide`](plugins/domain-driven-guide) | 0.1.1 | Ask DDD questions against a bundled, curated knowledge base — answers with citations via the read-only `guide` agent, plus design skills. Built on `llm-wiki`. |
+| [`spec-driven-guide`](plugins/spec-driven-guide) | 0.1.1 | Write design docs, decision records and agent instructions that keep their obligations and shed the mechanism. Bundled base with citations, section-by-section authoring, fan-out review. Built on `llm-wiki`. |
 
 ## Install
 
