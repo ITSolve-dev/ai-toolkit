@@ -38,6 +38,10 @@ they resolve nowhere else.
    | Statements | `wiki/statement-quality/` — the five rule pages; `rfc-2119-requirement-levels.md` is a source summary and prescribes nothing |
    | Structure | `wiki/failure-modes/processing-order-is-not-a-structure.md`, `wiki/failure-modes/comprehensible-only-as-a-whole.md`, `wiki/document-types/splitting-a-document.md` |
    | Argument | `wiki/decision-records/every-argument-carries-a-because.md`, `wiki/reviewing/a-problem-with-no-decision.md`, `wiki/reviewing/unresolvable-references.md` |
+
+   Give the Floor reviewer `wiki/reviewing/a-problem-with-no-decision.md` as well. A missing
+   obligation and a question raised and never answered are the same defect seen from two sides, and
+   a Floor reviewer without that page will reach for whatever it does hold.
    | Pruning | `wiki/reviewing/pruning-a-document.md` |
 
    Drop a dimension the document cannot exhibit rather than running it for completeness — an ADR
@@ -47,10 +51,18 @@ they resolve nowhere else.
    as its own dimension; those defects exist only between files and no single-file reviewer sees
    them.
 
-3. **Merge, and resolve collisions.** Two dimensions will sometimes fire on the same passage from
-   opposite directions — ceiling says cut, floor says the obligation is load-bearing. Resolve it
-   with `wiki/obligation-and-mechanism/resolving-a-scale-conflict.md` and report one finding, not
-   two. Reporting both hands the author the disagreement and answers nothing.
+3. **Merge.** Two dimensions land on the same passage more often than they miss one, in two shapes:
+
+   - **They agree** — the same defect reported twice, usually because one reviewer reached past its
+     own pages to the nearest thing that fit. Keep the one whose page actually governs the defect
+     and drop the other. A report that says the same thing twice reads as two problems.
+   - **They disagree** — ceiling says cut, floor says the obligation is load-bearing. Resolve with
+     `wiki/obligation-and-mechanism/resolving-a-scale-conflict.md` and report one finding.
+     Reporting both hands the author the disagreement and answers nothing.
+
+   The second shape is often not a real conflict: a passage stating an obligation *through* its
+   mechanism draws both, and the repair satisfies both — promote the obligation, drop the mechanism.
+   Check for that before reaching for the conflict page.
 
 4. **Rank by how far the damage travels**, per `wiki/reviewing/ranking-findings.md`:
 
@@ -73,6 +85,12 @@ Nearly every rule in the base argues for removing something, so the merged repor
 cutting. The reader agent is the counterweight and its findings are the ones most likely to be
 skipped, because they are the vaguest to act on. Put them where they rank — usually second — rather
 than at the end.
+
+The reader returns every guess it made, which on a thin document runs to a dozen or more. Do not
+pass that list through unchanged, and do not truncate it either: **group the guesses by the
+obligation whose absence forced them**, and report one finding per missing obligation, naming the
+guesses as its evidence. Ten guesses about failure behaviour are one finding with ten witnesses,
+and reported that way they outrank anything the textual checks found.
 
 Where the reader completed the task with no guesses and the dimension reviewers returned a long
 list, say that plainly: the document works and the findings are improvements. That distinction is

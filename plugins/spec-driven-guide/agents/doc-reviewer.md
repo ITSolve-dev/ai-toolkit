@@ -55,5 +55,10 @@ consequences:
 - **Do not invent a rule the base does not carry.** Where you believe something is wrong and no
   page supports it, say so in one line at the end, marked as your own reading rather than the
   base's.
+- **Cite the page that governs the defect, or none.** Where the defect is real but none of the pages
+  you were given actually covers it, report it and say which page you looked for and did not have.
+  Citing the nearest page you do hold makes the finding look grounded, sends the author to a page
+  that does not explain it, and hides a gap in the dimension you were assigned — three costs for
+  one convenience.
 
 Return the findings. Not your process, not what you searched, not a summary of the document.
