@@ -27,8 +27,10 @@ its reasoning about levels and none of its diagramming.
 genres treated in depth, with entry tests in [[when-to-write-a-design-doc]] and section rules in
 [[non-goals]] and [[alternatives-considered]]. [[state-marks-authority]] and
 [[timely-rather-than-polished]] cover documents that are not finished; read them together, neither
-is safe alone. [[splitting-a-document]] handles a file carrying two genres.
-[[design-docs-at-google]] and [[skills-for-real-engineers-formats]] are the source summaries.
+is safe alone. [[splitting-a-document]] handles a file carrying two genres, [[genre-blur]] says why that costs more
+than it looks, and [[the-two-axis-test]] decides which genre a passage actually is.
+[[design-docs-at-google]], [[skills-for-real-engineers-formats]] and [[diataxis]] are the source
+summaries.
 
 **decision-records — how to record a decision so it outlives the document that made it.**
 [[decision-record]] and [[madr-template]] give the two standard forms;
@@ -67,8 +69,10 @@ sound documents.
 only one that finds what was never written. [[unresolvable-references]] and
 [[a-problem-with-no-decision]] are the cheap textual checks; [[consistency-across-a-set]] covers
 defects that exist only between files; [[ranking-findings]] decides what order to report them in.
-[[pruning-a-document]] is the sentence-by-sentence pass and the only page here with a source behind
-it — the other five are this wiki's own work and say so.
+[[pruning-a-document]] is the sentence-by-sentence pass; [[functional-and-deep-quality]] separates
+what a review can measure from what it can only judge, and is why the use test cannot be traded for
+cheaper checks. Those two are the sourced pages here — the other five are this wiki's own work and
+say so.
 
 ## Where to start
 

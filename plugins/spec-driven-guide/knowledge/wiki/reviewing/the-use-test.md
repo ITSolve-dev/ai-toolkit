@@ -75,3 +75,8 @@ here makes more likely.**
 Its opposite number is [[pruning-a-document]]: this test finds what the document never said, that
 pass finds what it said and did not need. Run them in that order — pruning first would delete lines
 the use test is about to prove load-bearing.
+
+[[functional-and-deep-quality]] says why this test cannot be replaced by cheaper ones: every textual
+symptom in this wiki is a measurement, and this is the only check here that produces a judgement.
+By that source's argument the measurements are necessary and insufficient — which makes this test a
+requirement rather than an optimisation.

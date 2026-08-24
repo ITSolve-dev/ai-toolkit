@@ -69,3 +69,6 @@ Related: [[information-hiding]] for what should have been concealed,
 [[abstract-interface-vs-representation]] for where the boundary belongs, and
 [[over-specification]] for the neighbouring defect where the leak is a constraint rather than a
 dependency.
+
+Related: [[genre-blur]], for the case where the sections resist separation because they belong to
+two different genres rather than because one meaning was scattered across them.

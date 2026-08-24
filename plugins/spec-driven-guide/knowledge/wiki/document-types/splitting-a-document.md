@@ -72,3 +72,10 @@ should say so rather than leave the impression that the whole document was asses
 
 Related: [[the-information-hierarchy]], for the cut made when the material is one genre on two rungs
 rather than two genres in one file — the placement question, not the genre question.
+
+## No longer this wiki's own claim alone
+
+The core of this page is now sourced. [[genre-blur]] carries the finding that decides whether a
+split is worth its cost: two genres in one file do not each get served partly — the collapse makes
+it "impossible to meet the needs served by either". [[the-two-axis-test]] is how to tell which genre
+a given passage actually is, which is the step this page assumed rather than supplied.

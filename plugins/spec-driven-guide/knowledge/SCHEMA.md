@@ -212,3 +212,18 @@ altitude), Wiegers on requirement quality, Brooks on essence versus accident.
   Still open from the entry above, unchanged: `failure-modes/`, before/after pairs, Diátaxis,
   Cockburn. Requirement quality is now partly served from an adjacent direction
   (`completion-criteria`, `leading-words`) but still has no source that studies it directly.
+
+- 2026-08-24 — Diátaxis ingested **narrowly**, and the narrowness is the point worth recording. Its
+  subject — end-user documentation as a craft — is named in the exclusions above, and its four
+  genres are not this wiki's genres. Three claims were taken because they hold of any genre pair,
+  and every page carrying one states that the transfer is this wiki's rather than the source's.
+  The taxonomy, the pedagogy and the map were left.
+
+  **A source can be mostly out of charter and still worth ingesting.** The gate is per-claim, not
+  per-source; what makes this safe is the marking, not the selection. A future pass tempted to
+  "finish" Diátaxis by adopting its four kinds should read this entry first — that is the version of
+  this ingest that would break the wiki.
+
+  It closes one open item: "combining two documents, or splitting one in half" no longer rests on a
+  page this wiki wrote itself. It also gives `reviewing/` its first sourced fragment of a severity
+  order, which `ranking-findings` had recorded as missing.

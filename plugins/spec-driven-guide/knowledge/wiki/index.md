@@ -27,11 +27,14 @@
 - [Alternatives considered](document-types/alternatives-considered.md) — The section that shows a design was chosen rather than defaulted to — its content is the trade-offs of each rejected option, not a description of it.
 - [Design doc](document-types/design-doc.md) — A document written before implementation that argues why a design is the right one — its load-bearing content is the trade-offs, not the description of what will be built.
 - [Design Docs at Google (Malte Ubl)](document-types/design-docs-at-google.md) — The most widely cited account of the design-doc genre — what it carries, what it deliberately omits, when not to write one, and how it ages.
+- [Diátaxis](document-types/diataxis.md) — A framework for end-user documentation, almost all of it out of this wiki's charter — kept for the one thing it treats better than any source here, which is what happens when two genres share a file.
+- [Genre blur](document-types/genre-blur.md) — Two genres in one file do not each get half — they collapse into something that serves neither, and the pairs that collapse are predictable from what they have in common.
 - [Non-goals](document-types/non-goals.md) — Things that could reasonably have been goals and were deliberately chosen not to be — not negated goals, which is the distinction that makes the section checkable.
 - [Oxide RFD 1 — Requests for Discussion](document-types/oxide-rfd-process.md) — A document genre that deliberately admits unfinished work, and the state field that makes doing so safe.
 - [ADR-FORMAT and to-spec (Skills for Real Engineers)](document-types/skills-for-real-engineers-formats.md) — Two working document formats from one practitioner toolkit — the shortest decision-record format this wiki holds, and a spec format that draws the detail line and then states its exception.
 - [Splitting a document](document-types/splitting-a-document.md) — When a document carries two genres, the repair is usually a split rather than a deletion — the procedural half is legitimate output that belongs in its own document, not a defect to be cut.
 - [State marks authority](document-types/state-marks-authority.md) — A declared state tells a reader how settled a document is — the mechanism that lets unfinished work be published without being mistaken for a decision.
+- [The two-axis test](document-types/the-two-axis-test.md) — A genre is decided by two binary questions about what a passage does, not by matching it against a list of section names — and the test is meant to be run when something feels off rather than when it is obviously wrong.
 - [Timely rather than polished](document-types/timely-rather-than-polished.md) — A deliberate lowering of the bar for what may be written down, with the two failure modes it exists to prevent named explicitly.
 - [When to write a design doc](document-types/when-to-write-a-design-doc.md) — Ambiguity in the solution is the trigger — where the answer is obvious, the document costs more than it returns, and writing it produces an implementation manual.
 
@@ -57,6 +60,7 @@
 
 - [A problem with no decision](reviewing/a-problem-with-no-decision.md) — Every problem a document names must be answered by something the document decides — an orphaned problem is a defect, and the check is a coverage pass over the document's own opening.
 - [Consistency across a set](reviewing/consistency-across-a-set.md) — A collection of documents has defects no single document has — inconsistent naming, no stated reading order, and no transition from one to the next.
+- [Functional and deep quality](reviewing/functional-and-deep-quality.md) — Two kinds of quality — one measured against the world, one judged against a reader — with a one-way dependency between them that gives this wiki its only sourced argument for ranking findings.
 - [Pruning a document](reviewing/pruning-a-document.md) — Four line-by-line checks that remove load without removing obligation — duplication, material the environment already holds, lost relevance, and instructions the reader would follow anyway.
 - [Ranking findings](reviewing/ranking-findings.md) — Rank by how far the damage travels — first outside the document, then to the reader implementing, then within the text — because a report ordered by how easy a defect was to find gets stopped reading.
 - [The use test](reviewing/the-use-test.md) — Give the document to a reader with no outside context and a decision to make — what they cannot decide marks a missing obligation, and where they choose arbitrarily marks its location.

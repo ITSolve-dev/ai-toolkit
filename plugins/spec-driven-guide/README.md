@@ -74,9 +74,10 @@ It powers answering (`wiki-query`) and maintaining the base (`wiki-ingest`, `wik
 
 ## The base
 
-58 pages in eight groups, distilled from eleven open sources — Parnas on information hiding, Design
+62 pages in eight groups, distilled from twelve open sources — Parnas on information hiding, Design
 Docs at Google, Oxide's RFD process, Nygard and MADR on decision records, the C4 model, RFC 2119,
-Anthropic on context engineering, and two practitioner documents on writing for agent readers.
+Anthropic on context engineering, Diátaxis on genre separation, and two practitioner documents on
+writing for agent readers.
 
 Grouped by **the question a writer arrives with**, not by source: how high to write and how to stay
 there, what to keep and what to drop, which document this is, how to phrase something checkably,

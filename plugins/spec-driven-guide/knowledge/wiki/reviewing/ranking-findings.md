@@ -65,3 +65,11 @@ finding. Report the counts, but rank by the axis.
 
 One pass is exempt. [[pruning-a-document]] produces findings that are all the same severity and all
 the same repair, so its output is a list rather than a ranking.
+
+## One fragment of this is now sourced
+
+The provenance note above still holds for the damage axis. But the ordering has a second, narrower
+justification that does come from a source: [[functional-and-deep-quality]] establishes that deep
+quality is conditional on functional quality, so a functional defect outranks a deep one because
+repairing the deep one while it stands cannot succeed. Where that ordering and the damage axis
+disagree, the damage axis governs.

@@ -2,11 +2,11 @@
 
 ## One rule, two reasons, three arrivals
 
-Eleven sources feed this wiki: software modularity from 1972, an internet standard from 1997, a
+Twelve sources feed this wiki: software modularity from 1972, an internet standard from 1997, a
 documentation-practice essay, an architecture-diagramming model, three treatments of decision
-records, a process document, model-vendor guidance from 2025, and two working documents from a
-practitioner's agent toolkit. They share no lineage and cite each other barely. Several arrive at
-the same rule:
+records, a process document, model-vendor guidance from 2025, two working documents from a
+practitioner's agent toolkit, and a framework for end-user documentation. They share no lineage and
+cite each other barely. Several arrive at the same rule:
 
 > State the commitment. Do not state the means of meeting it.
 
@@ -93,10 +93,17 @@ publishing tentative work that will be mistaken for a decision and not writing i
 in for it is C4's structural hierarchy and one vendor post. The wiki's own central concept is its
 least-sourced.
 
-**The reviewing group is almost all inference.** [[pruning-a-document]] is the one page there with a
-source behind it; everything else the wiki says about checking a document is inferred from pages
-written about producing one. The checks at the foot of each failure-mode page are this wiki's
-synthesis, not a source's claim, and none has been validated against a real document.
+**The reviewing group is mostly inference.** [[pruning-a-document]] and
+[[functional-and-deep-quality]] are the two pages there with a source behind them; everything else
+the wiki says about checking a document is inferred from pages written about producing one. The
+checks at the foot of each failure-mode page are this wiki's synthesis, not a source's claim, and
+none has been validated against a real document.
+
+**And one of those two sharpens the gap rather than closing it.** Every textual symptom this wiki
+records is a *measurement* — reproducible, cheap, and by [[functional-and-deep-quality]]'s argument
+necessary but insufficient. The one check here that produces a *judgement* is [[the-use-test]],
+which is expensive and therefore the one most likely to be skipped. A review of this base run
+without it reports only the half of quality that can be counted.
 
 **No source on requirement quality.** The enumerated rule catalogues were identified and not
 obtained. Phrasing therefore rests on [[rfc-2119-requirement-levels]] — three pages defining five
