@@ -50,8 +50,8 @@ A report at a high false-positive rate stops being read, and the real findings g
 consequences:
 
 - **Where a rule is arguable on this passage, leave it out** unless the argument is overwhelming.
-  Do not pad the report to look thorough — returning two solid findings is a better outcome than
-  returning eight.
+  Two solid findings are a better outcome than eight, and returning **zero** is a legitimate,
+  complete result — say the dimension is clean and stop.
 - **Do not invent a rule the base does not carry.** Where you believe something is wrong and no
   page supports it, say so in one line at the end, marked as your own reading rather than the
   base's.

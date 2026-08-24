@@ -1,11 +1,9 @@
 ---
 name: review-doc
 description: >-
-  Review a design doc, spec, ADR or agent instruction file by fanning out one reviewer per
-  dimension plus a cold reader who tries to use it, then rank the findings by how far the damage
-  travels. Use whenever someone asks to review, critique, check or "sanity-check" a technical
-  document, when a doc is about to be handed to implementers or agents, and when a draft feels
-  wrong but nobody can say where.
+  Review a finished design doc, decision record, or instruction file written for an agent. Use when
+  someone asks for a document to be reviewed or critiqued, when one is about to be handed to
+  implementers, and when a draft feels wrong but nobody can say where.
 ---
 
 # Review a document
@@ -39,6 +37,13 @@ they resolve nowhere else.
    | Structure | `wiki/structure/` — all six pages: processing order, comprehensibility, splitting, genre blur, the two-axis test, and the Diátaxis summary |
    | Argument | `wiki/decision-records/every-argument-carries-a-because.md`, `wiki/reviewing/a-problem-with-no-decision.md`, `wiki/reviewing/unresolvable-references.md` |
    | Pruning | `wiki/reviewing/pruning-a-document.md` |
+
+   **Reviewing a document written for an agent** — a skill, an instruction file, a prompt — adds a
+   dimension of its own: `wiki/writing-for-agents/` minus the two floor pages, so
+   `the-right-altitude-for-an-agent`, `context-pointer`, `the-information-hierarchy`,
+   `attention-budget`, `canonical-examples-not-edge-cases` and `the-two-loads`. Those pages carry
+   the defects specific to that reader — a pointer that never fires, reference buried among steps,
+   an edge-case list grown one entry per incident — and no other dimension reaches them.
 
    Give the Floor reviewer `wiki/reviewing/a-problem-with-no-decision.md` as well. A missing
    obligation and a question raised and never answered are the same defect seen from two sides, and

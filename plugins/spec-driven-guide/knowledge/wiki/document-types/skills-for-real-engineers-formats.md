@@ -21,15 +21,21 @@ follows, which means their rules are stated as decisions rather than as argument
 
 ## Where each sits against the wiki's other sources
 
-**On decision records**, the position is a genuine disagreement rather than a variation. Where
-[[madr-template]] supplies a filled structure and [[decision-record]] four named sections, this
-source gives a title and one to three sentences, and says so plainly: "That's it. An ADR can be a
-single paragraph. The value is in recording *that* a decision was made and *why* — not in filling
-out sections" (L49). Status, considered options and consequences are all demoted to optional, "only
-when they add genuine value. Most ADRs won't need them" (L53).
+**On decision records**, it sits at the short end of a range the other sources already allow. It
+gives a title and one to three sentences, and says so plainly: "That's it. An ADR can be a single
+paragraph. The value is in recording *that* a decision was made and *why* — not in filling out
+sections" (L49). Status, considered options and consequences are demoted to optional: "Only include
+these when they add genuine value. Most ADRs won't need them" (L53).
 
-That collides directly with [[consequences-include-the-negative]], which this wiki holds as a rule.
-The collision is resolved on [[a-record-can-be-one-paragraph]] rather than left open.
+The wiki initially read that as a disagreement with [[madr-template]], and it is not. MADR ships
+"bare" and "minimal" templates and describes itself as "a template allowing to craft short,
+medium-sized, and large decision records" (madr, L264, L77). Both accept a short record; they differ
+in what a short record keeps — this source removes the headings, MADR keeps them and lets each be
+brief.
+
+The narrow live disagreement is with [[consequences-include-the-negative]], which this wiki holds as
+a rule against a source that makes the section optional. It is resolved on
+[[a-record-can-be-one-paragraph]] rather than left open.
 
 **On the detail ceiling**, the source restates the rule this wiki's other sources reach — "Do NOT
 include specific file paths or code snippets. They may end up being outdated very quickly" (L140) —
@@ -39,7 +45,7 @@ here.
 
 ## What this wiki does not take from it
 
-Its spec template (L106-L156) is a section list, which the charter excludes. Two of its instructions
+Its spec template (L106-L160) is a section list, which the charter excludes. Two of its instructions
 are also worth recording as *not* adopted, since a reader may meet them:
 
 - **"A LONG, numbered list of user stories […] extremely extensive"** (L118, L126). This wiki has no

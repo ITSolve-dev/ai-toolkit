@@ -49,7 +49,7 @@ rewritten every time a missing fact surfaces.
 
 It is not written to the standard of the document it feeds. A brief may name tools, files and
 libraries freely; deciding what of that survives is the writing skill's job. Applying
-[`writing-discipline`](../writing-discipline/SKILL.md) here strips information the writer still
+[`writing-discipline`](${CLAUDE_PLUGIN_ROOT}/skills/writing-discipline/SKILL.md) here strips information the writer still
 needs.
 
 ## Done when

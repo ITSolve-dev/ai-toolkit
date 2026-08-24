@@ -52,6 +52,9 @@ read by users of a product; this wiki's genres are read by people and agents bui
 page below states a rule about a design doc, that extension is this wiki's and is marked as such —
 the source makes no claim about design docs anywhere.
 
-**Its own boundary is honest.** The source states that its terms should be used "flexibly; don't get
-fixated on the exact names" (L863), which is the licence under which the transfer is made rather
-than a loophole in it.
+**The transfer has no licence from the source.** An earlier version of these pages read L863 — "use
+the compass's terms flexibly; don't get fixated on the exact names" — as permission. It is not: the
+full sentence opens "Especially when you are trying to find your initial bearings", scoping it to a
+beginner orienting inside Diátaxis's own four names. The transfer to design docs and decision
+records is this wiki's, made on its own judgement, and the pages below say so individually rather
+than resting on a clause that does not carry it.

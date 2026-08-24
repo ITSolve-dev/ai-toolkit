@@ -2,8 +2,7 @@
 name: reader
 description: >-
   Reads a document cold, with a task to carry out, and reports every point at which it had to guess.
-  Read-only. Dispatch it alongside the dimension reviewers — it is the only check that finds what a
-  document never said, which no textual rule can detect.
+  Read-only. Dispatch it alongside the dimension reviewers, which cannot see an absence.
 model: sonnet
 color: cyan
 tools: Read, Grep, Glob

@@ -22,13 +22,21 @@ the four cells names one of its genres. "To use the compass, just two questions 
 ## What this wiki takes, and what it leaves
 
 The source's four cells name end-user genres this wiki does not use, so the cells are left behind.
-The **shape** of the tool is what transfers, and the source itself invites that: it says to use its
-terms "flexibly; don't get fixated on the exact names" (L863).
+The **shape** of the tool is what transfers — and the transfer is this wiki's, made without the
+source's endorsement. The source's own flexibility clause is narrower than it first appears:
+"Especially when you are trying to find your initial bearings, use the compass's terms flexibly;
+don't get fixated on the exact names" (L863) is addressed to someone orienting inside Diátaxis's own
+four names, not to someone applying the compass to other genres entirely.
 
-The shape is: **classify a passage by what it does, along axes that are properties of the content —
-never by matching it against a list of section titles.** A section-name checklist can only recognise
-genres someone has already enumerated, and it misclassifies every passage whose author chose a
-different heading. Two questions about the content classify passages nobody anticipated.
+What the source does claim for the compass is that it beats unaided judgement. It is offered against
+intuition — "sometimes intuition provides an immediate answer that is also wrong" (L835-L844) — and
+as a "course-correction tool", not against any rival method.
+
+**The wiki's extension:** classify a passage by what it does, along axes that are properties of the
+content, rather than by matching it against a list of section titles. Our reason, not the source's:
+a section-name checklist can only recognise genres someone has already enumerated, and it
+misclassifies every passage whose author chose a different heading. The source never discusses
+headings.
 
 This wiki's own axes, for its own genres:
 
@@ -39,8 +47,9 @@ This wiki's own axes, for its own genres:
 | a decision | settled | a decision record |
 | a decision | argued | a design doc's alternatives section |
 
-Those axes are this wiki's construction, not the source's. What is the source's is the claim that
-two content questions beat a taxonomy of headings.
+Those axes are this wiki's construction. What is the source's is only the form — two binary
+questions about content, crossed, yielding a genre — and its claim that such a tool beats deciding
+by feel.
 
 ## When to run it
 

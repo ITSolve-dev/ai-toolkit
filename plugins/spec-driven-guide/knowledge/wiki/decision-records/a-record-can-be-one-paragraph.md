@@ -41,10 +41,18 @@ consequences were never examined, and [[decision-record]] would not.
 
 ## What the position gets right
 
-**Recording that a decision exists is most of the value.** [[decision-log]] identifies findability
-as the collection's failure mode, and an unwritten record is the worst case of it. A format cheap
-enough to always use beats a format good enough to sometimes use — and template weight is a real
-deterrent, which none of this wiki's other decision-record sources acknowledges.
+**Recording that a decision exists is most of the value.** That much is the source's own claim: "The
+value is in recording *that* a decision was made and *why*" (L49).
+
+This wiki adds the reason it matters, and the addition is ours: [[decision-log]] identifies
+findability as the collection's failure mode, and an unwritten record is the worst case of it — so a
+format cheap enough to always use beats a format good enough to sometimes use.
+
+**It is not alone in noticing this.** MADR ships "bare" and "minimal" templates and describes itself
+as "a template allowing to craft short, medium-sized, and large decision records" (madr, L264, L77);
+[[architecturally-significant]] already records that MADR "treats the template as cheap enough that
+a wrong inclusion costs little". The difference is where the floor sits, not whether a short record
+is legitimate — this source removes the headings, MADR keeps them and lets each be brief.
 
 ## The entry gate, which is the sharper contribution
 
@@ -60,11 +68,12 @@ Each is given with its own failure: "If a decision is easy to reverse, skip it �
 reverse it. If it's not surprising, nobody will wonder why. If there was no real alternative,
 there's nothing to record beyond 'we did the obvious thing'" (L71).
 
-Compared with [[architecturally-significant]], which asks whether a decision has "a measurable
-effect on the architecture and quality", this gate asks three questions a person can answer today
-about a decision in front of them. This wiki treats it as the more usable test and
-[[architecturally-significant]] as the more defensible definition; they select overlapping but
-different sets, and the second condition is the one that has no counterpart elsewhere.
+The neighbouring test is [[architecturally-significant]], which works from Nygard's enumeration of
+what a decision must touch — structure, non-functional characteristics, dependencies, interfaces,
+construction techniques. This wiki reads the difference as one of form rather than of strictness:
+that test names categories to match a decision against, this one asks three questions about the
+decision in front of you. They select overlapping but different sets, and the second condition —
+whether a future reader would be surprised — has no counterpart in the enumeration.
 
 ## The symptom
 

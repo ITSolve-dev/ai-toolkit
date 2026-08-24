@@ -25,10 +25,13 @@ decision record, the instruction written for an agent.
 >
 > — L1108
 
-The source then tabulates which pairs blur and what each pair shares (L1110-L1114): the ones that
-both guide action, the ones that both serve applying a skill, the ones that both carry propositional
-knowledge. **The shared property is the affinity.** Two genres drift together along whatever axis
-they already agree on.
+The source then tabulates which pairs blur and what each pair shares (L1110-L1114). Four rows, four
+shared properties: the pair that both guide action, the pair that both serve applying a skill, the
+pair that both carry propositional knowledge, and the pair that both serve acquiring a skill.
+
+**This wiki reads the shared property as the affinity itself** — that is our inference from the
+table's shape, not a sentence the source writes. Two genres drift together along whatever axis they
+already agree on.
 
 This wiki reads that as the usable half. A reviewer does not need the source's taxonomy to apply it
 — they need to ask what the two genres in front of them have in common, because that is where the
@@ -43,10 +46,15 @@ doc both argue, so the record grows an alternatives discussion the size of a des
 >
 > — L1118
 
-The last clause is the finding worth keeping, and it is not what a reader expects. A document
-serving two purposes reads as though it serves each of them partly. The source says the opposite:
-the collapse makes it *impossible* to meet either — the two sets of obligations are not additive,
-and satisfying one displaces the other rather than diluting it.
+The last clause is the finding worth keeping, and it is not what a reader expects: a document serving
+two purposes reads as though it serves each of them partly, and the source states the outcome is
+that neither is met.
+
+**The mechanism under that outcome is this wiki's, not the source's.** Diátaxis reports the collapse
+and does not explain it. This wiki's reading: the two sets of obligations are not additive, so
+satisfying one displaces the other rather than diluting it. That reading is what makes the finding
+usable on a genre pair Diátaxis never discusses — and it is an inference, so a case where a document
+does serve two genres adequately would refute it rather than the source.
 
 That is why [[splitting-a-document]] is a repair and not a tidy-up.
 

@@ -9,8 +9,10 @@ updated: 2026-08-08
 ---
 
 A **context pointer** is "a reference held in the agent's context that names some out-of-context
-material and encodes the condition for reaching it" ([[writing-for-agents-reference]], L30). A
-line in an index naming a document is one; so is a cross-reference at the foot of a section.
+material and encodes the condition for reaching it" ([[writing-for-agents-reference]], L30). The
+source's own examples are a skill's description and "a line in `AGENTS.md` naming a doc" (L30); this
+wiki extends the term to a line in an index and to a cross-reference at the foot of a section, which
+have the same two parts.
 
 The claim that makes it a concept rather than a formatting note is about where the failure lives:
 

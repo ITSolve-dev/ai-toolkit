@@ -1,11 +1,10 @@
 ---
 name: write-decision-record
 description: >-
-  Record one architectural decision so it outlives the discussion that produced it — context, the
-  choice, why, what it costs, and what was rejected. Use when someone says "let's write an ADR",
-  "document this decision", "why did we pick X", or when a call has just been made in conversation
-  that a future reader would find surprising without the reasoning. Also use to supersede a record
-  whose decision has since been reversed.
+  Record one architectural decision so it outlives the discussion that produced it. Use when someone
+  asks for an ADR or to document a decision, when a call just made in conversation would surprise a
+  future reader who did not hear it, and to supersede a record whose decision has been reversed. For
+  a whole design rather than one decision, use write-design-doc.
 ---
 
 # Write a decision record
@@ -13,7 +12,7 @@ description: >-
 A decision record fixes one point of an argument and outlives the document that made it. A design
 doc decays with the system; the record of why a choice was made does not.
 
-Apply [`writing-discipline`](../writing-discipline/SKILL.md) throughout.
+Apply [`writing-discipline`](${CLAUDE_PLUGIN_ROOT}/skills/writing-discipline/SKILL.md) throughout.
 
 ## Step 1 — the entry gate
 
@@ -33,7 +32,7 @@ genre, and every record that clears no bar makes the ones that matter harder to 
 ## Step 2 — write it
 
 Read `.claude/spec-driven-guide.md` for where records live, the language, and whether this project
-carries a status field. Where it is absent, run [`init`](../init/SKILL.md) or ask; a record filed
+carries a status field. Where it is absent, run [`init`](${CLAUDE_PLUGIN_ROOT}/skills/init/SKILL.md) or ask; a record filed
 outside the log is invisible to the next person, which is this genre's whole failure mode.
 
 The record owes five things. Whether each gets its own heading is a presentation choice; whether

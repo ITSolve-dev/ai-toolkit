@@ -31,7 +31,7 @@ the reader "are aspects of each other" (L1194-L1198).
 > complete and consistent without being truly excellent - but it will never have deep quality
 > without being accurate and complete and consistent.
 >
-> — L1212-L1214
+> — L1212-L1215
 
 ## Why this matters to this wiki
 

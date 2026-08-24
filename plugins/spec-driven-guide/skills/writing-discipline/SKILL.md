@@ -38,11 +38,15 @@ promise in the document still holds.
 → `wiki/obligation-and-mechanism/state-the-commitment-not-the-means.md`,
 `wiki/obligation-and-mechanism/when-a-snippet-beats-prose.md`
 
-## 2. Do not restate what the environment already says
+## 2. Write what cannot be found by looking
 
-A document copying a config file, a directory layout or a `--help` output is a cache of a lookup,
-and it goes stale against its original. Write what cannot be found by looking: the unwritten
-convention, the reason behind a choice, the trap no artifact confesses.
+The unwritten convention, the reason behind a choice, the trap no artifact confesses. A document
+copying a config file, a directory layout or a `--help` output is a cache of a lookup, and it goes
+stale against its original.
+
+**A cache earns its load when the lookup is expensive** — so this rule cuts the one-file,
+one-command restatement and keeps the fact that costs real work to reconstruct. The question is the
+cost of looking, not whether the fact exists elsewhere.
 
 *Symptom:* a fact a reader could obtain by opening one file in the repository.
 → `wiki/reviewing/pruning-a-document.md`

@@ -252,17 +252,39 @@ altitude), Wiegers on requirement quality, Brooks on essence versus accident.
   the two mistakes this base's own rules most invite, and neither is visible in a pair chosen to
   show a rule working.
 
-- 2026-08-24 — The base was measured, not just linted. Seven reviewer runs across two documents:
-  one with nine planted defects, one written to be clean.
+- 2026-08-24 — The base was measured, and then the measurement was refuted. Both halves are the
+  record; the first alone would be misleading.
 
-  **All nine planted defects were found by the dimension assigned them, and no reviewer reported a
-  false positive.** The hard case passed — a real obligation buried inside a library call was
-  separated rather than deleted.
+  **What was run.** Three dimension reviewers plus a cold reader against a document written to carry
+  nine defects, and three reviewers against a document written to be clean. All nine were reported
+  by the dimension assigned them, and nothing was reported that could not be substantiated.
 
-  **The clean document was not clean, and that is the more useful result.** Three findings came back
-  against it and all three were real defects its author had not noticed: a headline commitment
-  contradicted two paragraphs later, a word doing two jobs in an argument that depended on which,
-  and a condition raised about the load-bearing decision and then omitted from the open questions.
-  So the false-positive rate against a genuinely clean document is still unmeasured — no such
-  document has been produced. What is measured is that seven runs produced zero findings that could
-  not be substantiated.
+  **Why that supports much less than it appears to.** An adversarial pass took the claim apart, and
+  its central finding holds up under checking: **the planted defects were transcriptions of this
+  base's own example strings.** `genre-blur` lists "Files to modify" as its symptom; the test
+  document has a section headed exactly that. `completion-criteria` gives "the system is robust" as
+  its example of an unfalsifiable claim; the test document says "the service should be robust".
+  The reviewers were then handed, per dimension, the very pages those strings came from. That
+  measures retrieval under maximal cueing, not detection.
+
+  Three further holes, all confirmed: the dimension table in force during the run differed from the
+  one that shipped, and the page that governed one credited defect was in neither — it was added to
+  the test prompt by hand, so the page list was curated for the document. Only step 2 of the review
+  skill ran; establishing genre and grain, merging, ranking and reporting were never exercised. And
+  every run was n=1 on a stochastic model with no baseline, so nothing separates "the pipeline
+  works" from "the document was easy".
+
+  **What survives.** The fan-out runs and returns findings in the required shape. And the one result
+  that was not cued: the document written to be clean was not clean — three findings came back and
+  all three were real defects its author had missed, including a headline commitment contradicted
+  two paragraphs later. Nothing was planted there and nothing pre-registered, so that result is
+  worth more than the 9/9 it sits beside. It is also an anecdote.
+
+  **The fixture is burned.** The reviewers' own repairs were written into `over-specification` and
+  `processing-order-is-not-a-structure` as before/after pairs, so any future reviewer pointed at
+  that document finds the answer in the first page it reads. A real measurement needs a fresh
+  document written by someone who has not read this base, a ground truth registered before the run,
+  and an ungrounded baseline alongside.
+
+  **The rule this leaves behind:** a symptom's example in this base must never be reused as a test
+  case for that symptom. The base is the answer key.

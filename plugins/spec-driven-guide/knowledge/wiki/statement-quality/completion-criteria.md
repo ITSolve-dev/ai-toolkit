@@ -28,7 +28,7 @@ the rush", restructure so the later work is out of view (L67).
 "How much it requires. 'Every modified model accounted for' forces thorough work where 'produce a
 change list' does not" (L68). Both criteria are equally clear; they differ in what they oblige.
 
-The source separates demand from structure: it "is not step-bound — 'every rule applied' binds a
+The source separates demand from structure: it "is not step-bound: 'every rule applied' binds a
 body of flat reference just as 'every step done' binds a sequence, which is how an all-reference
 document still carries an exhaustiveness bar" (L68). This wiki takes that as the point of transfer
 to documents that contain no steps at all: a set of requirements can carry a completeness

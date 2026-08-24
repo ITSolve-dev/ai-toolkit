@@ -27,9 +27,12 @@ you hide material the agent actually needs" (L55).
 ## The test that decides a rung
 
 **Branching.** "Inline what every branch needs, and push behind a pointer what only some branches
-reach" (L57). The source calls this "the cleanest disclosure test", and it is cleaner than the
-alternatives because it can be run against the text: enumerate the distinct cases the document
-handles, then check each block against them.
+reach" (L57). The source calls this "the cleanest disclosure test" and names nothing it is cleaner
+than.
+
+This wiki keeps it for a reason of its own: it is the only placement test here that can be run
+against the text. Enumerate the distinct cases the document handles, then check each block against
+them.
 
 The move down the ladder is **progressive disclosure**, and the source is explicit that its purpose
 is not economy: "Not primarily a token optimisation: it is how the hierarchy is protected" (L57).

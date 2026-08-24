@@ -28,8 +28,8 @@ from.
   document wrong rather than detailed.
 
 The discriminator is not concreteness. Operation names, parameters, types, schemas and API
-contracts are commitments and stay. Storage formats, library choices, file paths and
-framework-specific implementations are mechanism and go.
+contracts are commitments and stay. Storage formats, internal decomposition, library choices, file
+paths and framework-specific implementations are mechanism and go.
 
 And the floor under all of it: **minimal is not short.** A document may drop anything not required
 to establish what it commits to, and may not drop what is.
