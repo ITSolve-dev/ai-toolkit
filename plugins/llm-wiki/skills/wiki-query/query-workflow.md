@@ -6,7 +6,11 @@ citations, and file valuable answers back for reuse. Based on Karpathy's query o
 
 ## 0. Orient
 
-- Resolve the wiki root ([wiki-resolution](../../references/wiki-resolution.md)). If the
+- **A root you were given wins.** Where the caller — an agent prompt, a dispatching task, a skill
+  that bundles its own base — names a wiki root, use that path and skip resolution entirely.
+  Resolution exists for when no root was given; running it anyway is how a bundled base gets
+  silently swapped for a copy that happens to sit in the current project.
+- Otherwise resolve the wiki root ([wiki-resolution](../../references/wiki-resolution.md)). If the
   current location is not in a wiki, say so.
 
 ## 1. Locate relevant pages

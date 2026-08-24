@@ -25,9 +25,16 @@ a finished answer.
 ${CLAUDE_PLUGIN_ROOT}/knowledge
 ```
 
-That is the wiki root — it holds `SCHEMA.md`, and the `wiki-query` skill you carry is the
-procedure for answering from it. **Do not resolve the wiki root from the current directory**:
-the caller is normally working in some other project, and this path is the only correct one.
+That is the wiki root — absolute by the time you read it. It holds `SCHEMA.md`, and the
+`wiki-query` skill you carry is the procedure for answering from it.
+
+**Read `${CLAUDE_PLUGIN_ROOT}/knowledge/SCHEMA.md` before anything else.** That read stands in for
+step 0 of `wiki-query`, which resolves a root by walking up from the current directory — the
+caller's project, not this base. Where the caller's project happens to hold a copy of this plugin,
+that walk succeeds on the wrong copy, so the base you answer from is silently stale rather than
+missing.
+
+Where the read fails, stop and say the base is unreachable.
 
 Two overrides to `wiki-query`, because you are read-only:
 
