@@ -32,17 +32,18 @@ they resolve nowhere else.
 
    | Dimension | Pages it works from |
    |---|---|
-   | Altitude | `wiki/altitude/defining-a-level.md`, `wiki/failure-modes/mixed-levels-of-abstraction.md` |
-   | Ceiling | `wiki/failure-modes/over-specification.md`, `wiki/failure-modes/implementation-manual.md`, `wiki/obligation-and-mechanism/when-a-snippet-beats-prose.md` |
+   | Altitude | `wiki/altitude/defining-a-level.md`, `wiki/altitude/mixed-levels-of-abstraction.md` |
+   | Ceiling | `wiki/obligation-and-mechanism/over-specification.md`, `wiki/obligation-and-mechanism/implementation-manual.md`, `wiki/obligation-and-mechanism/when-a-snippet-beats-prose.md` |
    | Floor | `wiki/writing-for-agents/minimal-is-not-short.md`, `wiki/writing-for-agents/sprawl.md` |
    | Statements | `wiki/statement-quality/` — the five rule pages; `rfc-2119-requirement-levels.md` is a source summary and prescribes nothing |
-   | Structure | `wiki/failure-modes/processing-order-is-not-a-structure.md`, `wiki/failure-modes/comprehensible-only-as-a-whole.md`, `wiki/document-types/splitting-a-document.md` |
+   | Structure | `wiki/structure/` — all six pages: processing order, comprehensibility, splitting, genre blur, the two-axis test, and the Diátaxis summary |
    | Argument | `wiki/decision-records/every-argument-carries-a-because.md`, `wiki/reviewing/a-problem-with-no-decision.md`, `wiki/reviewing/unresolvable-references.md` |
+   | Pruning | `wiki/reviewing/pruning-a-document.md` |
 
    Give the Floor reviewer `wiki/reviewing/a-problem-with-no-decision.md` as well. A missing
    obligation and a question raised and never answered are the same defect seen from two sides, and
-   a Floor reviewer without that page will reach for whatever it does hold.
-   | Pruning | `wiki/reviewing/pruning-a-document.md` |
+   a Floor reviewer without that page will reach for whatever it does hold — which hides the gap
+   instead of reporting it.
 
    Drop a dimension the document cannot exhibit rather than running it for completeness — an ADR
    has no altitude drift worth a reviewer.

@@ -1,6 +1,6 @@
 ---
 title: "Diátaxis"
-category: document-types
+category: structure
 summary: A framework for end-user documentation, almost all of it out of this wiki's charter — kept for the one thing it treats better than any source here, which is what happens when two genres share a file.
 tags: [summary, genre, structure, blur]
 sources: [web-page-diataxis]

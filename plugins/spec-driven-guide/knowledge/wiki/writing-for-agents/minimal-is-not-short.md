@@ -59,3 +59,35 @@ deletion.
 
 The mechanical checks that shorten a document without touching obligations are in
 [[pruning-a-document]].
+
+## Worked pair
+
+**Provenance:** produced by running this base's reviewers against a document written to carry the
+defect, not taken from a source. See [[over-specification]] for the same note.
+
+**Before.**
+
+> Delivery goes out over email. The service should be robust and handle failures as needed.
+>
+> […] Retries are handled by the delivery layer.
+
+**After.**
+
+> Undeliverable is a terminal state, not a retry loop. Failures that a later attempt could plausibly
+> fix are retried within a bounded window; failures that a later attempt cannot fix — an address that
+> does not exist, a recipient who has withdrawn consent — end the attempt immediately. The bound
+> exists so that one bad recipient cannot delay every other user's notification.
+
+**What the length change tells you.** The *after* is roughly four times longer, and it is more
+minimal. The *before* is shorter and specifies nothing: a cold reader given it invented the retry
+count, the backoff shape, the timeout, which status codes retry, and what happens on exhaustion —
+five decisions, all load-bearing in production, none of them the author's.
+
+Note also that the *after* still names no number. The bound is stated as a commitment with its
+reason and left to the open questions, which is the distinction between an obligation and a
+mechanism holding under a rule that would otherwise read as "say more".
+
+**"Retries are handled by the delivery layer" is the worse of the two sentences.** It names a
+location rather than a policy, and it reads as a decision recorded — so it suppresses the question
+instead of leaving the gap visible. A reader tracking retry semantics follows the pointer and lands
+back on "as needed".

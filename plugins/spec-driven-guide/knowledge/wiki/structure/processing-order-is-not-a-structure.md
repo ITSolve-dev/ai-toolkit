@@ -1,6 +1,6 @@
 ---
 title: Processing order is not a structure
-category: failure-modes
+category: structure
 summary: Organising a description by the sequence of steps is the default that feels natural and reliably produces the arrangement in which every change propagates.
 tags: [failure-mode, information-hiding, structure, symptom]
 sources: [web-page-on-the-criteria-to-be-used-in-decomposing-systems-into-modules]
@@ -57,3 +57,38 @@ execution is described.
 
 Related: [[information-hiding]] for the criterion this rule follows from, and
 [[the-changeability-test]] for the evidence that separates the two arrangements.
+
+## Worked pair
+
+**Provenance:** produced by running this base's reviewers against a document written to carry the
+defect, not taken from a source. See [[over-specification]] for the same note.
+
+**Before** — the document's four top-level sections:
+
+> ## Implementation steps
+> We will build this in the order below.
+> ### Step 1 — set up the consumer
+> ### Step 2 — render the message
+> ### Step 3 — deliver
+> ### Step 4 — wire it up
+
+**After** — the same material, four sections again:
+
+> ## The problem
+> ## What the service commits to
+> ## What it does not do
+> ## Why these choices
+
+**The test that produces the rewrite.** Take each step and ask what it *commits to* rather than what
+it *does*. Step 1 commits to consuming an event that already exists and acknowledging only after
+delivery. Step 2 commits to what the message must carry. Step 3 commits to email as the channel. The
+commitments survive; the ordering does not, because it describes one execution.
+
+**What the before-shape costs a reader.** A reader deciding whether the design is right has no
+section to disagree with — the commitments have to be reconstructed out of a build narrative. And
+every one of them is rewritten the moment the build order changes, which happens far more often than
+the design changes.
+
+**The ordering is not waste.** It goes to an execution document, which cites the argument document
+for *why* ([[splitting-a-document]]). Deleting it destroys work someone needs and guarantees it will
+be rewritten worse.

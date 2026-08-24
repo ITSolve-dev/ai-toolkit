@@ -1,6 +1,6 @@
 ---
 title: The implementation manual
-category: failure-modes
+category: obligation-and-mechanism
 summary: A document that says how the work will be carried out without arguing why — the named symptom that a design doc has become something else, and evidence it need not have been written.
 tags: [failure-mode, symptom, design-doc, genre]
 sources: [web-page-design-docs-at-google]

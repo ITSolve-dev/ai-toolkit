@@ -1,6 +1,6 @@
 ---
 title: Over-specification
-category: failure-modes
+category: obligation-and-mechanism
 summary: Stating a constraint the obligation does not require — every statement is true, and the description is still defective because it excludes implementations that would have served.
 tags: [failure-mode, information-hiding, symptom]
 sources: [web-page-on-the-criteria-to-be-used-in-decomposing-systems-into-modules]
@@ -65,3 +65,39 @@ tone.
 Related: [[abstract-interface-vs-representation]] governs which *kinds* of statement belong;
 over-specification is what remains once that line is respected and the description still says too
 much.
+
+## Worked pair
+
+**Provenance:** this pair is not from a source. It was produced by running this base's own reviewers
+against a design document written to carry the defect, and taking the repair the ceiling reviewer
+proposed. It is kept because the charter calls a rewritten passage the most valuable artifact this
+domain produces, and no ingested source supplies one.
+
+**Before.**
+
+> Use `AIOKafkaConsumer` with `enable_auto_commit=False` and commit manually after the handler
+> returns, because auto-commit would acknowledge before delivery.
+
+**After.**
+
+> Every completion event results in a notification reaching a terminal state — delivered, or
+> recorded as undeliverable with a reason. No completion event may be consumed and forgotten.
+> Delivery is at-least-once: acknowledging only after delivery is what makes that true, and it is
+> what makes duplicates possible.
+
+**What moved, and what did not.** The obligation was already present in the *before* — it is the
+clause after "because". What the rewrite does is promote it from a justification for one library
+setting into a statement in its own right, then drop the setting.
+
+The point of the pair is what that unlocks. The *before* silently forbids two designs that satisfy
+the same obligation: a consumer committing eagerly against a transactional outbox, and a delivery
+layer deduplicating on an idempotency key. Neither is mentioned, and neither could be proposed by a
+reader who takes the sentence as written. It also leaves the other half of the guarantee undecided —
+manual commit after the handler means a crash redelivers, so duplicates are possible, and the
+*before* never says whether that is acceptable. The *after* has to answer it, because stating the
+obligation exposes the question the mechanism was hiding.
+
+**The trap this pair exists to show.** The naive repair is to delete the sentence as
+implementation detail. That removes the obligation along with the mechanism, which is the failure
+[[minimal-is-not-short]] forbids. The passage is not too detailed; it is detailed *instead of* being
+committed.

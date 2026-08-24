@@ -53,3 +53,37 @@ The grammar generalises to any place a document evaluates something — a trade-
 [[design-doc]], a rejected option in [[alternatives-considered]]. Wherever a document asserts that
 something is better or worse, the same test applies: the assertion and its reason belong in one
 sentence, so that removing the reason breaks the sentence.
+
+## Worked pair
+
+**Provenance:** produced by running this base's reviewers against a document written to carry the
+defect, not taken from a source. See [[over-specification]] for the same note.
+
+**Before.**
+
+> We will use Kafka rather than polling the database, for consistency with the rest of the platform.
+>
+> We chose email over in-app notification.
+
+**After.**
+
+> **Email rather than in-app.** The problem statement is that the user is not looking at the product
+> when the export finishes — a four-hour export outlasts the session. An in-app notification is
+> delivered exactly where the user is not, which leaves the 40 tickets untouched.
+>
+> **Consume the existing event rather than poll.** The completion fact already exists and is already
+> published. Polling would derive the same fact a second way, and the two would diverge the first
+> time the pipeline changed how it decides an export is complete.
+
+**Two different defects, and the second is the instructive one.** "We chose email over in-app" has
+no because at all — the obvious case. "For consistency with the rest of the platform" *has* the
+grammar and fails anyway: it is a reason to prefer the familiar, not a reason Kafka answers this
+problem. Someone proposing polling would concede it and carry on proposing polling.
+
+**The test that separates them.** A because earns its place when the claim breaks without it. Remove
+"the completion fact already exists and is already published" and the Kafka choice becomes
+arbitrary. Remove "for consistency with the rest of the platform" and nothing changes — which is how
+you know it was never carrying the argument.
+
+**Ordering follows.** In the *after*, the email decision comes first because it is load-bearing: it
+is the one that determines whether the original complaint stops. The *before* had no order at all.

@@ -55,7 +55,7 @@ rule 1 moves with it.
 
 *Symptom:* two adjacent statements whose readers are different — one addressed to someone choosing
 between approaches, the next to someone typing.
-→ `wiki/altitude/defining-a-level.md`, `wiki/failure-modes/mixed-levels-of-abstraction.md`
+→ `wiki/altitude/defining-a-level.md`, `wiki/altitude/mixed-levels-of-abstraction.md`
 
 ## 4. Cut mechanism; never cut obligation
 
@@ -108,7 +108,7 @@ be done in. Processing order is a description of one execution and does not surv
 changing.
 
 *Symptom:* a section order that mirrors a sequence of steps.
-→ `wiki/failure-modes/processing-order-is-not-a-structure.md`
+→ `wiki/structure/processing-order-is-not-a-structure.md`
 
 ## Language and project conventions
 

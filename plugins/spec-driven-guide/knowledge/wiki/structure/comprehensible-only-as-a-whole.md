@@ -1,6 +1,6 @@
 ---
 title: Comprehensible only as a whole
-category: failure-modes
+category: structure
 summary: The reader-side symptom of a leaked decision — no part of the description can be understood without the others, because each part encodes constraints that belong elsewhere.
 tags: [failure-mode, symptom, information-hiding, review]
 sources: [web-page-on-the-criteria-to-be-used-in-decomposing-systems-into-modules]

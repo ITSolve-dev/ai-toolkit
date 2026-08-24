@@ -14,23 +14,23 @@ each supplies; [[information-hiding]] is Parnas's method for reaching it;
 [[abstract-interface-vs-representation]] draws the line and [[the-changeability-test]] is how you
 apply it to a specific text. [[resolving-a-scale-conflict]] handles the case where two rules here
 disagree about the same passage — read it before applying either alone.
-[[when-a-snippet-beats-prose]] is the one stated exception — the schema or state machine that is a
+[[over-specification]] and [[implementation-manual]] are the two ways the ceiling is breached, and
+[[when-a-snippet-beats-prose]] the one stated exception — the schema or state machine that is a
 commitment rather than an implementation. [[parnas-criteria-for-decomposing-systems]] is the source
 summary, and it is where the transfer from modules to prose is argued rather than assumed.
 
 **altitude — how high to write and how to stay there.** [[defining-a-level]] fixes what a level is
 and makes the audience the discriminator. [[what-a-design-doc-omits]] sets the ceiling for one
-genre, [[degree-of-constraint]] its shape. [[the-c4-model]] is the source summary; the wiki takes
-its reasoning about levels and none of its diagramming.
+genre, [[degree-of-constraint]] its shape, and [[mixed-levels-of-abstraction]] is what a slip within
+one document looks like. [[the-c4-model]] is the source summary; the wiki takes its reasoning about
+levels and none of its diagramming.
 
 **document-types — which document this is.** [[design-doc]] and [[oxide-rfd-process]] are the two
 genres treated in depth, with entry tests in [[when-to-write-a-design-doc]] and section rules in
 [[non-goals]] and [[alternatives-considered]]. [[state-marks-authority]] and
 [[timely-rather-than-polished]] cover documents that are not finished; read them together, neither
-is safe alone. [[splitting-a-document]] handles a file carrying two genres, [[genre-blur]] says why that costs more
-than it looks, and [[the-two-axis-test]] decides which genre a passage actually is.
-[[design-docs-at-google]], [[skills-for-real-engineers-formats]] and [[diataxis]] are the source
-summaries.
+is safe alone. A file carrying two genres is a `structure/` question, not one for this group.
+[[design-docs-at-google]] and [[skills-for-real-engineers-formats]] are the source summaries.
 
 **decision-records — how to record a decision so it outlives the document that made it.**
 [[decision-record]] and [[madr-template]] give the two standard forms;
@@ -58,12 +58,12 @@ ceiling opposite it — read them together, either alone misleads.
 reached, and [[the-two-loads]] which budget the choice spends.
 [[effective-context-engineering]] and [[writing-for-agents-reference]] are the source summaries.
 
-**failure-modes — what goes wrong.** [[over-specification]],
-[[processing-order-is-not-a-structure]], [[implementation-manual]],
-[[mixed-levels-of-abstraction]], [[comprehensible-only-as-a-whole]]. Each names a symptom; note
-that the check sits in the middle of each page, not at the end, and that
-[[comprehensible-only-as-a-whole]] carries a restriction that must be respected or it fires on
-sound documents.
+**structure — how the document is shaped, and keeping genres apart inside one file.**
+[[processing-order-is-not-a-structure]] is the commonest defect here — a section order that mirrors
+a sequence of steps. [[comprehensible-only-as-a-whole]] covers the document no section of which can
+be read alone, and carries a restriction that must be respected or it fires on sound documents.
+[[genre-blur]] says what two genres in one file actually costs, [[the-two-axis-test]] decides which
+genre a passage is, and [[splitting-a-document]] is the repair. [[diataxis]] is the source summary.
 
 **reviewing — how to check a document or a set.** [[the-use-test]] is the primary method and the
 only one that finds what was never written. [[unresolvable-references]] and
@@ -85,8 +85,8 @@ worked evidence are in [[parnas-criteria-for-decomposing-systems]].
 [[minimal-is-not-short]] for the floor.
 
 **Checking a document you have.** [[ranking-findings]] first, so the pass produces something
-usable, then [[the-use-test]], then the textual checks in `reviewing/` and the symptoms in
-`failure-modes/`.
+usable, then [[the-use-test]], then the textual checks in `reviewing/` and the failure symptoms
+carried by the pages in `structure/`, `altitude/` and `obligation-and-mechanism/`.
 
 **One question, fast.** *Is this passage too much detail?* → [[the-changeability-test]]. *Two rules
 disagree about it?* → [[resolving-a-scale-conflict]].

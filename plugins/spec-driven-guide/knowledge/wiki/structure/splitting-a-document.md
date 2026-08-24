@@ -1,6 +1,6 @@
 ---
 title: Splitting a document
-category: document-types
+category: structure
 summary: When a document carries two genres, the repair is usually a split rather than a deletion — the procedural half is legitimate output that belongs in its own document, not a defect to be cut.
 tags: [method, genre, repair, wiki-authored]
 sources: []

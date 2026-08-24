@@ -6,6 +6,7 @@
 
 - [Defining a level](altitude/defining-a-level.md) — A level is fixed by four things — its scope, what it may contain, what surrounds it, and who reads it — and the audience is what most often decides the rest.
 - [Degree of constraint](altitude/degree-of-constraint.md) — How tightly the solution space is bounded decides what a document has to do — an open space needs rules that narrow it, a closed one needs a defence of the least-bad combination.
+- [Mixed levels of abstraction](altitude/mixed-levels-of-abstraction.md) — A description that moves between levels without saying so — listed among the recurring defects of ad hoc architecture description, alongside the vagueness that usually accompanies it.
 - [The C4 model (Simon Brown)](altitude/the-c4-model.md) — Source summary — a diagramming model, from which this wiki takes only its reasoning about levels: how a level is specified, and why mixing them is a defect.
 - [What a design doc omits](altitude/what-a-design-doc-omits.md) — Interface definitions, schemas and code are kept out of a design doc because they are verbose, carry unnecessary detail, and go stale faster than the document — the volatility argument, stated by practice rather than theory.
 
@@ -27,29 +28,19 @@
 - [Alternatives considered](document-types/alternatives-considered.md) — The section that shows a design was chosen rather than defaulted to — its content is the trade-offs of each rejected option, not a description of it.
 - [Design doc](document-types/design-doc.md) — A document written before implementation that argues why a design is the right one — its load-bearing content is the trade-offs, not the description of what will be built.
 - [Design Docs at Google (Malte Ubl)](document-types/design-docs-at-google.md) — The most widely cited account of the design-doc genre — what it carries, what it deliberately omits, when not to write one, and how it ages.
-- [Diátaxis](document-types/diataxis.md) — A framework for end-user documentation, almost all of it out of this wiki's charter — kept for the one thing it treats better than any source here, which is what happens when two genres share a file.
-- [Genre blur](document-types/genre-blur.md) — Two genres in one file do not each get half — they collapse into something that serves neither, and the pairs that collapse are predictable from what they have in common.
 - [Non-goals](document-types/non-goals.md) — Things that could reasonably have been goals and were deliberately chosen not to be — not negated goals, which is the distinction that makes the section checkable.
 - [Oxide RFD 1 — Requests for Discussion](document-types/oxide-rfd-process.md) — A document genre that deliberately admits unfinished work, and the state field that makes doing so safe.
 - [ADR-FORMAT and to-spec (Skills for Real Engineers)](document-types/skills-for-real-engineers-formats.md) — Two working document formats from one practitioner toolkit — the shortest decision-record format this wiki holds, and a spec format that draws the detail line and then states its exception.
-- [Splitting a document](document-types/splitting-a-document.md) — When a document carries two genres, the repair is usually a split rather than a deletion — the procedural half is legitimate output that belongs in its own document, not a defect to be cut.
 - [State marks authority](document-types/state-marks-authority.md) — A declared state tells a reader how settled a document is — the mechanism that lets unfinished work be published without being mistaken for a decision.
-- [The two-axis test](document-types/the-two-axis-test.md) — A genre is decided by two binary questions about what a passage does, not by matching it against a list of section names — and the test is meant to be run when something feels off rather than when it is obviously wrong.
 - [Timely rather than polished](document-types/timely-rather-than-polished.md) — A deliberate lowering of the bar for what may be written down, with the two failure modes it exists to prevent named explicitly.
 - [When to write a design doc](document-types/when-to-write-a-design-doc.md) — Ambiguity in the solution is the trigger — where the answer is obvious, the document costs more than it returns, and writing it produces an implementation manual.
-
-## Failure Modes
-
-- [Comprehensible only as a whole](failure-modes/comprehensible-only-as-a-whole.md) — The reader-side symptom of a leaked decision — no part of the description can be understood without the others, because each part encodes constraints that belong elsewhere.
-- [The implementation manual](failure-modes/implementation-manual.md) — A document that says how the work will be carried out without arguing why — the named symptom that a design doc has become something else, and evidence it need not have been written.
-- [Mixed levels of abstraction](failure-modes/mixed-levels-of-abstraction.md) — A description that moves between levels without saying so — listed among the recurring defects of ad hoc architecture description, alongside the vagueness that usually accompanies it.
-- [Over-specification](failure-modes/over-specification.md) — Stating a constraint the obligation does not require — every statement is true, and the description is still defective because it excludes implementations that would have served.
-- [Processing order is not a structure](failure-modes/processing-order-is-not-a-structure.md) — Organising a description by the sequence of steps is the default that feels natural and reliably produces the arrangement in which every change propagates.
 
 ## Obligation And Mechanism
 
 - [Abstract interface versus representation](obligation-and-mechanism/abstract-interface-vs-representation.md) — Parnas puts operation names, parameter counts and types on the side a description may state, and storage formats and table organisation on the side it must hide.
+- [The implementation manual](obligation-and-mechanism/implementation-manual.md) — A document that says how the work will be carried out without arguing why — the named symptom that a design doc has become something else, and evidence it need not have been written.
 - [Information hiding](obligation-and-mechanism/information-hiding.md) — Organise a description around the decisions likely to change, giving each part the job of hiding one — the criterion that decides what a document may state.
+- [Over-specification](obligation-and-mechanism/over-specification.md) — Stating a constraint the obligation does not require — every statement is true, and the description is still defective because it excludes implementations that would have served.
 - [Parnas — On the Criteria To Be Used in Decomposing Systems into Modules (1972)](obligation-and-mechanism/parnas-criteria-for-decomposing-systems.md) — The source of information hiding, and the root argument for why a description should be organised around what is likely to change rather than around the order of processing.
 - [Resolving a scale conflict](obligation-and-mechanism/resolving-a-scale-conflict.md) — When one rule says a passage states the obligation and another says it leaks the mechanism, the two are answering at different grains — separate the grain question from the form question and both resolve.
 - [State the commitment, not the means](obligation-and-mechanism/state-the-commitment-not-the-means.md) — The rule several unrelated sources arrive at, the two grounds it rests on, and the tests each ground supplies — held apart from the method that first produced it.
@@ -74,6 +65,15 @@
 - [Leading words](statement-quality/leading-words.md) — One word the reader already holds a concept for can carry a behaviour that a paragraph defines badly — and the word must be repeated as a token, never restated as a sentence.
 - [Obligation language](statement-quality/obligation-language.md) — Three levels — absolute, defeasible with reasons, and truly optional — each committing the reader to something different, and each defeated by the same failure to choose deliberately.
 - [RFC 2119 — Key words to indicate requirement levels](statement-quality/rfc-2119-requirement-levels.md) — Three pages fixing what MUST, SHOULD and MAY mean, plus a rule restricting when an imperative may be used at all.
+
+## Structure
+
+- [Comprehensible only as a whole](structure/comprehensible-only-as-a-whole.md) — The reader-side symptom of a leaked decision — no part of the description can be understood without the others, because each part encodes constraints that belong elsewhere.
+- [Diátaxis](structure/diataxis.md) — A framework for end-user documentation, almost all of it out of this wiki's charter — kept for the one thing it treats better than any source here, which is what happens when two genres share a file.
+- [Genre blur](structure/genre-blur.md) — Two genres in one file do not each get half — they collapse into something that serves neither, and the pairs that collapse are predictable from what they have in common.
+- [Processing order is not a structure](structure/processing-order-is-not-a-structure.md) — Organising a description by the sequence of steps is the default that feels natural and reliably produces the arrangement in which every change propagates.
+- [Splitting a document](structure/splitting-a-document.md) — When a document carries two genres, the repair is usually a split rather than a deletion — the procedural half is legitimate output that belongs in its own document, not a defect to be cut.
+- [The two-axis test](structure/the-two-axis-test.md) — A genre is decided by two binary questions about what a passage does, not by matching it against a list of section names — and the test is meant to be run when something feels off rather than when it is obviously wrong.
 
 ## Writing For Agents
 

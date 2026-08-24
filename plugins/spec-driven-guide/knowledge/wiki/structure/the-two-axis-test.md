@@ -1,6 +1,6 @@
 ---
 title: The two-axis test
-category: document-types
+category: structure
 summary: A genre is decided by two binary questions about what a passage does, not by matching it against a list of section names — and the test is meant to be run when something feels off rather than when it is obviously wrong.
 tags: [decision-rule, genre, method]
 sources: [web-page-diataxis]

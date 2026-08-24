@@ -1,6 +1,6 @@
 ---
 title: Mixed levels of abstraction
-category: failure-modes
+category: altitude
 summary: A description that moves between levels without saying so — listed among the recurring defects of ad hoc architecture description, alongside the vagueness that usually accompanies it.
 tags: [failure-mode, altitude, symptom]
 sources: [c4-model]

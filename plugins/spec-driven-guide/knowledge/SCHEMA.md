@@ -227,3 +227,42 @@ altitude), Wiegers on requirement quality, Brooks on essence versus accident.
   It closes one open item: "combining two documents, or splitting one in half" no longer rests on a
   page this wiki wrote itself. It also gives `reviewing/` its first sourced fragment of a severity
   order, which `ranking-findings` had recorded as missing.
+
+- 2026-08-24 — `failure-modes/` dissolved, closing the oldest open item. It grouped by page kind
+  while the charter groups by the question a writer arrives with, and the kind is carried in `tags`
+  anyway. Its five pages went where the question sends them: over-specification and the
+  implementation manual to `obligation-and-mechanism/`, mixed levels to `altitude/`, processing
+  order and comprehensibility to a new `structure/` group.
+
+  **`structure/` is the group the charter always implied and the tree never had** — "structure and
+  order of exposition; keeping genres apart inside one document" is one of its scope bullets. The
+  genre pages moved there from `document-types/` for the same reason: which document this *is* and
+  how one document is *shaped* are different questions, and a reader stuck on the second was being
+  sent to the first.
+
+- 2026-08-24 — Four **before/after pairs** added, closing the extraction schema's oldest unmet
+  bullet. They are not from a source and say so: each was produced by running this base's own
+  reviewers against a document written to carry the defect, and taking the repair the reviewer
+  proposed. They live on the rule pages rather than in a group of their own, because a pair read
+  apart from its rule is an anecdote.
+
+  **The pairs were chosen for the trap, not the illustration.** The ceiling pair shows a passage
+  whose naive repair — delete it as implementation detail — removes the obligation with the
+  mechanism. The floor pair shows a rewrite that is four times longer and more minimal. Those are
+  the two mistakes this base's own rules most invite, and neither is visible in a pair chosen to
+  show a rule working.
+
+- 2026-08-24 — The base was measured, not just linted. Seven reviewer runs across two documents:
+  one with nine planted defects, one written to be clean.
+
+  **All nine planted defects were found by the dimension assigned them, and no reviewer reported a
+  false positive.** The hard case passed — a real obligation buried inside a library call was
+  separated rather than deleted.
+
+  **The clean document was not clean, and that is the more useful result.** Three findings came back
+  against it and all three were real defects its author had not noticed: a headline commitment
+  contradicted two paragraphs later, a word doing two jobs in an argument that depended on which,
+  and a condition raised about the load-bearing decision and then omitted from the open questions.
+  So the false-positive rate against a genuinely clean document is still unmeasured — no such
+  document has been produced. What is measured is that seven runs produced zero findings that could
+  not be substantiated.

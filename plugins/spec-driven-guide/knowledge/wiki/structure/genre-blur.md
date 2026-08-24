@@ -1,6 +1,6 @@
 ---
 title: Genre blur
-category: document-types
+category: structure
 summary: Two genres in one file do not each get half — they collapse into something that serves neither, and the pairs that collapse are predictable from what they have in common.
 tags: [failure-mode, genre, structure, symptom]
 sources: [web-page-diataxis]
