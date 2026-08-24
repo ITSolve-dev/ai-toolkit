@@ -5,6 +5,16 @@ wiki it is operating on. This is what makes "one convention, many wikis" work: m
 coexist as many `SCHEMA.md`-rooted directories, and resolution picks the right one from the
 current location.
 
+## Precedence: an explicit root is not resolved
+
+**Where a caller names a wiki root, that path is the answer.** An agent that carries its own
+bundled base, a dispatching task that passes a path, a skill that states one — none of them wants
+resolution, and running it anyway is a silent failure rather than a loud one: the walk below
+succeeds on whatever copy is nearest the current directory, which in a repository that vendors the
+plugin is the wrong base and looks identical.
+
+The rule below applies only when no root was given.
+
 ## The rule
 
 **The directory containing `SCHEMA.md` is the wiki root.** To resolve:
