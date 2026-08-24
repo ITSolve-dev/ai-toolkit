@@ -32,6 +32,10 @@ genre, and every record that clears no bar makes the ones that matter harder to 
 
 ## Step 2 — write it
 
+Read `.claude/spec-driven-guide.md` for where records live, the language, and whether this project
+carries a status field. Where it is absent, run [`init`](../init/SKILL.md) or ask; a record filed
+outside the log is invisible to the next person, which is this genre's whole failure mode.
+
 The record owes five things. Whether each gets its own heading is a presentation choice; whether
 each is discharged is not.
 

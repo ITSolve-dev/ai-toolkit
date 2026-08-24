@@ -1,6 +1,5 @@
 ---
 name: review-doc
-
 description: >-
   Review a design doc, spec, ADR or agent instruction file by fanning out one reviewer per
   dimension plus a cold reader who tries to use it, then rank the findings by how far the damage
@@ -14,6 +13,10 @@ description: >-
 One pass by one reader finds the defects that reader is primed for. This skill runs several narrow
 reviewers in parallel and one reader who ignores the rules entirely and just tries to use the
 document — that last one finds what none of the others can, because what it finds is absent.
+
+Base root: `${CLAUDE_PLUGIN_ROOT}/knowledge`. Every `wiki/...` path below is relative to it,
+including the ones you read yourself in steps 3 and 4 — you are running in the user's project, so
+they resolve nowhere else.
 
 ## Steps
 
@@ -32,7 +35,7 @@ document — that last one finds what none of the others can, because what it fi
    | Altitude | `wiki/altitude/defining-a-level.md`, `wiki/failure-modes/mixed-levels-of-abstraction.md` |
    | Ceiling | `wiki/failure-modes/over-specification.md`, `wiki/failure-modes/implementation-manual.md`, `wiki/obligation-and-mechanism/when-a-snippet-beats-prose.md` |
    | Floor | `wiki/writing-for-agents/minimal-is-not-short.md`, `wiki/writing-for-agents/sprawl.md` |
-   | Statements | `wiki/statement-quality/` — all four pages |
+   | Statements | `wiki/statement-quality/` — the five rule pages; `rfc-2119-requirement-levels.md` is a source summary and prescribes nothing |
    | Structure | `wiki/failure-modes/processing-order-is-not-a-structure.md`, `wiki/failure-modes/comprehensible-only-as-a-whole.md`, `wiki/document-types/splitting-a-document.md` |
    | Argument | `wiki/decision-records/every-argument-carries-a-because.md`, `wiki/reviewing/a-problem-with-no-decision.md`, `wiki/reviewing/unresolvable-references.md` |
    | Pruning | `wiki/reviewing/pruning-a-document.md` |

@@ -12,7 +12,8 @@ Genre-neutral. The genre skills add what a design doc or a decision record owes 
 
 Each rule below carries the symptom that reveals its violation **in the text**, and a page in the
 bundled base holding the reasoning. Read the page when a case is borderline; the symptom is enough
-for the clear ones. Base root: `${CLAUDE_PLUGIN_ROOT}/knowledge`.
+for the clear ones. Base root: `${CLAUDE_PLUGIN_ROOT}/knowledge` — open pages there, not from a copy
+of this plugin that happens to sit in the project you are working in.
 
 ## 1. State the commitment, not the means
 
@@ -82,8 +83,10 @@ make cannot make it. Every sentence looks defensible; what is wrong is absent.
 
 *Symptom:* a claim no reader could disagree with — "robust", "clean", "as needed", "where
 appropriate".
-→ `wiki/statement-quality/obligation-language.md`, `wiki/statement-quality/completion-criteria.md`,
-`wiki/statement-quality/leading-words.md`, `wiki/statement-quality/imprecise-terminology.md`
+→ `wiki/statement-quality/obligation-language.md`,
+`wiki/statement-quality/imperatives-constrain-outcomes-not-methods.md`,
+`wiki/statement-quality/completion-criteria.md`, `wiki/statement-quality/leading-words.md`,
+`wiki/statement-quality/imprecise-terminology.md`
 
 ## 6. Every claim carries its because
 

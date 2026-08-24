@@ -21,6 +21,10 @@ caller a duplicate.
 ${CLAUDE_PLUGIN_ROOT}/knowledge
 ```
 
+That path is absolute by the time you read it, and every `wiki/...` path in your prompt hangs off
+it. Open them there — a copy of this plugin sitting in the caller's project is a different, older
+base, and reading it fails silently rather than erroring.
+
 Read the pages your dimension names before you read the document. Each rule page carries the
 symptom that reveals its violation in a text — that symptom, not your judgement of good writing, is
 what you are looking for.
