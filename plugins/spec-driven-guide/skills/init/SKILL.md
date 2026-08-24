@@ -44,6 +44,11 @@ document written to a different convention by whoever ran the skill last is the 
 4. **Tell the user to commit it**, and why: uncommitted, it silently stops applying for everyone
    else, and the divergence shows up as inconsistent documents rather than as a missing file.
 
+   Mention once that the bundled base sits outside the project, so the first skill to read it asks
+   for permission — approving once is all it needs. Offer to add
+   `permissions.additionalDirectories` only where the project runs Claude headlessly, since a
+   headless session cannot answer that prompt.
+
 ## Done when
 
 - The file exists with language and both paths filled.

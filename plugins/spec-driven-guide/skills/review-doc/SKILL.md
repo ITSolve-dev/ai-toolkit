@@ -16,6 +16,11 @@ Base root: `${CLAUDE_PLUGIN_ROOT}/knowledge`. Every `wiki/...` path below is rel
 including the ones you read yourself in steps 3 and 4 — you are running in the user's project, so
 they resolve nowhere else.
 
+**Where a reviewer reports that its read was denied, say so before reporting any findings.** The
+base sits outside the project, so a headless session that cannot answer a permission prompt refuses
+it, and the review then has blind dimensions — worth re-running rather than reading. Interactively
+the fix is approving the prompt; headlessly it is passing the plugin directory in with `--add-dir`.
+
 ## Steps
 
 1. **Establish what the document claims to be.** Its genre, its reader, and its grain. Where the

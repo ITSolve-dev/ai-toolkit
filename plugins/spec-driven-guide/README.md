@@ -66,6 +66,16 @@ Planning, task decomposition, estimation. This plugin is the theory half: what a
 state and at what level. Turning an approved document into work is a different practice and
 belongs to a different plugin.
 
+## Reading the base
+
+The base lives in the plugin's install directory, outside your project, so the first read asks for
+permission. Approve it once and everything works. (`ask` carries its own grant and never asks.)
+
+Headless runs can't answer a prompt, so `claude -p` needs the directory passed in — `--add-dir`, or
+`permissions.additionalDirectories` in settings. Without it a review runs with blind dimensions; it
+says so in its report rather than inventing findings, because the agents stop on a failed read
+instead of falling back to another copy of the base.
+
 ## Requires `llm-wiki`
 
 The bundled base is an [llm-wiki](../llm-wiki) — a declared dependency, enabled with this plugin.
