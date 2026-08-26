@@ -1,0 +1,16 @@
+{
+  "name": "anti-sycophancy",
+  "version": "0.1.0",
+  "description": "Assessment that does not bend toward what the user wants to hear. Ships honest-assessment (methodology loaded into the current context — other plugins' agents attach it via the `skills:` frontmatter field) and second-opinion (a forked reviewer with no access to the conversation that produced the idea).",
+  "author": {
+    "name": "ITSolve-dev"
+  },
+  "keywords": [
+    "anti-sycophancy",
+    "critical-thinking",
+    "review",
+    "assessment",
+    "decision-making",
+    "second-opinion"
+  ]
+}
