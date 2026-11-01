@@ -3,7 +3,7 @@ title: Waiting Versus Blocked
 category: work-states
 summary: Stopped work is waiting if an outside party holds it, an expected end is known and nothing can shorten it; otherwise, or once that end has passed, it is blocked.
 tags: [decision-rule, work-states, dependencies, kanban]
-sources: [radzikowska-waiting-blocked]
+sources: [radzikowska-waiting-blocked, kanban-guide, scrum-guide-2020, wester-board-design]
 created: 2026-11-01
 updated: 2026-11-01
 ---
@@ -53,11 +53,19 @@ The choice was wrong in one of two ways. An item called waiting was really block
 
 ## Agent executor note
 
-The test does not depend on who executes, so it survives. An agent adds a case the source does not cover: a task stopped because it needs a decision or a review from the person steering. That fails condition 1, since the person is inside the project, and it fails condition 3, since they can act now. So this wiki classes it as blocked, not waiting. That reading is ours, and it matters because this case is likely to be common.
+The test does not depend on who executes, so it survives. An agent adds a case the source does not cover: a task stopped because it needs a decision from the person steering. That fails condition 1, since the person is inside the project, and it fails condition 3, since they can act now. So this wiki classes it as blocked, not waiting. That reading is ours, and it matters because this case is likely to be common.
+
+A planned review is a different case, and this page used to group the two together. A person reviewing a finished result is not a stop. The review happens in a predictable place and the task goes forward afterwards, so under Wester's test it is a handoff with a state of its own ([[column-versus-attribute]]). The line runs between a review the workflow expects and a decision the executor unexpectedly needs in order to continue.
 
 ## Positions
 
-**Kanban Maturity Model:** as above. Other methodologies' positions will be added here as sources are ingested. The transition at expiry is the part of this test most likely to differ among them.
+**Kanban Maturity Model:** as above.
+
+**Kanban Guide:** the Guide does not separate waiting from blocked, and has no transition at expiry. It names "Unblocking blocked work." ([[kanban-guide]] L135) and leaves the term undefined. Its SLE is not the source's "agreed waiting time": [[service-level-expectation]] sets out the two meanings.
+
+**Scrum Guide:** the Guide has one word for both, "impediments", which the Scrum Master is to cause the removal of ([[scrum-guide-2020]] L162) and the Daily Scrum is to identify (L240). It draws no line by who holds the next step and has no expiry. The test on this page therefore adds something under an iteration setup and overrides nothing.
+
+**Wester:** treats Blocked and On Hold alike, as "fleeting attributes of work" ([[wester-board-design]] L49), and does not separate them by who holds the next step. This wiki reads the two views as answering different questions. The Kanban Maturity Model's test says which state stopped work is in, and Wester's says how to draw it. A stopped task is in a state of work and is drawn as a marker. The word "wait" in Wester's post mostly means something else, a task ready for someone to take it ([[active-versus-queued]]).
 
 ## Related
 

@@ -3,7 +3,7 @@ title: Component Task Masquerading as a Unit
 category: cutting-work
 summary: A work item that changes one layer or produces an artifact, presented as a unit of value; the remedy is to combine it with its neighbours, because cutting it smaller cannot help.
 tags: [failure-mode, decomposition, vertical-slice]
-sources: [humanizing-work-splitting, wake-invest]
+sources: [humanizing-work-splitting, wake-invest, kanban-playbook-right-sizing]
 created: 2026-11-01
 updated: 2026-11-01
 ---
@@ -22,6 +22,7 @@ A component task is a work item that changes one layer or produces an artifact, 
 
 - **Across tasks:** a request is cut by layer. The authors say "one story for the UI, another for the database, etc. This may satisfy small, but it fails at independent and valuable." (L143).
 - **At cutting time:** the item cannot be split. The authors report that "When people bring us their “unsplittable” stories, they turn out to be tasks or components masquerading as stories." (L183).
+- **In board history:** tasks close fast and the numbers look healthy, while nothing usable reaches anyone. The Kanban Playbook describes this: "Small items create the opposite illusion. Work closes quickly and your Cycle Time looks great. But if nothing on your board delivers something a customer can actually use, feedback never arrives." ([[kanban-playbook-right-sizing]] L20). This wiki reads that as the same defect seen in the metrics, and it means [[flow-metrics]] cannot detect it alone, since short cycle times and high throughput are what the defect produces.
 
 ## What to do with one
 

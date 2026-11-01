@@ -39,6 +39,8 @@ This wiki reads those three causes as three different next steps: clarify the re
 
 A criteria field that is merely empty is not a sign under the charter. The two signs above can both fire on a filled-in field.
 
+Many criteria are not a defect on this page. The opposite sign is on [[compound-task-text-signs]], and it fires only on criteria that could each be delivered alone. The shared standard of done that applies to every task is a separate thing, on [[started-and-finished-points]].
+
 ## Why
 
 What breaks is the ending. Without a check, "done" is whatever the executor stopped at, and the disagreement surfaces at review or later. The authors name the same failure in a sharper form, for work that was split: "It’s easy to get in a habit of calling stories done that aren’t really done, accumulating debt you’ll pay for later." (L297). They also use acceptance criteria as a tool for holding a task's size: "You’ll probably have to define some acceptance criteria on the spot to keep it simple." (L275).

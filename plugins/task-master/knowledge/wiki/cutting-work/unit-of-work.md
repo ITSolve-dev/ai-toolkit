@@ -3,7 +3,7 @@ title: Unit of Work
 category: cutting-work
 summary: What this wiki means by a task, how that maps onto the sources' words "story" and "task", and the two working tests a unit has to pass.
 tags: [concept, decomposition, vocabulary]
-sources: [wake-invest, humanizing-work-splitting, radzikowska-waiting-blocked]
+sources: [wake-invest, humanizing-work-splitting, radzikowska-waiting-blocked, kanban-guide, scrum-guide-2020]
 created: 2026-11-01
 updated: 2026-11-01
 ---
@@ -21,6 +21,8 @@ A unit of work is the thing this wiki calls a **task**: the piece that goes on a
 
 The Humanizing Work authors define their unit by what it changes: a user story is "*a description of a change in system behavior from the perspective of a user*" (L53). Their use of "task" is pejorative where Wake's is neutral, which is why the two sources should not be merged by word: for Wake a task is a legitimate piece of a story, and for the authors a task "pretending to be a story" is a defect ([[component-task-masquerading]]).
 
+The two guides use the same phrase at different levels, so the phrase cannot be carried over between them. The Kanban Guide's "work item" is "the individual units of value that are moving through the workflow" ([[kanban-guide]] L110). This wiki reads that as its own task, since it is what crosses the [[started-and-finished-points]]. The Scrum Guide's unit is the Product Backlog item, and its "work items" are the smaller pieces below that: it speaks of "decomposing Product Backlog items into smaller work items of one day or less." ([[scrum-guide-2020]] L226). This wiki reads a Product Backlog item as its own task, and the Scrum "work item" as Wake's task, which the plugin does not produce.
+
 Wake separates the two levels plainly:
 
 > Stories are broken into tasks for the benefit of developers, but a customer should still be able to expect that every task can be explained and justified.
@@ -35,7 +37,7 @@ The charter states two tests for a unit: once started, the task can be finished 
 
 The second test has a close source statement in the Humanizing Work definition of a slice: "When you call the slice “done,” the system is observably more valuable to a user." (L133). This wiki reads a result that can be presented as a result of that kind. See [[vertical-slice]].
 
-The first test has no source statement. This wiki reads board history as its evidence: a task that reached a parked or blocked state after starting did not meet it ([[sequence-versus-wait]], with the states defined on [[waiting-versus-blocked]]). A stop for a decision from the person steering counts too, which makes [[conversation-moves-into-the-task]] part of the same test.
+The first test has no source statement. This wiki reads board history as its evidence: a task that reached a parked or blocked state after starting did not meet it ([[sequence-versus-wait]], with the states defined on [[waiting-versus-blocked]]). A stop for a decision from the person steering counts too, which makes [[conversation-moves-into-the-task]] part of the same test. A planned review of the finished result does not count, because it is a handoff at the end of the executor's part and not a wait inside the task ([[sequence-versus-wait]]). That review is where the result is presented, which is the second test.
 
 ## A task that fails
 

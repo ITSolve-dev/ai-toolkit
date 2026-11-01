@@ -3,7 +3,7 @@ title: Sequence Versus Wait
 category: ordering
 summary: A sequence constrains order and leaves work available; a wait stops work on someone else's clock. A wait belongs between tasks, not inside one.
 tags: [decision-rule, dependencies, decomposition]
-sources: [humanizing-work-splitting, radzikowska-waiting-blocked]
+sources: [humanizing-work-splitting, radzikowska-waiting-blocked, wester-board-design]
 created: 2026-11-01
 updated: 2026-11-01
 ---
@@ -22,6 +22,15 @@ Who holds the prerequisite?
 ## The rule that follows
 
 Cut so that a known wait falls between tasks and not inside one. A task that hits a wait after starting fails the charter's first working test, that a started task can be finished without waiting ([[unit-of-work]]). If the wait is known in advance, the part that depends on it becomes a separate task that does not start until the outside party has delivered.
+
+## A handoff at the end is not a wait inside
+
+Wester says handoffs "are expected parts of the workflow" and should be drawn as columns ([[wester-board-design]] L57), which seems to conflict with cutting at the wait. This wiki reads the two as applying to different positions in the task.
+
+- **The handoff comes after the executor's part is complete:** nothing more is owed until it returns. The task has been presented, and the handoff is a state on the board. A review by the person steering is the usual case.
+- **The handoff comes in the middle, with more work to do after it:** it is a wait inside the task, and the rule above applies.
+
+The board-drawing rule and the cutting rule therefore do not compete. This reading is ours, and Wester does not discuss cutting.
 
 ## Sign of violation
 

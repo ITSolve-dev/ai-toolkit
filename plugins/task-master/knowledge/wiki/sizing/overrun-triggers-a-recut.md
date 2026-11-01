@@ -3,7 +3,7 @@ title: Overrun Triggers a Recut
 category: sizing
 summary: A task running past the expectation set for its size is a signal to act on the task itself, not to wait longer.
 tags: [rule, estimation, smart, board-history]
-sources: [wake-invest, ambig-swe]
+sources: [wake-invest, ambig-swe, kanban-guide, scrum-guide-2020]
 created: 2026-11-01
 updated: 2026-11-01
 ---
@@ -45,3 +45,15 @@ An agent's overrun may also mean something different from a person's. The Ambig-
 > — [[ambig-swe]], L155
 
 The authors repeat the point at L159: Claude Sonnet 4 "extensively explores the codebase and attempts multiple solutions to overcome the lack of information". This wiki reads that as a second diagnosis for an overrun: with an agent, a task running long may be an [[underspecified-task]] and not a big one. The evidence is one model on stripped issues, and it concerns cost and not age on a board, so the reading is a hypothesis to check first when an overrun appears. It does not establish the cause. The response is then to fix the task text and not to split it.
+
+## Positions
+
+**Kanban Guide:** the expectation is the [[service-level-expectation]]. The Guide lists among the forms of active management "Ensuring work items do not age unnecessarily, using the SLE as a reference." ([[kanban-guide]] L134). This wiki reads that as giving the rule a number that comes from history and not from a size step. An item's age is compared with the SLE while it is open, so the sign fires before the item finishes late. The Guide does not say what to do when age passes the SLE, and the three options above are this wiki's, from Wake.
+
+**Scrum Guide:** it has no expectation per item. What it inspects daily is the goal: "The purpose of the Daily Scrum is to inspect progress toward the Sprint Goal and adapt the Sprint Backlog as necessary" ([[scrum-guide-2020]] L234). The only item-level limit is the period itself ([[unfinished-at-period-end]]). This wiki reads that as a later and coarser trigger, since a task can overrun for most of a period with nothing firing.
+
+## Which holds under which setup
+
+- **Flow setup:** age against the SLE.
+- **Iteration setup:** the expectation for the size step, as in the rule above, with the period's end as the backstop. The method to set that expectation has no source beyond Wake.
+- **Iterations with a WIP control:** either, and the SLE if the project keeps one.

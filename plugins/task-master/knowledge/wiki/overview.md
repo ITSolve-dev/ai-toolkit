@@ -15,7 +15,9 @@ Pages are grouped by the question someone organizing work arrives with. A method
 | `intake` | What do I do with what came in? |
 | `work-states` | What state is this in? |
 | `moving-work` | What may move? |
+| `periods` | What fits in a period, and what is promised? |
+| `reading-history` | What actually happened? |
 
 ## Where to start
 
-To cut a request, read [[story-splitting-patterns]]. To check a task before an agent takes it, read [[conversation-moves-into-the-task]] and [[recoverable-versus-task-only-facts]]. To classify stopped work, read [[waiting-versus-blocked]]. [[unit-of-work]] fixes the vocabulary, because the sources use "story" and "task" differently from this wiki. [[synthesis]] states what the sources amount to together.
+To cut a request, read [[story-splitting-patterns]], and to spot one that needs cutting, read [[compound-task-text-signs]]. To check a task before an agent takes it, read [[conversation-moves-into-the-task]] and [[recoverable-versus-task-only-facts]]. To classify stopped work, read [[waiting-versus-blocked]]. To audit a board, read [[judging-board-columns]], and to design one, read [[mapping-workflow-states]]. To see which rule holds for a project's setup, read [[board-rules-by-setup]]. [[unit-of-work]] fixes the vocabulary, because the sources use "story" and "task" differently from this wiki. [[synthesis]] states what the sources amount to together.

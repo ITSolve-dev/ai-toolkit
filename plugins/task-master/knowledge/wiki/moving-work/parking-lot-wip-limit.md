@@ -51,3 +51,7 @@ The source names the cost: "potentially causing upstream stalling" (L59). It als
 ## Agent executor note
 
 The source calls the limit a stressor, a human mechanism. With an agent the stall is mechanical: the limit is reached and pulling stops. The arithmetic does not depend on the executor. Whether a parking-lot limit earns its cost on a very small board is not shown here, and the source reports no measurement.
+
+## Related
+
+The bound on the whole workflow is on [[wip-control]], which also borrows this page's starting point. The Guide's view of whether parked items count at all is on [[parking-lot]].

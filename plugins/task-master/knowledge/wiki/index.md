@@ -6,6 +6,7 @@
 
 - [Choosing Between Splits](cutting-work/choosing-between-splits.md) — When a task can be cut several ways, prefer the cut that exposes something to throw away, then the cut that gives more equal pieces.
 - [Component Task Masquerading as a Unit](cutting-work/component-task-masquerading.md) — A work item that changes one layer or produces an artifact, presented as a unit of value; the remedy is to combine it with its neighbours, because cutting it smaller cannot help.
+- [Text Signs of a Compound Task](cutting-work/compound-task-text-signs.md) — Words in a task's title and text that suggest it holds several units; conjunctions, separators, generic terms, plurals and criteria that could each stand alone. A sign prompts a check that each part can be delivered on its own, and it does not prove the task must be split.
 - [Find the Core Complexity](cutting-work/find-core-complexity.md) — The meta-pattern behind the splitting patterns, used directly to find a first slice; locate what is most likely to surprise, list what there are many of, and reduce those to one.
 - [How Far to Split Up Front](cutting-work/how-far-to-split-up-front.md) — Decide whether to enumerate all the pieces of a large request or cut only one or two, by whether starting the work will teach you what the work is.
 - [The Humanizing Work Guide to Splitting User Stories](cutting-work/humanizing-work-splitting.md) — A coaching firm's guide to cutting large stories into thin vertical slices; nine patterns, a meta-pattern and two tests for choosing a split, grounded in practice and not in data.
@@ -21,19 +22,40 @@
 
 ## Moving Work
 
+- [Backward Movement](moving-work/backward-movement.md) — Moving a card to an earlier state loses visibility and data, so an expected cycle such as rework after review stays in the later state or goes to a new state on the right; the Scrum Guide's return of an unfinished item to the backlog is the one sanctioned exception.
 - [Blocked Work Counts Against WIP](moving-work/blocked-work-counts-against-wip.md) — A blocked item stays in its column and counts toward that column's limit, so that being stopped restrains further pulling; moving it aside hides the stop.
+- [Board Rules by Setup](moving-work/board-rules-by-setup.md) — The lookup from a project's setup to the rule that holds for moving, limiting and committing; two switches, a fixed period and a WIP control, resolve where Kanban and Scrum differ, and neither guide says when to pick the other.
+- [The Kanban Guide (May 2025)](moving-work/kanban-guide.md) — The minimal definition of Kanban as a strategy for optimizing flow; it requires a stated workflow, explicit control of work in progress, a service level expectation and four flow metrics, and it gives no columns, no order and no period.
 - [Parking Lot WIP Limit](moving-work/parking-lot-wip-limit.md) — How to set a first limit on the parking lot from its own history, what the limit does, and what later fact shows it is wrong.
-- [Parking Lot](moving-work/parking-lot.md) — A marked board area for items waiting on an outside party, with their time tracked; an item still parked past its expected end must become blocked.
+- [Parking Lot](moving-work/parking-lot.md) — A marked board area for items waiting on an outside party, with their time tracked; an item still parked past its expected end must become blocked. Wester rejects such areas, so this wiki narrows the parking lot to a declared exception under a WIP control.
+- [What May Move](moving-work/what-may-move.md) — The trigger that lets a task start or change state; under the Kanban Guide a task starts only on a capacity signal and moves by stated policies, and under the Scrum Guide it enters by selection for a period, stays while the goal is safe, and leaves unfinished only by going back.
+- [WIP Control](moving-work/wip-control.md) — An explicit bound on how many tasks may be started and not finished; the Kanban Guide requires one over the whole workflow in any form, treats running under it as a departure too, and wants exceptions declared in advance.
 
 ## Ordering
 
 - [Independent Tasks](ordering/independent-tasks.md) — Tasks should not overlap and should be orderable freely; a conditional estimate or a stated precondition is the sign that they cannot be.
 - [Sequence Versus Wait](ordering/sequence-versus-wait.md) — A sequence constrains order and leaves work available; a wait stops work on someone else's clock. A wait belongs between tasks, not inside one.
 
+## Periods
+
+- [Commitment Over a Period](periods/commitment-over-a-period.md) — What a project actually promises; the Scrum Guide commits to a Sprint Goal and only forecasts the items, the Kanban Guide has no period and forecasts per item, and a board reported as a list of promised items misstates both.
+- [Filling a Period](periods/filling-a-period.md) — How much to select for an iteration; the Scrum Guide names three inputs, past performance, upcoming capacity and the Definition of Done, and gives no formula. Selection applies only under an iteration setup.
+- [Mid-Period Change](periods/mid-period-change.md) — During a period the list of work may change and the goal may not; a change that endangers the goal is refused, and a goal gone obsolete is cancelled openly and not quietly replaced.
+- [Period Length](periods/period-length.md) — A period is a fixed length of one month or less, chosen by how long its goal stays valid against the shortest span in which something can finish; extending a period to fit its work is the sign of violation.
+- [The 2020 Scrum Guide](periods/scrum-guide-2020.md) — The definition of Scrum by Schwaber and Sutherland; mostly accountabilities and events, which this wiki drops, and a small core about the Sprint, the Sprint Goal, selection and the Definition of Done that it keeps. It has no board, no states and no limit on concurrent work.
+- [Service Level Expectation](periods/service-level-expectation.md) — Kanban's forecast of how long an item should take from started to finished, stated as an elapsed time and a probability and read from cycle time history; it is per item, a forecast and not a promise, and its example figures are not targets.
+- [Unfinished at Period End](periods/unfinished-at-period-end.md) — A task that has not met the standard of done is not partly done; it goes back to be ordered again, it is not carried over automatically, and it does not count toward what the period finished.
+
+## Reading History
+
+- [Flow Metrics](reading-history/flow-metrics.md) — The four measures the Kanban Guide requires, WIP, Throughput, Work Item Age and Cycle Time, what each counts and does not, and why all of them can be read from board history without logged hours.
+
 ## Sizing
 
+- [Hidden WIP in Large Items](sizing/hidden-wip-in-large-items.md) — WIP counts items and not work, so one large task can hold several tasks' worth of work under a count of one; the sign is a cycle time outlier or a task whose text lists separable results.
+- [Do My Work Items All Need to Be the Same Size? (Kanban Playbook)](sizing/kanban-playbook-right-sizing.md) — An unsigned ProKanban playbook page replacing estimation with one question, will this item likely finish within the SLE, and offering four ways to split; its mechanisms are kept, while its figures are illustrations and its central claim needs correcting.
 - [Overrun Triggers a Recut](sizing/overrun-triggers-a-recut.md) — A task running past the expectation set for its size is a signal to act on the task itself, not to wait longer.
-- [Size Ceiling](sizing/size-ceiling.md) — The size above which a task is cut, chosen by whether its scope can still be stated, with the sources' figures kept alongside the setting that produced them.
+- [Size Ceiling](sizing/size-ceiling.md) — The size above which a task is cut, chosen by whether its scope can still be stated, with the sources' figures kept alongside the setting that produced them; a ratio of the period under iterations, and the likelihood of finishing inside the SLE under a flow setup.
 
 ## Task Content
 
@@ -48,6 +70,14 @@
 
 ## Work States
 
+- [Active Versus Queued](work-states/active-versus-queued.md) — A board has to show whether a task is being worked on or is ready and waiting for attention, because an active column that hides queued work makes bottlenecks unreadable; this kind of waiting is inside the project and is not the outside wait of the parking lot.
+- [Column Versus Attribute](work-states/column-versus-attribute.md) — A column is for a stage that happens in a predictable place, after which work goes forward; anything fleeting that can land anywhere is an attribute marked on the task where it stands. A handoff passes the test and a block does not.
+- [Distinguishable Work States](work-states/distinguishable-work-states.md) — The sources give criteria and no canonical column set, and they treat a fixed list as the failure case; what they do support is a small set of distinctions any board must let a reader make, drawn partly as columns and partly as markers.
+- [Judging a Board's Columns](work-states/judging-board-columns.md) — The criteria for auditing a board's columns, each with the sign of failing it; six are judged per column and four across the board, and they apply to any setup with states.
+- [Where Do We Start When Choosing Workflow States? (Kanban Playbook)](work-states/kanban-playbook-workflow-states.md) — An unsigned ProKanban playbook page saying states should be derived from how work actually moved, not from a familiar column list; it separates states from activities and treats a five-column default as the failure case. It reports no measurement.
+- [Mapping Workflow States](work-states/mapping-workflow-states.md) — Derive a board's states by tracing recent tasks of different kinds, listing what actually happened to them, noting what was skipped and where they waited, and grouping similar activities; the states are containers and the activities are what happen inside them.
 - [Should We Include Waiting or Blocked Items in WIP Limits?](work-states/radzikowska-waiting-blocked.md) — A Kanban Maturity Model answer to whether stopped work counts toward WIP limits; blocked items stay and count, items waiting on outsiders may be parked, and a parked item past its time becomes blocked.
+- [Started and Finished Points](work-states/started-and-finished-points.md) — The two defined moments between which a task counts as work in progress; every flow metric hangs from them, so each has to be an event the board can show and not a claim by the executor. The Kanban Guide lets each workflow define them, and the Scrum Guide fixes only finished, as one Definition of Done.
 - [Waiting Versus Blocked](work-states/waiting-versus-blocked.md) — Stopped work is waiting if an outside party holds it, an expected end is known and nothing can shorten it; otherwise, or once that end has passed, it is blocked.
+- [Designing Your Board to Focus on Flow (Wester)](work-states/wester-board-design.md) — Julia Wester's practice post on board design, from a metrics vendor's blog; five tips with no measurement, of which the mechanisms are kept and any implied size of effect is not. It supplies the test separating a column from an attribute.
 

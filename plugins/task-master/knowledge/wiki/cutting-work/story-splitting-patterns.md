@@ -3,7 +3,7 @@ title: Story Splitting Patterns
 category: cutting-work
 summary: The three-step procedure and nine patterns for cutting a too-big task into thin vertical slices, each pattern with the trigger that selects it.
 tags: [method, decomposition, splitting]
-sources: [humanizing-work-splitting]
+sources: [humanizing-work-splitting, kanban-playbook-right-sizing]
 created: 2026-11-01
 updated: 2026-11-01
 ---
@@ -57,3 +57,5 @@ The patterns come from coaching human Scrum teams, with no measurement. They sur
 ## Related
 
 The patterns share one underlying move, which [[find-core-complexity]] describes and which can be used directly.
+
+The Kanban Playbook's four moves overlap with these, and it adds no new pattern ([[kanban-playbook-right-sizing]] L35-L49). This mapping is this wiki's. Generic terms and plurals point toward patterns 3 and 4. Solving a smaller problem first is pattern 7 and [[find-core-complexity]]. Its conjunctions and its splitting by acceptance criteria are signs for finding a split rather than patterns, and they are on [[compound-task-text-signs]].

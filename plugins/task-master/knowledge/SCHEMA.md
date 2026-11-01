@@ -181,7 +181,12 @@ for Reinertsen's *Principles of Product Development Flow* is a third-party summa
 was rejected; see the log. Priority without it rests on the qualitative cost-of-delay source.
 
 The test "once started, it can be finished without waiting" has no source: it comes from the plugin's
-design, and pages using it say so.
+design, and pages using it say so. Review of a presented result is not a wait inside the task: the
+executor's part has ended.
+
+A section resolving a disagreement per project setup is the wiki's own reading and says so. It does not
+count against the rule that self-authored pages should go down: that rule is about claims with no
+source, and these sections sit on sourced positions.
 
 <!-- Co-evolution log: record decisions about how THIS wiki is run as they emerge. -->
 
