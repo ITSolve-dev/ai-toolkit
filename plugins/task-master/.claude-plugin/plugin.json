@@ -1,0 +1,20 @@
+{
+  "name": "task-master",
+  "version": "0.1.0",
+  "description": "Board management and planning as an expert the working agent calls: decomposition, estimation, scheduling, triage, board review and period analysis, each grounded in a curated knowledge base bundled with the plugin. Board access goes through the external board-cli.",
+  "author": {
+    "name": "ITSolve-dev"
+  },
+  "dependencies": [
+    "llm-wiki"
+  ],
+  "keywords": [
+    "planning",
+    "decomposition",
+    "estimation",
+    "kanban",
+    "scrum",
+    "issue-tracker",
+    "board"
+  ]
+}
