@@ -1,11 +1,11 @@
 ---
 title: Kano Model
 category: ordering
-summary: Kano's model sorts features by how satisfaction responds to them; threshold features only prevent dissatisfaction, linear features pay in proportion, and exciters please when present and cost nothing when absent. It yields a category and not an order, and categories decay over time.
+summary: Kano's model sorts features by how satisfaction responds to them; threshold features only prevent dissatisfaction, linear features pay in proportion, and exciters please when present and cost nothing when absent. It yields a category and not an order, a linear feature can carry a mandatory floor, one importance scale cannot see the reaction to absence, and categories decay over time.
 tags: [concept, ordering, prioritization, value, kano]
 sources: [cohn-agile-estimating-planning]
 created: 2026-11-01
-updated: 2026-11-01
+updated: 2026-11-02
 ---
 
 # Kano Model
@@ -30,7 +30,25 @@ This wiki reads the three categories as one discriminating test: an asymmetry be
 - Presence helps and absence does not hurt: exciter.
 - Both directions move satisfaction: linear.
 
-The consequence is ours and not the source's: a single rating of value cannot separate a threshold feature from an exciter, since both can be called valuable and they call for opposite handling. That is the reason [[relative-penalty]] scores absence separately, and why the Killer band of [[ordering-by-value-and-urgency]] names both what doing a thing gains and what not doing it loses.
+The consequence is that a single rating of value cannot separate a threshold feature from an exciter, since both can be called valuable and they call for opposite handling. The fictional case study in Chapter 23 (L4961) states the mechanism when a product manager asks why a 1-to-5 importance rating would not do:
+
+> A single scale like that just tells us how strongly a user values a feature. It doesn’t tell us how strongly the user would react to the absence of the feature. I wouldn’t prioritize wheels very highly if you asked me about features on a car but I’d be mad if you took them away.
+>
+> — [[cohn-agile-estimating-planning]], L5634-L5638
+
+This wiki reads that as saying importance and reaction to absence are two different measurements, and a feature can be low on one and high on the other. That is the reason [[relative-penalty]] scores absence separately, and why the Killer band of [[ordering-by-value-and-urgency]] names both what doing a thing gains and what not doing it loses.
+
+## The categories in the case study
+
+The chapter uses the model without naming it and points to Chapter 11 for the method (L5943). Its names are mandatory, linear and exciter, and it adds what the table above leaves out. The speakers are characters.
+
+**Mandatory is the cost of entry.** Some features are so obvious that the analyst does not ask about them: "Supporting them is really the cost of entry." (L5992).
+
+**Linear does not mean optional.** An artist objects that art cannot be optional, and the analyst separates a floor from a slope: "I didn’t say these are optional, Rose," then "There is a certain baseline we can’t fall below" and "These are linear because the more of them the better." (L6050). This wiki reads that as the discriminating criterion: a linear feature can carry a mandatory minimum, so the category does not license dropping it whole.
+
+**Few exciters is an unfinished search.** "Remember that exciters are unexpected features." and "Every product should have at least one or two exciters" (L5984). A survey showing few of them is read as a reason for open-ended interviews, and not as a dull product (L5984). This wiki reads that as following from an exciter being an unknown need: a list built from what is already asked for has little chance of holding one.
+
+**Indifferent is a fourth outcome.** "it just means that the person didn’t have a strong preference either way" (L5972). What the chapter does with such features is on [[ordering-by-kano-category]].
 
 ## Categories decay
 

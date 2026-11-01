@@ -5,7 +5,7 @@ summary: Words in a task's title and text that suggest it holds several units; c
 tags: [rule, decomposition, splitting, task-content]
 sources: [kanban-playbook-right-sizing, humanizing-work-splitting]
 created: 2026-11-01
-updated: 2026-11-01
+updated: 2026-11-02
 ---
 
 # Text Signs of a Compound Task
@@ -35,7 +35,7 @@ All of these are in the task text.
 - **Generic terms and plurals:** a word such as "experience", or a plural that covers several things that have not been named.
 - **Criteria that stand alone:** acceptance criteria each of which could be delivered without the others.
 
-The Playbook calls them "signals" (L41), and this wiki keeps that strength. A sign is a reason to look. "When" and "if" often state a condition inside one behaviour, and "and" can join two parts of a single result. The test is the one the Playbook applies to criteria at L37, delivered on its own, and the extension of it to the other signs is ours.
+The Playbook calls them "signals" (L41), and this wiki keeps that strength. A sign is a reason to look. "When" and "if" often state a condition inside one behaviour, and "and" can join two parts of a single result. The test is the one the Playbook applies to criteria at L37, delivered on its own, and the extension of it to the other signs is ours. A title whose substance is one broad adjective hides its parts from these signs altogether, and that case is on [[catch-all-task]].
 
 ## Why
 

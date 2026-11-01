@@ -5,7 +5,7 @@ summary: Cohn's case that estimates below the story level are also made by more 
 tags: [rule, estimation, cohn]
 sources: [cohn-agile-estimating-planning]
 created: 2026-11-01
-updated: 2026-11-01
+updated: 2026-11-02
 ---
 
 # Collaborative Task Estimation
@@ -15,7 +15,7 @@ Collaborative estimation means that a number is produced or challenged by more t
 ## Cohn's reasons
 
 1. **The doer is not yet known.** Tasks are not allocated during planning, so there is no specific person to ask (L3248). See [[tasks-are-not-assigned-at-planning]].
-2. **Others hold the memory of past misses.** James says a task will take two hours. A colleague answers: "But, James, the last time you worked on a similar task you thought it would be two hours and it took you sixteen." (L3250). James then either gives a real reason this case differs or admits to a cost he has been forgetting (L3250).
+2. **Others hold the memory of past misses.** James says a task will take two hours. A colleague answers: "But, James, the last time you worked on a similar task you thought it would be two hours and it took you sixteen." (L3250). James then either gives a real reason this case differs or admits to a cost he has been forgetting (L3250). The fictional case study in Chapter 23 (L4961) plays the same scene: a colleague tells a programmer he is "always optimistic at the start of a new engine" (L5738), and his 6-hour card becomes 12 (L5734-L5742). This wiki keeps the mechanism, a peer who remembers the estimator's record, and not the factor of two, which is an anecdote in a fiction.
 3. **A number exposes a misunderstanding.** "Upon hearing an unexpectedly high estimate, a product owner or analyst may discover that the team is heading toward a more detailed solution than necessary." (L3252). The correction arrives before effort is spent.
 4. **Shared numbers are easier to retract.** Pride makes a sole estimator reluctant to admit error, and collaboration removes that (L3254).
 

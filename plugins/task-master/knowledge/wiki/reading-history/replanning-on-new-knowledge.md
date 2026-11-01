@@ -5,7 +5,7 @@ summary: A plan is a point-in-time guess; at each iteration start, what was lear
 tags: [rule, retrospective-analysis, plan-versus-fact, learning, release]
 sources: [cohn-agile-estimating-planning]
 created: 2026-11-01
-updated: 2026-11-01
+updated: 2026-11-02
 ---
 
 # Replanning on New Knowledge
@@ -92,4 +92,4 @@ This wiki reads the rule as surviving an agent executing: it is about the plan, 
 
 Learning "how well they are working together" (L4843) is a human matter and falls away. Learning about technologies survives, but an agent does not carry it between runs on its own, so it reaches a replan only if it was written down ([[fact-stranded-outside-the-task]]). That reading is this wiki's.
 
-Related: [[iterating-reduces-uncertainty]], [[timeboxed-iteration]], [[fixed-date-variable-scope]], [[conditions-of-satisfaction]], [[stating-plan-uncertainty]].
+Related: [[iterating-reduces-uncertainty]], [[timeboxed-iteration]], [[fixed-date-variable-scope]], [[conditions-of-satisfaction]], [[stating-plan-uncertainty]], [[adding-scope-to-a-release-plan]], [[reforecasting-a-release-from-velocity]].

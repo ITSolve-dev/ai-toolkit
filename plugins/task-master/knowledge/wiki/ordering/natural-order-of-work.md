@@ -5,7 +5,7 @@ summary: Most dependencies between stories just follow the order estimates assum
 tags: [rule, dependencies, ordering, cohn]
 sources: [cohn-agile-estimating-planning]
 created: 2026-11-01
-updated: 2026-11-01
+updated: 2026-11-02
 ---
 
 # Natural Order of Work
@@ -53,4 +53,4 @@ A natural order is understood by people who share a picture of the product. An e
 
 ## Related
 
-Tasks with no ordering constraint are on [[independent-tasks]]. Ranking itself is on [[ordering-by-value-and-urgency]]. A low-ranked story that has to move up because something needs it is on [[value-order-versus-technical-necessity]].
+Tasks with no ordering constraint are on [[independent-tasks]]. Whether to leave a dependency or stub it out is on [[handling-a-sequence-dependency]]. Ranking itself is on [[ordering-by-value-and-urgency]]. A low-ranked story that has to move up because something needs it is on [[value-order-versus-technical-necessity]].

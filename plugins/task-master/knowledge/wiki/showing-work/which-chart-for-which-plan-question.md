@@ -5,7 +5,7 @@ summary: Choose the view by the question; iteration burndown for finishing this 
 tags: [decision-rule, visualization, burndown, velocity, gantt]
 sources: [cohn-agile-estimating-planning]
 created: 2026-11-01
-updated: 2026-11-01
+updated: 2026-11-02
 ---
 
 # Which Chart for Which Plan Question
@@ -19,7 +19,7 @@ The first three columns follow Cohn. The "cannot ask" column is this wiki's read
 | Question | View | Audience and rhythm | Cannot ask |
 |---|---|---|---|
 | Will we finish this iteration's work? | [[iteration-burndown]] | Team, daily ([[cohn-agile-estimating-planning]] L4575) | Whether what is finished is what was wanted |
-| How far along is the release? | [[release-burndown-chart]] (L4641) | Stakeholders and participants, over the release (L4575) | Why the work moved |
+| How far along is the release? | [[release-burndown-chart]] (L4641) | Stakeholders and participants, over the release (L4575) | Why the work moved, or what was learned and what risk was retired |
 | Why did remaining work move? | [[release-burndown-bar-chart]] | A team past the simpler line chart, whose members do not argue over which side a change belongs on (L4402) | Completion apart from re-estimation |
 | Which themes of the release are behind? | [[parking-lot-chart]] | Anyone wanting "a high-level view" (L4435) | Which tasks are done, or the trend |
 | How much will fit by a date, or when does this finish? | Velocity chart with the three values ([[velocity-range-forecast]], L4649-L4678) | Product owner and team | Which features will land |

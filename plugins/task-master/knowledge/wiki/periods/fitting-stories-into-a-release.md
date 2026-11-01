@@ -5,7 +5,7 @@ summary: The procedure for filling a release; iterations times velocity gives ca
 tags: [method, iterations, release, estimation]
 sources: [cohn-agile-estimating-planning]
 created: 2026-11-01
-updated: 2026-11-01
+updated: 2026-11-02
 ---
 
 # Fitting Stories into a Release
@@ -18,7 +18,7 @@ The core of release planning is one multiplication. Cohn calls it trivial at its
 |---|---|---|
 | Conditions of satisfaction | The owner of the goal; see [[conditions-of-satisfaction]] | Comes first (L2802) |
 | Story estimates | Estimates on every story that may be selected; see [[estimate-only-what-may-be-selected]] | L2810-L2812 |
-| Iteration length | A chosen constant; "from one to four weeks" is the common range; see [[iteration-length]] | L2816 |
+| Iteration length | A chosen constant; "from one to four weeks" is the common range; see [[period-length]] | L2816 |
 | Velocity | History first | "If the team has experience working together, your best bet is often to use the velocity the team exhibited most recently." (L2820) |
 | Order | A prioritized list; see [[value-order-versus-technical-necessity]] | L2824 |
 

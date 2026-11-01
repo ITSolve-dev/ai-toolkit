@@ -5,7 +5,7 @@ summary: Prefer observed iterations, then actuals from a related project by the 
 tags: [decision-rule, velocity, release-planning, iterations]
 sources: [cohn-agile-estimating-planning]
 created: 2026-11-01
-updated: 2026-11-01
+updated: 2026-11-02
 ---
 
 # Choosing How to Estimate Velocity
@@ -26,7 +26,7 @@ The chapter presents historical values first (L3590-L3596), but that is section 
 | Does this team have actuals from related work? | Board history of the earlier project | Yes: test it with [[historical-velocity-comparability]] |
 | Does the project exist yet? | Whether it is funded, contracted and staffed | No: [[forecast-velocity-by-what-fits]] |
 
-The forecast path is for cases where running iterations is impossible or pointless: a project starting in twelve months, one that starts only if a client signs (L3684), or a team that does not exist yet (L3779). Cohn says "Forecasting velocity is rarely your first option" (L3686).
+The forecast path is for cases where running iterations is impossible or pointless: a project starting in twelve months, one that starts only if a client signs (L3684), or a team that does not exist yet (L3779). Cohn says "Forecasting velocity is rarely your first option" (L3686). When a project has started and a schedule is wanted before its first iteration ends, the fallback is [[planned-velocity]].
 
 ## What later fact shows the choice wrong
 

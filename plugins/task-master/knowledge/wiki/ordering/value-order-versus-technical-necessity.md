@@ -5,7 +5,7 @@ summary: The product owner orders by value but takes advice on sequencing; a val
 tags: [rule, prioritization, dependencies, release-planning]
 sources: [cohn-agile-estimating-planning]
 created: 2026-11-01
-updated: 2026-11-01
+updated: 2026-11-02
 ---
 
 # Value Order Versus Technical Necessity
@@ -54,4 +54,4 @@ This wiki's reading is that the check survives and matters more, since an agent 
 
 ## Related
 
-What a move out of the assumed order costs is on [[natural-order-of-work]]. The general case against dependencies is on [[minimize-feature-dependencies]].
+What a move out of the assumed order costs is on [[natural-order-of-work]]. The general case against dependencies is on [[minimize-feature-dependencies]]. The same division of labour for risk and learning is on [[combining-prioritization-factors]].

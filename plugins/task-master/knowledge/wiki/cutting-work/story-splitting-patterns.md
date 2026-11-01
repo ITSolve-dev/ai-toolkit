@@ -1,11 +1,11 @@
 ---
 title: Story Splitting Patterns
 category: cutting-work
-summary: The three-step procedure and nine patterns for cutting a too-big task into thin vertical slices, each pattern with the trigger that selects it, and Cohn's guidelines with the worked examples the first source lost; data boundaries, exceptional conditions, operations and CRUD, cross-cutting concerns, nonfunctional targets and mixed priority.
+summary: The three-step procedure and nine patterns for cutting a too-big task into thin vertical slices, each pattern with the trigger that selects it, and Cohn's guidelines with the worked examples the first source lost; data boundaries, exceptional conditions, operations and CRUD, cross-cutting concerns, nonfunctional targets and mixed priority, plus cuts by case of the domain and by rising capability, which buy order and not reduced size.
 tags: [method, decomposition, splitting]
 sources: [humanizing-work-splitting, kanban-playbook-right-sizing, cohn-agile-estimating-planning]
 created: 2026-11-01
-updated: 2026-11-01
+updated: 2026-11-02
 ---
 
 # Story Splitting Patterns
@@ -100,6 +100,46 @@ The login example lists three conditions of satisfaction: valid access, lockout 
 
 This wiki reads the question as applicable to a task's acceptance criteria directly: for each criterion, would the person steering accept a release without it? Differing answers mark the cut.
 
+### Worked example: cutting by a case of the domain
+
+The fictional case study in Chapter 23 (L4961) shows a task that looked indivisible. Its figures belong to the fiction. A first game engine is estimated at 20, which the coach calls too big, asking "is there a way to split this story up? Maybe have an even weaker engine the first time?" (L5385). The programmer answers "I don’t see any good ways" (L5387). His one idea is an engine that only attacks, "ignoring the human’s moves", and he rejects it himself (L5387), and the chapter does not give his reason. The opening comes from someone who does not program:
+
+> What if a first engine only recognized rings? […] We could take away bridges and forks—just for now. Allan, couldn’t you write an engine that played offensively and defensively but that only tried to make—and block— rings?
+>
+> — [[cohn-agile-estimating-planning]], L5389
+
+The result is one story per winning shape, at 8, 5 and 8 (L5401-L5403). This wiki reads the example as a method, which the chapter does not state:
+
+1. Ask what the task must recognize or handle, and list the cases. Here the game has three winning shapes.
+2. Take one case and keep the whole behaviour for it. The ring engine still attacks and defends. The rejected idea cut a behaviour and not a case.
+3. Add the remaining cases as tasks of their own.
+
+This wiki maps that onto patterns 3 and 4. The sign that it applies, in task text, is a task that names one capability over several parallel cases of its domain. The failure mode is that the cases may not be equal: if the first builds what all the others reuse, the pieces are not independent and their estimates are order-bound ([[independent-tasks]]). The chapter's 8, 5 and 8 carry no such statement.
+
+### Worked example: cutting by rising capability
+
+A large capability can also be cut into steps that each add behaviour to the one before, starting with the unobstructed case and adding opposition, defence and judgement later. The chapter's programmer plans to "first have a move engine that will be smart enough to play six hexagons in a row to make a ring." with no opponent, and then: "Next I’ll write it so that it tries to make a ring even if an opponent tries to block the ring. Then I’ll switch to the defensive side of rings." (L5730).
+
+The bridges story takes the same shape (L5867-L5880): find a path corner to corner, form it around obstacles, know when to give up, block another player, then choose between a bridge and a ring. The hardest judgement comes last and is the largest card, at 16 hours.
+
+The chapter presents this as one programmer's plan at the level below this wiki's task ([[unit-of-work]]). Naming it as a method and using it at the level of a task are this wiki's steps. Stated that way:
+
+1. State the simplest situation in which the capability does something observable.
+2. Add one complication at a time: an obstacle, an opponent, a failure, a choice.
+3. Attach a check to each step, and test each step against [[size-ceiling]].
+
+This wiki reads it as pattern 1's simple case first, and it differs from the wrong way warned of under pattern 1: each step here leaves something that works, where a cut by process step does not. The sign of a bad result is a step that adds no behaviour a check can see. The case's first card, "Code state management classes" (L5754), is of that kind. This wiki reads it as tolerable there only because the commitment sits on the story ([[commitment-over-a-period]]), so the card is an internal measure. On a board where the task is itself the unit delivered, the same text is a [[component-task-masquerading]] signal.
+
+Test work runs beside each step in the case: "If Allan can give me code after each of the tasks he identified, I can define and automate tests right along with him. Any bugs I find he’ll hear about while the code is fresh in his mind." (L5746). This wiki notes that the stated reason, code fresh in a mind, is a human memory mechanism and does not survive an agent executing. What survives is that a step is cheap to check. Whether test work belongs inside the step for a single executor is an open question this source does not answer.
+
+### Pulling a capability out to open an earlier result
+
+A second kind of cut pulls something shared out of several tasks. Recognizing a winning shape sat inside the engine stories, and the programmer proposes taking it out: "if we pull it out we could do it separately and that would let us write a human vs. human version of the game really quickly while we get the move engine working." (L5463). It becomes a 2-point task, and the engine stories keep their estimates: asked whether they fall, he says "Not really" (L5469).
+
+### What such cuts buy
+
+This wiki reads these cuts together: none of them made the work smaller. The first raised the total from 20 to 21, and the pull-out added 2 with nothing removed. What they bought was order, meaning that a playable result could arrive earlier and that weaker slices could be dropped or postponed. The chapter bears that out, since the pulled-out story is the one dropped at the end of the first iteration (L6223), and two people could still play (L6235). So a cut judged by whether the total fell will look like a failure, and [[estimation-scale]] says why totals are not reconciled. Which cut to prefer is on [[choosing-between-splits]], and the deliberate order of the pieces on [[uncertain-piece-goes-earlier]].
+
 ### What the guidelines forbid and when they start
 
 Two guidelines in the same chapter say what not to do: do not cut by layer or activity ([[component-task-masquerading]], [[vertical-slice]]), and do not refill a task once it is sized ([[related-changes-temptation]]). [[when-to-split-a-task]] holds the triggers for cutting at all, and [[combining-small-tasks]] the opposite move.
@@ -107,6 +147,8 @@ Two guidelines in the same chapter say what not to do: do not cut by layer or ac
 ## Agent executor note
 
 The patterns come from coaching human Scrum teams and the guidelines from human teams in two-week iterations, with no measurement behind either. They survive an agent executing because their triggers lie in the work and their purpose lies with whoever reviews it. Only pattern 7's setting depends on people talking in a room, and several of Cohn's triggers surface the same way ("The team talks to the coaches/users", [[cohn-agile-estimating-planning]] L2633). This wiki moves those to the request's text and to clarifying questions, the same transfer it makes for pattern 7, because the plugin runs no meetings.
+
+The case study's detail that the shape idea came from a non-programmer is a remark about a group's mix of views and does not transfer. What does transfer, in this wiki's reading, is that whoever sees the domain's cases can propose a cut the implementer did not, which is a reason for the plugin to read a design document's domain terms when cutting.
 
 ## Related
 

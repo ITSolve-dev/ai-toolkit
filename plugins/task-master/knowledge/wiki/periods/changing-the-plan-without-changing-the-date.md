@@ -5,7 +5,7 @@ summary: When something is learned the plan changes, but the date is only one le
 tags: [decision-rule, planning, scope, replanning]
 sources: [cohn-agile-estimating-planning]
 created: 2026-11-01
-updated: 2026-11-01
+updated: 2026-11-02
 ---
 
 # Changing the Plan Without Changing the Date
@@ -48,7 +48,7 @@ These are this wiki's questions to check:
 
 ## Trade-offs
 
-Cutting scope to hold a date costs value, and Cohn's June example shows that sometimes a slightly later date with more features is the better answer (L403). This wiki reads the rule as not favouring dates: it only keeps the date from being the automatic lever. Where the date is the fixed thing from the start, the rule becomes [[fixed-date-variable-scope]]. Within a running period, [[mid-period-change]] governs what may move.
+Cutting scope to hold a date costs value, and Cohn's June example shows that sometimes a slightly later date with more features is the better answer (L403). This wiki reads the rule as not favouring dates: it only keeps the date from being the automatic lever. Where the date is the fixed thing from the start, the rule becomes [[fixed-date-variable-scope]]. Within a running period, [[mid-period-change]] governs what may move. When the learning is a new feature worth having, [[adding-scope-to-a-release-plan]] decides whether it enters.
 
 ## Agent executor note
 

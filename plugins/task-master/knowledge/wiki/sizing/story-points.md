@@ -1,11 +1,11 @@
 ---
 title: Story Points
 category: sizing
-summary: A unitless, relative measure of the overall size of a piece of work; only the ratios between items carry meaning, and the unit gains a time meaning only through velocity. Because it describes only how much there is to do, it is estimated by analogy, does not change as the executor improves, and cannot be held against the calendar.
+summary: A unitless, relative measure of the overall size of a piece of work; only the ratios between items carry meaning, and the unit gains a time meaning only through velocity. Because it describes only how much there is to do, it is estimated by analogy, needs comparators, covers the whole task and not the estimator's part, does not change as the executor improves, and cannot be held against the calendar.
 tags: [concept, estimation, relative-estimation, scale]
 sources: [cohn-agile-estimating-planning]
 created: 2026-11-01
-updated: 2026-11-01
+updated: 2026-11-02
 ---
 
 # Story Points
@@ -77,6 +77,30 @@ Cohn names two ways to begin (L957):
 
 He uses the second, with a medium story at 5, because of a preference stated as such: "Personally, I prefer most of my stories to be in the range of 1–10." (L957). His reason comes in Chapter 6 and is on [[estimation-scale]]. The first value is assigned "fairly arbitrarily"; every later item is estimated by comparison with that one or with any already estimated (L957), and how to compare is on [[triangulation]]. The Labrador at 5 anchors the example, with the Great Dane at 10 and the dachshund at 1 (L981, Table 4.1).
 
+## What being relative requires
+
+The fictional case study in Chapter 23 (L4961) gives the same definition in a coach's voice: "A story point is a unitless estimate of the size and complexity of a story" (L5271). Asked whether the numbers therefore mean nothing, the coach answers "Only relatively. A two is twice a one. An eight is four times a two. Like that. That’s all that matters" (L5279). The chapter "summarizes many of the key points of this book" (L4961), so this wiki reads what its characters say as the author's position, and its numbers as invented illustrations.
+
+**An estimate needs something to compare with.** "Because we’re estimating stories relative to each other, it’s hard when there’s nothing to compare to." (L5283). So the first estimate decides only "whether this initial story is one of the smaller ones or one of the larger ones we’ve got", and it stays open: "If, after we’ve estimated four or five stories, we decide we need to change the estimate on this first one, we can." (L5283).
+
+**Tasks are written first and estimated as a batch.** The coach says "It will be easier if we write a bunch of stories first and then estimate them at the same time" (L5127-L5129). This wiki reads that as the same mechanism: a task estimated alone has no comparators. The pass that writes them is on [[initial-task-inventory]].
+
+**A scale is anchored by named tasks.** In the chapter, 1 point is a button that draws a blank board, with looks and piece placement left to other stories (L5303). Restoring a saved game is 2, argued as twice that, because it sets up the board, reads a file and places the pieces (L5309). This wiki takes the shape of the practice and not the values, which belong to the fictional team: a project's scale is defined by its own named tasks ([[estimation-baseline]]).
+
+## Estimate the whole task
+
+A tester holds up a 3 for the first engine story against a programmer's 19, because "The testing just doesn’t sound hard." (L5377). The coach corrects him:
+
+> Sure but we’re estimating the full story, not just our own parts of it. Testing may be a 3, but Allan’s time needs to be in there, too
+>
+> — [[cohn-agile-estimating-planning]], L5379
+
+On the next round every estimate is 20 (L5383).
+
+**Sign of violation, in an estimate's stated reason:** the reason names only one kind of work, such as the tests or the code. The wording of this sign is this wiki's.
+
+**What breaks:** the number undercounts by whatever the estimator did not picture, and the comparison between tasks stops being a comparison of like with like. The arithmetic form of the same error is on [[summed-role-estimates]].
+
 ## Failure modes
 
 These signs are this wiki's derivation from the definition above; the chapter does not state them. Each raises a question to check, not a verdict.
@@ -94,3 +118,5 @@ Chapter 4 ends by asking, without answering, over what range an estimator can co
 The transfer here is this wiki's, not Cohn's. Relative sizing works by remembering earlier items of similar size (L943). An agent has no such memory unless reference tasks are put in front of it, so a scale used by an agent needs its reference items written down. The ratio mechanism itself does not depend on who executes the work. What the chapter does not establish is whether the components of size, effort and complexity in particular, weigh the same when an agent executes and a person steers.
 
 This wiki reads purity as surviving the move to an agent, since nothing in size depends on who does the work. The analogy evidence does not transfer automatically: it concerns human estimators, and whether the claim holds when an agent proposes the estimate is not established by this source. Choosing the unit is on [[story-points-or-ideal-days]].
+
+The comparison is between pieces of work, so this wiki expects it to survive an agent executing. The case study's anchors may not: its ratios reflect what those people found hard, and an agent's relative cost across kinds of work can differ, so a project re-derives its anchors from its own finished tasks. The whole-task rule survives and widens, in this wiki's reading: when an agent executes, the person's review of the result is part of the task's cost, and an estimate that counts only execution repeats the tester's mistake. No source measures any of this.

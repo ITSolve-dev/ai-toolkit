@@ -1,11 +1,11 @@
 ---
 title: Independent Tasks
 category: ordering
-summary: Tasks should not overlap and should be orderable freely; a conditional estimate or a stated precondition is the sign that they cannot be.
+summary: Tasks should not overlap and should be orderable freely; a conditional estimate or a stated precondition is the sign that they cannot be, and work inside one task that restates another open task is an overlap found late, which can be held as a reserve until the commitment is settled.
 tags: [rule, dependencies, invest, decomposition]
-sources: [wake-invest, humanizing-work-splitting, montgomery-tracker-smells]
+sources: [wake-invest, humanizing-work-splitting, montgomery-tracker-smells, cohn-agile-estimating-planning]
 created: 2026-11-01
-updated: 2026-11-01
+updated: 2026-11-02
 ---
 
 # Independent Tasks
@@ -38,8 +38,21 @@ What breaks is ordering. If the order is fixed by construction, the prioritizati
 The authors give three moves, and in each the dependency stays but is made harmless:
 
 - **Scaffold it.** "Sometimes that means temporarily building some scaffolding so a story can be tested independently, allowing you to do it sooner to get value or reduce risk early in a project." (L111). The cost is that the scaffolding is built and later removed.
+  When to scaffold and when to leave the dependency in place is on [[handling-a-sequence-dependency]].
 - **Defer which one comes first.** Replace one task per item with a task for any one of them and a task for the rest, given one is done. The authors' wording for the second is "…I can pay with all four credit card types (VISA, MC, DC, AMEX) (given one card type already implemented)." (L269), and they accept the result: "The two new stories still aren’t independent, but the dependency is much clearer than it would be with a story for each card type." (L271).
 - **Accept it when the pieces are one thing done twice.** A simple interface and then a fancier one: "These, of course, aren’t independent—the second story effectively is the original story if you do it first—but it still can be a useful split." (L257).
+
+## An overlap found while cutting
+
+Overlap often surfaces only when work is written out concretely. In the fictional case study in Chapter 23 of [[cohn-agile-estimating-planning]] (L4961), breaking down the human-versus-human story produces the card "Computer knows when a piece completes a winning pattern" (L5843). A tester notices: "Wait, doesn’t this story encompass another story we wrote? We have one that says _As a player, I want the computer to recognize a winning shape_ ." (L5824). Line references in this section are to that source.
+
+**Sign, in task text:** a task's acceptance, or a piece of its work, restates the title of another open task, in the same or different wording. This can be read before anything reaches a board. The wording is this wiki's.
+
+**What to do.** The analyst does not resolve it on the spot: "We included it by accident, Let’s see if we can commit to the work we just identified. If we can’t, we can remove having the computer recognize winning shapes and let the players decide when a game is over," (L5826). This wiki reads that as a useful move: an accidental inclusion is a named piece that can be dropped if the commitment does not fit, which gives a reserve with no new estimate. It only works if the part is really separable. In the case it was: the story was dropped during the iteration so that its programmer could help on the engine (L6223-L6225), and two people could still play (L6235).
+
+**What it does to counting.** The team says it committed to three stories (L5933), while the velocity sum names four, crediting the absorbed story's 2 points separately (L6169). When that story was dropped its 2 points fell out and velocity was 16 (L6263), while the absorbing story's 3 stood. This wiki reads that as saying an overlap has to be settled by naming which task holds the work, or the same work is counted in two places. See [[planned-velocity]].
+
+**What breaks if it goes unnoticed.** This wiki's reading is that the same work is estimated twice, so release totals are inflated, and it may be done twice. That matters more with an agent, which will not recognise from memory that a sibling task already did the work. The intake form of the same defect is on [[duplicate-reports]].
 
 ## Cost
 

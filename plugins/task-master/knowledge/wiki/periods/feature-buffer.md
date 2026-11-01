@@ -5,12 +5,12 @@ summary: Planning for mandatory work plus 25-40% optional work, built last, so a
 tags: [method, planning-a-date, buffer, scope, dsdm, moscow]
 sources: [cohn-agile-estimating-planning]
 created: 2026-11-01
-updated: 2026-11-01
+updated: 2026-11-02
 ---
 
 # Feature Buffer
 
-A feature buffer protects a date with scope rather than time: the plan contains more than must ship, and the excess is what gets dropped. The promise is "we’ll get you all of the functionality in this pile and hopefully some of the functionality in that pile" ([[cohn-agile-estimating-planning]] L3849). It suits work where the date is firmer than the exact contents ([[fixed-date-variable-scope]]); [[choosing-a-buffer]] covers the choice, and [[schedule-buffer]] is the time-side counterpart.
+A feature buffer protects a date with scope rather than time: the plan contains more than must ship, and the excess is what gets dropped. The promise is "we’ll get you all of the functionality in this pile and hopefully some of the functionality in that pile" ([[cohn-agile-estimating-planning]] L3849). It suits work where the date is firmer than the exact contents ([[fixed-date-variable-scope]]); [[choosing-a-buffer]] covers the choice, and [[schedule-buffer]] is the time-side counterpart. The same move made late, on a running plan that has lost its margin, is [[droppable-stories-as-a-schedule-buffer]].
 
 ## Procedure
 

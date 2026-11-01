@@ -5,7 +5,7 @@ summary: Work remaining in a release changes through three separate forces, work
 tags: [method, retrospective-analysis, plan-versus-fact, scope-change, cohn]
 sources: [cohn-agile-estimating-planning]
 created: 2026-11-01
-updated: 2026-11-01
+updated: 2026-11-02
 ---
 
 # Forces on Release Progress
@@ -43,7 +43,7 @@ The source lists for a fall to 20 from an expected 30: stories underestimated, r
 
 ## What this cannot show
 
-The split says what moved the total. It does not say whether the change was worth making. Neither scope additions nor removals carry a judgement of value in the history, and prioritizing stays with the owner: "Prioritzation of work is still up to the product owner who can add or remove functionality as desired." (L4375; the spelling is the source's.)
+The split says what moved the total. It does not say whether the change was worth making, and [[chosen-delay-versus-slip]] takes that question up for a later finish. Neither scope additions nor removals carry a judgement of value in the history, and prioritizing stays with the owner: "Prioritzation of work is still up to the product owner who can add or remove functionality as desired." (L4375; the spelling is the source's.)
 
 ## Failure mode
 

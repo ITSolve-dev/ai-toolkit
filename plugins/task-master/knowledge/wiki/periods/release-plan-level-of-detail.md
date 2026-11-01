@@ -5,7 +5,7 @@ summary: A release plan holds stories, not tasks, assignees or in-iteration orde
 tags: [rule, iterations, release]
 sources: [cohn-agile-estimating-planning]
 created: 2026-11-01
-updated: 2026-11-01
+updated: 2026-11-02
 ---
 
 # Release Plan Level of Detail
@@ -22,7 +22,7 @@ Cohn calls that level of detail "dangerous and misleading during release plannin
 
 - **Who does what.** "Decisions about who works on what and the sequence of activities are best left to the individuals working on those tasks and are best deferred as long as possible." (L2781).
 - **Sequence inside an iteration.** Same passage.
-- **Engineering tasks.** Items are stories. "During release planning it is too early and some user stories may be insufficiently understood to be disaggregated into engineering tasks." (L2781). They are split at the start of the iteration that contains them (L2781); see [[iteration-planning]].
+- **Engineering tasks.** Items are stories. "During release planning it is too early and some user stories may be insufficiently understood to be disaggregated into engineering tasks." (L2781). They are split at the start of the iteration that contains them (L2781); see [[iteration-plan-versus-release-plan]].
 
 ## What goes in which iteration
 

@@ -15,9 +15,14 @@ Pages are grouped by the question someone organizing work arrives with. A method
 | `intake` | What do I do with what came in? |
 | `work-states` | What state is this in? |
 | `moving-work` | What may move? |
-| `periods` | What fits in a period, and what is promised? |
+| `periods` | What fits in a period, what is promised, and when will it be done? |
 | `reading-history` | What actually happened? |
+| `showing-work` | How do I show it? |
 
 ## Where to start
 
-To cut a request, read [[story-splitting-patterns]], and to spot one that needs cutting, read [[compound-task-text-signs]]. To check a task before an agent takes it, read [[conversation-moves-into-the-task]] and [[recoverable-versus-task-only-facts]]. To decide what comes first, read [[ordering-by-value-and-urgency]]. To handle what came in, read [[triage-procedure]]. To classify stopped work, read [[waiting-versus-blocked]]. To audit a board, read [[judging-board-columns]] and first [[smell-is-not-a-finding]], and to design one, read [[mapping-workflow-states]]. To see which rule holds for a project's setup, read [[board-rules-by-setup]]. [[unit-of-work]] fixes the vocabulary, because the sources use "story" and "task" differently from this wiki. [[synthesis]] states what the sources amount to together.
+To cut a request, read [[story-splitting-patterns]], and to spot one that needs cutting, read [[compound-task-text-signs]]. To check a task before an agent takes it, read [[conversation-moves-into-the-task]] and [[recoverable-versus-task-only-facts]]. To size it, read [[story-points]] and [[estimation-scale]], and for what a size may not be used for, read [[size-versus-duration]]. To decide what comes first, read [[prioritization-factors]] and [[ordering-by-value-and-urgency]]. To handle what came in, read [[triage-procedure]]. To classify stopped work, read [[waiting-versus-blocked]]. To audit a board, read [[judging-board-columns]] and first [[smell-is-not-a-finding]], and to design one, read [[mapping-workflow-states]]. To see which rule holds for a project's setup, read [[board-rules-by-setup]].
+
+To fill a period, read [[filling-a-period]]. To give a date, read [[deriving-duration-from-velocity]] and [[velocity-range-forecast]], to protect one, read [[choosing-a-buffer]], and to run it again as facts arrive, read [[reforecasting-a-release-from-velocity]]. To explain plan against fact, read [[release-progress-forces]] and [[chosen-delay-versus-slip]]. To pick a chart, read [[which-chart-for-which-plan-question]].
+
+[[unit-of-work]] fixes the vocabulary, because the sources use "story" and "task" differently from this wiki. [[synthesis]] states what the sources amount to together.

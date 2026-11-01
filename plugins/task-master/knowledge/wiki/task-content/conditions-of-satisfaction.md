@@ -1,11 +1,11 @@
 ---
 title: Conditions of Satisfaction
 category: task-content
-summary: The criteria by which the product owner will judge a release or a feature; they carry schedule, scope and resources at release level, with one factor usually preeminent, and high-level tests at iteration level, where a story is finished when shown to meet all of them and they are written ahead only for stories likely to be taken next; planning repeats on a lessened set when they cannot all be met.
+summary: The criteria by which the product owner will judge a release or a feature; they carry schedule, scope and resources at release level, with one factor usually preeminent, and high-level tests at iteration level, where a story is finished when shown to meet all of them and they are written ahead only for stories likely to be taken next; a graded word in a title is pinned by a condition on the task and not by another task, and planning repeats on a lessened set when they cannot all be met.
 tags: [rule, task-content, acceptance-criteria, release, iterations, readiness, done]
 sources: [cohn-agile-estimating-planning]
 created: 2026-11-01
-updated: 2026-11-01
+updated: 2026-11-02
 ---
 
 # Conditions of Satisfaction
@@ -49,6 +49,26 @@ Chapter 18 gives the feature-level form its fullest statement:
 
 This wiki reads two properties as making this usable as a task field. Each condition must be demonstrable: "These are the things that can be demonstrated as true about a story once it is fully implemented." (L4223). And finished is defined by all of them passing, which makes the set the stopping rule for the work.
 
+## At feature level: pinning a word in a title
+
+A condition can fix what a word in a task's title means. The fictional case study in Chapter 23 (L4961) shows this for a graded word, where the team has written a story for a medium-strength engine:
+
+> You can note on the story card that ‘always plays moves a good human player thinks are reasonable’ is one of the conditions of satisfaction for that story. That will help you remember what a ‘mediumstrength engine’ is without having to make another story about reasonable moves.
+>
+> — [[cohn-agile-estimating-planning]], L5427
+
+The raw text reads "mediumstrength", a line-break hyphen lost in extraction.
+
+**The rule.** A task whose title uses a relative or graded word carries a condition saying what that word requires, in observable terms. The condition belongs to the task and does not become a task of its own.
+
+**Define a grade by what it excludes.** The medium engine is defined negatively, as "one that never makes an outright blunder", and the strong one by strengthening that condition (L5421). The weak one has a floor: "It can’t play randomly" (L5331). This wiki reads that as a practical move: a level that cannot be measured directly can often be stated as a class of results it must never produce.
+
+**How much of the check is needed before estimating.** A tester asks "How are we going to test this? It seems like it’s going to be really hard to test." (L5339), before anyone has estimated the story. Once options exist, the coach stops the discussion: "We don’t need to design that file now, though, as long as we know there are some options." (L5351). This wiki reads that as the discriminating criterion: an estimate needs to know that a check is possible and roughly what it involves, and designing the check is work inside the task. A task for which no check can be imagined is not ready to estimate.
+
+**When more than one result is right.** The proposed check is a file giving a board position and the expected response. A programmer corrects it: "There may not be just one acceptable move" and "That file should allow us to specify multiple good responses." (L5349). So the check names a set of acceptable outcomes and not one expected output. The reason for automating it is early detection: "if the engine starts making weird moves, like _Deep Black & White_ did in April, we know about it immediately." (L5345).
+
+**Trade-off.** A condition that rests on judgement needs a judge. The condition quoted above sends the check to a good human player each time (L5343, L5421). The chapter uses both forms, human review and stored cases, and does not say how they divide the work.
+
 ## When they are written
 
 Cohn calls them the most useful outcome of work done ahead of an iteration (L4125), and bounds how far ahead that goes: "it is unlikely (and unnecessary) that a team identify them for all user stories in advance of the iteration" (L4127).
@@ -89,6 +109,7 @@ The rule is about task content, so its sign can be the omission itself.
 - A task likely to be taken next carries no conditions, or only a title.
 - A task was marked done with a condition unmet or never checked.
 - Conditions were written for the whole backlog. This is the opposite failure: the cost was paid for stories that may never be taken.
+- A graded word such as weak, medium or strong in a title, with no condition or floor stated. The chapter's team asks exactly this: "How strong does our weak engine need to be?" (L5329). This sign narrows the adjective sign on [[testable-acceptance]].
 
 These signs are this wiki's. Cohn also asks what risks follow from proceeding without agreement on the conditions (L906). This wiki reads disagreement among stakeholders on them as a question to surface before planning, not something the plugin can settle.
 
@@ -97,6 +118,8 @@ These signs are this wiki's. Cohn also asks what risks follow from proceeding wi
 This wiki reads the mechanism as not specific to human executors, so it survives. The resource lever does not transfer as written. The source's "larger team" (L2971) assumes adding people changes velocity; for a few people steering an agent, whether more agent throughput or more steering capacity is the limit is not something this chapter answers.
 
 The rule on writing conditions ahead survives more strongly than in the source. The transfer here is ours. Cohn's single-team allowance for vague requirements leans on people closing the gap in conversation during the iteration. An executor that guesses instead of recalling does not reliably close that gap, so this wiki reads his multi-team condition as the normal condition for a task an agent executes: the conditions are written before it starts ([[conversation-moves-into-the-task]]), and the person steering is the product owner. The limit to likely-next tasks still holds, for the same reason as Cohn's.
+
+The placement of a condition on the task matters more with an agent, since an agent has only the task. The coach's "help you remember" (L5427) assumes a person who can recall what "medium" meant by talking. An agent has nothing to remember with, so for it the condition is the only definition. An agent also cannot be the judge of a condition that names a human judge. Those readings are this wiki's, and no source tests them.
 
 ## Relation to other pages
 

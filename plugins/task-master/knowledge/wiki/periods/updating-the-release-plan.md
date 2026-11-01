@@ -5,12 +5,12 @@ summary: A release plan is revisited on a regular cadence; after each iteration 
 tags: [rule, iterations, release, plan-versus-fact]
 sources: [cohn-agile-estimating-planning]
 created: 2026-11-01
-updated: 2026-11-01
+updated: 2026-11-02
 ---
 
 # Updating the Release Plan
 
-A [[release-plan]] is a live document. "The release plan should be revisited and updated with some regular frequency." ([[cohn-agile-estimating-planning]] L2857). Cohn warns against filing it away, and in his summary a plan is not left hanging on a wall to rot (L2973). What the update folds in is on [[replanning-on-new-knowledge]]. This page holds the cadence.
+A [[release-plan]] is a live document. "The release plan should be revisited and updated with some regular frequency." ([[cohn-agile-estimating-planning]] L2857). Cohn warns against filing it away, and in his summary a plan is not left hanging on a wall to rot (L2973). What the update folds in is on [[replanning-on-new-knowledge]], and the computation is on [[reforecasting-a-release-from-velocity]]. This page holds the cadence.
 
 ## The cadence and its conditions
 
@@ -29,7 +29,7 @@ This wiki reads the two as one rule. Revisit after each iteration by default. Th
 | Input | Read from |
 |---|---|
 | Velocity trend | The last iterations' completed points, on [[velocity]] |
-| Surprises in iteration planning | Whether expanding stories into tasks changed their size or revealed new ones, on [[iteration-planning]] |
+| Surprises in iteration planning | Whether expanding stories into tasks changed their size or revealed new ones, on [[iteration-plan-versus-release-plan]] |
 | Plan assumptions | Team, iteration length, first and last dates, where stated on the [[release-plan]] |
 
 This wiki's test: the longer gap was a mistake if the first update after it moved the plan by more than the steady velocity would have implied, or if people relied on a date the arithmetic had already ruled out.

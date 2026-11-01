@@ -5,7 +5,7 @@ summary: The sum of the points of the items completed in an iteration; a rate of
 tags: [concept, velocity, iterations, forecasting, retrospective-analysis]
 sources: [cohn-agile-estimating-planning]
 created: 2026-11-01
-updated: 2026-11-01
+updated: 2026-11-02
 ---
 
 # Velocity
@@ -36,7 +36,7 @@ This wiki notes that velocity can be read from board history without anyone logg
 
 Cohn adds that this holds regardless of mix, "whether they work on two five-point stories or five two-point stories" (L1010). This wiki reads that as a consequence of the additive claim in [[story-points]], so it inherits that claim's weakness: it is true only so far as the ratios hold.
 
-Cohn calls this a best guess, and the chapter gives no error bounds. He also notes that a past velocity is not always available and that it must sometimes be estimated, which he defers to Chapter 16 (L1023-L1029); which way to estimate it is decided on [[choosing-velocity-estimate-approach]], and the result is stated as a [[velocity-estimate-range]]. This wiki reads velocity as what fills the "past performance" input on [[filling-a-period]]. The conversion to a date is on [[deriving-duration-from-velocity]], and what the rate corrects on its own is on [[velocity-self-correction]].
+Cohn calls this a best guess, and the chapter gives no error bounds. He also notes that a past velocity is not always available and that it must sometimes be estimated, which he defers to Chapter 16 (L1023-L1029); which way to estimate it is decided on [[choosing-velocity-estimate-approach]], the labelled first guess is on [[planned-velocity]], and the result is stated as a [[velocity-estimate-range]]. This wiki reads velocity as what fills the "past performance" input on [[filling-a-period]]. The conversion to a date is on [[deriving-duration-from-velocity]], and what the rate corrects on its own is on [[velocity-self-correction]].
 
 ## What it measures and does not
 

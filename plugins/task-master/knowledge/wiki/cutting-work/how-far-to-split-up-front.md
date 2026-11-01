@@ -5,7 +5,7 @@ summary: Decide whether to enumerate all the pieces of a large request or cut on
 tags: [decision-rule, decomposition, splitting, cynefin]
 sources: [humanizing-work-splitting]
 created: 2026-11-01
-updated: 2026-11-01
+updated: 2026-11-02
 ---
 
 # How Far to Split Up Front
@@ -46,7 +46,7 @@ The cost of the complex choice is that there is no complete list to project a da
 >
 > — [[humanizing-work-splitting]], L346
 
-This wiki reads that as a reason for the plugin to state its uncertainty and not to fill out a list it expects to change.
+This wiki reads that as a reason for the plugin to state its uncertainty and not to fill out a list it expects to change. A coarse list written only to see the shape of the work is a different thing, on [[initial-task-inventory]]. When a large task has to be cut at all is on [[when-to-split-a-task]].
 
 ## Agent executor note
 

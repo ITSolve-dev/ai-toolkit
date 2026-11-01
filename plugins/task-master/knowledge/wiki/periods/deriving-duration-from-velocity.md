@@ -5,7 +5,7 @@ summary: Sum the size of the desired work, divide by velocity to get iterations,
 tags: [method, release-planning, velocity, planning-a-date]
 sources: [cohn-agile-estimating-planning]
 created: 2026-11-01
-updated: 2026-11-01
+updated: 2026-11-02
 ---
 
 # Deriving Duration from Velocity
@@ -55,7 +55,7 @@ These signs are this wiki's derivation. Each raises a question to check.
 
 ## What would show the result wrong
 
-This wiki reads two later facts as showing it: observed velocity over the first iterations differing from the rate used, or the total size changing. Either one calls for recomputing the date, not for re-estimating the work by default; see [[velocity-self-correction]] and [[re-estimate-when-relative-size-changes]].
+This wiki reads two later facts as showing it: observed velocity over the first iterations differing from the rate used, or the total size changing. Either one calls for recomputing the date, not for re-estimating the work by default; see [[velocity-self-correction]] and [[re-estimate-when-relative-size-changes]]. The recomputation is on [[reforecasting-a-release-from-velocity]].
 
 ## Which setup this applies under
 
