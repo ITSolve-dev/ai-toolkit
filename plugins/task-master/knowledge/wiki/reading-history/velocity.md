@@ -48,6 +48,7 @@ The definition makes velocity a measure of completed estimated size per period. 
 - It says nothing about individual items: a forecast for a period is not a promise for a task.
 - It is not distance to the goal. Velocity reduces the work left only "Assuming that the scope of the project hasn’t changed" (L4288). If forty points are added and thirty completed, the team is further from the end than it was (L4273). [[release-progress-forces]] separates the causes.
 - It excludes partly done work, so a period's figure can sit below the effort that went into it.
+- It does not count what was started, so a healthy figure can sit on top of a growing stock of unfinished work; see [[velocity-masks-unfinished-work]].
 
 ## Velocity versus net progress
 

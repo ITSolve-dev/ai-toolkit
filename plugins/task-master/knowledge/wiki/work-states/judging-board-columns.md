@@ -27,6 +27,8 @@ The Kanban Guide sets no limit on what a board may look like: "There are no spec
 
 The Wester sign for criterion 1 is stated as a question: "Do the column names of your board sound like the titles of the people in your team?" (L22). The same line asks whether people often work in just one column. This wiki leaves that out, since it concerns individual assignment.
 
+A column can pass every criterion and still have no written exit condition, which is the separate rule on [[column-doneness-criteria]].
+
 Criterion 6 goes beyond its source. The Playbook only reports that a bug fix skipped a step, and the reading of that as a test is ours.
 
 ## Across the board

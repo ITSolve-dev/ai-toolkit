@@ -16,6 +16,8 @@ A blocked item stays where it stopped and keeps its place in the count. This is 
 >
 > — [[radzikowska-waiting-blocked]], L34
 
+The habit this restrains is on [[starting-new-work-when-blocked]].
+
 ## The rule
 
 An item that is blocked ([[waiting-versus-blocked]]) stays in its state and counts toward that state's limit. It is marked as blocked, not moved.

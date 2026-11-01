@@ -66,8 +66,8 @@ Ask what the project will answer for, and read it from the setup.
 
 - **Iteration setup, the goal is the commitment:** one objective for the period, which may be loose about amount but must be decidable at the end. Selected tasks are a forecast of how to reach it. A period is reported as goal met or not met, and not as a share of items finished.
 - **Iteration setup, the selected tasks are the commitment:** a looser goal is acceptable, and the report is per task on functionality delivered.
-- **Flow setup:** no period commitment exists. Each started task carries the SLE. A question about what will be done by a date is a forecast from history, and this wiki has no page yet on how to compute one.
-- **Iterations with a WIP control:** the period's commitment is as in the two iteration cases, and the SLE, if the project keeps one, is a forecast inside it.
+- **Flow setup:** no period commitment exists. Each started task carries the SLE. A question about what will be done by a date is a forecast from history, computed on [[single-item-forecast]] for one item and [[monte-carlo-simulation]] for several, and stated as on [[forecast-range-and-probability]].
+- **Iterations with a WIP control:** the period's commitment is as in the two iteration cases, and the SLE, if the project keeps one, is a forecast inside it. Whether stories fit the period at all can be read from history on [[iteration-length-versus-cycle-time]].
 - **Under every iteration setup:** a list of sub-steps is never the commitment. The work that must be covered is on [[all-work-to-finished-is-in-the-plan]].
 
 The sources do not resolve this between them, because each describes only itself. The per-setup statement is this wiki's. How the amount is chosen is on [[velocity-versus-commitment-planning]].

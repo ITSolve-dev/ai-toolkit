@@ -23,3 +23,4 @@ Append-only record of operations. One line per operation, newest at the bottom:
 ## [2026-11-01] reject | raw/reinertsen-product-development-flow.md — a third-party Bookey summary with app advertising, not the book; quoting it as Reinertsen would misattribute
 ## [2026-11-01] lint | mechanical clean, 74 pages in 9 groups; 362 quotations on the 40 changed pages matched to raw/ by script, 1 misquotation and 1 altered quotation fixed by hand; non-breaking spaces in the Black Swan raw noted on its summary; 1 older blockquote on underspecified-task unmatched and left as it was; full semantic pass not run
 ## [2026-11-02] ingest | cohn-agile-estimating-planning -- large-source workflow, 204 proposals
+## [2026-11-02] ingest | vacanti-actionable-agile-metrics -- large-source workflow, 110 proposals

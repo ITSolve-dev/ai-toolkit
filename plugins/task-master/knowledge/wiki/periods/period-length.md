@@ -131,4 +131,4 @@ Cohn's factors do not all survive an agent executing and a person steering. This
 
 ## Related
 
-Where a period starts in the week is on [[iteration-boundary-day]]. Why period ends should stay away from dates where value steps down is on [[quarter-end-release-date]].
+Whether stories fit a period at all, read from Cycle Time history, is on [[iteration-length-versus-cycle-time]]. Where a period starts in the week is on [[iteration-boundary-day]]. Why period ends should stay away from dates where value steps down is on [[quarter-end-release-date]].
