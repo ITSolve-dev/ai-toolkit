@@ -3,7 +3,7 @@ title: Period Length
 category: periods
 summary: A period is a fixed length of one month or less, chosen by how long its goal stays valid against the shortest span in which something can finish; extending a period to fit its work is the sign of violation.
 tags: [rule, iterations, scrum]
-sources: [scrum-guide-2020, kanban-guide]
+sources: [scrum-guide-2020, kanban-guide, montgomery-tracker-smells]
 created: 2026-11-01
 updated: 2026-11-01
 ---
@@ -45,6 +45,8 @@ Once chosen, the length does not move to suit the work.
 - **In board history:** a gap between periods, which contradicts "starts immediately after".
 
 The signs are this wiki's derivation from L189.
+
+The study behind [[montgomery-tracker-smells]] lists the first two as smells: "Instead of moving open issues to the next sprint, the sprint end date is extended." (L218) and "Sprints are not consistent lengths." (L221), along with "The same sprint is delayed over and over." (L227). The results for these three are in a figure that is lost, so this wiki cannot say how practitioners judged them, and it cites them only as independent statements of the sign. A fourth, "The sprint length differs from the recommendations made by Agile." (L224), is not a sign here, because no length is recommended by this wiki's sources beyond the upper bound.
 
 ## Why
 

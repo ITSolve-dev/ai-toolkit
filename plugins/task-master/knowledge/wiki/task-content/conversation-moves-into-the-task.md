@@ -39,6 +39,7 @@ Before an agent starts, every decision the task depends on is either made and wr
 
 - **In task text:** the text refers to a conversation or to memory it does not contain: "as discussed", "TBD", "details to follow", "the usual way", "handle edge cases appropriately". These words exist in the text, so this sign does not rest on a missing field.
 - **In board history:** a task reworked after completion over a decision the text left open.
+- **In the task's comments or elsewhere:** the decision was made and never reached the text ([[fact-stranded-outside-the-task]]).
 
 The signs are this wiki's. Neither source states them.
 

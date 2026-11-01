@@ -3,7 +3,7 @@ title: Distinguishable Work States
 category: work-states
 summary: The sources give criteria and no canonical column set, and they treat a fixed list as the failure case; what they do support is a small set of distinctions any board must let a reader make, drawn partly as columns and partly as markers.
 tags: [concept, work-states, board-design]
-sources: [kanban-guide, scrum-guide-2020, wester-board-design, kanban-playbook-workflow-states, radzikowska-waiting-blocked]
+sources: [kanban-guide, scrum-guide-2020, wester-board-design, kanban-playbook-workflow-states, radzikowska-waiting-blocked, kubernetes-issue-triage]
 created: 2026-11-01
 updated: 2026-11-01
 ---
@@ -41,6 +41,10 @@ The first two rows are points and the next two are states, so together they acco
 This wiki reads that as giving the plugin a classification rather than a column list. Each column of any board maps to one of five kinds: before the started point, queued, active, handed off, or past the finished point. Two markers then sit on tasks: blocked and waiting. The classification is this wiki's, and it is what [[judging-board-columns]] audits against.
 
 This classification would be shown wrong by a column that fits none of the five kinds and yet passes every criterion, or by a real board whose tasks could not be told apart with it. Nothing has tested it on a real board, since the boards for that check are held out and do not yet exist.
+
+## One distinction before the started point
+
+The table says nothing about work before it starts, and [[kubernetes-issue-triage]] adds a line there: an item is either awaiting triage or accepted, shown by a label that triage replaces (L152). This wiki reads that as one more distinction inside the kind "before the started point": has anyone looked at this? It can be drawn as a marker or a column, and [[triage-procedure]] depends on it. Without it, an item nobody has read looks like one that is ready.
 
 ## Agent executor note
 

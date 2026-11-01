@@ -52,4 +52,4 @@ The evidence is about agents asking. Whether the rule fits a person sending ques
 
 ## Related
 
-The questions are about a task that may be underspecified: [[underspecified-task]]. A requester who cannot say how to test a result is a related sign: [[testable-acceptance]].
+The questions are about a task that may be underspecified: [[underspecified-task]]. What to ask of a defect report is on [[incoming-report-content]]. A requester who cannot say how to test a result is a related sign: [[testable-acceptance]].

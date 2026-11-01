@@ -3,7 +3,7 @@ title: Flow Metrics
 category: reading-history
 summary: The four measures the Kanban Guide requires, WIP, Throughput, Work Item Age and Cycle Time, what each counts and does not, and why all of them can be read from board history without logged hours.
 tags: [concept, flow-metrics, board-history, kanban]
-sources: [kanban-guide, scrum-guide-2020, kanban-playbook-right-sizing]
+sources: [kanban-guide, scrum-guide-2020, kanban-playbook-right-sizing, zimmermann-good-bug-report]
 created: 2026-11-01
 updated: 2026-11-01
 ---
@@ -39,6 +39,16 @@ The Guide also limits their use: "In and of themselves, these metrics are meanin
 ## Two ways the numbers mislead
 
 Because the metrics count items, the cut can distort them in both directions. A large task hides work under a count of one ([[hidden-wip-in-large-items]]). Tasks that deliver nothing close fast and look healthy, which the Kanban Playbook calls "the opposite illusion" ([[kanban-playbook-right-sizing]] L20, and see [[component-task-masquerading]]). The Playbook says the two "look completely different in your data" (L20). This wiki reads the second as the harder case: a large task at least shows up as an outlier, while tasks that deliver nothing show up as health, so only reading the tasks catches them.
+
+## What a task's life does not say about its text
+
+Cycle Time does not read the quality of a task. [[zimmermann-good-bug-report]] tested this on 289 developer-rated bug reports from Apache, Eclipse and Mozilla: Spearman correlations between rating and lifetime were between 0.002 and 0.068 (L871). The authors' explanation:
+
+> Often a bug report that gets addressed quicker can be of poor quality, but describes an urgent problem. Also, a well-written bug report can be complicated to deal with and take more time to resolve.
+>
+> — [[zimmermann-good-bug-report]], L871
+
+This wiki reads that as a limit on any audit by history: a long-lived task is not thereby a badly written one, and a fast one is not thereby well written. The figures concern bug reports and human developers. The mechanism, that urgency and difficulty both move lifetime, does not depend on the executor.
 
 ## Read from history
 

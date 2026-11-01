@@ -3,7 +3,7 @@ title: Underspecified Task
 category: task-content
 summary: A task missing information an expert would need to succeed; distinct from an ambiguous one, and more dangerous with an agent because the agent tends to proceed instead of asking.
 tags: [concept, task-content, agents, underspecification]
-sources: [ambig-swe]
+sources: [ambig-swe, montgomery-tracker-smells]
 created: 2026-11-01
 updated: 2026-11-01
 ---
@@ -41,6 +41,16 @@ The authors contrast the two executors:
 > — [[ambig-swe]], L72
 
 That passage is the paper's framing. The measurement behind it is the detection result summarised on [[ambig-swe]]. This wiki reads it as the reason the charter describes the executor as one that guesses, and as the reason [[conversation-moves-into-the-task]] exists.
+
+## On a board
+
+The interviews behind [[montgomery-tracker-smells]] give this page its board-level sign. Missing Issue Information was the most mentioned problem, by 18 of 26 participants (L438), and the smell "No or short (non-informative) description" (L145) was among the three the authors rank as most problematic, with 11 calling it a problem and three refuting it (L767). Their reason is that it "might mean that the issue is not actionable, since not enough information is known." (L767).
+
+- **Sign, in task text:** the description is blank, or says no more than the title.
+- **What the sign does not establish:** that the task is underspecified. Six of 17 disagreed or said it depends (L524). P04 said a Parent issue can often be enough, and P01 that "sometimes there is no need for a long description, and only the title is sufficient" (L524). The authors disagree with that line of reasoning: "the issue itself should not still be open, but rather just the issue containing the actual information." (L767).
+- **No threshold.** The authors' minimum of "100 characters or 30 words" (L767) is an example for a tool, and they concede that "informative" is "a subjective and context-dependent concept". Length does not measure this page's definition. The opposite smell, "Description too long" (L148), split participants too, at 6 of 13 (L522), and it is not a sign here.
+
+This wiki reads the parent case through [[recoverable-versus-task-only-facts]]: a short task is fine if its executor can reach the fact in the parent. An agent reads what it is given, so the parent has to be in its brief. No participant in the study was thinking of an agent.
 
 ## Natural versus generated
 

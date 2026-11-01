@@ -3,7 +3,7 @@ title: Started and Finished Points
 category: work-states
 summary: The two defined moments between which a task counts as work in progress; every flow metric hangs from them, so each has to be an event the board can show and not a claim by the executor. The Kanban Guide lets each workflow define them, and the Scrum Guide fixes only finished, as one Definition of Done.
 tags: [decision-rule, work-states, definition-of-done, kanban, scrum]
-sources: [kanban-guide, scrum-guide-2020]
+sources: [kanban-guide, scrum-guide-2020, montgomery-tracker-smells]
 created: 2026-11-01
 updated: 2026-11-01
 ---
@@ -43,6 +43,8 @@ The started point is too late if work happens before it: activity on a task appe
 - **In board history:** a task's started timestamp comes after the first activity on it.
 
 These signs are this wiki's.
+
+The interviews behind [[montgomery-tracker-smells]] support the first sign, as a perception. Nine participants said scoping is hard, and the authors report that "users might incorrectly assume issues to be done and close them too early, leading to issues needing to be reopened." (L487). Five named the same trouble with status names: P05 asked "what does ‘resolved’ actually mean?" (L431), and P06 said their team "has a definition of ‘done’/‘ready’ that cannot be made transparent in Jira" (L431). This wiki reads the second as a requirement on the plugin: the definition has to be stated somewhere it can read. The study gives no rate of reopening, and a reopened task alone does not show a bad point, since a real defect can surface later.
 
 ## More than one point
 

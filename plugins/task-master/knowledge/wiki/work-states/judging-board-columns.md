@@ -3,7 +3,7 @@ title: Judging a Board's Columns
 category: work-states
 summary: The criteria for auditing a board's columns, each with the sign of failing it; six are judged per column and four across the board, and they apply to any setup with states.
 tags: [method, work-states, board-design, audit]
-sources: [wester-board-design, kanban-playbook-workflow-states, kanban-guide]
+sources: [wester-board-design, kanban-playbook-workflow-states, kanban-guide, montgomery-tracker-smells]
 created: 2026-11-01
 updated: 2026-11-01
 ---
@@ -49,6 +49,18 @@ The Playbook's general statement of the failure, which criterion 10 turns into a
 The criteria are not all equal. Criteria 2, 3 and 9 are the ones that break the numbers, because they decide what is counted and when, so this wiki treats a failure there as a defect to fix. The others cost readability and can wait. A board for a few people should not add states to pass criterion 5 or 7 unless tasks are actually sitting there. This weighting is ours.
 
 The criteria pull against each other. Criterion 5 and the handoff in criterion 7 add states, and criterion 4 removes them. The Playbook warns about "too many states" (L20), and Wester warns that with "too much granularity, team members can be confused" (L30). The resolution is the same in each case: add a state only where history shows tasks there.
+
+## What practitioners report
+
+The interviews behind [[montgomery-tracker-smells]] come from outside the Kanban school, so they are a second voice on three of these criteria. They add signs and no new criterion. They are perceptions from mostly large organisations, with no thresholds.
+
+| Problem | Participants | Sign | Criterion |
+|---|---|---|---|
+| Lack of a Fitting Workflow | 17 (L423) | People work around the states. P26: "you have to cheat the process to make it work for these 10%". On a board this wiki reads it as tasks that pass through states in no time | 6, 7 |
+| Workflow Bloat | 14 (L427) | P17: "fitting yourself into the workflow, instead of just doing the work" | 4 |
+| Unclear Workflow | 5 (L431) | P05: "what does ‘resolved’ actually mean?" | 3, 9 |
+
+P26's 90 and 10 percent are a way of speaking and not a measurement. The authors' reading of the first two problems is "a complex and nuanced trade-off within these systems between too much and too little support workflow options." (L421), which agrees with the tension between criteria described above. The study's "Too many issue types" (L160) is the same complaint about types, and its text gives no result. How many is too many is not stated, and the study does not establish that any of these harmed a project ([[smell-is-not-a-finding]]).
 
 ## Which holds under which setup
 

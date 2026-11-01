@@ -3,7 +3,7 @@ title: What May Move
 category: moving-work
 summary: The trigger that lets a task start or change state; under the Kanban Guide a task starts only on a capacity signal and moves by stated policies, and under the Scrum Guide it enters by selection for a period, stays while the goal is safe, and leaves unfinished only by going back.
 tags: [decision-rule, wip, pull, kanban, scrum]
-sources: [kanban-guide, scrum-guide-2020]
+sources: [kanban-guide, scrum-guide-2020, kubernetes-issue-triage, montgomery-tracker-smells]
 created: 2026-11-01
 updated: 2026-11-01
 ---
@@ -34,7 +34,7 @@ This wiki reads the difference between the two guides as a difference in when th
 
 ## What the signal does not decide
 
-A capacity signal says that something may start. It does not say which task, because the Kanban Guide has no ordering rule ([[kanban-guide]]). The Scrum Guide names who orders the backlog and gives no criterion. Which task comes from [[independent-tasks]] and [[sequence-versus-wait]]. Whether the task is fit to start comes from the task-content pages, such as [[conversation-moves-into-the-task]].
+A capacity signal says that something may start. It does not say which task, because the Kanban Guide has no ordering rule ([[kanban-guide]]). The Scrum Guide names who orders the backlog and gives no criterion. Which task comes from [[ordering-by-value-and-urgency]], constrained by [[independent-tasks]] and [[sequence-versus-wait]]. Whether the task is fit to start comes from the task-content pages, such as [[conversation-moves-into-the-task]].
 
 ## The rule
 
@@ -55,7 +55,10 @@ Moves toward an earlier state are a separate question, on [[backward-movement]].
 - **In board state:** many tasks started and few of them moving, which is what pushing work looks like from the outside.
 - **In board history, under iterations:** a task started during a period that was never selected for it and that no agreed change brought in.
 
-The signs are this wiki's derivation from L114 and L141 of [[kanban-guide]] and L220 of [[scrum-guide-2020]].
+- **In board state:** a task that already has an executor gains a second one. The Kubernetes guide's wording is "Creating a PR when someone else is already working on an issue is not a good practice and is discouraged." ([[kubernetes-issue-triage]] L257). That guide's remedy is to talk to the holder first, or to follow its follow-up steps.
+- **In board state:** linked tasks whose states contradict the link. The study behind [[montgomery-tracker-smells]] gives the example "A is a linked as a sub-task of B, but B is closed and A is still open." (L197). Two of 10 disagreed or said it depends, and P09 said only the status being out of sync matters (L540). The sign shows that a move ignored a stated relation and does not show which task is wrong.
+
+The first four signs are this wiki's derivation from L114 and L141 of [[kanban-guide]] and L220 of [[scrum-guide-2020]].
 
 ## Inputs, where each is read from, and what would show the choice wrong
 

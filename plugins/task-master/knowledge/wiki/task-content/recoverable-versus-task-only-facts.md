@@ -53,6 +53,10 @@ The classification was wrong if a run failed or was reworked on a fact marked re
 
 The evidence here is about agents, on the benchmark described on [[ambig-swe]]: stripped Python issues, a simulated user, and resolve rates set by unit tests. The test also holds for a person, who can read a repository too. What the agent changes is the cost of getting it wrong, because a person would ask about a task-only fact and an agent tends not to ([[agent-silence-is-not-completeness]]).
 
+## Applied to incoming reports
+
+[[incoming-report-content]] applies this test to a defect report, item by item.
+
 ## Scope limit
 
 This rule does not ask for step-by-step instructions. Expanding a task that way is outside the charter, and the authors' finding that recoverable implementation details add little points the same way.

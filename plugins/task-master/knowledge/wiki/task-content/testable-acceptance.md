@@ -3,7 +3,7 @@ title: Testable Acceptance
 category: task-content
 summary: A task states what would show it done in a form that can be checked; a requester who cannot say how to test it is a sign with three possible diagnoses.
 tags: [rule, task-content, acceptance-criteria, invest, smart]
-sources: [wake-invest, humanizing-work-splitting]
+sources: [wake-invest, humanizing-work-splitting, montgomery-tracker-smells]
 created: 2026-11-01
 updated: 2026-11-01
 ---
@@ -40,6 +40,20 @@ This wiki reads those three causes as three different next steps: clarify the re
 A criteria field that is merely empty is not a sign under the charter. The two signs above can both fire on a filled-in field.
 
 Many criteria are not a defect on this page. The opposite sign is on [[compound-task-text-signs]], and it fires only on criteria that could each be delivered alone. The shared standard of done that applies to every task is a separate thing, on [[started-and-finished-points]].
+
+## On a board
+
+The study behind [[montgomery-tracker-smells]] lists three smells about acceptance criteria. They are perceptions from interviews, in mostly large companies, and none carries a threshold.
+
+| Smell | What was said | What it does not establish |
+|---|---|---|
+| "No acceptance criteria or too many" (L229) | 2 of 7 disagreed or said it depends (L550). P24: "no acceptance criteria happens and are created after the fact" | That a task without a criteria field has no check, and "too many" has no number |
+| "Acceptance criteria are not checked during testing" (L232) | The text gives no result | How often it happens. It is a sign of a check that exists and is not used |
+| "Acceptance criteria are changed during sprint" (L235) | All 5 who answered disagreed (L546). "it is more important to update the acceptance criteria, than to leave it outdated when you know it should be changed." | Anything against changing them, since this smell was refuted |
+
+This wiki reads the third row as removing a sign it might otherwise have used: an edited criterion is not a defect, and a stale one is. Under an iteration setup this agrees with [[mid-period-change]], where the list of work may change as more is learned.
+
+Two points shift with an agent. Criteria written "after the fact" work for a team that remembers what it meant, and they do nothing for an agent that has already stopped. And a criterion changed during a run has to reach the run. So this wiki adds a sign: **in board history,** criteria edited after an agent took the task, with no restart or notice recorded. That sign is ours.
 
 ## Why
 

@@ -3,7 +3,7 @@ title: Independent Tasks
 category: ordering
 summary: Tasks should not overlap and should be orderable freely; a conditional estimate or a stated precondition is the sign that they cannot be.
 tags: [rule, dependencies, invest, decomposition]
-sources: [wake-invest, humanizing-work-splitting]
+sources: [wake-invest, humanizing-work-splitting, montgomery-tracker-smells]
 created: 2026-11-01
 updated: 2026-11-01
 ---
@@ -18,7 +18,7 @@ Two tasks are independent when neither overlaps the other in concept and either 
 
 ## The rule
 
-Cut tasks so that they can be ordered by what matters, with no hidden order among them. Where an order cannot be removed, state it.
+Cut tasks so that they can be ordered by what matters ([[ordering-by-value-and-urgency]]), with no hidden order among them. Where an order cannot be removed, state it.
 
 Wake concedes that this is a preference and not an absolute: "We can’t always achieve this" (L50). The Humanizing Work authors state a weaker test that can be met: a good story "is sufficiently self-contained that it can be prioritized by something other than technical dependency" (L111). This wiki uses the weaker test, and therefore treats an unstated dependency as the defect and a stated one as acceptable.
 
@@ -27,6 +27,7 @@ Wake concedes that this is a preference and not an absolute: "We can’t always 
 - **In the task text or estimate:** an estimate that depends on order. Wake's example is "3 points for the first report, then 1 point for each of the others" (L50). The number only holds if the tasks run in one sequence, so the order is real even if nothing says so.
 - **In the task text:** two tasks whose acceptance would change the same behaviour. That is the overlap in concept Wake names. This reading of how overlap shows up in text is this wiki's.
 - **Across tasks:** a set of tasks of which one absorbs most of the effort, whichever is scheduled first. The authors' case is one story per credit card type, where "the credit card processing infrastructure will be built to support the first story; adding more card types will be relatively trivial" (L267).
+- **Across tasks:** a cycle among stated dependencies. The study behind [[montgomery-tracker-smells]] lists this as a smell, "Issues A is linked as a dependency of B, and B is also linked as dependency of A." (L203). Its result is in a lost figure. This one needs no perception behind it, since neither task can start first if the links are right, so it shows that at least one link is wrong or the tasks are one task.
 
 ## Why
 

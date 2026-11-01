@@ -3,7 +3,7 @@ title: Size Ceiling
 category: sizing
 summary: The size above which a task is cut, chosen by whether its scope can still be stated, with the sources' figures kept alongside the setting that produced them; a ratio of the period under iterations, and the likelihood of finishing inside the SLE under a flow setup.
 tags: [rule, estimation, decomposition, invest]
-sources: [wake-invest, humanizing-work-splitting, scrum-guide-2020, kanban-playbook-right-sizing, kanban-guide]
+sources: [wake-invest, humanizing-work-splitting, scrum-guide-2020, kanban-playbook-right-sizing, kanban-guide, montgomery-tracker-smells]
 created: 2026-11-01
 updated: 2026-11-01
 ---
@@ -89,4 +89,4 @@ The SLE question survives better than any fixed figure, because it reads the pro
 
 ## Related
 
-A task too poorly understood to size goes to [[spike-as-last-resort]]. A task above the ceiling is cut with [[story-splitting-patterns]]. The signs that a task is too big in its text are on [[compound-task-text-signs]], and what a large task does to the count is on [[hidden-wip-in-large-items]].
+A ceiling needs one scale. The study behind [[montgomery-tracker-smells]] lists as a smell that "The “estimate” property is unclear or different scales are used across issues." (L215), with its result in a lost figure. Where that holds, no step on a scale means one thing and this rule cannot be applied. A missing estimate is judged on [[empty-fields]]. A task too poorly understood to size goes to [[spike-as-last-resort]]. A task above the ceiling is cut with [[story-splitting-patterns]]. The signs that a task is too big in its text are on [[compound-task-text-signs]], and what a large task does to the count is on [[hidden-wip-in-large-items]].

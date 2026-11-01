@@ -3,7 +3,7 @@ title: Mid-Period Change
 category: periods
 summary: During a period the list of work may change and the goal may not; a change that endangers the goal is refused, and a goal gone obsolete is cancelled openly and not quietly replaced.
 tags: [rule, iterations, commitment, scrum]
-sources: [scrum-guide-2020, kanban-guide]
+sources: [scrum-guide-2020, kanban-guide, montgomery-tracker-smells]
 created: 2026-11-01
 updated: 2026-11-01
 ---
@@ -42,13 +42,15 @@ A change proposed during a period is judged by its effect on the goal.
 
 The Guide states the rule. These signs are this wiki's.
 
+A task added during a period is not by itself a sign, and the signs above do not treat it as one. The study behind [[montgomery-tracker-smells]] lists "After a sprint has begun, new issues are added to the sprint." (L206) as a smell, and 5 of 15 disagreed or said it depends (L548). P08 said it "happens every sprint" and is "normal operations", and P21 said it is not a problem "as long as you get your work done" (L548). This agrees with the Guide, which lets the list change. Others described the cost: P01 called customer-driven additions "stressful, inefficient, and it puts a lot of pressure on the team" (L548). That cost is human strain, and it does not transfer as it stands to an agent ([[interrupting-started-work]]). The study gives no count of additions that is too many, so the test stays the effect on the goal.
+
 ## Why
 
 What breaks is the meaning of the commitment. If the goal moves with the work, nothing was committed to and a period cannot be judged ([[commitment-over-a-period]]).
 
 ## Cost
 
-Urgent work that does not serve the goal waits, or it costs a cancellation. The Guide offers no third route. The Kanban Guide does, through a declared exception ([[what-may-move]]), which is one reason the choice of setup matters for a project with frequent interruptions.
+Urgent work that does not serve the goal waits, or it costs a cancellation ([[interrupting-started-work]] says when that is worth it). The Guide offers no third route. The Kanban Guide does, through a declared exception ([[what-may-move]]), which is one reason the choice of setup matters for a project with frequent interruptions.
 
 ## Which setup this applies under
 

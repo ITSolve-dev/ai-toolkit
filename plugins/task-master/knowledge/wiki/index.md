@@ -19,6 +19,16 @@
 ## Intake
 
 - [Clarifying Questions](intake/clarifying-questions.md) — Read the repository first, then ask only what it cannot answer, about behaviour and failure, in terms the asker can answer; a question whose answer was in the code, or that the person cannot answer, is the sign it was wrong.
+- [Closing What No Longer Applies](intake/closing-what-no-longer-applies.md) — An open item that has stopped needs a stated reason to stay; Kubernetes runs this on timers of 20, 30 and 90 days, which belong to that project, so what transfers is the triggers, the check that the need still stands, and a way to hold something open on purpose.
+- [Duplicate Reports](intake/duplicate-reports.md) — A duplicate is closed against its original, and whatever it knows that the original does not is carried across first; the study behind this finds duplicates add information, and the test of a duplicate is one defect and not one symptom.
+- [What an Incoming Report Must Carry](intake/incoming-report-content.md) — A defect report is fit to become a task when it says how to reach the failure, what happened and what should have happened; those are what the repository cannot show, and most other fields are recoverable, hard for a reporter to supply, or rarely used.
+- [Issue Overload](intake/issue-overload.md) — More open items than anyone can keep in mind, which shows up as duplicates and forgotten work; the sign is new requests that repeat what is already there, and the source gives no count at which it starts.
+- [Issue Triage Guidelines (Kubernetes)](intake/kubernetes-issue-triage.md) — The Kubernetes contributor guide to triaging incoming issues; a five-step process for one of the largest open-source projects, unsigned and unmeasured, of which the outcomes, the order of checks and the follow-up triggers survive at a few people and the groups, labels, bots and meetings do not.
+- [Smells Depend on the Context (Montgomery et al.)](intake/montgomery-tracker-smells.md) — An interview study of 26 practitioners on 31 issue-tracker smells and 14 common problems; many smells drew "no" or "it depends", so a smell is a prompt and not a verdict. It gives signs with no thresholds, drawn from perceptions in mostly large companies, and no agent appears in it.
+- [Reproduce Before Accepting](intake/reproduce-before-accepting.md) — A reported defect is accepted once someone has seen it happen; if it cannot be reproduced the findings go back to the reporter and it closes only by agreement, and a successful reproduction yields the check the task will be judged by.
+- [Triage Procedure](intake/triage-procedure.md) — What to do with an item that came in; mark it as not yet looked at, take the oldest first, sort it into a few outcomes with the cheap checks before the costly ones, check the requester's classification, rate what is accepted, and set what follows up. Adapted from a very large project's process.
+- [What Makes a Good Bug Report? (Zimmermann et al.)](intake/zimmermann-good-bug-report.md) — A 2010 IEEE TSE survey of developers and reporters on Apache, Eclipse and Mozilla, with a mining study of duplicates; it measures what experienced open-source people say helps, finds that reporters know what is needed and rarely supply it, and shows duplicates carry extra information.
+- [Zombie Issue](intake/zombie-issue.md) — An open item nobody is acting on; it is the smell practitioners called most problematic, because what could have resolved it decays with time. The sign is an open item with no activity, and the source gives no length of time.
 
 ## Moving Work
 
@@ -33,8 +43,17 @@
 
 ## Ordering
 
+- [A Date Is Not Urgency](ordering/a-date-is-not-urgency.md) — A date on a task raises its urgency only if something outside the project changes at that date; such a date moves the task up the urgency bands as it approaches, and a date with no outside effect leaves urgency where it was.
+- [Qualitative Cost of Delay (Black Swan Farming)](ordering/black-swan-qualitative-cod.md) — An unsigned article from a consulting site offering a three-by-three rating of value and urgency as a first step toward quantifying cost of delay; it reports no measurement, its matrix images are lost, and it is this wiki's main source on what comes first when value is hard to quantify.
+- [Cost of Delay Over Duration](ordering/cost-of-delay-over-duration.md) — Where durations vary widely and capacity is constrained, divide cost of delay by duration so that the work freeing most value per unit of capacity goes first; with word ratings the division has no arithmetic, so this wiki applies it only within one rank.
+- [Cost of Delay](ordering/cost-of-delay.md) — What a piece of work loses by arriving later; it has two ingredients, value and urgency, which act on each other and do not add, it is usually a rate and not a sum, and it changes over time.
+- [Incomparable Tasks](ordering/incomparable-tasks.md) — Tasks are incomparable when the rating ties them or cannot be made at all; a tie goes to duration and then to anything cheap, and a task that cannot be rated is not forced into a band.
 - [Independent Tasks](ordering/independent-tasks.md) — Tasks should not overlap and should be orderable freely; a conditional estimate or a stated precondition is the sign that they cannot be.
+- [Interrupting Started Work](ordering/interrupting-started-work.md) — Reordering unstarted work costs nothing, while stopping started work costs something; this wiki allows it only for a task at the top rank, against work rated well below it, and through the route the project's setup permits.
+- [Ordering by Value and Urgency](ordering/ordering-by-value-and-urgency.md) — When value cannot be put in numbers, rate each task on three bands of value and three of urgency, separately, and order by the combination; the bands are the source's, the two extreme combinations are the source's, and the order of the seven between them is this wiki's derivation.
+- [Priority Inflation](ordering/priority-inflation.md) — Most open tasks end up in the top band of the priority scale, so the band stops deciding anything; the sign is a top band that no longer separates tasks, and the source gives no figure for how full is too full.
 - [Sequence Versus Wait](ordering/sequence-versus-wait.md) — A sequence constrains order and leaves work available; a wait stops work on someone else's clock. A wait belongs between tasks, not inside one.
+- [Urgent Versus Important](ordering/urgent-versus-important.md) — Value says how much a result is worth and urgency says how fast that worth drains away; they are rated apart because people conflate them, and two ratings that always move together are the sign they were not.
 
 ## Periods
 
@@ -49,6 +68,7 @@
 ## Reading History
 
 - [Flow Metrics](reading-history/flow-metrics.md) — The four measures the Kanban Guide requires, WIP, Throughput, Work Item Age and Cycle Time, what each counts and does not, and why all of them can be read from board history without logged hours.
+- [A Smell Is Not a Finding](reading-history/smell-is-not-a-finding.md) — A sign on a board prompts a check and does not prove a defect; before reporting one as a failure, check whether the project's workflow prevents it, intends it, or limits it to a stage, a kind of task or a property, and say what the sign does not establish.
 
 ## Sizing
 
@@ -62,6 +82,8 @@
 - [Agent Silence Is Not Completeness](task-content/agent-silence-is-not-completeness.md) — An agent not asking a question does not show the task was complete; readiness is judged from the task and the repository, and telling the agent to ask is not a substitute.
 - [Ambig-SWE (Interactive Agents to Overcome Underspecificity)](task-content/ambig-swe.md) — A benchmark study of six LLM models given deliberately stripped software issues; it measures how well agents detect missing information, ask for it, and use the answers, on synthetic underspecification against a simulated user.
 - [The Conversation Moves Into the Task](task-content/conversation-moves-into-the-task.md) — What a human team settles by talking during development has to be settled before an agent starts and written into the task; a text that points at a conversation or at memory is the sign it was not.
+- [Empty Fields](task-content/empty-fields.md) — An empty field is a failure only at the stage where the workflow reads it, and only for fields something depends on; practitioners split on missing properties for exactly these reasons, and a filled field does not prove a real value.
+- [Fact Stranded Outside the Task](task-content/fact-stranded-outside-the-task.md) — A decision or value that is known and recorded somewhere other than the task, such as a comment or a chat; practitioners called it problematic with no one disagreeing, and the sign is a field or text contradicted by what was said elsewhere.
 - [Recoverable Versus Task-Only Facts](task-content/recoverable-versus-task-only-facts.md) — A fact the executor cannot recover from the repository must be in the task; a fact it can recover is welcome but does not hold a task back from being ready.
 - [A Task Must Justify Itself](task-content/task-must-justify-itself.md) — A task states why it exists and how it contributes to the larger result; a reason that only restates the action, or pieces that do not add up, is the sign it does not.
 - [Testable Acceptance](task-content/testable-acceptance.md) — A task states what would show it done in a form that can be checked; a requester who cannot say how to test it is a sign with three possible diagnoses.

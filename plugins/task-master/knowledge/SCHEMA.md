@@ -21,7 +21,8 @@ reasoning from general knowledge, because a planning judgement without a citatio
 like an invented one, and a wrong one surfaces weeks later, when nobody can say where it came from.
 
 The base doubles as a test of an existing board: a rule stored here carries the sign that reveals
-its violation, so the same page advises and audits.
+its violation, so the same page advises and audits. A sign raises a question, not a verdict: a smell
+depends on the project's context, and a finding says what to check.
 
 A claim belongs here only if it changes what the plugin outputs when it cuts, sizes, orders, moves,
 lays out or explains work for a few people steering an AI agent.
@@ -95,7 +96,8 @@ folder name.
 
 Group by the **question someone organizing work arrives with**, not by source and not by methodology:
 how to cut this, what a task must carry, what it costs, what comes first, what to do with what came
-in, what state this is, what may move, what fits in a period, what actually happened, how to show it.
+in, what state this is, what may move, what fits in a period, what actually happened, how to show it,
+is this board healthy.
 
 A page goes where its rule is applied. A failure goes under the question it breaks, with its kind kept
 in `tags`. A methodology's position is a section on the page where it differs, so comparing two

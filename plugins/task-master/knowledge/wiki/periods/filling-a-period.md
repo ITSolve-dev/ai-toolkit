@@ -3,7 +3,7 @@ title: Filling a Period
 category: periods
 summary: How much to select for an iteration; the Scrum Guide names three inputs, past performance, upcoming capacity and the Definition of Done, and gives no formula. Selection applies only under an iteration setup.
 tags: [rule, iterations, forecast, scrum]
-sources: [scrum-guide-2020]
+sources: [scrum-guide-2020, montgomery-tracker-smells]
 created: 2026-11-01
 updated: 2026-11-01
 ---
@@ -33,6 +33,8 @@ An item is ready for selection on a size test: "Product Backlog items that can b
 | The standard of done | The project's stated definition; a stricter one means less fits |
 
 The selection was too large if tasks repeatedly go back unfinished at the period's end ([[unfinished-at-period-end]]), or if the goal is reached only by relaxing the standard of done. It was too small if the selection is finished well before the period ends, period after period.
+
+A related board sign is weak. The study behind [[montgomery-tracker-smells]] lists "Too many difficult or complex issues have been added to a sprint." (L209) as a smell, and 4 of 14 disagreed or said it depends (L552). The reasons given were that "you can just delay issues to the next sprint without repercussions", and that the count alone says little if the work is well distributed between people (L552). The first reason describes the carry-over that [[unfinished-at-period-end]] rejects, so this wiki does not accept it as a defence. The second concerns people and falls away with an agent. Since the study gives no number for "too many", this page relies on the history test above and does not count complex tasks.
 
 ## Why
 

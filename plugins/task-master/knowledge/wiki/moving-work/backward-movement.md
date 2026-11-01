@@ -3,7 +3,7 @@ title: Backward Movement
 category: moving-work
 summary: Moving a card to an earlier state loses visibility and data, so an expected cycle such as rework after review stays in the later state or goes to a new state on the right; the Scrum Guide's return of an unfinished item to the backlog is the one sanctioned exception.
 tags: [rule, moving-work, board-history, kanban, scrum]
-sources: [wester-board-design, kanban-guide, scrum-guide-2020]
+sources: [wester-board-design, kanban-guide, scrum-guide-2020, montgomery-tracker-smells]
 created: 2026-11-01
 updated: 2026-11-01
 ---
@@ -30,6 +30,8 @@ A task moves forward only. A cycle that is expected is drawn on the board in adv
 - **In board history:** the same task moves between two states several times, which is Wester's "as many times as it takes".
 
 The second sign also shows that a cycle is expected, and so that the board should be drawn for it.
+
+What the second sign does not establish is a defect. The study behind [[montgomery-tracker-smells]] lists "Properties such as status and assignee are switched back and forth between the same values." (L158) as a smell, and 4 of 13 disagreed or said it depends (L528). P02 said it is "part of their process to pass issues back and forth between assignee and reviewer; it is their quality assurance", and P06 that "it is intended" (L528). This wiki reads those as agreeing with the second sign's meaning: the movement shows a cycle is expected. Whether that is a failure depends on whether the board draws the cycle, so apply [[smell-is-not-a-finding]]. The study gives no count at which switching becomes too much.
 
 ## Why
 
