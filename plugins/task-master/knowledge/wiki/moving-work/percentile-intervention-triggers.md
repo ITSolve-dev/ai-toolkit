@@ -3,7 +3,7 @@ title: Percentile Intervention Triggers
 category: moving-work
 summary: Compare each open item's age with the 50th, 70th and 85th percentile lines. Under an 85th-percentile SLE, the chance of missing rises from 15% at the start to 30% at the 50th line and 50% at the 70th, so each line is a checkpoint.
 tags: [method, board-health, cycle-time, aging, percentiles, work-item-age]
-sources: [vacanti-actionable-agile-metrics]
+sources: [vacanti-actionable-agile-metrics, flow-metrics-scrum-teams]
 created: 2026-11-02
 updated: 2026-11-02
 ---
@@ -18,7 +18,7 @@ updated: 2026-11-02
 >
 > — [[vacanti-actionable-agile-metrics]], L3134
 
-Vacanti's analogy is life expectancy: a US-born female has an expectancy of 85.8 years at birth, 86.1 at age 5, 87.3 at age 50 and 93 at age 85, by a WorldLifeExpectancy.com calculator at the time of writing (L3122). Surviving means having outlived what might have ended it (L3132). Delay, in his framing, is the enemy of flow (L3134). Work Item Age is defined on [[flow-metrics]].
+Vacanti's analogy is life expectancy: a US-born female has an expectancy of 85.8 years at birth, 86.1 at age 5, 87.3 at age 50 and 93 at age 85, by a WorldLifeExpectancy.com calculator at the time of writing (L3122). Surviving means having outlived what might have ended it (L3132). Delay, in his framing, is the enemy of flow (L3134). Work Item Age is defined on [[work-item-age]].
 
 ## The procedure
 
@@ -50,6 +50,41 @@ From there no date can be given to the customer (L3150-L3156). In Figure 12.3 th
 > — [[vacanti-actionable-agile-metrics]], L3162
 
 A breach is not by itself a failure of the process: "The last thing we want is for that item to violate its SLA—even though we know it is going to happen 15% of the time." (L3148) What the method targets is arriving there without having tried.
+
+## What to do at a line
+
+[[flow-metrics-scrum-teams]] restates the table above for a fixed period (L1158-L1168), so the method needs an SLE and not a flow setup. What it adds is what follows the questions. Line references in this section are to that source, and the signs are this wiki's.
+
+**Freed capacity goes to the aging item first.**
+
+> Developers finishing the next item should be asked to help out with the aging PBI instead of picking up new ones.
+>
+> — [[flow-metrics-scrum-teams]], L1178
+
+This wiki reads the part that transfers as a rule about starting, and not about adding hands, which the book itself qualifies with Brooks' law in the same passage. The sign is a new item started after an open item crossed a line, with nothing changed on the older item. It sits beside [[starting-new-work-when-blocked]], whose trigger is a stop and not an age.
+
+The book lists three ways several people help (L1182-L1192), and this wiki sorts them by what an agent and a person steering can do.
+
+- **Doing later steps earlier** (L1182) survives as preparing the review of an item before it arrives.
+- **Dividing the item into subtasks** (L1184) is dropped. It sits one level below this wiki's task ([[unit-of-work]]), and expanding a task into steps is out of scope.
+- **A fresh view of a sticking point** (L1186) survives as a person reading where the run stuck. Whether a new run on a restated task counts is untested.
+
+**A blocked item goes to the project's policy for blocked work:** [[blocked-work-policies]].
+
+**A large item is recut.** The book's starting point is that "your first hypothesis should be that this large PBI is probably composed of smaller, individually deliverable bits of value." (L1222). See [[story-splitting-patterns]] and [[hidden-wip-in-large-items]].
+
+### Which question comes first
+
+The book says "usually when a PBI is stuck in your process it is because it is too big" (L1210), while the caveat and the agent note below say an old item may be neither large nor still being worked on. This wiki resolves that by reading the item's state before its size, and the order is ours.
+
+| What the board shows | Read as | Response |
+|---|---|---|
+| A stop marker, or no activity since the executor stopped | Blocked | [[blocked-work-policies]] |
+| In a review state | Waiting for a person | Spend attention here before anything new starts |
+| Later items pulled past it | Aged by order | [[artificially-aged-work]] |
+| Active and still running | Size or missing information | [[overrun-triggers-a-recut]], [[hidden-wip-in-large-items]] |
+
+On a human team with no review queue the book's order may hold, since the first three rows are then rare.
 
 ## Signs
 

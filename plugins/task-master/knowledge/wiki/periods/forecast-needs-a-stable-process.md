@@ -3,7 +3,7 @@ title: A Forecast Needs a Stable Process
 category: periods
 summary: Past flow data predicts the future only from a stable process; arrivals far outpacing departures, or a triangle-shaped Cycle Time scatterplot, say to question the data before forecasting from it.
 tags: [rule, forecasting, flow-metrics, board-health, flow-debt]
-sources: [vacanti-actionable-agile-metrics]
+sources: [vacanti-actionable-agile-metrics, flow-metrics-scrum-teams]
 created: 2026-11-02
 updated: 2026-11-02
 ---
@@ -48,6 +48,10 @@ This wiki states the rule for the plugin this way, as a reading of the passages 
 ## Trade-off
 
 The source accepts that a project may have no suitable data yet, but only as a first step towards gathering it (L3688). This wiki reads the cost as follows: stabilising first delays a forecast someone may be asking for now. Producing one anyway from unstable data buys a number the source expects nobody to believe. A stated range with its doubt named may serve better than either, which is our suggestion and not the source's.
+
+## A claim that the check is unnecessary
+
+A later book by the same author makes the assumption sound free under Scrum: the future looking like the past is, it says, "a safe assumption" in most contexts for professional Scrum (L862), and "you are generally safe (pun intended) to use past data for future predictions" (L1088), both in [[flow-metrics-scrum-teams]]. This wiki does not accept that. The book offers no evidence for it, the claim is conditional on following the framework, and what a few people run here is not Scrum by the Guide's own definition ([[scrum-guide-2020]]). The book also concedes the point in practice by having a project pick its window of history ([[throughput-monte-carlo]]). The check above stays, on any setup.
 
 ## Agent executor note
 

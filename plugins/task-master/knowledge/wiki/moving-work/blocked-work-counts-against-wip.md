@@ -3,9 +3,9 @@ title: Blocked Work Counts Against WIP
 category: moving-work
 summary: A blocked item stays in its column and counts toward that column's limit, so that being stopped restrains further pulling; moving it aside hides the stop.
 tags: [rule, wip, work-states, kanban]
-sources: [radzikowska-waiting-blocked, kanban-guide, scrum-guide-2020, wester-board-design]
+sources: [radzikowska-waiting-blocked, kanban-guide, scrum-guide-2020, wester-board-design, flow-metrics-scrum-teams]
 created: 2026-11-01
-updated: 2026-11-01
+updated: 2026-11-02
 ---
 
 # Blocked Work Counts Against WIP
@@ -55,6 +55,8 @@ The source's mechanism is human: "tension" among people who feel the stop. An ag
 **Kanban Guide:** the Guide does not address blocked items directly. It lists "Unblocking blocked work." ([[kanban-guide]] L135) as a form of active management and does not define the term. Its definition of WIP settles the count all the same, in this wiki's reading: "Any work items between a started point and a finished point are considered work in progress (WIP)." (L112). A blocked item sits between those points, so it counts. A project that wants otherwise has to say so, since "Any acceptable exceptions to controlling WIP should be made explicit as part of the DoW." (L143). The Guide therefore has no maturity gate, and the count applies from the start.
 
 **Wester:** agrees on staying in place, for a further reason: "A better practice is to visualize this kind of wait in the place where it is incurred." ([[wester-board-design]] L53). The post also names what a holding column would hide, which [[column-versus-attribute]] records. Wester argues about columns and does not say in so many words that a blocked item counts, although the complaint about stashing work "so they can get around their WIP limits" (L51) assumes it should.
+
+**Vacanti and Seele:** the book leaves the matter as a question for a project to answer: "How long should a blocked item count towards our WIP limits and stop us from picking up other work?" ([[flow-metrics-scrum-teams]] L1200). This wiki answers it on [[blocked-work-policies]]: counting ends by a decision and not by a timer.
 
 **Scrum Guide:** the Guide has no count, so the question does not arise in those terms. A stop is an impediment, and the Daily Scrum exists partly to "identify impediments" ([[scrum-guide-2020]] L240). What a stop threatens under Scrum is the goal and not a limit, so the handling goes through [[mid-period-change]].
 

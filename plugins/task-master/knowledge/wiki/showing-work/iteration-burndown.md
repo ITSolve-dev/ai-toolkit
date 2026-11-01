@@ -5,7 +5,7 @@ summary: A chart of hours remaining by day within an iteration, summed from the 
 tags: [method, visualization, burndown, iterations, retrospective]
 sources: [cohn-agile-estimating-planning]
 created: 2026-11-01
-updated: 2026-11-01
+updated: 2026-11-02
 ---
 
 # Iteration Burndown
@@ -32,7 +32,7 @@ The points below are this wiki's reading of how the chart is built.
 
 - **Why the line moved.** Remaining rises when an estimate is corrected, and falls when a card is dropped from To Do in a swap ([[bug-allocation]]). The line alone cannot separate work done from work reassessed or removed.
 - **Whether the remaining figure is right.** It sums estimates, so a stale board draws a calm line.
-- **Which task is in trouble.** A row total or age of open work answers that, and [[flow-metrics]] covers age.
+- **Which task is in trouble.** A row total or age of open work answers that, and [[work-item-age]] covers age.
 - **Anything about the period's goal.** A selection can be burning down while the goal slips ([[mid-period-change]]).
 
 ## Failure modes

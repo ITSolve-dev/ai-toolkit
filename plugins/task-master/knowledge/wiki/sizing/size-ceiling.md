@@ -3,9 +3,9 @@ title: Size Ceiling
 category: sizing
 summary: The size above which a task is cut, chosen by whether its scope can still be stated, with the sources' figures kept alongside the setting that produced them; a ratio of the period under iterations, the likelihood of finishing inside the SLE under a flow setup, and a floor as well as a ceiling. A large item is read as a placeholder to be replaced once understood.
 tags: [rule, estimation, decomposition, invest]
-sources: [wake-invest, humanizing-work-splitting, scrum-guide-2020, kanban-playbook-right-sizing, kanban-guide, montgomery-tracker-smells, cohn-agile-estimating-planning]
+sources: [wake-invest, humanizing-work-splitting, scrum-guide-2020, kanban-playbook-right-sizing, kanban-guide, montgomery-tracker-smells, cohn-agile-estimating-planning, flow-metrics-scrum-teams]
 created: 2026-11-01
-updated: 2026-11-01
+updated: 2026-11-02
 ---
 
 # Size Ceiling
@@ -112,7 +112,8 @@ Cohn sets a floor of a different kind. He warns against reading his chapter as a
 
 The sources answer different questions, so the setup decides. The resolution is this wiki's.
 
-- **A project with iterations:** use the ratio. The ceiling is the capacity of one iteration divided by 6 to 10, and capacity is read from history. The ratio applies to tasks near the top of the order. The Scrum Guide's bound of one period holds for every task as the outer limit.
+- **A project with iterations and an SLE:** [[flow-metrics-scrum-teams]] asks the SLE question at selection (L1044), and for two-week periods it puts right sizes at 1 to 14 days, "but in reality should probably be a little less than that" (L1038). This wiki has the SLE question replace the ratio for selection, since it reads the project's own history item by item and the ratio needs iteration capacity. The Scrum Guide's one period stays the outer limit.
+- **A project with iterations and no SLE:** use the ratio. The ceiling is the capacity of one iteration divided by 6 to 10, and capacity is read from history. The ratio applies to tasks near the top of the order. The Scrum Guide's bound of one period holds for every task as the outer limit.
 - **A project without iterations:** the ratio has no denominator, so ask the Playbook's question against the project's SLE, and apply Wake's scope test on top of it. A project that keeps an estimation scale can use the step fixed at setup in the same place. No source gives a universal figure for this case, and the number comes from the project's own history.
 - **Under both:** the scope test overrides the number. A task under the ceiling whose contents cannot be stated still gets cut.
 - **Never:** person-weeks as the unit, for the reason in the note below.
@@ -122,7 +123,7 @@ The sources answer different questions, so the setup decides. The resolution is 
 | Input | Read from |
 |---|---|
 | The task's estimate | The task, on the project's scale |
-| The ceiling | The scale step fixed when the project was set up, or iteration capacity divided by 6 to 10 where iterations exist, or the SLE under a flow setup |
+| The ceiling | The scale step fixed when the project was set up, or iteration capacity divided by 6 to 10 where iterations exist with no SLE, or the SLE wherever one is kept |
 | Iteration capacity | Board history, where iterations exist |
 | The SLE | Board history, or a best guess until there is enough of it |
 | Whether scope can be stated | The task text: can each thing inside it be listed |

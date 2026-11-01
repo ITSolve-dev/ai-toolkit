@@ -1,11 +1,11 @@
 ---
 title: Filling a Period
 category: periods
-summary: How much to select for an iteration; the Scrum Guide names three inputs, past performance, upcoming capacity and the Definition of Done, and gives no formula, while Cohn's case fills one story at a time, stops at the tightest stage and not at the total, and leaves room to add. Selection applies only under an iteration setup.
-tags: [rule, iterations, forecast, capacity, scrum, cohn]
-sources: [scrum-guide-2020, montgomery-tracker-smells, cohn-agile-estimating-planning]
+summary: How much to select for an iteration; the Scrum Guide names three inputs, past performance, upcoming capacity and the Definition of Done, and gives no formula, while Cohn's case fills one story at a time, stops at the tightest stage and not at the total, and leaves room to add, and Vacanti and Seele read a count off a simulation of daily Throughput. This wiki resolves the three by setup. Selection applies only under an iteration setup.
+tags: [rule, iterations, forecast, capacity, scrum, cohn, throughput]
+sources: [scrum-guide-2020, montgomery-tracker-smells, cohn-agile-estimating-planning, flow-metrics-scrum-teams]
 created: 2026-11-01
-updated: 2026-11-01
+updated: 2026-11-02
 ---
 
 # Filling a Period
@@ -85,9 +85,33 @@ The aggregate looks comfortable, and the case explicitly distrusts it:
 
 **Failure mode, overflow at one stage.** Sign: the total fits while one stage's sum exceeds its capacity, as testing does here at 88 against 60 under a total that looks fine. The same check is on [[iteration-capacity]], without the worked numbers.
 
-## Which setup this applies under
+## Filling by count, from Throughput
 
-Under an iteration setup, as above. Under a flow setup nothing is selected for a period, so this page does not apply: the Kanban Guide replenishes on a capacity signal ([[what-may-move]]).
+[[flow-metrics-scrum-teams]] answers this page's question with a number. Forecast how many items finish in the period from daily Throughput, choose a probability, and read the count ([[throughput-monte-carlo]]). Its example is "8 or more items with 85% chance of success", which means pulling 8 (L1020). Line references in this section and the next are to that source.
+
+> To be clear, however, the MCS does not tell you which items you should pull in, only that you have capacity for up to 8.
+>
+> — [[flow-metrics-scrum-teams]], L1020
+
+This wiki reads that as leaving the order to decide which items go in ([[reprioritize-before-each-iteration]]). Two conditions come with the count. It holds only for items that pass the size check, since the results say how many right-sized items can be done (L1022, [[right-sizing]]). And the goal stays above it: "The Goal always supersedes whatever scope you’ve pulled" (L838). This wiki reads that as agreeing with [[commitment-over-a-period]].
+
+This wiki reads the method as a concrete form of the Guide's inputs and not a replacement for them. History is the sample, and only what reached the standard of done counts in it. Upcoming capacity has no term of its own and enters through which days are sampled (L872), so a known change the sample does not reflect is still a reason to adjust by hand.
+
+## Which way of filling holds under which setup
+
+This section is this wiki's reading, on sourced positions. The Guide names inputs and no stopping rule, Cohn stops at what the team will commit to, and Vacanti and Seele stop at a count. They differ in what stops the selection, and the setup decides it.
+
+| Setup | What stops the selection | Reason |
+|---|---|---|
+| Iterations, stable Throughput history, and a size check available | The count at the chosen probability | It reads history and needs no estimate, and Cohn's objection to a fill line concerns estimate errors, which a count does not have |
+| The same, with estimates kept | The count, with summed points as a cross-check | A disagreement between them is a question to raise, and a comparison over a release feeds [[dropping-estimates-for-flow-forecasts]] |
+| Iterations, thin or unstable history, or a process that has just changed | One task at a time, as on [[velocity-versus-commitment-planning]] | There is no sample to trust ([[how-much-flow-data]], [[forecast-needs-a-stable-process]]) |
+| A selection much heavier than usual on one stage, under any of the above | The tightest stage, as in Cohn's case | The count reflects the mix in its history, so it cannot see this selection's overflow |
+| Flow setup | Nothing, and this page does not apply | Nothing is selected for a period, since the Kanban Guide replenishes on a capacity signal ([[what-may-move]]). The same forecast can still answer how many by a date |
+
+The count was too high if periods reach it less often than the stated probability says. At 85% about one period in seven falls short by design, so a longer run of misses is the signal. It was too low if periods regularly pass even the forecast's 50% line.
+
+Cohn's worry about small selections does not disappear, in this wiki's reading. At 3 to 12 items ([[velocity-versus-commitment-planning]]) item sizes still differ and a count treats items as alike, so the size check carries that risk, and one item is a large step in the count.
 
 ## Agent executor note
 
@@ -97,4 +121,5 @@ The Guide's inputs survive as inputs. Their contents shift.
 - **Capacity** in the Guide means the Developers' time. With an agent executing, this wiki reads the limiting capacity as what the people steering can review in a period, not what an agent can run. That reading is unmeasured.
 - **Sizing** is the Developers' job: "The Developers who will be doing the work are responsible for the sizing." (L280). This assumes the estimator also executes. No source in this wiki says whether an agent's own estimate can fill that place ([[size-ceiling]]), so the rule's source and its setting do not match here.
 - **Hours per person and per skill** in Cohn's case do not transfer, and the plugin does not produce the level they count. The structure does: find the stage everything has to pass through, which for a few people steering an agent is likely the review of presented results, and fill against that and not against a total.
+- **A count from Throughput** reads finished items, and an item finishes when the people steering accept it ([[started-and-finished-points]]). So the count already measures the constraint this page expects, which is this wiki's reason to prefer it where the history exists. That reading is unmeasured.
 - **Slack** in Cohn's words protects "every team member’s time" (L4941), and an agent has no time of that kind to protect. This wiki applies the rule to the capacity that limits the project, as above. That reading is unmeasured.

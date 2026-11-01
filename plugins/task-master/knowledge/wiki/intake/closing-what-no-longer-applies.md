@@ -5,7 +5,7 @@ summary: An open item that has stopped needs a stated reason to stay; Kubernetes
 tags: [decision-rule, intake, triage]
 sources: [kubernetes-issue-triage, montgomery-tracker-smells]
 created: 2026-11-01
-updated: 2026-11-01
+updated: 2026-11-02
 ---
 
 # Closing What No Longer Applies
@@ -21,7 +21,7 @@ The charter's intake topic includes cutting what no longer applies. This rule de
 | An owning group shows no movement for 30 days | "gently poke the SIG" | L267 |
 | No activity at all for 90 days | A bot marks the issue stale, and it "will eventually be auto-closed" unless someone acts | L271 |
 
-These values are the project's. This wiki reads them as suited to a very large open-source project, with strangers reporting and many people holding issues. The guide gives no reason for them and no measurement. This wiki transfers none of them, and it offers no replacement figure. It keeps the kinds of trigger, which are about what has stopped, and each project reads the length from its own history of Work Item Age ([[flow-metrics]]).
+These values are the project's. This wiki reads them as suited to a very large open-source project, with strangers reporting and many people holding issues. The guide gives no reason for them and no measurement. This wiki transfers none of them, and it offers no replacement figure. It keeps the kinds of trigger, which are about what has stopped, and each project reads the length from its own history of Work Item Age ([[work-item-age]]).
 
 ## The rule
 

@@ -37,7 +37,7 @@ This wiki reads those two claims as compatible: shapes formed by many dots point
 
 **It avoids the SPC argument on purpose.** The chapter deliberately drops the language of Statistical Process Control, not from disagreement with Shewhart and Deming, but because for most people the path “leads to academic debates” over control limits, and “These types of debates only serve to cause confusion and miss the point of what we are trying to accomplish anyway.” (L2972). Control limits on a cycle time chart are therefore not part of this procedure; see [[pseudo-control-chart]].
 
-**It cannot show open work.** The chart's fundamental property is that “dots do not actually show up until a work item has finished” (L2872). This wiki draws the consequence: an item stuck right now is absent from this chart, and it arrives later as a single high dot, after the moment to act has passed. A question about what is stuck now needs age of open work, not this chart; see [[flow-metrics]] and [[which-view-of-cycle-time]].
+**It cannot show open work.** The chart's fundamental property is that “dots do not actually show up until a work item has finished” (L2872). This wiki draws the consequence: an item stuck right now is absent from this chart, and it arrives later as a single high dot, after the moment to act has passed. A question about what is stuck now needs age of open work, not this chart; see [[work-item-age]] and [[which-view-of-cycle-time]].
 
 ## Trade-offs and limits
 

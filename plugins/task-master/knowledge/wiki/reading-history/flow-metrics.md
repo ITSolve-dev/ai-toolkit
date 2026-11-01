@@ -3,14 +3,14 @@ title: Flow Metrics
 category: reading-history
 summary: What the flow measures count and do not; the Kanban Guide requires WIP, Throughput, Work Item Age and Cycle Time, Vacanti treats three of them as common to all flow implementations and claims a chain between them, and all can be read from board history without logged hours.
 tags: [concept, flow-metrics, board-history, kanban, wip, cycle-time, throughput]
-sources: [kanban-guide, scrum-guide-2020, kanban-playbook-right-sizing, zimmermann-good-bug-report, vacanti-actionable-agile-metrics]
+sources: [kanban-guide, scrum-guide-2020, kanban-playbook-right-sizing, zimmermann-good-bug-report, vacanti-actionable-agile-metrics, flow-metrics-scrum-teams]
 created: 2026-11-01
 updated: 2026-11-02
 ---
 
 # Flow Metrics
 
-Flow metrics are the counts and elapsed times that describe work moving through a workflow. The Kanban Guide requires four measures and calls them "mandatory" (L157). This page is descriptive: it fixes what each one counts, so that other pages can use the names. [[work-in-progress]], [[cycle-time]] and [[throughput]] each have a page of their own; Work Item Age is defined only here.
+Flow metrics are the counts and elapsed times that describe work moving through a workflow. The Kanban Guide requires four measures and calls them "mandatory" (L157). This page is descriptive: it fixes what each one counts, so that other pages can use the names. [[work-in-progress]], [[cycle-time]], [[throughput]] and [[work-item-age]] each have a page of their own.
 
 > - **WIP**: The number of work items started but not finished.
 > - **Throughput**: The number of work items finished per unit of time. Note the measurement of throughput is the exact count of work items.
@@ -27,7 +27,7 @@ Vacanti names three of the same measures, in the order he reasons about them:
 >
 > — [[vacanti-actionable-agile-metrics]], L448-L452
 
-These are his informal statements, and Chapter 2 gives the definitions ([[vacanti-actionable-agile-metrics]] L600, L652, L722). He calls the three "the metrics common to all flow implementations" and says other metrics may be tracked on top ([[vacanti-actionable-agile-metrics]] L750). Work Item Age is not on his list, although his fourth assumption for [[littles-law]] concerns the average age of WIP ([[vacanti-actionable-agile-metrics]] L974).
+These are his informal statements, and Chapter 2 gives the definitions ([[vacanti-actionable-agile-metrics]] L600, L652, L722). He calls the three "the metrics common to all flow implementations" and says other metrics may be tracked on top ([[vacanti-actionable-agile-metrics]] L750). Work Item Age is not on his list, although his fourth assumption for [[littles-law]] concerns the average age of WIP ([[vacanti-actionable-agile-metrics]] L974). His later book with Will Seele calls it "by far the most important of all the Flow Metrics to track" ([[flow-metrics-scrum-teams]] L374), and [[work-item-age]] resolves the two rankings.
 
 ## What each measures and does not
 

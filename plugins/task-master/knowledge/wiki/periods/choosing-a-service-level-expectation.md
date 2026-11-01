@@ -3,7 +3,7 @@ title: Choosing a Service Level Expectation
 category: periods
 summary: Pick the percentile from the cycle time scatterplot together with whoever receives the work, usually starting at the 85th; it needs about 11 to 30 finished items from a process that obeys Little's Law, and three mistakes each have a sign.
 tags: [decision-rule, estimation, cycle-time, percentiles, commitment]
-sources: [vacanti-actionable-agile-metrics]
+sources: [vacanti-actionable-agile-metrics, flow-metrics-scrum-teams]
 created: 2026-11-02
 updated: 2026-11-02
 ---
@@ -22,7 +22,7 @@ Choosing a [[service-level-expectation]] means picking which percentile of past 
 
 Given lines at 20 days (50th) and 43 days (85th), a customer content to see half of commitments missed gets 20 days at 50%, and one who wants more certainty gets 43 days at 85% (L3028).
 
-The default starting point is an observation from Vacanti's experience, not a rule: most teams start at the 85th percentile (L3030). Whether the standard percentiles fit a given context is deferred to a later book: "begin with these standard ones and experiment from there" (L3052).
+The default starting point is an observation from Vacanti's experience, not a rule: most teams start at the 85th percentile (L3030). Whether the standard percentiles fit a given context is deferred to a later book: "begin with these standard ones and experiment from there" (L3052). [[flow-metrics-scrum-teams]] names settings for a forecast of a period, on [[throughput-monte-carlo]] (its L954). This wiki reads them as a starting point for an SLE as well, which the book does not say.
 
 The goal after choosing has two stages: "first meet that SLA at least 85% of the time (true predictability)" (L3036), then lower the number of days the percentile stands for.
 

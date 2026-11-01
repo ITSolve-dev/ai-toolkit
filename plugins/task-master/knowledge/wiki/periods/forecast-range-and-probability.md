@@ -3,7 +3,7 @@ title: A Forecast Carries a Range and a Probability
 category: periods
 summary: Vacanti calls a date a forecast only if it states both a range and the probability of landing in it, computed from recorded data; the sign is a date with neither, and this wiki resolves it against Cohn's range-or-confidence by what the project has recorded.
 tags: [rule, estimation, forecasting, predictability, date-commitment]
-sources: [vacanti-actionable-agile-metrics, cohn-agile-estimating-planning]
+sources: [vacanti-actionable-agile-metrics, cohn-agile-estimating-planning, flow-metrics-scrum-teams]
 created: 2026-11-02
 updated: 2026-11-02
 ---
@@ -32,6 +32,7 @@ A date in a plan, a milestone, a status answer or a reply to "when will this be 
 
 - **Forecast versus estimate.** Vacanti allows that "an estimate can be thought of as a forecast" (L3526) but sets the forecasts of the chapter apart as "much more scientific than just some poor guy’s best guess" (L3526). This wiki reads the discriminator as the origin of the two numbers: a forecast's range and probability are computed from recorded data, for instance from [[single-item-forecast]]. An invented "90% sure" meets the form of the rule and misses its point.
 - **Forecast versus deadline.** This distinction is ours, not the source's: a deadline is a date somebody demands, a forecast is a date somebody calculates. A deadline carrying no probability is not a violation; the violation is presenting one as the other. See [[estimate-versus-commitment]].
+- **A date versus a count.** [[flow-metrics-scrum-teams]] applies the same pattern to how many items fit: "We have a 50% chance of getting 18 or more PBIs to done in this Sprint" (L958). This wiki notes that the range is open at one end. The book says a bare count misleads in a specific way: told "18", a reader assumes "the team has a 100% chance of getting exactly 18 items done" (L966), when the book puts that chance at about 6%. This wiki reads a bare count someone will rely on as the same sign as a bare date. The method is on [[throughput-monte-carlo]].
 - **Time versus other forecasts.** Vacanti limits the chapter to completion times but says the principles "are applicable to any type of forecast" (L3528). This wiki reads that as covering a relative estimate once it is converted into a date: the points carry no date claim, and the conversion does.
 
 ## Which holds under which setup
@@ -39,6 +40,7 @@ A date in a plan, a milestone, a status answer or a reply to "when will this be 
 Vacanti requires range and probability together. Cohn asks for a confidence, a range, or both, and this wiki already prefers the range where nothing produced a percentage ([[stating-plan-uncertainty]]). The resolution below is this wiki's, and it turns on what the project has recorded.
 
 - **Per-item cycle times exist:** both parts are required, and they are read from the same percentile ([[single-item-forecast]], [[monte-carlo-simulation]]).
+- **Finish dates exist and start dates do not:** a count or a date can still carry both parts, from daily Throughput ([[throughput-monte-carlo]]), because that needs only when items finished.
 - **Only a velocity history exists, under iterations:** give the range from [[velocity-range-forecast]] with its basis, and say that no probability was computed. That meets Cohn's form and half of Vacanti's rule, and the statement should not claim more.
 - **No history exists:** no conforming forecast is possible. This wiki's position is that saying so is the honest output, with any figure labelled a guess. The chapter does not address that case.
 

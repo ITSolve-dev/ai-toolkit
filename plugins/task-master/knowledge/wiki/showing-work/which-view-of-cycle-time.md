@@ -32,7 +32,7 @@ The first two columns follow the source for the first four rows. The last row an
 | How long may one item take, at what probability? | Scatterplot with [[cycle-time-percentile-lines]] (L2650-L2664) | Whether the coming items resemble the past ones |
 | Did cycle time change over this period? | Scatterplot, for its timeline (L2824) | Why it changed |
 | What shape does the data have, and how long is the tail? | Histogram with the same percentile lines (L2822-L2824) | When any of it happened |
-| What is open now, and how old is it? | Neither: Work Item Age, on [[flow-metrics]] | Anything, since both views count finished items only |
+| What is open now, and how old is it? | Neither: [[work-item-age]], read against the same percentile lines | Anything, since both views count finished items only |
 
 ## Inputs and what would show the choice wrong
 

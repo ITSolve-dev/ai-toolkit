@@ -3,9 +3,9 @@ title: Date-Driven Versus Feature-Driven
 category: periods
 summary: The test for which factor is fixed in a release, the date with scope negotiable or a feature set with the date following from it, and which computation each one takes.
 tags: [decision-rule, iterations, release, period-versus-milestone]
-sources: [cohn-agile-estimating-planning]
+sources: [cohn-agile-estimating-planning, flow-metrics-scrum-teams]
 created: 2026-11-01
-updated: 2026-11-01
+updated: 2026-11-02
 ---
 
 # Date-Driven Versus Feature-Driven
@@ -35,8 +35,9 @@ Ask which gives way when the two collide. If the date holds and stories fall out
 | Fixed | Iterations, from the calendar | The set of needed features |
 | Computed | Points that fit: iterations × velocity | Iterations needed: sum of estimates ÷ velocity |
 | Output | How far down the ordered list the line falls | When it finishes |
+| Computed without points | How many items by the date, at a chosen probability | Days until the items finish, at a chosen probability |
 
-Source for both columns: L2832-L2834. The mechanics and the worked numbers are on [[fitting-stories-into-a-release]], and the feature-driven division on [[deriving-duration-from-velocity]].
+Source for both columns: L2832-L2834, and for the last row [[flow-metrics-scrum-teams]] L1392-L1408 and L1422-L1428, on [[throughput-monte-carlo]]. The mechanics and the worked numbers are on [[fitting-stories-into-a-release]], and the feature-driven division on [[deriving-duration-from-velocity]].
 
 ## What would show the choice wrong
 

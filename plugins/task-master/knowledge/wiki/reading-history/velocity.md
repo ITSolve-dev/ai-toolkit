@@ -3,7 +3,7 @@ title: Velocity
 category: reading-history
 summary: The sum of the points of the items completed in an iteration; a rate of completion used both as a retrospective measure and as the forecast for the next iteration, which says nothing about scope change and is not the net progress the source sometimes calls by the same word.
 tags: [concept, velocity, iterations, forecasting, retrospective-analysis]
-sources: [cohn-agile-estimating-planning]
+sources: [cohn-agile-estimating-planning, flow-metrics-scrum-teams]
 created: 2026-11-01
 updated: 2026-11-02
 ---
@@ -36,7 +36,7 @@ This wiki notes that velocity can be read from board history without anyone logg
 
 Cohn adds that this holds regardless of mix, "whether they work on two five-point stories or five two-point stories" (L1010). This wiki reads that as a consequence of the additive claim in [[story-points]], so it inherits that claim's weakness: it is true only so far as the ratios hold.
 
-Cohn calls this a best guess, and the chapter gives no error bounds. He also notes that a past velocity is not always available and that it must sometimes be estimated, which he defers to Chapter 16 (L1023-L1029); which way to estimate it is decided on [[choosing-velocity-estimate-approach]], the labelled first guess is on [[planned-velocity]], and the result is stated as a [[velocity-estimate-range]]. This wiki reads velocity as what fills the "past performance" input on [[filling-a-period]]. The conversion to a date is on [[deriving-duration-from-velocity]], and what the rate corrects on its own is on [[velocity-self-correction]].
+Cohn calls this a best guess, and the chapter gives no error bounds. He also notes that a past velocity is not always available and that it must sometimes be estimated, which he defers to Chapter 16 (L1023-L1029); which way to estimate it is decided on [[choosing-velocity-estimate-approach]], the labelled first guess is on [[planned-velocity]], and the result is stated as a [[velocity-estimate-range]]. This wiki reads velocity as what fills the "past performance" input on [[filling-a-period]] where a project estimates, and that page also gives the count from Throughput that fills it where a project does not. The conversion to a date is on [[deriving-duration-from-velocity]], and what the rate corrects on its own is on [[velocity-self-correction]].
 
 ## What it measures and does not
 
@@ -66,7 +66,8 @@ The resolution here is this wiki's. Velocity needs two things a project may not 
 
 - **Iterations with estimates:** velocity as defined here.
 - **No iterations, estimates kept:** the same sum over a stated span of calendar time.
-- **No estimates:** Throughput on [[flow-metrics]], which counts items and asks no estimate. It says less about size, because the count depends on the cut.
+- **No estimates:** Throughput on [[flow-metrics]], which counts items and asks no estimate. It says less about size, because the count depends on the cut. [[throughput-monte-carlo]] is how that count is forecast.
+- **Iterations with both available:** [[flow-metrics-scrum-teams]] would drop velocity, calling points "snake oil" and estimated relative complexity "an extremely poor predictor of capacity" (L970), and the ranges read here report no measurement. This wiki keeps velocity on a project that estimates, as a rate of its own. What fills a period is decided on [[filling-a-period]], and whether points still drive dates on [[dropping-estimates-for-flow-forecasts]].
 
 The Scrum Guide does not use the word, as [[flow-metrics]] records, so velocity is Cohn's reading of an iteration setup and not a requirement of one.
 

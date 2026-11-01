@@ -5,7 +5,7 @@ summary: Two ways to fill an iteration; sum story estimates to last period's vel
 tags: [decision-rule, iterations, velocity, filling, cohn]
 sources: [cohn-agile-estimating-planning]
 created: 2026-11-01
-updated: 2026-11-01
+updated: 2026-11-02
 ---
 
 # Velocity Versus Commitment Planning
@@ -52,6 +52,7 @@ This resolution is this wiki's. Count how many tasks the period holds, in this w
 
 - **Iteration setup, twenty or more tasks in a period, stable history on one scale:** velocity can fill the period, since Cohn's own condition for errors averaging out is met.
 - **Iteration setup, the usual small selection:** use velocity as a cross-check and not as the filler. Add tasks one at a time in priority order and let the people steering stop when they will not commit. A total above recent velocity is acceptable when something named has changed, as in the case above, and otherwise it is a reason to stop. Cohn's hour sum is unavailable here, because the plugin does not produce the level below a task ([[unit-of-work]]), so the stopping judgement rests on the people steering, informed by [[filling-a-period]].
+- **Iteration setup with a stable Throughput history:** a third filler exists, a count read from a simulation, which sits outside Cohn's comparison: [[filling-a-period]].
 - **No history yet:** there is no velocity to use, so only the one-at-a-time form applies.
 - **Flow setup:** nothing is selected for a period, so neither applies ([[what-may-move]]).
 

@@ -3,7 +3,7 @@ title: How Much Flow Data Is Enough
 category: reading-history
 summary: Far fewer finished items than people assume are enough to start reading a process; five bracket the median at 93.75%, the source's eleven-sample figure needs correcting, and a small sample says little about the tail.
 tags: [decision-rule, flow-metrics, sampling, cycle-time, rule-of-five]
-sources: [vacanti-actionable-agile-metrics]
+sources: [vacanti-actionable-agile-metrics, flow-metrics-scrum-teams]
 created: 2026-11-02
 updated: 2026-11-02
 ---
@@ -24,7 +24,7 @@ This wiki checked the figure: the median escapes only if all five values fall on
 
 This wiki's reading of what that condition excludes:
 
-- **Finish-order bias.** The first five items to finish are not a random sample while longer items are still open, because the short ones finish first. Read the bracket next to the age of open work ([[flow-metrics]]).
+- **Finish-order bias.** The first five items to finish are not a random sample while longer items are still open, because the short ones finish first. Read the bracket next to the age of open work ([[work-item-age]]).
 - **A changed process.** Items finished before a policy or boundary change come from a different population.
 
 ## The eleven-sample figure, corrected
@@ -52,6 +52,18 @@ The thresholds below are this wiki's reading of the source's numbers, not the so
 The source is explicit that the rule "only gets us to the median of our population" (L3856), and that non-uniform Cycle Times need "more than eleven samples to gain insight to our world, but not much more" (L3862). This chapter gives no number for that. Its Chapter 12 gives one for a related question, how many points an SLE needs: "As few as maybe 11 or 12. Probably no more than 30." (L3054), conditional on how well the process obeys [[littles-law]].
 
 This wiki's reading is that a small sample says little about the tail: long-running items are rare, so a sample may contain none, and a high percentile drawn from five or ten items should not be quoted as a forecast. The rank arithmetic is on [[cycle-time-percentile-lines]].
+
+## Days of Throughput are not finished items
+
+A later book gives a figure for a simulation:
+
+> the general rule of thumb is a minimum of 10-12 data points and ideally as much as 20 points as a comfortable minimum.
+>
+> — [[flow-metrics-scrum-teams]], L864
+
+This wiki reads that figure as counting something other than the table above, despite the similar numbers. The book's data point is a day of Throughput, with weekends included, so two two-week periods give 28 (L864-L870). The table counts finished items. A quiet board can meet the first and not the second: fourteen days with three finishes passes the book's minimum and is below this page's five. This wiki applies both, the days so that the simulation has a sample and the items for what may be said about the result. The book gives no derivation for its figure.
+
+The book rejects "more data is better than less data" on grounds of recency (L864). This wiki reads that as agreeing with this page's input, which counts only since the process last changed.
 
 ## Agent executor note
 

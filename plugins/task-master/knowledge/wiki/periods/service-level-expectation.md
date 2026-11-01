@@ -3,7 +3,7 @@ title: Service Level Expectation
 category: periods
 summary: A per-item statement of how long an item should take from started to finished, as an elapsed time and a probability read from cycle time history; the Kanban Guide calls it a forecast and Vacanti a small-c commitment owed at the moment of pulling, it carries no penalty, and its example figures are not targets.
 tags: [rule, forecast, commitment, kanban, flow-metrics, cycle-time, percentiles]
-sources: [kanban-guide, scrum-guide-2020, radzikowska-waiting-blocked, kanban-playbook-right-sizing, vacanti-actionable-agile-metrics]
+sources: [kanban-guide, scrum-guide-2020, radzikowska-waiting-blocked, kanban-playbook-right-sizing, vacanti-actionable-agile-metrics, flow-metrics-scrum-teams]
 created: 2026-11-01
 updated: 2026-11-02
 ---
@@ -97,9 +97,9 @@ The term does not mean one thing across this wiki's sources. In the Kanban Guide
 
 - **Flow setup:** required, and it is the only forecast the setup has.
 - **Iteration setup:** not required. The Scrum Guide forecasts a whole selection, not an item ([[filling-a-period]]), and the period is the coarse limit.
-- **Iterations with a WIP control:** optional, and useful as an earlier warning than the period's end, because age can be checked while a task is open.
+- **Iterations with a WIP control:** optional, and useful as an earlier warning than the period's end, because age can be checked while a task is open. [[flow-metrics-scrum-teams]] uses it this way, at selection and inside the period (L1044, L1146).
 
-The resolution is this wiki's. An SLE under a period is capped in practice by the period's length, so history from such a project is not comparable with history from a flow setup.
+The resolution is this wiki's. An SLE under a period tends to be capped by the period's length, so history from such a project is not comparable with history from a flow setup. The cap is not firm: [[flow-metrics-scrum-teams]] rejects the idea that all items finish inside a two-week period (L1130), and this wiki keeps a returned task's whole span ([[unfinished-at-period-end]]), so such a task can run past the period's length.
 
 ## Cost
 

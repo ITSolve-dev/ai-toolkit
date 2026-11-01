@@ -3,7 +3,7 @@ title: Right-Sizing
 category: sizing
 summary: Before pulling an item, ask one yes/no question; can it finish within the SLE? Yes means pull it; no means split it, reduce its fidelity, or spike it. This replaces item-level points on a project that has an SLE.
 tags: [decision-rule, estimation, decomposition, cycle-time, pull]
-sources: [vacanti-actionable-agile-metrics, kanban-playbook-right-sizing]
+sources: [vacanti-actionable-agile-metrics, kanban-playbook-right-sizing, flow-metrics-scrum-teams]
 created: 2026-11-02
 updated: 2026-11-02
 ---
@@ -30,6 +30,16 @@ Neither exact duration nor comparison is sought. Five days, nine days and 8.247 
 
 - **Yes:** the conversation ends and the item is pulled (L3108).
 - **No:** the team considers how to "break it up, or change the fidelity, or spike it to get more information" (L3114). See [[story-splitting-patterns]] and [[spike-as-last-resort]].
+
+## The same test at selection
+
+[[flow-metrics-scrum-teams]] runs the check on each item chosen for a period, after a forecast has said how many fit ([[filling-a-period]]), because that forecast counts right-sized items only (L1022). Line references in this section are to that source. Its question keeps the bar low: "based on what we know about this PBI right now–which is not much–do we think we have an 85% chance of getting it done in 7 days or less?" (L1044). It gives two ways out of a no, "(a) pull the PBI in as is and take that risk, or (b) choose not to work on that PBI in this Sprint" (L1044). Vacanti's signed note adds a third for the item next in order, an effort at refinement, meaning to "break the PBI up into several other PBIs–not tasks!–or change the acceptance criteria" (L1046).
+
+This wiki resolves those by what each costs, and the resolution is ours. An item next in order is cut first, since skipping it changes the order for a reason of size ([[order-by-value-not-convenience]]). Taking it as it stands stays open to whoever steers, and the plugin records that the check said no, so that a later overrun reads as an accepted risk. Leaving it out is for an item that cannot be cut now.
+
+## Smallest bit of value
+
+The book quotes Prateek Singh's guidance to one of his teams, which asks two things: "is this the smallest bit of value and can it get done in 11 days or less?" (L1216). This wiki reads the first half as adding to the SLE question, since an item inside the SLE can still hold separable value. It reads that half as the text check on [[compound-task-text-signs]] and not as a push to minimize, which Cohn warns against ([[size-ceiling]]), because each piece still has to deliver something ([[vertical-slice]]). The 11 days belong to that team: "Each team will figure out their right-size stories from their own data." (L1216).
 
 ## Inputs and what would show the choice wrong
 
@@ -60,7 +70,7 @@ This section resolves a disagreement between methodologies and is the wiki's own
 
 - **Project with an SLE:** a stable process and enough finished items (about 11 to 30, see [[choosing-a-service-level-expectation]]). Right-sizing replaces point estimates at the item level.
 - **Project without one:** a new project or a recently changed process. There is no SLE to test against, so this check is unavailable and relative estimation stays the sizing tool until the data exists.
-- **Project planning dates or filling periods:** a yes/no gives no sum to plan with. The SLE's forecast applies to one item, so filling a period needs something else, whether velocity or throughput.
+- **Project planning dates or filling periods:** a yes/no gives no sum to plan with. The SLE's forecast applies to one item, so filling a period needs something else, whether velocity or throughput. The count from [[throughput-monte-carlo]] and this check then work as a pair: one says how many, and the other says which items may count.
 
 ## Agent executor note
 

@@ -1,9 +1,9 @@
 ---
 title: Story Splitting Patterns
 category: cutting-work
-summary: The three-step procedure and nine patterns for cutting a too-big task into thin vertical slices, each pattern with the trigger that selects it, and Cohn's guidelines with the worked examples the first source lost; data boundaries, exceptional conditions, operations and CRUD, cross-cutting concerns, nonfunctional targets and mixed priority, plus cuts by case of the domain and by rising capability, which buy order and not reduced size.
+summary: The three-step procedure and nine patterns for cutting a too-big task into thin vertical slices, each pattern with the trigger that selects it, and Cohn's guidelines with the worked examples the first source lost; data boundaries, exceptional conditions, operations and CRUD, cross-cutting concerns, nonfunctional targets and mixed priority, plus cuts by case of the domain and by rising capability, which buy order and not reduced size, and Vacanti and Seele's cuts by acceptance criterion, customer and assumption.
 tags: [method, decomposition, splitting]
-sources: [humanizing-work-splitting, kanban-playbook-right-sizing, cohn-agile-estimating-planning]
+sources: [humanizing-work-splitting, kanban-playbook-right-sizing, cohn-agile-estimating-planning, flow-metrics-scrum-teams]
 created: 2026-11-01
 updated: 2026-11-02
 ---
@@ -143,6 +143,24 @@ This wiki reads these cuts together: none of them made the work smaller. The fir
 ### What the guidelines forbid and when they start
 
 Two guidelines in the same chapter say what not to do: do not cut by layer or activity ([[component-task-masquerading]], [[vertical-slice]]), and do not refill a task once it is sized ([[related-changes-temptation]]). [[when-to-split-a-task]] holds the triggers for cutting at all, and [[combining-small-tasks]] the opposite move.
+
+## Vacanti and Seele's cuts
+
+[[flow-metrics-scrum-teams]] offers three cuts for an item found too large, and all line references in this section are to it. Its evidence is that the authors and others have used them (L1230), and it adds that several can apply to one item. The test it holds them to is "faster feedback" (L1230).
+
+| Cut | Trigger | Move | Lines |
+|---|---|---|---|
+| By acceptance criterion | Several criteria could each be delivered alone | One task per criterion | L1234-L1254 |
+| By customer | The text names a whole population or "the customer" | One task per concrete group | L1258-L1280 |
+| By assumption | The value rests on claims nobody has checked | One task per assumption, each inside the SLE | L1284-L1316 |
+
+**By acceptance criterion.** The aim is "closer and closer to a 1:1 ratio of acceptance criteria to the PBI" (L1234), with a limit: "This does not mean that every bug, story, experiment, feature or initiative should have only one acceptance criteria." (L1234). The book's example is a paper-review item whose five criteria could each be delivered without the others (L1240-L1254). This wiki reads the sign in text as the one on [[compound-task-text-signs]], with the same limit.
+
+**By customer.** The example is "Enable secure login for employees." (L1262), cut by place of work, country, department or role (L1266-L1274). The book's claim is that a generic customer "increases the size of the work" (L1258), and it adds "Not all customers are equal" (L1280). This wiki reads that as an order as well as a cut, so the narrow group that matters most comes first ([[choosing-between-splits]]). It has no number in the table above. This wiki's sign in text is a plural population with no narrowing, which is the Kanban Playbook's question "For which users?" ([[kanban-playbook-right-sizing]] L45) turned into a cut.
+
+**By assumption.** The question is "what are all the assumptions we’re making about the value of this thing?" (L1286), and each assumption becomes a separately delivered piece. The effort for each "should comfortable fit within your SLE" (L1304). This wiki separates it from a spike by the kind of unknown: a spike asks how to build something, and this asks whether it is worth building ([[end-and-means-uncertainty]], [[spike-as-last-resort]]). Like a spike, the task's acceptance is a question answered. That distinction is ours.
+
+This wiki notes the limit for an agent. The book's ladder of evidence runs through conversations, observation, paper prototypes and a Wizard of Oz experiment (L1306-L1312), which are people's work. The plugin can propose the question and cut the task, and a person has to run most of it.
 
 ## Agent executor note
 

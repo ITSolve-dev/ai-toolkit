@@ -5,7 +5,7 @@ summary: The lookup from a project's setup to the rule that holds for moving, li
 tags: [decision-rule, wip, iterations, kanban, scrum]
 sources: [kanban-guide, scrum-guide-2020]
 created: 2026-11-01
-updated: 2026-11-01
+updated: 2026-11-02
 ---
 
 # Board Rules by Setup
@@ -32,7 +32,7 @@ Two switches describe a setup, and the plugin can read both from project configu
 | Can the list change mid-way? | Yes, up to the moment of starting | Yes, if the goal is safe | Yes, if the goal is safe | [[mid-period-change]] |
 | What if a task is unfinished? | It stays and ages | It goes back and is ordered again | It goes back and is ordered again | [[unfinished-at-period-end]] |
 | What is the expectation for a task's life? | The SLE | The period | The period, and the SLE if kept | [[overrun-triggers-a-recut]] |
-| What is the size ceiling? | Likely to finish inside the SLE | Fits inside the period, and a fraction of it | Fits inside the period, and a fraction of it | [[size-ceiling]] |
+| What is the size ceiling? | Likely to finish inside the SLE | Fits inside the period, and a fraction of it, or inside the SLE if kept | Fits inside the period, and a fraction of it, or inside the SLE if kept | [[size-ceiling]] |
 | Does a blocked task count? | Yes | There is no count to join | Yes | [[blocked-work-counts-against-wip]] |
 | Can a stopped task leave its place? | Only as a declared exception, in a narrow case | No: there is nothing to gain | Only as a declared exception, in a narrow case | [[parking-lot]] |
 | Can a task go back? | No | Only by returning to the unstarted pile at a period's end | Only by returning to the unstarted pile at a period's end | [[backward-movement]] |

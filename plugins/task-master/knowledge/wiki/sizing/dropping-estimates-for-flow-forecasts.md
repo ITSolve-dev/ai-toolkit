@@ -3,7 +3,7 @@ title: Dropping Estimates for Flow Forecasts
 category: sizing
 summary: Run a flow forecast beside points for a release and test points against Cycle Time on your own history; retire estimates for date forecasting only if the evidence supports it, and keep sizing for cuts.
 tags: [decision-rule, estimation, story-points, forecasting, cycle-time]
-sources: [vacanti-actionable-agile-metrics]
+sources: [vacanti-actionable-agile-metrics, flow-metrics-scrum-teams]
 created: 2026-11-02
 updated: 2026-11-02
 ---
@@ -47,6 +47,7 @@ This section is this wiki's own reading, on sourced positions. [[story-points]] 
 
 - **Stable history with enough finished items:** forecast from flow; [[monte-carlo-simulation]], [[single-item-forecast]].
 - **New project, or unstable or thin history:** keep relative estimates and a [[velocity-range-forecast]]; flow data does not yet exist ([[how-much-flow-data]]).
+- **Deciding how much fits in a period:** a count from Throughput needs no points, and the size check stands in for them ([[filling-a-period]], [[throughput-monte-carlo]]). Keeping points beside it for a while is the same test as step 3.
 - **Deciding whether to cut a task:** keep sizing either way. Retiring estimates here concerns dates. The charter's size above which a task is cut is a different question, and the chapter does not address it. See [[estimate-versus-commitment]], [[size-ceiling]] and [[right-sizing]].
 
 Which unit an outside reader should be given is a separate choice, on [[points-or-time-and-count]].
@@ -54,6 +55,18 @@ Which unit an outside reader should be given is a separate choice, on [[points-o
 ## Other reasons offered
 
 The source reports that stakeholders found points confusing and were "always looking for time based answers" (L4236), and that Cycle Time and Throughput are more tangible. See [[story-points-do-not-convert-to-hours]]. The claim that dropping estimates "eliminated the emotion and recrimination" (L4272) is a report about people; this wiki keeps it as testimony only.
+
+## A stronger claim, with less behind it
+
+A later book by the same author goes further than Siemens:
+
+> That’s because with an MCS approach, estimation is not needed.
+>
+> — [[flow-metrics-scrum-teams]], L970
+
+The book calls estimated relative complexity "an extremely poor predictor of capacity" (L970), and its reasoning is that Throughput history already holds items of every complexity, blocked, interrupted or unlike earlier work (L978-L994). The ranges read here report no measurement. This wiki therefore treats it as a general argument, which the rule above does not accept as grounds by itself, and it does not count as a second voice beside Siemens, since the author is the same.
+
+This wiki keeps two conditions from the book all the same. History replaces estimation only "if you choose your inputs properly" (L970). And the count covers right-sized items only (L1022), which [[right-sizing]] records as an estimate of a smaller kind, so what the book retires is the scale and the number, and not the judgement of size.
 
 ## Trade-offs
 

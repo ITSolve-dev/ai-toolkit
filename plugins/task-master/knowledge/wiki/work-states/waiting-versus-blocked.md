@@ -5,7 +5,7 @@ summary: Stopped work is waiting if an outside party holds it, an expected end i
 tags: [decision-rule, work-states, dependencies, kanban]
 sources: [radzikowska-waiting-blocked, kanban-guide, scrum-guide-2020, wester-board-design]
 created: 2026-11-01
-updated: 2026-11-01
+updated: 2026-11-02
 ---
 
 # Waiting Versus Blocked
@@ -69,4 +69,4 @@ A planned review is a different case, and this page used to group the two togeth
 
 ## Related
 
-How each state is handled on the board is on [[blocked-work-counts-against-wip]] and [[parking-lot]]. Whether a stop should have been inside a task at all is on [[sequence-versus-wait]].
+How each state is handled on the board is on [[blocked-work-counts-against-wip]] and [[parking-lot]], and what a project states in advance about blocked work is on [[blocked-work-policies]]. Whether a stop should have been inside a task at all is on [[sequence-versus-wait]].

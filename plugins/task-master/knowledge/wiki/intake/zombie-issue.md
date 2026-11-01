@@ -5,7 +5,7 @@ summary: An open item nobody is acting on; it is the smell practitioners called 
 tags: [failure-mode, intake, board-history, evidence]
 sources: [montgomery-tracker-smells, kubernetes-issue-triage, zimmermann-good-bug-report]
 created: 2026-11-01
-updated: 2026-11-01
+updated: 2026-11-02
 ---
 
 # Zombie Issue
@@ -24,7 +24,7 @@ The authors' reasoning follows: "After enough time has passed, it might be uncle
 - **In board history:** a held item with no output. The Kubernetes guide treats this as a trigger ([[closing-what-no-longer-applies]]).
 - **In a new request:** someone reports the same thing again, with words like "I raised this issue several times" ([[zimmermann-good-bug-report]] L535, and see [[duplicate-reports]]).
 
-The study does not say how long is long, and this wiki does not supply a figure. Under a flow setup, a started item is compared with the SLE ([[overrun-triggers-a-recut]]). An unstarted item has no such measure, because Work Item Age begins at the start ([[flow-metrics]]), so this wiki reads its age from board history against the project's own distribution.
+The study does not say how long is long, and this wiki does not supply a figure. Under a flow setup, a started item is compared with the SLE ([[overrun-triggers-a-recut]]). An unstarted item has no such measure, because Work Item Age begins at the start ([[work-item-age]]), so this wiki reads its age from board history against the project's own distribution.
 
 ## What this sign does not establish
 

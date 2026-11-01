@@ -39,7 +39,7 @@ This wiki reads that as saying a reader should check the assumptions before trus
 
 ## Limit: finished items only
 
-The calculation "is only valid for items that have finished", and the line must be drawn backward (L1632). This wiki reads that as excluding work still open, whose age needs Work Item Age on [[flow-metrics]] instead.
+The calculation "is only valid for items that have finished", and the line must be drawn backward (L1632). This wiki reads that as excluding work still open, whose age needs [[work-item-age]] instead.
 
 ## Failure mode: the horizontal line read as exact
 

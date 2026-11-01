@@ -3,7 +3,7 @@ title: Monte Carlo Simulation
 category: periods
 summary: Forecasting a finish by sampling real flow data many times; the output is a set of outcomes with probabilities and not one date, Siemens HS committed near the 85th percentile, and the method is only as good as its data, its assumptions and the stability of the history behind it.
 tags: [method, forecasting, flow-metrics, planning-a-date, release, probabilistic]
-sources: [vacanti-actionable-agile-metrics]
+sources: [vacanti-actionable-agile-metrics, flow-metrics-scrum-teams]
 created: 2026-11-02
 updated: 2026-11-02
 ---
@@ -21,7 +21,7 @@ The source gives the general pattern by quoting Wikipedia (L3670-L3676):
 > 3. Perform a deterministic computation on the inputs.
 > 4. Aggregate the results.
 
-Vacanti does not teach the modelling itself: "The intricacies and practices about how to model and simulate knowledge work using the Monte Carlo Method are well beyond the scope of this book", and he sends readers to Troy Magennis' work on Lean Forecasting (L3678). This page therefore records what makes a simulation usable and how one organization ran it, not how to build one. The chapter uses "Monte Carlo Simulation" and "The Monte Carlo Method" interchangeably (L3684), and this page follows it.
+Vacanti does not teach the modelling itself: "The intricacies and practices about how to model and simulate knowledge work using the Monte Carlo Method are well beyond the scope of this book", and he sends readers to Troy Magennis' work on Lean Forecasting (L3678). This page therefore records what makes a simulation usable and how one organization ran it, not how to build one. The chapter uses "Monte Carlo Simulation" and "The Monte Carlo Method" interchangeably (L3684), and this page follows it. A later book by the same author does teach the modelling for one input, counts of items finished per day, and that recipe is on [[throughput-monte-carlo]].
 
 ## What it produces
 
@@ -52,7 +52,7 @@ Siemens HS adopted the method after its Cycle Times stabilized ([[siemens-hs-cas
 5. Commit: "Our practice is to commit to the date which is closest to the 85<sup>th</sup> percent likelihood" (L4214).
 6. Rerun during the release for risk analysis and what-if questions (L4224).
 
-The chapter does not list the other inputs, such as remaining item count or how parallel work is modelled, and it names no tool configuration, so it does not suffice as a recipe.
+The chapter does not list the other inputs, such as remaining item count or how parallel work is modelled, and it names no tool configuration, so it does not suffice as a recipe. The Throughput form on [[throughput-monte-carlo]] does.
 
 **The commitment rule's input and test.** The rule takes the forecast distribution as input, built from board history. What would show it wrong is a run of committed dates missed well beyond the expected rate. This wiki notes that an 85% date means roughly one commitment in seven is late by design, so one miss proves nothing. The source reports the model "proved extremely predictive" (L4224), with no hit rate and over one release run in parallel with points, so this is a report and not a measurement.
 
@@ -75,7 +75,7 @@ This wiki assembles the chapter's advice into a rule that chooses. The assembly 
 - **It does not replace judgement.** "No forecasting method is going to be a suitable substitute for either (a) common sense thinking or (b) active management interventions as suggested by new information." (L3758)
 - **It depends on a tool.** Vacanti assumes one is in use (L3702), and the tool brings assumptions of its own.
 - **It needs a stable history.** Siemens' input was history "that were stable and predictable" (L4232), and this wiki reads a rising Cycle Time trend as making the past a poor sample.
-- **This chapter states no minimum amount of data.** Its one remark on scale is rhetorical, about "hundreds of items in your backlog" (L3730). For a few people with few finished tasks, this wiki has no sourced threshold from this chapter below which a simulation stops meaning anything; a source giving one would close this gap. The transfer here is ours: the Siemens histogram rests on roughly a thousand stories across 15 teams, a few people steering an agent may have dozens of finished items, so the tail of the distribution is poorly known ([[how-much-flow-data]]), and [[velocity-range-forecast]] may be all the history supports.
+- **This chapter states no minimum amount of data.** Its one remark on scale is rhetorical, about "hundreds of items in your backlog" (L3730). For a few people with few finished tasks, this wiki has no sourced threshold from this chapter below which a simulation stops meaning anything; a source giving one would close this gap. The transfer here is ours: the Siemens histogram rests on roughly a thousand stories across 15 teams, a few people steering an agent may have dozens of finished items, so the tail of the distribution is poorly known ([[how-much-flow-data]]), and [[velocity-range-forecast]] may be all the history supports. [[flow-metrics-scrum-teams]] gives a rule of thumb for the Throughput form, in days and with no derivation, which narrows this gap and does not close it ([[how-much-flow-data]]).
 - **False precision.** A percentile date printed without its likelihood is read as a promise; see [[estimate-is-not-a-promise]] and [[stating-plan-uncertainty]].
 
 The chapter on Siemens also uses the model to attach costs to each percentile (L4214); that is dropped here as outside this wiki's purpose.
