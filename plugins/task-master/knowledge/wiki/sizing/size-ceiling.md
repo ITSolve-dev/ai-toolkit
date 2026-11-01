@@ -1,9 +1,9 @@
 ---
 title: Size Ceiling
 category: sizing
-summary: The size above which a task is cut, chosen by whether its scope can still be stated, with the sources' figures kept alongside the setting that produced them; a ratio of the period under iterations, and the likelihood of finishing inside the SLE under a flow setup.
+summary: The size above which a task is cut, chosen by whether its scope can still be stated, with the sources' figures kept alongside the setting that produced them; a ratio of the period under iterations, the likelihood of finishing inside the SLE under a flow setup, and a floor as well as a ceiling. A large item is read as a placeholder to be replaced once understood.
 tags: [rule, estimation, decomposition, invest]
-sources: [wake-invest, humanizing-work-splitting, scrum-guide-2020, kanban-playbook-right-sizing, kanban-guide, montgomery-tracker-smells]
+sources: [wake-invest, humanizing-work-splitting, scrum-guide-2020, kanban-playbook-right-sizing, kanban-guide, montgomery-tracker-smells, cohn-agile-estimating-planning]
 created: 2026-11-01
 updated: 2026-11-01
 ---
@@ -44,6 +44,54 @@ The Scrum Guide sets an outer bound and no figure: "Product Backlog items that c
 
 The Guide's other figure is not a ceiling. It says planning "is often done by decomposing Product Backlog items into smaller work items of one day or less." (L226). That is a description of what is often done, in a person's days, one level below this wiki's task ([[unit-of-work]]), and it is at the Developers' "sole discretion" (L226). This wiki does not use it.
 
+### Cohn's 2 to 5 days
+
+Cohn gives a target size and states its conditions around it:
+
+> For teams working in two-week iterations, splitting features such that each can be done in 2–5 days or so is appropriate.
+>
+> — [[cohn-agile-estimating-planning]], L2717
+
+Cohn ties the figure to two-week iterations, and it moves with length: "Stories will need to be a little smaller for one-week iterations and can, but don’t need to, be a little larger for longer iterations." (L2717). Estimates stay in points, and the days are a translation each team already knows: "by the time a team needs to split stories they will know approximately how many story points or ideal days equates to around 2–5 days" (L2717).
+
+Cohn does not say whose days these are, whether a day means elapsed time or one person's effort, or how many people work on the item. His reason is "Stories of these approximate sizes flow best through the short iterations of an agile project." (L2717). This wiki reads that as an assertion with no measurement.
+
+This wiki's arithmetic: a two-week iteration has about ten working days, so 2 to 5 days is a fifth to a half of the iteration's length. That is a ratio of item to period length. The Humanizing Work ratio is a ratio of item to capacity. A team working in parallel can finish more than five items of that length in a period, so the two figures can both hold and cannot be converted into each other without knowing the team. This wiki keeps the 6 to 10 ratio as the working rule, since its denominator is read from history, and treats Cohn's figure as a cross-check for a human team. Both agree on the shape: the size scales with the period.
+
+Cohn also agrees with the Scrum Guide's outer bound, in stronger words: "if implementing a particular user story will take longer than the length of the iteration there’s no choice but to split the story" ([[cohn-agile-estimating-planning]] L2579). The occasions for cutting are on [[when-to-split-a-task]].
+
+### Cohn's one task per developer per day
+
+Cohn also gives a size for the level below a story. Like the Scrum Guide's "one day or less", it sits one level below this wiki's task, so it is not a ceiling for tasks on a board ([[unit-of-work]]).
+
+> The tasks you create should be of an approximate size so that each developer is able to finish an average of one per day.
+>
+> — [[cohn-agile-estimating-planning]], L3270
+
+The figure is an average per developer and comes with stated exceptions: "there will often be tasks that are larger than this" (L3272). This wiki notes that it is a coaching rule of thumb in a person's days, with no measurement behind it, and that it counts on-task hours as defined in ideal time (L3246). Cohn gives two reasons for the size. "Larger tasks tend to get bottled up with a developer or two and the rest of the team can be left waiting for them to complete the task." (L3270). And a team holding short daily meetings can have each developer report a finished task on most days (L3270).
+
+The fictional case study in Chapter 23 (L4961) states the same level as a band. Asked whether an engine can stay one two-week item, the coach answers:
+
+> No, you can’t. When we’re identifying tasks we want them to be around 1– 16 hours. Ideally you should be able to finish one each day, which means the average should be like five or six hours since we always have a few other things to do each day.
+>
+> — [[cohn-agile-estimating-planning]], L5728
+
+The top of the band is described as "A couple of solid days." (L5698). This wiki's count across Tables 23.7, 23.9 and 23.10 (L5750-L5763, L5836-L5845, L5863-L5880) gives 30 pieces and 196 hours, ranging from 2 to 16 with a mean of about 6.5, so the case's own cards run slightly above what it prescribes and two sit exactly at the ceiling. The setting is a two-week iteration at six planned hours a day ([[iteration-capacity]]). The chapter measures its stories in points, so the band says nothing about their size.
+
+**Sign at that level:** a piece above 16 hours, or a piece estimated in weeks. This wiki reads the cure as cutting along what the piece delivers, as in the worked example on [[story-splitting-patterns]], and not as finding a way to fit the number.
+
+## A large item is a placeholder
+
+The reasoning behind Cohn's figure does transfer, because it says what a larger item means:
+
+> larger tasks should be generally understood to be placeholders for one or more additional task that will be added as soon as they are understood
+>
+> — [[cohn-agile-estimating-planning]], L3272
+
+Cohn is permissive about creating one: "If you need to create a sixteen-hour task during iteration planning, do so. However, once the task is more adequately understood, augment or replace it." (L3272). The replacement may total more or less than the original sixteen hours (L3272), so the placeholder's number is not preserved. This wiki reads that as agreeing with Wake that a large number reports missing understanding. Cohn adds what to do about it: record the placeholder now and replace it when understanding arrives.
+
+**Sign of violation:** an item kept whole and unchanged after work on it has shown what it contains, including when its pieces are known and listed in comments and not on the board. This sign is this wiki's.
+
 ## The Kanban position: a question and not a size
 
 The Kanban Playbook replaces a ceiling with one question:
@@ -57,6 +105,8 @@ This wiki takes the question and disagrees with the first two sentences. Asking 
 The page also has a circle in it. It says "Until your items are right-sized, your SLE is not reliable either." (L22), and it then checks size against the SLE. So the first SLE comes from items that were never checked. This wiki's way out is to start from the Kanban Guide's "best guess" ([[kanban-guide]] L115), treat early answers as provisional, and recompute the [[service-level-expectation]] once checked tasks have finished. A check against an SLE also tightens the history by construction, so a better SLE after right-sizing is not evidence that anything else improved. Both points are ours.
 
 The Playbook's definition adds what a ceiling lacks, which is a floor. Right-sized means "small enough to flow through your system reliably, but still deliver something a customer can use." (L16). The floor is the job of [[vertical-slice]] and [[component-task-masquerading]].
+
+Cohn sets a floor of a different kind. He warns against reading his chapter as advice to minimize: "it may be tempting to think that every user story a team is about to work on should be made as small as possible" ([[cohn-agile-estimating-planning]] L2717), and he rejects that. This wiki reads the 2 to 5 days as a band with a lower edge, the size analogue of the Playbook's floor, though Cohn does not connect them. His response to items below it is [[combining-small-tasks]].
 
 ## Which figure applies under which setup
 
@@ -77,16 +127,18 @@ The sources answer different questions, so the setup decides. The resolution is 
 | The SLE | Board history, or a best guess until there is enough of it |
 | Whether scope can be stated | The task text: can each thing inside it be listed |
 
-The choice was wrong in one of two ways, and each shows up later. A task kept under the ceiling was too big if its scope grew after work started, if it had to be cut while in progress, or if it passed the SLE question and then outlived the SLE. A task that was cut was cut needlessly if its pieces were always scheduled, done and reviewed together.
+The choice was wrong in one of two ways, and each shows up later. A task kept under the ceiling was too big if its scope grew after work started, if it had to be cut while in progress, or if it passed the SLE question and then outlived the SLE. A task that was cut was cut needlessly if its pieces were always scheduled, done and reviewed together. Cohn's figure was wrong for a project if items in the band still failed to finish within the period, or if items outside it finished as reliably; board history shows both.
 
 ## Agent executor note
 
-Person-weeks do not transfer, because they count a human's effort. The mechanism does: an estimator who cannot say what a task contains is in the same position whoever will execute it. Wake's third factor, "the team’s experience" (L66), is a human one, and the sources here do not say what replaces it for an agent. Wake's closing claim that "Smaller stories tend to get more accurate estimates" (L70) concerns human estimators and has not been tested with agents in any source in this wiki.
+Person-weeks and Cohn's days do not transfer, because they count a human's effort. The mechanism does: an estimator who cannot say what a task contains is in the same position whoever will execute it. Wake's third factor, "the team’s experience" (L66), is a human one, and the sources here do not say what replaces it for an agent. Wake's closing claim that "Smaller stories tend to get more accurate estimates" (L70) concerns human estimators and has not been tested with agents in any source in this wiki. Cohn's reason, flow through short iterations, depends on a team's pace, and this wiki expects it to be replaced by how many results the people steering can review in a period. What survives of his figure is the shape, that the size moves with the period, and its lower edge.
 
 The ratio's reasons are "frequent feedback" and not "having too many stories to manage" (L121). Both sit with the person reviewing and steering, so this wiki expects them to survive. The count of 6 to 10 was formed on human sprint teams, though, and an agent's throughput can differ from a team's. Treat it as a starting point and re-derive it from how many results the people steering can actually review in a period.
 
 The SLE question survives better than any fixed figure, because it reads the project's own history. It still needs someone to judge "a good chance", and the Playbook assumes a team does that. No source here says how well an agent can.
 
+Cohn's one-per-day figure does not transfer: it counts a person's day, and both of its reasons, one developer blocking others and daily status reporting, concern a team of people. This wiki does not use it as a ceiling, and the 1 to 16 hour band falls with it: neither may be applied as agent run time. What may transfer is the purpose of a ceiling, that one result stays small enough to be reviewed at once. The charter's test, that a started task finishes without waiting, is the applicable check, and where the two disagree that test wins for an agent. The placeholder reading survives, because it concerns what is known about the work and not who does it. With an agent executing, the replacement should happen before start, since an executor that guesses will fill a placeholder with its own assumptions ([[recoverable-versus-task-only-facts]]). That last clause is this wiki's reading.
+
 ## Related
 
-A ceiling needs one scale. The study behind [[montgomery-tracker-smells]] lists as a smell that "The “estimate” property is unclear or different scales are used across issues." (L215), with its result in a lost figure. Where that holds, no step on a scale means one thing and this rule cannot be applied. A missing estimate is judged on [[empty-fields]]. A task too poorly understood to size goes to [[spike-as-last-resort]]. A task above the ceiling is cut with [[story-splitting-patterns]]. The signs that a task is too big in its text are on [[compound-task-text-signs]], and what a large task does to the count is on [[hidden-wip-in-large-items]].
+A ceiling needs one scale. The study behind [[montgomery-tracker-smells]] lists as a smell that "The “estimate” property is unclear or different scales are used across issues." (L215), with its result in a lost figure. Where that holds, no step on a scale means one thing and this rule cannot be applied. A missing estimate is judged on [[empty-fields]]. A task too poorly understood to size goes to [[spike-as-last-resort]]. A task above the ceiling is cut with [[story-splitting-patterns]]. The signs that a task is too big in its text are on [[compound-task-text-signs]], and what a large task does to the count is on [[hidden-wip-in-large-items]]. Why a size does not fix a duration is on [[story-points-do-not-convert-to-hours]].

@@ -3,7 +3,7 @@ title: WIP Control
 category: moving-work
 summary: An explicit bound on how many tasks may be started and not finished; the Kanban Guide requires one over the whole workflow in any form, treats running under it as a departure too, and wants exceptions declared in advance.
 tags: [rule, wip, kanban]
-sources: [kanban-guide, scrum-guide-2020, radzikowska-waiting-blocked]
+sources: [kanban-guide, scrum-guide-2020, radzikowska-waiting-blocked, cohn-agile-estimating-planning]
 created: 2026-11-01
 updated: 2026-11-01
 ---
@@ -67,6 +67,8 @@ What changes is what the bound protects. With people executing, it protects thei
 **Kanban Guide:** required, in any form, over the started-to-finished span (L139).
 
 **Kanban Maturity Model:** the limit is per column, and blocked items add to it ([[blocked-work-counts-against-wip]]).
+
+**Cohn:** the limit is per developer, one or two sub-story cards at a time ([[wip-per-executor]]). What work in process does to cycle time is on [[wip-lengthens-cycle-time]].
 
 **Scrum Guide:** there is no limit on concurrent work. The term "WIP" does not occur in it. What the Guide limits is the objective and the total. There is one Sprint Goal, "the single objective for the Sprint" ([[scrum-guide-2020]] L301), and one Product Goal at a time: "They must fulfill (or abandon) one objective before taking on the next." (L291). The selection for a period bounds how much is taken on over the period ([[filling-a-period]]). None of this bounds how much is open at one moment. How work proceeds inside the period is left to the team, which is self-managing, "meaning they internally decide who does what, when, and how." (L114).
 
