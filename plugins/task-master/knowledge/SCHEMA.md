@@ -138,8 +138,9 @@ them. Their number should go down, not up.
 
 - **Ingest: a rule is kept only if it can be caught or applied.** A rule that detects states the sign
   of its violation; a rule that chooses states its inputs, where each is read from, and what later
-  fact would show the choice wrong. A merely absent field is not a sign. "Communicate well" and "stay
-  agile" are commentary, not knowledge for this wiki. Much of what is written about boards fails this
+  fact would show the choice wrong. A rule that chooses cannot lean on "no basis was stated" as its
+  sign, because any rule can meet that; a rule about task content can, since what it detects is the
+  omission. "Communicate well" and "stay agile" are commentary, not knowledge for this wiki. Much of what is written about boards fails this
   test, and that is expected. Descriptive pages and source summaries are exempt: they prescribe
   nothing. Lint does not check this; page review does.
 - **Ingest: a practitioner source is graded on its mechanisms, not its magnitudes.** Keep a claim that
@@ -175,9 +176,12 @@ is filled.**
 
 ## Notes
 
-Named starting source: Mike Cohn, *Agile Estimating and Planning* — covers estimation and iterations.
-The rest comes from scouting against this charter. Decomposition is the first priority among the
-gaps: the plugin's central rule about the unit of work rests on it and it has no source yet.
+Sources were chosen by two scouting passes against this charter, plus three books. The file offered
+for Reinertsen's *Principles of Product Development Flow* is a third-party summary, not the book, and
+was rejected; see the log. Priority without it rests on the qualitative cost-of-delay source.
+
+The test "once started, it can be finished without waiting" has no source: it comes from the plugin's
+design, and pages using it say so.
 
 <!-- Co-evolution log: record decisions about how THIS wiki is run as they emerge. -->
 
