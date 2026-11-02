@@ -40,7 +40,7 @@ sources: [kanban-guide]
 
 # WIP Control
 
-Board limits items in progress, because started and not finished work does not help anyone.
+Board should limit items in progress, because started and not finished work does not help anyone.
 
 > Controlling WIP is the practice of limiting the items in progress.
 >
@@ -81,6 +81,12 @@ def test_reworded_inline_quotation_fails():
     bad = FAIR.replace('"no number and no\nmethod"', '"no number or method"')
     problems = compare(READABLE, bad)
     assert any("quotations lost: 'no number and no method'" in p for p in problems)
+
+
+def test_one_word_quotation_does_not_shift_the_pairs():
+    readable = 'The word "Sprint" is the Guide\'s; it says "one goal at a time" (L3).\n'
+    compressed = 'Word "Sprint" is Guide\'s; it says "one goal at a time" (L3).\n'
+    assert compare(readable, compressed) == []
 
 
 def test_reflowed_quotation_passes():
@@ -182,3 +188,18 @@ def test_missing_ref_is_a_usage_error(tmp_path):
     (root / "SCHEMA.md").write_text("# S\n", encoding="utf-8")
     subprocess.run(["git", "-C", str(tmp_path), "init", "-q"], check=True)
     assert main(["--root", str(root), "--ref", "no-such-tag"]) == 2
+
+
+def test_dropped_attribution_fails():
+    readable = "He says the measure is a plain count.\n"
+    assert any("attributions lost: 'says'" in p for p in compare(readable, "Measure = plain count.\n"))
+
+
+def test_dropped_scope_and_modal_fail():
+    readable = "Under a flow setup, nothing here would show it.\n"
+    problems = compare(readable, "Flow setup: nothing shows it.\n")
+    assert any("'under'" in p and "'here'" in p and "'would'" in p for p in problems)
+
+
+def test_added_hedge_is_not_a_failure():
+    assert compare("It holds.\n", "It may hold.\n") == []

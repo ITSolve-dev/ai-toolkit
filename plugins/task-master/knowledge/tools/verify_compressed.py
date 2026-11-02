@@ -30,11 +30,20 @@ WIKILINK = re.compile(r"\[\[[^\]\n]+\]\]")
 LINE_CITE = re.compile(r"\bL\d+(?:\s*[-–]\s*L?\d+)?\b")
 INLINE_CODE = re.compile(r"`[^`\n]+`")
 NUMBER = re.compile(r"(?<![\w.])\d+(?:[.,]\d+)*%?")
-# Straight or curly double quotes, at least two words inside, so a scare-quoted term
-# is still checked but a stray inch mark is not.
-QUOTATION = re.compile(r'"([^"\n]*\s[^"\n]*)"|“([^”\n]*\s[^”\n]*)”')
+# Straight or curly double quotes. Every span is matched, so pairs never shift; only spans of
+# two words or more are compared, so a scare-quoted term is skipped but cannot misalign the rest.
+QUOTATION = re.compile(r'"([^"\n]*)"|“([^”\n]*)”')
 NEGATION = re.compile(
     r"\b(?:not|no|never|none|nothing|nor|neither|without|cannot)\b|n't\b", re.IGNORECASE
+)
+# Words that carry who is speaking, how sure a claim is and where it applies. Compression reads
+# them as filler; dropping one turns a hedged, scoped or attributed claim into a flat fact, which
+# the other checks cannot see. Only a loss fails: compression has no reason to add one.
+GUARD = re.compile(
+    r"\b(?:would|may|might|could|should|must|can|able|if|when|unless|only|under|where|until|"
+    r"here|there|says|said|writes|reads|expects|argues|reports|claims|notes|calls|"
+    r"this wiki|the author|the authors|the book|the source)\b",
+    re.IGNORECASE,
 )
 SKIPPED = {"log.md", "index.md"}
 
@@ -104,12 +113,13 @@ def features(text: str) -> dict:
         "code blocks": code,
         "blockquotes": quotes,
         "sentence after a blockquote": followers,
-        "quotations": Counter(a or b for a, b in QUOTATION.findall(unquoted)),
+        "quotations": Counter(q for q in (a or b for a, b in QUOTATION.findall(unquoted)) if " " in q.strip()),
         "wikilinks": Counter(WIKILINK.findall(prose)),
         "line citations": Counter(re.sub(r"\s+", "", c).replace("–", "-") for c in LINE_CITE.findall(prose)),
         "inline code": Counter(INLINE_CODE.findall(prose)),
         "numbers": Counter(NUMBER.findall(prose)),
         "negations": Counter(_negation(m) for m in NEGATION.findall(prose)),
+        "hedges, scopes and attributions": Counter(m.lower() for m in GUARD.findall(prose)),
     }
 
 
@@ -131,7 +141,7 @@ def compare(readable: str, compressed: str) -> list[str]:
             added = b[name] - a[name]
             if lost:
                 problems.append(f"{name} lost: {_show(lost)}")
-            if added:
+            if added and name != "hedges, scopes and attributions":
                 problems.append(f"{name} added: {_show(added)}")
         elif isinstance(a[name], list):
             lost = [x for x in a[name] if x not in b[name]]
