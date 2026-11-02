@@ -156,16 +156,10 @@ them. Their number should go down, not up.
   as…", "the transfer here is ours…". A block quote followed by unbroken declarative prose makes the
   extension read as the source's, which is the failure most damaging to a base whose value is that a
   reader can go and check.
-- **Compression runs once per release, after the whole base passes lint and review,** because review
-  reads for attribution and compressed prose hides it. Pages are written in plain prose until then.
-  The commit before it is tagged `task-master-wiki-readable-<version>` and the tag is logged.
-- **Compression uses `caveman-compress`, then `tools/verify_compressed.py`.** The tool's own validator
-  does not see quotations, wikilinks, negations or numbers; the script does. Frontmatter, headings,
-  blockquotes, inline quotations, wikilinks, citations, numbers and negation words must match exactly,
-  and each sentence after a blockquote stays unchanged. A page that fails is restored from git and
-  compressed by hand.
-- **Editing a compressed page starts from the readable page at the last tag:** edit, review, recompress.
-  `log.md` and `wiki/index.md` are not compressed.
+- **Pages are not compressed.** The words a compressor drops as filler are the ones that say who claims
+  something, how sure, and where it applies, and on this base they are the claim. Measured on
+  2026-11-03, see the log below. Any later attempt runs `tools/verify_compressed.py` against the readable
+  tag and `tools/repair_compressed.py` on what fails, and is tried on a pilot before the base.
 
 ### Held-out material
 
@@ -229,3 +223,12 @@ source, and these sections sit on sourced positions.
 
   Next time a book is ingested, its merge step should check each proposal against the whole base, across
   groups, before writing a page. Review finds the duplicates afterwards anyway, at a higher cost.
+
+- 2026-11-03 — Compression was planned from the start and dropped after a pilot. `caveman-compress` on
+  five pages saved 13-17%, kept every quotation, link and number once checked, and on every page cut
+  the words that carry a claim's footing: "he says" became a bare statement, "this wiki expects"
+  became "risk sits in", "under a flow setup" became a heading-like label, "would be shown wrong"
+  lost its modal. A reviewer comparing the pairs found it on all four compressed pages; the script
+  had not looked for it. Once the script failed on those losses too, the repair pass restored the
+  pages almost whole: a byte saved per page, 16% on `overview.md`. The readable base is tagged
+  `task-master-wiki-readable-0.1.0` and stays what ships.
