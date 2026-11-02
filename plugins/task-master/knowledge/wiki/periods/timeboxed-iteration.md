@@ -24,15 +24,13 @@ This wiki uses "period" for the same thing elsewhere. How the length is chosen i
 >
 > — [[cohn-agile-estimating-planning]], L764
 
-This wiki reads these as descriptions of human teams, not recommendations derived from anything. On consistency Cohn reports two practices without choosing: "Most teams settle upon a relatively consistent iteration length. Some, however, choose the appropriate length for an iteration at the start of each iteration." (L764).
+This wiki reads these as descriptions of human teams, not recommendations derived from anything. On consistency, this passage reports two practices: "Most teams settle upon a relatively consistent iteration length. Some, however, choose the appropriate length for an iteration at the start of each iteration." (L764). Cohn does choose between them later, in Chapter 15: "Whatever duration you choose, you are better off choosing a duration and sticking with it rather than changing it frequently" (L3486).
 
 Cohn also ranks length below output: what matters more than the chosen length is that the iteration turns requirements into tested, shippable software (L768). See [[potentially-shippable-increment]].
 
 ## Against the Scrum Guide
 
-Cohn's report is looser than the Scrum Guide's rule, which bounds a period at one month and holds its length fixed ([[period-length]]). The two are different kinds of statement: Cohn describes what teams do, and the Guide defines a method.
-
-This wiki resolves it by setup. Where a project has periods, [[period-length]] holds: the length is fixed, because [[filling-a-period]] reads past periods as a guide to the next and periods of varying length break that comparison. Cohn's three months and his per-iteration length are kept as reports and are not carried over as permission. The resolution is this wiki's.
+L764 describes what teams do. Cohn's own rule, in Chapter 15, is to fix the length, since "teams are far better off sizing the work to the length of the iteration (rather than sizing the iteration to the work)" (L3486), and on that he agrees with the Scrum Guide, which holds a period's length fixed ([[period-length]]). The one difference left is the ceiling: the Guide bounds a period at one month, while L764 reports teams on up to three months. This wiki keeps the three months as a report and does not carry it over as permission; [[period-length]] holds where a project has periods.
 
 ## No phases
 

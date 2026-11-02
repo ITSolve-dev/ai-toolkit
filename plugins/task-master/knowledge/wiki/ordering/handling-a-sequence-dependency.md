@@ -16,7 +16,7 @@ A story asks for a hint on request. "If we’ve done the move engine, this story
 
 ## Which remedy, when
 
-Three pages of this wiki handle one situation, a wanted item that depends on one that is unwanted or later: enabling work (*Natural Order of Work*, below), a stub (this page), and promoting the prerequisite ([[value-order-versus-technical-necessity]]). This wiki decides between them as follows, and the arrangement is ours.
+Two pages of this wiki handle one situation, a wanted item that depends on one that is unwanted or later: enabling work and a stub (both on this page; enabling work under *Natural Order of Work*, below), and promoting the prerequisite ([[value-order-versus-technical-necessity]]). This wiki decides between them as follows, and the arrangement is ours.
 
 1. **The wanted order already satisfies the dependency:** leave it and state the assumption (the first branch below).
 2. **The wanted order goes against it, and the prerequisite is planned in the same release:** compare the enabling work, or the stub and its follow-up, with what going early is meant to gain, a named risk settled or earlier feedback. Go out of order only when the gain is larger; then add the enabling work or the stub explicitly. This gate is Cohn's cost argument from L3212-L3228, made into a test by this wiki.
@@ -118,4 +118,4 @@ A natural order is understood by people who share a picture of the product. An e
 
 ### Related
 
-Tasks with no ordering constraint are on [[independent-tasks]]. Whether to leave a dependency or stub it out is on *Handling a Sequence Dependency* (above). Ranking itself is on [[ordering-by-value-and-urgency]]. A low-ranked story that has to move up because something needs it is on [[value-order-versus-technical-necessity]].
+Tasks with no ordering constraint are on [[independent-tasks]]. Ranking itself is on [[ordering-by-value-and-urgency]]. A low-ranked story that has to move up because something needs it is on [[value-order-versus-technical-necessity]].

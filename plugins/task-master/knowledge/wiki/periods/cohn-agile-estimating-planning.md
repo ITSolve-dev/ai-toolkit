@@ -63,6 +63,7 @@ This wiki's reading is that the rules transfer more often than the reasons given
 - **Most of Chapter 18 as practice.** The charter excludes frameworks for scaling. Only the scale gate (L4211) and the reading of a hand-off passed whole as a cutting problem are kept, on [[critical-dependency]]; the rolling lookahead plan and the feeding buffer were cut as multi-team practice.
 - **Build results as a metric** (L4727). This is about tooling and not about a board.
 - **The narrative of Chapter 23.** Only its decisions and arithmetic are kept.
+- **The Kano survey's logistics and the chapter's renaming slips.** The case's response figures (just over 500 email invitations, 35 phone calls and 78 answers against an expected "50 or so", L5943, L5642; 24 questions, about 15 minutes by phone and 7 online, L6107) change nothing the plugin outputs for a few people. Chapter 11's prose names rows its Table 11.1 does not have ("reviews", "shipping options", "detailed photos", L2483-L2502); [[kano-model]] reads them by position as Graph event times, Can upload photos and Post autobiographical profile, and Table 11.2 disagrees with Table 11.1 about photos ([[relative-weighting]]).
 
 ## Extraction caveat
 

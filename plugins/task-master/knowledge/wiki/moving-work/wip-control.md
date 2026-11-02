@@ -1,7 +1,7 @@
 ---
 title: WIP Control
 category: moving-work
-summary: An explicit bound on how many tasks may be started and not finished; the Kanban Guide requires one over the whole workflow in any form, treats running under it as a departure too, and wants exceptions declared in advance, and Vacanti reaches it from the queue, with one count that both measures and stops.
+summary: An explicit bound on how many tasks may be started and not finished; the Kanban Guide requires one over the whole workflow in any form, treats running under it as a departure too, and wants exceptions declared in advance, and Vacanti reaches it from the queue, with one count that both measures and stops, and sets the entry limit from the departure rate per replenishment interval.
 tags: [rule, wip, kanban, flow, queues]
 sources: [kanban-guide, scrum-guide-2020, radzikowska-waiting-blocked, cohn-agile-estimating-planning, vacanti-actionable-agile-metrics]
 created: 2026-11-01
@@ -51,18 +51,19 @@ This wiki reads two things from that passage. The start of new work is tied to a
 
 ## Choosing the number
 
-The Guide requires a control and gives no number and no way of choosing one. Vacanti's Chapter 1 says only "too big" ([[vacanti-actionable-agile-metrics]] L440), also with no number and no method. The only method in this base is the Kanban Maturity Model's for a parking lot, which starts "slightly higher than the average WIP" ([[radzikowska-waiting-blocked]] L61; see [[parking-lot]]). Carrying that method over to a whole workflow is this wiki's extension, and no source states it.
+The Guide requires a control and gives no number and no way of choosing one. Vacanti's Chapter 1 says only "too big" ([[vacanti-actionable-agile-metrics]] L440). His Chapter 7 does give a method, for the limit at the entry of the workflow, and it is the first sourced input here ([[constant-wip]]). Take the average Departure Rate per interval from history, add a margin if the process varies ("say six or so" on five a week), and divide by the number of replenishments per interval (L2130-L2136). That limit governs how fast work starts. Vacanti says it is not sufficient alone: WIP has to be held constant across the whole process, by per-step limits, one global limit or a mix, and "it does not really matter how you limit WIP throughout the whole system just as long as you do" (L2150-L2168). He gives no number for that whole-workflow bound. The Kanban Maturity Model gives a method for a different buffer, a parking lot, which starts "slightly higher than the average WIP" ([[radzikowska-waiting-blocked]] L61; see [[parking-lot]]); carrying it over to a whole workflow is this wiki's extension, and no source states it.
 
-| Input | Read from |
-|---|---|
-| The started, unfinished count over recent history | Board history |
-| How many results the people steering can review in the time a task is expected to live | Board history: the time tasks spend waiting for review |
+| Input | Read from | Whose |
+|---|---|---|
+| Departures per replenishment interval, plus a margin for variability | Board history: finish dates counted per interval, and the project's replenishment cadence ([[constant-wip]]) | Vacanti, L2130-L2136 |
+| The started, unfinished count over recent history | Board history | The parking-lot method, extended by this wiki |
+| How many results the people steering can review in the time a task is expected to live | Board history: the time tasks spend waiting for review | This wiki's |
 
-This wiki combines the two inputs, and the combination is its own: the bound is the smaller of the recent average started-unfinished count plus a small margin, and the number of results the people steering can review within the time a task is expected to live. History from a board that was over-started overstates the first input, since it carries the over-start forward ([[starting-more-work]]), so on such a board the second input governs. The source of the method also applied it to a previously unbounded buffer of outside waits ([[radzikowska-waiting-blocked]] L57-L61), not to a whole workflow.
+This wiki combines them, and the combination is its own. The entry limit comes from Vacanti's method wherever the board has Throughput history and a replenishment cadence, so starts per interval do not outrun departures. The bound over the whole span is the smaller of the recent average started-unfinished count plus a small margin, and the number of results the people steering can review within the time a task is expected to live. History from a board that was over-started overstates the second input, since it carries the over-start forward ([[starting-more-work]]), so on such a board the departure rate and the review capacity govern. The parking-lot method was also applied by its source to a previously unbounded buffer of outside waits ([[radzikowska-waiting-blocked]] L57-L61), not to a whole workflow.
 
-With no history, neither input exists. This wiki's default, which no source gives, is a stated small number per person steering, labelled as a guess, and recomputed from the inputs above once a run of tasks has finished.
+With no history, none of these inputs exists: Vacanti's method needs Throughput history as much as the others do. This wiki's default, which no source gives, is a stated small number per person steering, labelled as a guess, and recomputed from the inputs above once a run of tasks has finished.
 
-The number is too high if it is never reached, because it then restrains nothing. It is too low if it is reached constantly while nothing is waiting for the people steering, because capacity then sits idle.
+The number is too high if it is never reached, because it then restrains nothing, or if the arrival line on a CFD still pulls away from the departure line. It is too low if it is reached constantly while nothing is waiting for the people steering, or if the entry column is empty while downstream capacity is free, because capacity then sits idle. The CFD and empty-column tests are this wiki's reading of the two failure directions Vacanti names (L2158; [[constant-wip]]).
 
 ## Cost
 
@@ -82,7 +83,7 @@ What changes is what the bound protects. With people executing, it protects thei
 
 **Cohn:** the limit is per developer, one or two sub-story cards at a time ([[wip-per-executor]]). What work in process does to cycle time is on [[starting-more-work]].
 
-**Vacanti:** count the items in progress, and when the count is too big, start nothing until something finishes ([[vacanti-actionable-agile-metrics]] L440). His later policy states the same thing as a rate, starting new work "at about the same rate that we finish old work" ([[vacanti-actionable-agile-metrics]] L1018), which this wiki sets beside the bound on [[littles-law]].
+**Vacanti:** count the items in progress, and when the count is too big, start nothing until something finishes ([[vacanti-actionable-agile-metrics]] L440). His Chapter 7 sets the entry limit from the departure rate per replenishment interval, and requires WIP to be held constant through the whole process in any form ([[constant-wip]], L2130-L2168). His later policy states the same thing as a rate, starting new work "at about the same rate that we finish old work" ([[vacanti-actionable-agile-metrics]] L1018), which this wiki sets beside the bound on [[littles-law]].
 
 **Scrum Guide:** there is no limit on concurrent work. The term "WIP" does not occur in it. What the Guide limits is the objective and the total. There is one Sprint Goal, "the single objective for the Sprint" ([[scrum-guide-2020]] L301), and one Product Goal at a time: "They must fulfill (or abandon) one objective before taking on the next." (L291). The selection for a period bounds how much is taken on over the period ([[filling-a-period]]). None of this bounds how much is open at one moment. How work proceeds inside the period is left to the team, which is self-managing, "meaning they internally decide who does what, when, and how." (L114).
 

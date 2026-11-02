@@ -46,7 +46,7 @@ Vacanti requires range and probability together. Cohn asks for a confidence, a r
 - **Per-item cycle times exist:** both parts are required, and they are read from the same percentile ([[service-level-expectation]], [[throughput-monte-carlo]]).
 - **Finish dates exist and start dates do not:** a count or a date can still carry both parts, from daily Throughput ([[throughput-monte-carlo]]), because that needs only when items finished.
 - **Only a velocity history exists, under iterations:** give the range with its basis, from [[velocity-range-forecast]] once four or more iterations have closed and from [[choosing-velocity-estimate-approach]] before that, and say that no probability was computed. That meets Cohn's form and half of Vacanti's rule, and the statement should not claim more.
-- **No history exists:** no conforming forecast is possible. This wiki's position is that saying so is the honest output, with any figure labelled a guess. The chapter does not address that case.
+- **No history of this project:** a range from [[choosing-velocity-estimate-approach]] (another project's history, a see-what-fits forecast or a labelled planned velocity), with no probability claimed, which meets Cohn's form and not Vacanti's. A figure with neither range nor basis is a guess and is labelled one. This wiki's position; the chapter does not address that case.
 
 ## Trade-off
 
@@ -106,7 +106,7 @@ The fictional case study in Chapter 23 (L4961) shows a range defended against a 
 >
 > — [[cohn-agile-estimating-planning]], L6179
 
-At two weeks per iteration that is 12 to 20 weeks (L6181, L6185). The chapter gives no derivation for the range. This wiki computes the spread as about 18% below and 36% above the 7.33 midpoint, so it is deliberately wider on the late side. It rests on a planned velocity with no iteration finished ([[choosing-velocity-estimate-approach]]), so it should not be reused for a schedule with observed velocity behind it, which goes through [[velocity-range-forecast]].
+At two weeks per iteration that is 12 to 20 weeks (L6181, L6185). The chapter gives no derivation for the range. This wiki computes the spread as about 18% below and 36% above the 7.33 point estimate, so it is deliberately wider on the late side. It rests on a planned velocity with no iteration finished ([[choosing-velocity-estimate-approach]]), so it should not be reused for a schedule with observed velocity behind it, which goes through [[velocity-range-forecast]].
 
 **Failure mode: the range is heard as its low end.** The reply in the case is "I really don’t want this project to take 20 weeks. But you’re saying it might only take 12, right?" and the answer is "It might. But it might take 20," (L6181, L6183). Sign: notes downstream quote only the earlier bound. The sign is this wiki's.
 
@@ -277,6 +277,8 @@ Vacanti's direction is to acquire the distribution: "Further, I would argue it i
 A percentile needs per-item history, not one rate. This wiki notes that the board history already holds it, so the cost is reading and not logging.
 
 ### See also
+
+[[service-level-expectation]], [[throughput-monte-carlo]]
 
 ## Little's Law Does Not Forecast
 

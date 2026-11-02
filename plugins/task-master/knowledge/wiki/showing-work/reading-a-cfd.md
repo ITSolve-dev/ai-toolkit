@@ -184,14 +184,14 @@ The Siemens case ([[vacanti-actionable-agile-metrics]]) gives the pattern. Manag
 
 The case and the author do not say the same thing. Of looking at a CFD alone, Chapter 6 says: "It is impossible to spot a systemic bottleneck." (L1944), and [[cumulative-flow-diagram]] keeps that as a rule for wording. The case, told in Vallet's voice, says the shortfall "was actually easy to spot" (L4192). Vacanti's dissent is partly about language as well: he prefers "Deming's and Shewhart's language of variability to that of Goldratt's language of the Theory of Constraints" (L1944).
 
-This wiki does not read the case as having resolved this by numbers: L4192 credits the chart, and L4184 is a separate instance. Per-column Throughput is itself a slope on the same CFD (Property #6 corollary, L1670), so "the chart's shape" and "per-column numbers" are not cleanly separate either. The rule is this wiki's caution: a finding names a step as the constraint only with per-column Throughput, read as slopes or from item history, or per-column Cycle Time from item history, and says so; a finding resting on a band's width alone says where items wait. The reason is that a wide band says where items wait and not why.
+This wiki does not read the case as having resolved this by numbers: L4192 credits the chart, and L4184 is a separate instance. Per-column Throughput is itself a slope on the same CFD (Property #6 corollary, L1670), so per-column rates do not escape L1944 by being numbers. The rule is this wiki's caution, and it agrees with [[throughput]]: per-column rates, whether read as CFD slopes or from item history, and per-column Cycle Time from item history raise the question of a constraint and say where items wait; they do not name one. A finding may use the word "constraint" only if it also states how variability was ruled out, which is the condition Vacanti attaches to per-step Throughput, "assuming variability has been taken into account" (L746), and even then it is worded as a hypothesis to check. The Siemens case (L4192) stays the source's counter-voice, and this wiki does not adopt it as the rule. The reason is that a wide band says where items wait and not why.
 
 ### Procedure (this wiki's)
 
 1. Look for a queue band, a done sub-state ahead of a limited column, that stays wide over time and does not merely swell once (the bulging-band sign above).
 2. Check it against per-column Throughput (the slopes either side of the step) and per-column Cycle Time from item history.
 3. Choose where to act. At the team level, Siemens adjusted WIP limits "to ensure flow and prevent the build-up of bottlenecks" (L4192). At the program level, it shifted capacity to the constraint, with test automation.
-4. Recheck the band. This wiki reads a band that narrows while downstream Throughput rises as confirming the diagnosis.
+4. Recheck the band. This wiki reads a band that narrows while downstream Throughput rises as support for the hypothesis, not proof of it.
 
 ### What it needs
 

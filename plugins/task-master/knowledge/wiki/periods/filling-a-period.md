@@ -87,12 +87,12 @@ This section is this wiki's reading, on sourced positions. The Guide names input
 | Iterations, stable Throughput history, and a size check available | The count at the chosen probability | It reads history and needs no estimate. Size variation remains, and the size check carries it |
 | The same, with estimates kept | The count, with summed points as a cross-check | A disagreement between them is a question to raise, and a comparison over a release feeds [[dropping-estimates-for-flow-forecasts]] |
 | Iterations, twenty or more tasks a period, stable velocity on one scale, and no Throughput forecast in use | Summed estimates up to recent velocity | Cohn's own condition for estimate errors to average out is met (L3346-L3348) |
-| Iterations, the usual small selection of 3 to 12 tasks, with thin or unstable history or a process that has just changed | One task at a time in priority order, until the people steering will not commit, with velocity as a cross-check | There is no sample to trust ([[how-much-flow-data]], [[throughput-monte-carlo]]), and too few tasks for estimate errors to average out (L3346-L3354) |
+| Iterations with fewer than twenty tasks a period, whatever the history, where no Throughput count with a size check is in use | One task at a time in priority order, until the people steering will not commit, with velocity as a cross-check | Too few tasks for estimate errors to average out, even when velocity is steady: Cohn's own example is a velocity of thirty held for five iterations (L3346-L3356). Where history is also thin or unstable, or the process has just changed, there is no sample to trust either ([[how-much-flow-data]], [[throughput-monte-carlo]]) |
 | Iterations, no history yet | One task at a time | There is no velocity and no Throughput to read |
 | A selection much heavier than usual on one stage, under any of the above | The tightest stage, as in Cohn's case | The count reflects the mix in its history, so it cannot see this selection's overflow |
 | Flow setup | Nothing, and this page does not apply | Nothing is selected for a period, since the Kanban Guide replenishes on a capacity signal ([[what-may-move]]). The same forecast can still answer how many by a date |
 
-Where a period holds twenty or more tasks and both a Throughput forecast and a stable velocity exist, the first two rows govern; filling to velocity would give about the same answer there, and a gap between the two is the question in the second row. This table merges the two that this base used to keep, one here and one on velocity against commitment planning, and the merge is this wiki's resolution.
+Where a period holds twenty or more tasks and both a Throughput forecast and a stable velocity exist, the first two rows govern; filling to velocity would give about the same answer there, and a gap between the two is the question in the second row. The table is this wiki's resolution.
 
 The count was too high if periods reach it less often than the stated probability says. At 85% about one period in seven falls short by design, so a longer run of misses is the signal. It was too low if periods regularly pass even the forecast's 50% line.
 
@@ -147,9 +147,9 @@ This wiki reads a total far from history as a reason to ask what changed, and no
 
 The figures of twenty to thirty and of three to a dozen are Cohn's coaching experience, stated without measurement. The thirty-to-forty swing is a thought experiment and not a recorded result. The 16 and 18 of the case study are invented.
 
-### The decision, by setup
+### Two points from Cohn's comparison
 
-This decision is merged into the table *Which way of filling holds under which setup*, above, so that one table answers for every setup. Two points from Cohn's comparison stand here. A total above recent velocity is acceptable when something named has changed, as in the case above, and otherwise it is a reason to stop. Cohn's hour sum is unavailable to the plugin, because it does not produce the level below a task ([[unit-of-work]]), so the stopping judgement in the one-at-a-time rows rests on the people steering.
+Which way of filling holds is decided by the table *Which way of filling holds under which setup* (above). Two points from Cohn's comparison stand here. A total above recent velocity is acceptable when something named has changed, as in the case above. This wiki adds that, with nothing named, a total above velocity is a reason to stop. Cohn's hour sum is unavailable to the plugin, because it does not produce the level below a task ([[unit-of-work]]), so the stopping judgement in the one-at-a-time rows rests on the people steering.
 
 ### Inputs, where each is read from, and what would show the choice wrong
 

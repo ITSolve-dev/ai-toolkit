@@ -80,7 +80,7 @@ Both mechanisms depend on a human executor. This wiki reads them as not transfer
 
 ### Trade-off
 
-Removing local safety means individual tasks overrun about half the time, on purpose. That is only workable if an overrun of a 50% figure is not treated as a fault. Cohn notes that people pad "if they expect to be beaten up if they are wrong" (L4041). This wiki reads that as the way local safety returns: chase task-level overruns and the estimates quietly drift back to 90%, and *Buffer Versus Padding* (below) then stacks a buffer on them.
+Removing local safety means individual tasks overrun about half the time, on purpose. That is only workable if an overrun of a 50% figure is not treated as a fault. Cohn's reason why people pad (L4041) is quoted under *Buffer Versus Padding* (below). This wiki reads it as the way local safety returns: chase task-level overruns and the estimates quietly drift back to 90%, and *Buffer Versus Padding* (below) then stacks a buffer on them.
 
 ### Sign
 
@@ -152,12 +152,12 @@ In Table 17.2's six stories, 17 + 9 = 26 points. At a velocity of 9 per iteratio
 - **Forecast velocity:** from board history, or a forecast where there is none ([[choosing-velocity-estimate-approach]]).
 - **The date's firmness:** from whoever owns the date; the board does not show it.
 
-This wiki reads the following as the disproving facts, which the chapter does not list. The buffer is expected to be consumed: Cohn's car-length analogy says "you fully expect to use up most of that buffer" (L4043). A date missed with the buffer gone suggests the estimates or the spreads were too narrow. A buffer left largely unused across several plans suggests the 50% figures were really pessimistic ones.
+This wiki reads the following as the disproving facts, which the chapter does not list. The buffer is expected to be consumed, per Cohn's car-following analogy (L4043, quoted under *Buffer Versus Padding*, above). A date missed with the buffer gone suggests the estimates or the spreads were too narrow. A buffer left largely unused across several plans suggests the 50% figures were really pessimistic ones.
 
 ### Trade-offs and failure modes
 
 - **Cost:** a second estimate per item and usually a later stated date. Cohn calls this "small extra work" (L4053), and does not spend it where no date needs protecting.
-- **Applied to safe estimates:** "Adding a schedule buffer on top of already pessimistic, 90% estimates will result in an overly long schedule" (L4051).
+- **Applied to safe estimates:** a buffer on 90% estimates gives an overly long schedule (L4051, quoted under *Buffer Versus Padding*, above).
 - **Task-level chasing:** treating a task's 50% figure as a due date undoes the method; see *Local Safety* (above).
 - **Too few items:** see the guidelines in *Project Buffer Sizing* (below).
 

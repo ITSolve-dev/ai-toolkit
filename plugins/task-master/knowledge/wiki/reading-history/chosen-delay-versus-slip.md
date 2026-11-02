@@ -1,7 +1,7 @@
 ---
 title: Chosen Delay Versus Slip
 category: reading-history
-summary: A release finishing after the communicated date is a chosen delay if the total rose by a dated decision and its stories were all finished by the earlier date, a replan if the decision is there but the earlier date was no longer reachable, and a slip if no decision is behind the move; the communicated date comes from the recorded forecast, the other two from board history.
+summary: A release finishing after the communicated date is a chosen delay if the total rose by a dated decision and the stories in the release as it stood before that decision were all finished by the earlier date, a replan if the decision is there but the earlier date was no longer reachable, and a slip if no decision is behind the move; the communicated date comes from the recorded forecast, the other two from board history.
 tags: [decision-rule, plan-versus-fact, retrospective-analysis, release-planning, cohn]
 sources: [cohn-agile-estimating-planning]
 created: 2026-11-02
@@ -26,7 +26,7 @@ Three yes/no tests, each with where it is read from. The tests and the outcomes 
 |---|---|
 | (a) The finish is later than the date communicated | The recorded forecast or plan, not the board: the communicated date is not board history |
 | (b) The release total rose by a dated decision | Board history: a rise in the total with a recorded decision at that moment |
-| (c) The release's stories were all finished by the earlier date | Board history: finish dates of the release's stories |
+| (c) The stories in the release as it stood before the decision were all finished by the earlier date | Board history: finish dates of those stories, with the release's membership read as of the decision |
 
 Test (a) decides whether there is anything to classify. Where it holds:
 
@@ -38,7 +38,11 @@ Test (a) decides whether there is anything to classify. Where it holds:
 
 A rise that came from revised estimates and not from a decision counts as "No" on (b), which is why the total has to be split first ([[release-progress-forces]]).
 
-The case supplies each input. **The communicated date:** a tester says "We originally thought we’d be done in just over 14 weeks." (L6496), and the answer is "We never said we’d be done in 14 weeks." (L6498). People had been told 12-20, and the comparison is with that, not with an internal figure. In the case this input is dialogue (L6496-L6498), which is why this wiki requires it to be recorded as a forecast or plan. **The decision:** the total rose by 35 points at a known moment (L6362-L6364). **The earlier date:** "we could have shipped two weeks ago if we’d wanted" (L6500). The extra two weeks went to changes from beta testers.
+The case supplies the inputs from two separate episodes, and they should not be joined. **The communicated date:** a tester says "We originally thought we’d be done in just over 14 weeks." (L6496), and the answer is "We never said we’d be done in 14 weeks." (L6498). People had been told 12-20, and the comparison is with that, not with an internal figure. In the case this input is dialogue (L6496-L6498), which is why this wiki requires it to be recorded as a forecast or plan.
+
+**The line drawn in advance.** After two iterations the total rose by 35 points at a known moment (L6362-L6364), and the forecast that followed was ten two-week iterations (L6366-L6368), 20 weeks, still inside the communicated 12-20 (L6320). Test (a) fails there, so that rise was neither a slip nor a delay.
+
+**The line drawn afterwards.** The move past 20 weeks to 22 came from a later decision: "We chose to take time to incorporate additional changes into the characters based on the positive responses we were getting from beta testers." (L6500). The case gives no total for those changes, so test (b) cannot be read from it. **The earlier date:** "we could have shipped two weeks ago if we’d wanted" (L6500). So the case instantiates (a) and the claim behind (c), and not (b).
 
 ## The sign
 
@@ -46,7 +50,7 @@ A forecast moves later with no rise in the release total at that point in board 
 
 ## What later fact would show the reading wrong
 
-This wiki reads the claim that an earlier date was available as checkable: the stories in the release were finished by that date. If they were open when it passed, the delay was not chosen. The case cannot be checked this way, because the only evidence for the earlier date is the product manager's statement (L6500).
+This wiki reads the claim that an earlier date was available as checkable: the stories in the release as it stood before the decision were all finished by that date. If they were open when it passed, the delay was not chosen. The case cannot be checked this way, because the only evidence for the earlier date is the product manager's statement (L6500).
 
 ## The trade-off
 

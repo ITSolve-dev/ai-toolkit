@@ -44,7 +44,13 @@ The Cycle Time consequence is promised and not worked through in that chapter. T
 
 Keep anything before commitment out of the process, out of flow metrics, and off the CFD. The started point is not earlier than commitment, and [[started-and-finished-points]] places it where capacity is first taken: entry to a WIP-limited arrivals column, or the take where there is none. Under a pull setup the two coincide. Where they differ (iterations, push), the started point is the capacity test and the time between commitment and start is read separately.
 
-**Sign of violation:** a CFD band or a metric's start falls in something that "sounds like" a backlog (L1530); or Cycle Time is dominated by the time before any active state; or a long list of unstarted items is read as a promise. Each raises a question and is no verdict, per [[smell-is-not-a-finding]].
+**Sign of violation.** The first is the source's; the rest are this wiki's transfer of the principle under *Just-in-time commitment* (below). Each raises a question and is no verdict, per [[smell-is-not-a-finding]].
+
+- A CFD band or a metric's start falls in something that "sounds like" a backlog (L1530), or Cycle Time is dominated by the time before any active state.
+- A long list of unstarted items is read as a promise, or a date or promise is attached to an item still in the backlog: commitment happened before capacity was known.
+- Items sit in the commitment column with no range ever given.
+- More items were promised than the column's bound on [[wip-control]] admits: commitment was not determined by capacity.
+- Committed items are regularly dropped: the commitment came earlier than knowledge justified. Check against [[non-standard-departure]].
 
 **What would show the choice wrong:** items past the supposed commitment point are routinely dropped, which means commitment happens later than stated; or items outside it are treated as owed, which means it happens earlier.
 
@@ -81,15 +87,6 @@ Vacanti's body text gives three aspects (L2276-L2280), while the chapter's takea
 > — [[vacanti-actionable-agile-metrics]], L2282
 
 This wiki reads the 14 days and 85% as an example of the wording, not a target. The Kanban Guide calls the same figure, the SLE, "a forecast" ([[kanban-guide]] L115), where Vacanti calls it a commitment and an agreement. This wiki resolves the wording by what the plugin says: per task it states a forecast with its range and probability, and treats meeting it as a small-c commitment once the item is pulled, so a miss is a data point and not a breach ([[board-rules-by-setup]]). The form is what the source calls a Service Level Agreement, with setting it deferred to its Chapter 12 ([[service-level-expectation]]). "Everything in its power" starts with choosing a range and probability that are achievable (same page), and with [[conditioning-flow]] (L2316).
-
-### Signs
-
-The source gives the principle; the signs are this wiki's transfer, and each raises a question rather than a verdict:
-
-- A date or promise is attached to an item still in the backlog: commitment happened before capacity was known.
-- Items sit in the commitment column with no range ever given.
-- More items were promised than the column's bound on [[wip-control]] admits: commitment was not determined by capacity.
-- Committed items are regularly dropped: the commitment came earlier than knowledge justified. Check against [[non-standard-departure]].
 
 ### Flow versus Scrum
 

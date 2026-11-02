@@ -85,7 +85,7 @@ Running heads and page numbers are interleaved with the text, so a sentence can 
 
 ## Siemens HS Case Study
 
-The Siemens Health Services (HS) case is the worked example closing Vacanti's *Actionable Agile Metrics*, written from the perspective of Bennet Vallet (*Actionable Agile Metrics for Predictability (Vacanti)* (above) L3978). It records a development organization replacing story points and velocity with Work In Progress (WIP), Cycle Time and Throughput, and it is the setting behind the numbers quoted on other pages. This section holds that setting so that no figure travels without it. It prescribes nothing.
+The Siemens Health Services (HS) case is the worked example closing Vacanti's *Actionable Agile Metrics*, written from the perspective of Bennet Vallet (L3978). It records a development organization replacing story points and velocity with Work In Progress (WIP), Cycle Time and Throughput, and it is the setting behind the numbers quoted on other pages. This section holds that setting so that no figure travels without it. It prescribes nothing.
 
 Vacanti says the study was previously published twice, on InfoQ and on the Agile Alliance site, and that he and Vallet have presented it at conferences (L3974). It is a report by people who ran the change, and Vallet partnered with the author on the write-up (L3978). It is not an independent study.
 

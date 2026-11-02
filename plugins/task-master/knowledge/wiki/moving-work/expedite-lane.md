@@ -31,15 +31,22 @@ The limit covers the lane as a whole. In the worked example, a limit of one mean
 
 In the source's example the expedite reaches Development with no developer free, so the team blocks one or more of the three items in progress. "What has happened is that the team has chosen to artificially age one item (or more) in order to shorten the Cycle Time of another." (L2440) That is [[flow-debt]], and the bill arrives as longer Cycle Times on the blocked items or as discarded work. Blocked items still count against the limit; see [[blocked-work-counts-against-wip]].
 
+## Agent executor note on the lane
+
+The blocking step in the source rests on no people being free. This wiki reads the limit as still applying with an agent executing, since what the lane spends is whatever is scarce, which for a few people steering agents is likely their review and attention. The source does not test this.
+
 ## The sign
 
-All of these read from board history or state:
+All of these read from board history or state. The first two are the source's speculative signals (L2468). The third is the source's example stated as a check. The rest are this wiki's derivation from Vacanti's Chapter 13 (*When the lane never empties, and when it attracts everything*, below). The source gives no numeric threshold for any of them. How far an expedite habit has gone is graded by the hedge, speculative and Ponzi questions on [[flow-debt]], and each sign raises a question ([[smell-is-not-a-finding]]).
 
 - More expedites open at once than the lane's limit.
-- The lane is never empty over a long stretch.
+- The lane is never empty over a long stretch: on the board, the lane or label is occupied on most days.
 - Other items become blocked at the moment an expedite enters, and stay blocked until it leaves.
+- In history, when one expedite finishes, another starts soon after.
+- In history, the share of arriving items marked expedite rises over time.
+- In history, expedited cycle times stay tight while the spread and age of ordinary items grow ([[flow-metrics]]).
 
-The first two are the source's speculative signals (L2468). The third is the source's example stated as a check. How many expedites are too many is resolved on [[flow-debt]].
+A real incident stream is the competing explanation. Vacanti accepts that for most teams expedites do happen, unpredictably in size and number (L3392), so a busy lane raises two questions: are these real, and has the process been designed around their rate? The second is under *Slack for the rate of true expedites* (below).
 
 ## Trade-off
 
@@ -74,17 +81,6 @@ This wiki notes that the second failure is an argument from a game's numbers and
 ### Why the lane looks like it works
 
 The lane's own numbers are good. "The truth is that the only part of your process that is more predictable with CoS is the highest priority class." (L3476), so a review of expedites alone reports success. The damage shows up in Standard items. Vacanti's own summary is "For all practical purposes, introducing CoS is one of the worst things you can do to predictability." (L3442), which he later qualifies: CoS is not "inherently evil" and he is speaking from predictability alone (L3470, L3476).
-
-### Observable signs
-
-These are this wiki's derivation, and the source gives no threshold for any of them. Each raises a question ([[smell-is-not-a-finding]]).
-
-- **On the board:** the lane or label is occupied on most days.
-- **In history:** when one expedite finishes, another starts soon after.
-- **In history:** the share of arriving items marked expedite rises over time.
-- **In history:** expedited cycle times stay tight while the spread and age of ordinary items grow ([[flow-metrics]]).
-
-A real incident stream is the competing explanation. Vacanti accepts that for most teams expedites do happen, unpredictably in size and number (L3392), so a busy lane raises two questions: are these real, and has the process been designed around their rate? The second is in the next section.
 
 ### What to do instead
 
@@ -140,10 +136,6 @@ These signs are this wiki's derivation and each raises a question.
 ### Agent executor note on slack
 
 The objection to idle developers depends on the executor being a salaried person. An idle agent costs little, so this wiki expects execution slack to be cheap. The slack that costs something is the steering person's attention, because an expedite still needs someone to direct and review it. This wiki reads the rule as keeping review capacity below full, and it reads "help out with other items" as finishing and reviewing what is open before starting more. Both are transfers of ours and are unmeasured.
-
-## Agent executor note on the lane
-
-The blocking step in the source rests on no people being free. This wiki reads the limit as still applying with an agent executing, since what the lane spends is whatever is scarce, which for a few people steering agents is likely their review and attention. The source does not test this.
 
 ## Related
 

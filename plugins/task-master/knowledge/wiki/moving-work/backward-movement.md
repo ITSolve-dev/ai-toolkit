@@ -1,7 +1,7 @@
 ---
 title: Backward Movement
 category: moving-work
-summary: Moving a card to an earlier state loses visibility and data, so an expected cycle such as rework after review stays in the later state or goes to a new state on the right; the Scrum Guide's return of an unfinished item to the backlog is the one sanctioned exception.
+summary: Moving a card to an earlier state loses visibility and data, so an expected cycle such as rework after review stays in the later state or goes to a new state on the right; a move back is a declared exception (an item too broken to test goes back one step, an item expected to return leaves the board with its history kept, a task leaves a parking lot for the state it left), and an unfinished item returned to the backlog at a period's end leaves the workflow rather than moving back within it.
 tags: [rule, moving-work, board-history, kanban, scrum]
 sources: [wester-board-design, kanban-guide, scrum-guide-2020, montgomery-tracker-smells, vacanti-actionable-agile-metrics]
 created: 2026-11-01

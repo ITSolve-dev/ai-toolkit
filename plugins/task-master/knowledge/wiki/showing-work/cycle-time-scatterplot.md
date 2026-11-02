@@ -60,7 +60,7 @@ This wiki reads two practical consequences. In a long right tail, the mean sits 
 
 This wiki adds two cautions. The dice illustrate sharpening and not the shape of cycle times, since a sum of dice does not have a long tail. And the source gives no count at which a shape can be trusted. On a small board, a histogram of a dozen items mostly shows the choice of bins, so there a scatterplot serves better.
 
-**What it cannot ask.** The source: "looking at the Figure in 10a.1 you may not be able to detect any patterns of Cycle Times over a given timeline." (L2824). This wiki reads that as a consequence of collapsing time: a process that got slower looks the same as one that was always mixed. Like the scatterplot, it counts finished items only, so this wiki notes that it says nothing about open work. See [[flow-metrics]].
+**What the histogram cannot ask.** The source: "looking at the Figure in 10a.1 you may not be able to detect any patterns of Cycle Times over a given timeline." (L2824). This wiki reads that as a consequence of collapsing time: a process that got slower looks the same as one that was always mixed. Like the scatterplot, it counts finished items only, so this wiki notes that it says nothing about open work. See [[flow-metrics]].
 
 **Later uses.** The source keeps the chart for later material on classes of service and forecasting (L2776, L2844). This chapter does not carry those techniques.
 

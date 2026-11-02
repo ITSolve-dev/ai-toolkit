@@ -94,7 +94,7 @@ This wiki notes that the chart is computed from board history and needs nobody t
 
 ## The Bar Form
 
-A variation of the *Release Burndown Chart* (above) that shows "the team’s velocity and the scope changes separately" ([[cohn-agile-estimating-planning]] L4340-L4346). Each bar is the work in the release as of the start of an iteration. Bars are used in place of lines to make the regions above and below zero distinct (L4355).
+A variation of the line chart (above) that shows "the team’s velocity and the scope changes separately" ([[cohn-agile-estimating-planning]] L4340-L4346). Each bar is the work in the release as of the start of an iteration. Bars are used in place of lines to make the regions above and below zero distinct (L4355).
 
 ### Drawing rules
 

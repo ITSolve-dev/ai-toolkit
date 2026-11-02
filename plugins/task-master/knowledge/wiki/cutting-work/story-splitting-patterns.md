@@ -52,7 +52,7 @@ The authors' reason is that "the biggest value often comes from the beginning an
 
 ## Cohn's guidelines
 
-Cohn's chapter on splitting offers guidelines for a task too big to fit its iteration, each drawn from an example ([[cohn-agile-estimating-planning]] L2579). His examples are intact, which matters here because the Humanizing Work examples were lost in extraction. Cohn's "story" is this wiki's task. His "task" is a step one level below that, which is why [[component-task-masquerading]] applies to it. His "product owner" is the person steering. All line references from here to the agent note are to [[cohn-agile-estimating-planning]].
+Cohn's chapter on splitting offers guidelines for a task too big to fit its iteration, each drawn from an example ([[cohn-agile-estimating-planning]] L2579). His examples are intact, which matters here because the Humanizing Work examples were lost in extraction. Cohn's "story" is this wiki's task. His "task" is a step one level below that, which is why [[component-task-masquerading]] applies to it. His "product owner" is the person steering. All line references from here to the next section, *Vacanti and Seele's cuts*, are to [[cohn-agile-estimating-planning]].
 
 | Guideline | Trigger | Move | Example | Lines |
 |---|---|---|---|---|
@@ -64,7 +64,7 @@ Cohn's chapter on splitting offers guidelines for a task too big to fit its iter
 | Functional and nonfunctional | A performance or resource target adds the size | Separate the target into its own task | Stock chart caching | L2669-L2673 |
 | Mixed priority | Conditions of satisfaction differ in priority | Cut along the difference | Login, lockout, alert email | L2677-L2691 |
 
-Cohn gives no order among them. He calls data boundaries "One of the best ways" (L2597), and nothing in the chapter measures any of this: the evidence is his own projects and clients. Exceptional conditions has no guideline sentence of its own: it sits inside the section on data boundaries, and the row is this wiki's. The two cross-cutting rows carry a cost that has its own page, *Deferred Concern Slice* (below).
+Cohn gives no order among them. He calls data boundaries "One of the best ways" (L2597), and nothing in the chapter measures any of this: the evidence is his own projects and clients. Exceptional conditions has no guideline sentence of its own: it sits inside the section on data boundaries, and the row is this wiki's. The two cross-cutting rows carry a cost set out under *Deferred Concern Slice* (below).
 
 This wiki maps them onto the numbered patterns above. Data boundaries is pattern 4, CRUD and operations are pattern 2, functional and nonfunctional is pattern 8, and exceptional conditions is closest to pattern 7. Cross-cutting concerns widens pattern 8 from making a thing fast or secure to logging and error handling. Mixed priority has no number: it is the first test of [[choosing-between-splits]] used as a way to find a cut.
 
@@ -176,7 +176,7 @@ The Kanban Playbook's four moves overlap with these, and it adds no new pattern 
 
 ## Deferred Concern Slice
 
-A deferred concern slice is a version of a task built without one of the qualities it will finally need: security, logging, error handling, or a performance or resource target. It is the one cut in *Story Splitting Patterns* (above) that deliberately produces something that should not ship alone. Cohn recommends it with that cost stated.
+A deferred concern slice is a version of a task built without one of the qualities it will finally need: security, logging, error handling, or a performance or resource target. It is the one cut on this page that deliberately produces something that should not ship alone. Cohn recommends it with that cost stated.
 
 ### The rule
 
@@ -212,7 +212,7 @@ The signs are this wiki's reading of Cohn's marking and of his two-versions word
 
 Cohn is direct: "You probably would not choose to release the product with only the first story supported, but there may be value in splittng the stories in this way." (L2657). The search example shows how far the first version can go: "Their solution was to ignore this security restriction and in the first iteration on this feature users could see the entire result set." (L2653). That passage does not say whether this version ever reached real users, and this wiki reads it as acceptable only if it did not.
 
-This wiki therefore reads the first version as possibly a [[vertical-slice]] and still not finished work. The Humanizing Work trap on pattern 8 of *Story Splitting Patterns* (above) is the same risk, and the same remedy applies: each half gets its own acceptance check, per [[testable-acceptance]]. A deferred concern is also a sequence between two tasks and not a wait, per [[sequence-versus-wait]].
+This wiki therefore reads the first version as possibly a [[vertical-slice]] and still not finished work. The Humanizing Work trap on pattern 8 above is the same risk, and the same remedy applies: each half gets its own acceptance check, per [[testable-acceptance]]. A deferred concern is also a sequence between two tasks and not a wait, per [[sequence-versus-wait]].
 
 The chapter does not discuss the cost of adding a concern later to code built without it. Its own citation points the other way, Kernighan and Plauger's "Make it work then make it faster." (L2669), and it is given second-hand with no measurement.
 

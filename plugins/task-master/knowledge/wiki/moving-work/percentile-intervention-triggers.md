@@ -86,6 +86,8 @@ The book says "usually when a PBI is stuck in your process it is because it is t
 
 On a human team with no review queue the book's order may hold, since the first three rows are then rare.
 
+This wiki's test of the order: it was wrong if items read as blocked or waiting were in fact still running and oversized, shown by a recut that followed.
+
 ## Signs
 
 These signs are the wiki's reading of the procedure, read from board state or history:

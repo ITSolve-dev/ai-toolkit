@@ -95,7 +95,7 @@ The term does not mean one thing across this wiki's sources. In the Kanban Guide
 
 ## Choosing the percentile
 
-Choosing an SLE means picking which percentile of past cycle time the team will commit to. It is a choice about how often a miss is acceptable, so it is made with the receiver of the work, from data the team has already looked at. The source calls the same thing an SLA; see the note on the name on the SLE page.
+Choosing an SLE means picking which percentile of past cycle time the team will commit to. It is a choice about how often a miss is acceptable, so it is made with the receiver of the work, from data the team has already looked at. The source calls the same thing an SLA; see *The name* (above).
 
 ### Inputs and where each is read from
 
@@ -172,7 +172,7 @@ The source does not state this; the following is the wiki's own check. If materi
 These limits are this wiki's reading, not the source's.
 
 - **Clock start.** A cycle time runs from the start of work, so the method gives a duration once an item starts. A date for an unstarted item also depends on when it will start, which this method does not supply.
-- **Few people, little history.** The chapter gives no minimum sample. On a small project with few finished items of a type, the percentile rests on very few points, and the statement should say how many ([[cycle-time-percentile-lines]]).
+- **Few people, little history.** Chapter 14 adds no minimum of its own. The 11 to 30 under *How much data* (above) is the base's figure, and this wiki applies it per promise (*Scale note*, below), so a type with fewer finished items than that has no percentile to read, only the labelled guess. On a small project with few finished items of a type, the percentile rests on very few points, and the statement should say how many ([[cycle-time-percentile-lines]]).
 
 ### Agent executor note on a single item
 

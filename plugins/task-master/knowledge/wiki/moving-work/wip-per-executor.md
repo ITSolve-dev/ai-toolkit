@@ -43,11 +43,15 @@ Cohn names two effects, a consistent flow of work and a lower cost of context sw
 
 ## Cost
 
-Cohn names none here. A blocked executor with a limit of one has nothing to do. Chapter 2 gives the reason for holding a second task: "With two value-adding tasks, if you become blocked on one you can switch to the other." (L627). This wiki reads the second card in his allowance the same way, as slack for a stopped task, though Chapter 20 does not connect the two. See [[blocked-work-counts-against-wip]].
+Cohn names none here. A blocked executor with a limit of one has nothing to do. Chapter 2 gives the reason for holding a second task, quoted under *The switching cost* (below). This wiki reads the second card in his allowance the same way, as slack for a stopped task, though Chapter 20 does not connect the two. See [[blocked-work-counts-against-wip]].
 
 ## Agent executor note
 
 Context switching is a human cost, and it does not survive as stated: an agent has no attention to fragment. A per-executor limit also restrains less with agents. Ten runs holding one task each pass this rule and still flood the people who review them. So the bound that matters there is the workflow-wide one in [[wip-control]], and this page only keeps a run from mixing two results.
+
+The study under *Multitasking* (below) measures people, and its limit of two does not transfer. This wiki does not use it to set a number on [[wip-control]], whose inputs are recorded on that page.
+
+The arithmetic survives only for an executor that really does interleave. Parallel agent runs do not interleave, so a unit's time in process need not double. What may remain is the same effect one level up, in the person steering, who switches among results to review. This wiki reads the study as more likely to apply there, since that person is the individual it measured. That is unmeasured.
 
 ## Which holds under which setup
 
@@ -107,9 +111,3 @@ These signs are this wiki's derivation.
 ### Cost of avoiding it
 
 This wiki notes that serial work leaves someone waiting, which is the pressure that produces the partial request. Holding to one thread means accepting that wait, and [[wip-control]] accepts the same cost.
-
-### Agent executor note
-
-The study measures people, and its limit of two does not transfer. This wiki does not use it to set a number on [[wip-control]], whose method remains the extended one recorded on that page. Cohn's reason for the limit, the burden of switching, is a human mechanism: an agent run has no attention to split.
-
-The arithmetic survives only for an executor that really does interleave. Parallel agent runs do not interleave, so a unit's time in process need not double. What may remain is the same effect one level up, in the person steering, who switches among results to review. This wiki reads the study as more likely to apply there, since that person is the individual it measured. That is unmeasured.

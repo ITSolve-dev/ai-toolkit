@@ -37,6 +37,8 @@ Vacanti states the cost in two sentences. "The truth is that the only part of yo
 
 The chapter's airport has one agent serving several queues. Vacanti's conclusion is that more agents remove the classes altogether: "If each queue had its own server, then there would be no need for CoS." (L3468). His remark on hiring is out of this wiki's scope, and the mechanism is not. This wiki reads L3468 as saying that a pull-order policy matters only where several queues share a server; every board still has some pull order, so the question elsewhere is only whether it is the default one.
 
+With an agent executing, this section changes shape, and the following is this wiki's reading, unmeasured. Parallel agent runs give each queue something close to its own server at execution, so pull order may matter little there. The server that stays shared is the person reviewing results, so the pull-order question moves to the review queue ([[starting-more-work]]).
+
 ## Observable signs
 
 These signs are this wiki's derivation from the distinctions above. Each one raises a question and is not a finding ([[smell-is-not-a-finding]]).
@@ -98,4 +100,4 @@ The order of steps does not depend on who executes. The forecast does, since a h
 
 ## Agent executor note
 
-The definition has no human in it, so it survives. The last section above changes shape, and the following is this wiki's reading, unmeasured. Parallel agent runs give each queue something close to its own server at execution, so pull order may matter little there. The server that stays shared is the person reviewing results, so the pull-order question moves to the review queue ([[starting-more-work]]).
+The definition has no human in it, so it survives. The section *It matters where a resource is shared* changes shape with an agent executing; the reading is set out at its end.

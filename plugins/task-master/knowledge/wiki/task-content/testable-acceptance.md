@@ -67,7 +67,7 @@ This rule survives and matters more with an agent. Wake's team could settle what
 
 ## Specified Before the Task Starts
 
-This rule puts a readiness gate on the move into active work: what a task will be judged against is written down first. On Cohn's board the gate is a column of checkmarks.
+The statement above is due before the task enters active work. This section is a gate on the rule at the top of this page: what a task will be judged against is written down first. On Cohn's board the gate is a column of checkmarks.
 
 > I have teams put a big checkmark in the Tests Ready column when they have specified the high level tests for a story. Further, I encourage teams not to move many cards to the fourth column, In Process, unless the tests are specified.
 >
@@ -81,8 +81,7 @@ A task enters an active state only with its acceptance tests specified. A few ex
 
 ### Sign of violation
 
-- **In a task's text:** no checkable acceptance criteria (the rule at the top of this page). This rule is about task content, so the omission is the sign.
-- **In board state:** an active task whose acceptance section is empty, or whose readiness marker is unset.
+- **In board state:** an active task whose text and brief state no check. An empty acceptance field or an unset readiness marker is a prompt to look, not the sign itself, per the top section.
 - **In board history:** acceptance criteria first added after the task moved to active.
 
 These signs are this wiki's.

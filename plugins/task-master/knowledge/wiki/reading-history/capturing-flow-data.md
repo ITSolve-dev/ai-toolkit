@@ -63,7 +63,7 @@ This wiki reads those as the following marks in board history, each of which rai
 
 ### The rule
 
-The prevention is upstream of the data. The source calls it "a much better strategy to make sure all team members use your Agile tracking tool in an agreed upon matter" (L3836-L3842). The agreement covers what is moved when, and what a blocker looks like on the board.
+The prevention is upstream of the data. The source calls it "a much better strategy to make sure all team members use your Agile tracking tool in an agreed upon matter" (L3836-L3842). This wiki reads the agreement as covering what is moved when, and what a blocker looks like on the board.
 
 ### Agent executor note on board misuse
 

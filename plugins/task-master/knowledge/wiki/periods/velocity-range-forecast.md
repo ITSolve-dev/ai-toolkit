@@ -10,7 +10,7 @@ updated: 2026-11-02
 
 # Velocity Range Forecast
 
-A velocity range forecast answers how much will fit by a date, or when a scope will finish, from a team's own recent velocity. It uses three values instead of one, so the answer is a range. Cohn presents it as the way to keep a forecast from claiming more than velocity can support. This wiki uses it once four or more iterations have closed. With three or fewer, and for every basis other than the project's own history, the range comes from [[choosing-velocity-estimate-approach]], whose table by count of closed iterations states the same boundary; the boundary is this wiki's. The single-value arithmetic is in *Deriving Duration from Velocity* (below).
+A velocity range forecast answers how much will fit by a date, or when a scope will finish, from a team's own recent velocity. It uses three values instead of one, so the answer is a range. Cohn presents it as the way to keep a forecast from claiming more than velocity can support. This wiki uses it once four or more iterations have closed. With three or fewer, and for every basis other than the project's own history, the range comes from [[choosing-velocity-estimate-approach]], whose table by count of closed iterations states the same boundary. The boundary is Cohn's: his Table 16.1 treats four or more iterations as one step, the mean times 0.90 and 1.10 (L3668), and he does not extend the cone past three or four (L3674). Using the three values from that point instead of the table's row is this wiki's choice, argued on [[choosing-velocity-estimate-approach]]. The single-value arithmetic is in *Deriving Duration from Velocity* (below).
 
 ## Why one velocity is not enough
 

@@ -169,7 +169,7 @@ The source credits managing queues, limiting WIP and batch size, and building a 
 
 ## Which setup this applies under
 
-The mechanism holds under both setups. The source says iterations do not protect a project: "you might assume that iterations or sprints insulate you from large queues" (L426), and it says that assumption fails if the symptoms on [[signs-of-poor-flow]] are present. Cohn's iteration setup clears work in process by the calendar.
+The mechanism holds under both setups. The source says iterations do not protect a project: "you might assume that iterations or sprints insulate you from large queues" (L426), and it says that assumption fails if the symptoms on [[signs-of-poor-flow]] are present. This wiki reads Cohn's iteration setup as clearing work in process at the period's end, provided unfinished work is returned ([[unfinished-at-period-end]]).
 
 The resolution is this wiki's. Both can hold, because they concern different queues.
 

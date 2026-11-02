@@ -48,7 +48,7 @@ The first test has no source statement. This wiki reads board history as its evi
 
 ## User Story
 
-A user story is "a brief description of functionality as viewed by a user or customer of the system." ([[cohn-agile-estimating-planning]] L782). Cohn presents it as a lightweight way of stating requirements, and as one of the best ways to keep work aimed at user-valued features (L782). This wiki's word for the unit is "task"; the mapping between the two is on *Unit of Work* (above), and what a good one looks like is on [[invest]].
+A user story is "a brief description of functionality as viewed by a user or customer of the system." ([[cohn-agile-estimating-planning]] L782). Cohn presents it as a lightweight way of stating requirements, and as one of the best ways to keep work aimed at user-valued features (L782). This wiki's word for the unit is "task"; the mapping between the two is under *Vocabulary* (above), and what a good one looks like is on [[invest]].
 
 ### Form
 

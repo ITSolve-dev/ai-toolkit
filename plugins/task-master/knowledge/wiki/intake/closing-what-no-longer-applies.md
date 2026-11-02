@@ -100,7 +100,7 @@ These are from participants' accounts. The authors say "Specific causes for this
 The authors recommend three workflows (L773). This wiki keeps two, in changed form.
 
 - **Regular review of open issues.** The meeting is out of scope, and what it does can be kept: something looks at every open item on a schedule. That is the follow-up on [[triage-procedure]].
-- **Someone curates the backlog.** That is what *Closing What No Longer Applies* (above) does, with the decisions left to a person.
+- **Someone curates the backlog.** That is what the rule at the top of this page does, with the decisions left to a person.
 - **Management assigns issues, with no self-assignment.** Dropped, as managing people.
 
 The authors' suggested reminders after one week and three months are illustrations, marked "for example" (L763). They are not findings.
@@ -131,7 +131,7 @@ The study counts closed issues as well as open ones (L457), and its reason is th
 
 ### Remedy
 
-The authors recommend that "Archiving very old issue data could reduce the overload and stress when searching for relevant issue data." (L718). This wiki keeps the point that an open list should hold what might still be done, and it reads that through *Closing What No Longer Applies* (above). Which archive feature to use is tracker configuration and out of scope.
+The authors recommend that "Archiving very old issue data could reduce the overload and stress when searching for relevant issue data." (L718). This wiki keeps the point that an open list should hold what might still be done, and it reads that through the rule at the top of this page. Which archive feature to use is tracker configuration and out of scope.
 
 ### Agent executor note
 

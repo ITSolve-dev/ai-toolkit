@@ -36,7 +36,7 @@ This wiki reads the sign as follows. At the inventory stage, two entries so clos
 
 ## What an entry carries
 
-The template offered is "As a <user type>, I want to <goal> so that <reason>" (L5113), and the reason is optional: "we don’t always need a ‘so that’ clause. If it helps make the story more clear, use one. But it’s not worth worrying about, especially on a story like this one where it’s obvious why a user would want to do that." (L5167). This wiki reads that as agreeing with [[task-must-justify-itself]], which also rejects the missing field as a sign. That page's test still applies once an entry becomes a task someone will execute.
+The template offered is "As a <user type>, I want to <goal> so that <reason>" (L5113), and the reason is optional: "we don’t always need a ‘so that’ clause. If it helps make the story more clear, use one. But it’s not worth worrying about, especially on a story like this one where it’s obvious why a user would want to do that." (L5167). This wiki reads that as agreeing with [[task-must-justify-itself]], which does not count an empty field as the sign, though it does count a reason missing from the task and its brief. That page's test still applies once an entry becomes a task someone will execute.
 
 ## Failure mode: an entry taken for a task
 

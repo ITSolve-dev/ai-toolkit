@@ -36,6 +36,8 @@ These signs are this wiki's derivation from Cohn's figure.
 
 Cohn gives no treatment in this section. This wiki's reading is that exposure grows with the number of unfinished prerequisites, so two moves follow. Cut so that fewer tasks merge on one ([[independent-tasks]]), and do not state a date for a task without naming the prerequisites the date rests on. A wait held by an outside party is worse than a sequence, because the project cannot act on it ([[sequence-versus-wait]]).
 
+The inputs are the prerequisites each task rests on, read from the task's text and its links on the board, and their finish dates, read from board history. This wiki's test of the choice: the cut was wrong if the merged-on task still started late for a cause outside the prerequisites named.
+
 ## Cost
 
 This wiki notes that cutting to reduce merges can add scaffolding or duplicate work, and [[independent-tasks]] records that cost.

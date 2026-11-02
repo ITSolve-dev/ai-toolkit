@@ -79,7 +79,7 @@ A release usually has one preeminent condition, and Cohn says many projects are 
 >
 > — [[cohn-agile-estimating-planning]], L2804
 
-This wiki reads *Fixed Date, Variable Scope* (below) as the first of these. Its "When it does not hold" section is the second, which Cohn names here.
+This wiki reads *Fixed Date, Variable Scope* (below) as the first of these. Its "When it does not hold" section is the second, the feature-driven case of L2804.
 
 ### The test
 
@@ -140,7 +140,7 @@ Later fact that would show the choice wrong: the date arrives and the work finis
 
 ### When it does not hold
 
-Cohn allows the opposite preference in the same chapter: a product owner may trade a month for more stories (L857). When the conditions of satisfaction fix the content and let the date move, this wiki reads the timed race as the wrong model, and the plan states a date range from the rate of progress instead ([[forecast-range-and-probability]]). Cohn does not spell out this case here; the reading is this wiki's.
+Cohn allows the opposite preference in the same chapter: a product owner may trade a month for more stories (L857). When the conditions of satisfaction fix the content and let the date move, this wiki reads the timed race as the wrong model, and the plan states a date range from the rate of progress instead ([[forecast-range-and-probability]]). Chapter 3 does not spell this case out; Chapter 13 calls it feature-driven (*Date-Driven Versus Feature-Driven*, above) and divides by velocity for it (L2832). Stating the result as a date range is this wiki's reading.
 
 If date, scope and quality all stay fixed and no plan satisfies them, Cohn's answer is that "the conditions of satisfaction must change." (L859).
 

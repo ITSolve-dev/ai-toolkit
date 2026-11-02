@@ -1,7 +1,7 @@
 ---
 title: Estimating Velocity
 category: sizing
-summary: Velocity before a usable history is estimated in a ranked order (observe one to three iterations, then a related project's actuals if seven comparability questions pass, then a see-what-fits forecast, with planned velocity as a labelled stop-gap) and always stated as a range whose width follows the evidence (0.6-1.6 on one observation or doubtful history, the observed range at three iterations); from four closed iterations the three-value forecast takes over, and observed values replace any estimate as soon as they exist.
+summary: Velocity before a usable history is estimated in a ranked order (observe one to three iterations, then a related project's actuals if seven comparability questions pass, then a see-what-fits forecast, with planned velocity as a labelled stop-gap) and always stated as a range whose width follows the evidence (0.6-1.6 on one observation or doubtful history, 0.8-1.25 at two, the observed range at three iterations); from four closed iterations, the step at which Cohn's own table stops at 0.90-1.10, this wiki uses the three-value forecast instead, and observed values replace any estimate as soon as they exist.
 tags: [decision-rule, velocity, release-planning, iterations, method, forecast, release, cohn, history, capacity, numbers, human-executor, rule, range, false-precision]
 sources: [cohn-agile-estimating-planning]
 created: 2026-11-01
@@ -54,7 +54,7 @@ Instead of predicting [[velocity]], run one to three iterations and estimate fro
 2. Run the iteration on the real project.
 3. Turn the observation into a range (*A Velocity Estimate Is a Range*, below):
    - After one iteration: multiply by 0.6 and 1.6. A velocity of 15 gives 9-24 (L3655).
-   - After two: the mean, with the [[cone-of-uncertainty]] step for two, 80% to 120% (L3659).
+   - After two: the mean times 0.8 and 1.25, the [[cone-of-uncertainty]] step for two in Table 16.1 (L3666). The prose beside the table says 80% to 120% (L3659); this wiki uses the table, as [[cone-of-uncertainty]] explains.
    - After three: use the range of observed values, or the mean with the cone step for that count. 12, 15, 16 gives 12-16 (L3657).
    - From four closed iterations this wiki hands over to the three-value forecast on [[velocity-range-forecast]]; see the table by count of closed iterations, below.
 4. Plan the release date from the range (L3653).
@@ -97,7 +97,7 @@ Velocity itself is defined there by finished work:
 2. **Wait for one.** "wait _at least_ two weeks, let the team run one iteration, and then base this initial plan off at least one observation of actual velocity" (L6187).
 3. **Plan now, and label it.** "You’ve planned to do four stories in this first iteration. We can add up the points associated with each and call that our planned velocity. We have no idea if it will be, but it’s our initial guess." (L6167).
 
-This wiki reads the first two as *Run Iterations to Observe Velocity* (above), and the third as the forecast on *Forecast Velocity by Seeing What Fits* (below) run on the project's real first selection and not on a sample. The order agrees with the ranking on the ranking at the top of this page.
+This wiki reads the first two as *Run Iterations to Observe Velocity* (above), and the third as the forecast on *Forecast Velocity by Seeing What Fits* (below) run on the project's real first selection and not on a sample. The order agrees with the ranking at the top of this page.
 
 ### Procedure
 
@@ -118,7 +118,7 @@ The first observed velocity is what tests the guess. In the case it came in at 1
 
 ### Failure mode: a guess treated as a measurement
 
-**Signs:** a published schedule with no finished iteration behind it and no note that its velocity is planned, or a planned velocity still being quoted after observed values exist. These signs are this wiki's. The second is the same defect as the one on the ranking at the top of this page.
+**Signs:** a published schedule with no finished iteration behind it and no note that its velocity is planned, or a planned velocity still being quoted after observed values exist. These signs are this wiki's. The second is the same defect as the sign under *Sign of violation* at the top of this page.
 
 ### Points do not convert evenly to hours
 
@@ -258,11 +258,11 @@ Chapter 16 and Chapter 21 give two methods for a project's own observed velocity
 |---|---|---|
 | None | A related project's history or a forecast, times 0.6 and 1.6 (L3626-L3634, L3732-L3736) | The low end |
 | One | Observed velocity times 0.6 and 1.6 (L3655) | The low end |
-| Two | The mean, 80% to 120% (L3659) | The low end |
+| Two | The mean times 0.8 and 1.25 (Table 16.1, L3666; the prose at L3659 says 80% to 120%, and [[cone-of-uncertainty]] gives why this wiki uses the table) | The low end |
 | Three | The observed range, lowest to highest (L3657), or the cone step for three | The slowest iteration. The slowest-three mean equals the mean here, so it is no floor |
-| Four or more | The three values on [[velocity-range-forecast]]: most recent, mean of up to the last eight, mean of the slowest three (L4658-L4666) | The slowest-three mean, Cohn's "comfortable" figure (L4684), with the slowest single iteration stated as possible below it |
+| Four or more | The three values on [[velocity-range-forecast]]: most recent, mean of up to the last eight, mean of the slowest three (L4658-L4666). Table 16.1's own row would give the mean times 0.90 and 1.10 (L3668) | The slowest-three mean, Cohn's "comfortable" figure (L4684), with the slowest single iteration stated as possible below it |
 
-The boundary at four is this wiki's: it is the first count at which the slowest-three mean differs from the overall mean. What would show it wrong is delivery below the stated floor in more than an occasional period, the test on [[velocity-range-forecast]].
+The boundary at four is Cohn's, not this wiki's. Table 16.1 already treats four or more iterations as one step, the mean times 0.90 and 1.10 (L3668), and Cohn says "I normally don’t extend this analysis past three or four iterations" (L3674). This wiki's choice is which method to use from that point: the Chapter 21 three values and not the table's last row. On Table 21.1's figures (mean of the last eight 17, slowest three 14, most recent 19; L4672-L4678) the table row gives 15.3-18.7 and the three values give 14-19. The reasons for the choice are this wiki's. The three values state a floor drawn from the project's own slowest iterations, which Cohn calls the figure the product owner "should feel comfortable" with (L4684), while the 0.90-1.10 row is a fixed width that Cohn himself declines to narrow further, since he will not "pretend that after six iterations the team precisely knows their velocity" (L3674). Four is also the first count at which the slowest-three mean differs from the overall mean, so the three values say something the mean does not. In this wiki's tests, what would show the choice wrong is delivery below the stated floor in more than an occasional period, the test on [[velocity-range-forecast]], or a run of periods in which the three-value floor sits below the table's low end without delivery ever reaching down to it.
 
 ### Sign of a violation
 

@@ -48,7 +48,7 @@ So a finding should not say Control Charts are invalid for this work. It should 
 
 ## How to check it
 
-The source's own test is the Histogram: "the shape of a normal distribution is a bell curve. When you look at your Histogram you will see that your data does not follow a bell curve pattern" (L3914). The source "can guarantee" the data is not normal (L3908). This wiki keeps the check and not the guarantee, since a sign here is a question: plot the project's own [[cycle-time-scatterplot]], and if it is not bell-shaped, the printed percentages do not mean what they say.
+The source's own test is the Histogram: "the shape of a normal distribution is a bell curve. When you look at your Histogram you will see that your data does not follow a bell curve pattern" (L3914). The source "can guarantee" the data is not normal (L3908). This wiki keeps the check and not the guarantee, since a sign here is a question: plot the histogram of the project's own cycle times ([[cycle-time-scatterplot]], its histogram form), and if it is not bell-shaped, the printed percentages do not mean what they say.
 
 This wiki's further checks, derived from the source's argument, need only the same cycle times.
 

@@ -44,8 +44,8 @@ The limit on the arrivals column ([[started-and-finished-points]]) is set so tha
 
 1. Calculate average [[throughput]] from history. The source's example, chosen “for argument’s sake”, is weekly deployment and five items per week ([[vacanti-actionable-agile-metrics]] L2130).
 2. Start from that number: “Since we are finishing five old items per week, that means we only want to start five new items per week.” (L2130) The limit is five.
-3. Add a margin if the process varies. “[D]epending on the variability of our system, we might want to make that WIP Limit a little larger—say six or so—to make sure that our system is never starved for work” (L2136).
-4. Divide by replenishments per interval, because five assumes replenishment at the same cadence as deployment. Replenishing daily in a five-day week gives 5 / 5 = 1, a limit of one (L2136).
+3. Divide by replenishments per interval, because five assumes replenishment at the same cadence as deployment. The source divides "the original Arrival Rate number": replenishing daily in a five-day week gives 5 / 5 = 1, a limit of one (L2136).
+4. Add a margin if the process varies. “[D]epending on the variability of our system, we might want to make that WIP Limit a little larger—say six or so—to make sure that our system is never starved for work” (L2136). The source states the margin on the weekly limit and divides the unmargined five; this wiki therefore adds it after dividing.
 
 The figures are illustrative and hold only for that example. The method is the division, and the source gives no formula for the margin.
 

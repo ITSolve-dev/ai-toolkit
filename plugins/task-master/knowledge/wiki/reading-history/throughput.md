@@ -18,7 +18,7 @@ Count discrete items that departed in a period. The period is the team's choice:
 
 ## Exact, but an average
 
-On a [[cumulative-flow-diagram]] the average Throughput over a date range is the slope of the bottom line between those dates, and the same calculation on the top line gives the arrival rate (L1656-L1658). The steps are on the same page. The source draws the line between this and the horizontal reading deliberately:
+On a [[cumulative-flow-diagram]] the average Throughput over a date range is the slope of the bottom line between those dates, and the same calculation on the top line gives the arrival rate (L1656-L1658). The steps are on [[cumulative-flow-diagram]]. The source draws the line between this and the horizontal reading deliberately:
 
 > If the bottom line of your CFD represents the departures from your process, then the slope of that line between any two points (reporting intervals) is your _exact_ average Throughput between those two points.
 >

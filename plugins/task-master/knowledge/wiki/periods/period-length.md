@@ -34,7 +34,7 @@ This wiki's starting test is built from the trade-off the Guide names: choose th
 | How long a goal has stayed valid in earlier periods | Board history: goals gone obsolete, and tasks added or dropped mid-period |
 | How often the people steering can review | The people steering |
 
-At setup a new project has no board history for the first two inputs, so the test gives no answer. This wiki's branch for that case: take the review cadence of the people steering as the length, label it a guess, and re-check it against the 85th percentile once enough tasks have finished to read one ([[how-much-flow-data]]). No source gives a length for this case.
+At setup a new project has no board history for the first two inputs, so the test gives no answer. Cohn's two weeks (*Cohn's preferred lengths*, below) is the only sourced starting length, with his advice against starting at one week without full test automation (L3504), and it is calibrated on human teams. This wiki's branch for a new project steered by a few people with an agent executing: take the review cadence of the people steering as the length, label it a guess, and re-check it against the 85th percentile once enough tasks have finished to read one ([[how-much-flow-data]]).
 
 The length was too long if goals repeatedly go obsolete during the period ([[mid-period-change]]). It was too short if tasks repeatedly go back unfinished for reasons of size ([[unfinished-at-period-end]]), or if the review of one period runs into the next.
 
@@ -73,9 +73,9 @@ The figure is a rule of thumb from experience, and the chapter shows no data beh
 | Priorities | Mostly held for four weeks | Held for only a few days |
 | Overhead | Very little | Low, through test automation from the start |
 
-This wiki reads the two cases as showing the factors are not additive. Goodman's horizon alone allowed four weeks: "the team could have used four-week iterations" (L3538). Uncertainty decided it. Napa shows feedback can argue for longer: "Showing them new versions every two weeks would have been too much in this environment." (L3528).
+This wiki reads the two cases as showing the factors are not additive. Goodman's horizon alone allowed four weeks: "the team could have used four-week iterations" (L3538). Uncertainty and unstable priorities decided it, with the wish for frequent feedback, low overhead from test automation and urgency as further reasons (L3538-L3542). Napa shows feedback can argue for longer: "Showing them new versions every two weeks would have been too much in this environment." (L3528).
 
-The Goodman case also shows the limit of the priorities factor. "Priorities could not remain constant for more than a few days in this environment" (L3542), yet the team chose two weeks. This wiki reads that as evidence that the factor pushes toward shorter and is not a hard cap inside the usual range. The source does not say how those mid-period changes were handled.
+The Goodman case also shows the limit of the priorities factor. "Priorities could not remain constant for more than a few days in this environment, which also pointed us toward the short, two-week iterations we chose" (L3542). So the factor did push toward shorter periods, and a few days of stability still allowed two-week ones. This wiki reads that as evidence that the factor pushes toward shorter and is not a hard cap inside the usual range. The source does not say how those mid-period changes were handled.
 
 Both teams are larger than the few people this wiki serves, so the factors transfer and the chosen values do not.
 

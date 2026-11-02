@@ -187,7 +187,7 @@ Scrum's standard also differs in kind from a task's acceptance check. The Defini
 ## Which holds under which setup
 
 - **Flow setup:** define both points. Every metric needs them. A flow setup pulls, so Vacanti's first pull and this page's capacity test name the same moment: entry to the limited arrivals column if the board has one, otherwise the take.
-- **Iteration setup:** one shared standard of done is required. A started point is optional for the guide, but this wiki wants one, because history cannot show age without it. Selection for the period is the period's commitment ([[backlog-versus-commitment]]) and bounds what may start; the started point is the capacity test above, not the selection.
+- **Iteration setup:** one shared standard of done is required. A started point is optional for the guide, but this wiki wants one, because history cannot show age without it. Where commitment falls under this setup is on [[backlog-versus-commitment]]; the started point is the capacity test above, not the selection.
 - **Iterations with a WIP control:** both, as a count needs a started point.
 - **Work promised before anyone takes it:** the two tests differ, since Vacanti's push arrival comes earlier than capacity is taken up. This wiki keeps the capacity test for the started point, because a count that includes untouched promises gives a bound nothing to restrain, and it reads the time since the promise separately as the wait the requester felt. This departs from Vacanti for push systems, and the departure is ours.
 

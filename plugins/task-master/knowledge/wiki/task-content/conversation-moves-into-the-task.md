@@ -70,7 +70,7 @@ The study also shows a wider form of the same failure. Ten participants describe
 ### Sign
 
 - **In a task's comments:** a comment states a status, a value or a decision that the task's fields or text do not show.
-- **In task text:** it points at another place for a decision: a chat, a call, a thread. This overlaps with the sign on *The Conversation Moves Into the Task* (above).
+- **In task text:** it points at another place for a decision: a chat, a call, a thread. This overlaps with the sign at the top of this page.
 - **In board history:** a task's result followed a decision that appears only in a comment.
 
 These wordings are this wiki's, from L179 and L765.

@@ -36,9 +36,9 @@ This wiki reads the table as follows: the most common finish, Day 2, covers only
 ## What each point promises
 
 - **A 50% estimate** is one "just as likely to be high as they are to be low" (L4000). It is overrun half the time by construction, so one task passing its 50% figure says nothing about the estimate. How far past an estimate justifies action is [[overrun-triggers-a-recut]].
-- **A 90% estimate** is the 50% figure plus [[choosing-a-buffer]]. Cohn's programmer is "equally likely to beat or exceed" 3 days, yet would not be surprised by 5 (L3903).
+- **A 90% estimate** is the 50% figure plus local safety (*Local Safety* on [[choosing-a-buffer]]). Cohn's programmer is "equally likely to beat or exceed" 3 days, yet would not be surprised by 5 (L3903).
 
-Discriminating question for any estimate on a board: which of these two is it? An estimate is usable in a plan only if the answer is known, because [[choosing-a-buffer]] depends on it. Neither point is a promise ([[estimate-versus-commitment]]); expressing the spread is the subject of [[forecast-range-and-probability]].
+Discriminating question for any estimate on a board: which of these two is it? An estimate is usable in a plan only if the answer is known, because the buffer sizing on [[choosing-a-buffer]] depends on it. Neither point is a promise ([[estimate-versus-commitment]]); expressing the spread is the subject of [[forecast-range-and-probability]].
 
 ## Checking it against fact
 

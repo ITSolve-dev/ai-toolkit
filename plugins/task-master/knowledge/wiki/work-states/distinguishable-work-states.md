@@ -1,7 +1,7 @@
 ---
 title: Distinguishable Work States
 category: work-states
-summary: The sources give criteria and no canonical column set, and treat a fixed list as the failure case; what they support is a small set of distinctions any board must let a reader make, drawn partly as columns and partly as markers. A board's columns are judged by criteria each with the sign of failing it, six per column and four across the board. Cohn's iteration task board is worked through as an example: only To Do and In Process are required states, and the rest are a marker, an optional handoff and a computed total.
+summary: The sources give criteria and no canonical column set, and treat a fixed list as the failure case; what they support is a small set of distinctions any board must let a reader make, drawn partly as columns and partly as markers. A board's columns are judged by criteria each with the sign of failing it, six per column and four across the board. Cohn's iteration task board is worked through as an example: only To Do and In Process are required states, and the rest are a marker, an optional handoff and a computed total; with an agent executing, this wiki reads To Verify as required.
 tags: [concept, work-states, board-design, method, audit, iterations]
 sources: [kanban-guide, scrum-guide-2020, wester-board-design, kanban-playbook-workflow-states, radzikowska-waiting-blocked, kubernetes-issue-triage, montgomery-tracker-smells, cohn-agile-estimating-planning]
 created: 2026-11-01
@@ -52,7 +52,7 @@ The distinctions concern the work and survive. The handoff row gains weight, sin
 
 ## Judging a Board's Columns
 
-This method audits an existing board. The sources offer design advice and no checklist, so the list below is this wiki's assembly. Each criterion names who supplied it, and the signs are this wiki's wording unless a source is quoted. All three sources come from one school and report no measurement. See *Distinguishable Work States* (above) for what the criteria are protecting.
+This method audits an existing board. The sources offer design advice and no checklist, so the list below is this wiki's assembly. Each criterion names who supplied it, and the signs are this wiki's wording unless a source is quoted. All three sources come from one school and report no measurement. See *The distinctions* (above) for what the criteria are protecting.
 
 The Kanban Guide sets no limit on what a board may look like: "There are no specific guidelines for how a visualization should look." ([[kanban-guide]] L125). Wester says the same thing more bluntly: "there are no board police to decide what is right and wrong." ([[wester-board-design]] L61). A failed criterion therefore says what a column will cost, and it does not say the board is illegal.
 
@@ -96,7 +96,7 @@ The criteria pull against each other. Criterion 5 and the handoff in criterion 7
 
 ### What practitioners report
 
-The interviews behind [[montgomery-tracker-smells]] come from outside the Kanban school, so they are a second voice on three of these criteria. They add signs and no new criterion. They are perceptions from mostly large organisations, with no thresholds.
+The interviews behind [[montgomery-tracker-smells]] come from outside the Kanban school, so they are a second voice on three problems, mapped onto five of these criteria. They add signs and no new criterion. They are perceptions from mostly large organisations, with no thresholds.
 
 | Problem | Participants | Sign | Criterion |
 |---|---|---|---|

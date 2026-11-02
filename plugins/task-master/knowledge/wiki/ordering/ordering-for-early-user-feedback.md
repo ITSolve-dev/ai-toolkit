@@ -88,7 +88,7 @@ His agile curve is deliberately not a straight line. It favours reducing end unc
 >
 > — [[cohn-agile-estimating-planning]], L1777
 
-The rule he draws from this is *Ordering for Early User Feedback* (above).
+The rule he draws from this is the one at the top of this page.
 
 ### How the plugin uses it
 

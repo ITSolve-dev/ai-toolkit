@@ -48,19 +48,15 @@ Cohn's list has no urgency factor. In this chapter, timing appears only as an in
 Cohn's Chapter 10 turns a theme's value into a cash flow and compares themes by net present value, internal rate of return and payback (L1926-L1932), and prices a theme's cost per story point (L1740, L2087-L2128). This wiki does not keep that chain as method. Money measures apply only when a person supplies cash figures, and none lives on a board; a task on a small board cannot carry a cash flow of its own. Where nobody supplies them, ordering stays with [[ordering-by-value-and-urgency]], and the plugin does not invent a figure. Four points carry over.
 
 - **The requester quantifies the reason.** "At a minimum, whoever is requesting the theme should be able to quantify the reasons for developing it." (L1918). The sign is a request whose stated benefit carries no number and no unit, and no one who can give one. This wiki reads it with [[incomparable-tasks]]: asking comes first ([[clarifying-questions]]), and what remains unquantified counts as no shown benefit, so it is neither ranked on a guess nor closed for that reason alone. Cohn's four headings for a return are new revenue, incremental revenue, retained revenue and operational efficiencies (L1950). This wiki reads the last two as the ones a small project usually has: what stops working for existing users if the work is not done, and effort avoided, stated roughly by the person steering.
-- **Between two pieces of work with similar return, prefer the one that pays sooner.** "We cannot compare projects and make prioritization decisions by simply summing the total row of a worksheet" (L1920). This wiki recomputed Cohn's own illustration at 12% a year and found the reversed stream worth about 3% more, not "far less", so the mechanism stands and the size does not; on a small project timing arrives through [[cost-of-delay]], not through a discount rate.
-- **Compare sets that fit one capacity, not single rows.** Of Cohn's three themes, custom reporting "could be combined with partner integration and done with the same cost as the overnight service theme" (L2324). By this wiki's arithmetic on Table 10.15 the pair sums to ¤64,546 of NPV against ¤46,341 for overnight alone, at the same ¤101,250.
+- **Between two pieces of work with similar return, prefer the one that pays sooner.** "We cannot compare projects and make prioritization decisions by simply summing the total row of a worksheet" (L1920). This wiki's recomputation of Cohn's own illustration found the difference far smaller than his "far less", so the mechanism stands and the size does not; on a small project timing arrives through [[cost-of-delay]], not through a discount rate.
+- **Compare sets that fit one capacity, not single rows.** Of Cohn's three themes, custom reporting "could be combined with partner integration and done with the same cost as the overnight service theme" (L2324), and by this wiki's arithmetic on his Table 10.15 the pair returns more than the single theme of equal cost.
 - **Scarcity beats rate.** A 45% return on a small project that "ties up a critical developer" can lose to a 25% one needing the same developer: "You may choose to make more money by doing the second project, the one with the lower IRR." (L2258). This wiki reads the steering person's attention as the scarce resource here.
 
 The capacity form of cost is this wiki's. Where money is not the deciding unit, the division behind cost per story point gives a share of capacity instead: an item of thirty points, against 120 points finished in the last twelve weeks, is a quarter of that stretch, or three weeks. The question becomes whether the item is worth three weeks of what could otherwise be done. It needs only board history, and it needs a point scale that stayed stable over the stretch; with no stable points there is no share to report.
 
-## Agent executor note
-
-This wiki reads value and cost as concerning the result and its price, so they survive. The two factors that need a closer look are knowledge and risk, because part of what Cohn counts depends on who the people are. See [[ordering-for-early-user-feedback]].
-
 ## Combining Prioritization Factors
 
-This is Cohn's two-step procedure for turning the four *Prioritization Factors* (above) into one order ([[cohn-agile-estimating-planning]]). Cost and value set the position, and learning and risk adjust it.
+Cohn combines the four factors in two steps ([[cohn-agile-estimating-planning]]). Cost and value set the position, and learning and risk adjust it.
 
 ### The procedure
 
@@ -83,7 +79,7 @@ Its strength is modest. Early elimination of a significant risk "can often justi
 
 Cohn's two statements point in different directions. A medium-priority risky theme moves forward (L1827), yet low-value, high-risk items are deferred "right out of the project" (L1817). The chapter's first discussion question poses this very case, a low-priority feature that might be dropped and needs a language nobody on the team knows, and leaves it for the reader (L1879).
 
-This wiki resolves it with one test, and the test is ours: **will this item be built regardless?** If yes, its risk has to be met at some point, and meeting it early costs less, so risk moves it forward. If it could be dropped, dropping it removes the risk for nothing, so risk moves it back. On this reading the feature in the discussion question moves back. See *Risk-Value Quadrants* (below).
+This wiki resolves it with one test, and the test is ours: **will this item be built regardless?** If yes, its risk has to be met at some point, and meeting it early costs less, so risk moves it forward. If it could be dropped, dropping it removes the risk for nothing, so risk moves it back. On this reading the feature in the discussion question moves back. This is the one statement of the test on this page; *Risk-Value Quadrants* (below) applies it.
 
 ### Who moves an item, and the limit
 
@@ -101,44 +97,40 @@ The same division appears on [[value-order-versus-technical-necessity]], for seq
 
 This wiki reads that as a test with two outcomes. A task argued up for risk or learning, with a result the owner can be shown, goes to the owner to decide. A task with no result the owner can be shown also goes to the owner, with the risk or the knowledge it is meant to settle named; a preference for invisible work alone does not carry it, and where the task can be cut until it has a result to show, it is ([[vertical-slice]]). This wiki does not read the coach's line as stopping such work outright, because Cohn's own exposition moves invisible work up for knowledge alone: the LDAP stories "were moved up to around the middle of a project rather than being left near the end" (L1841-L1845), and the failure of infrastructure "may be enough to warrant moving development sooner than would be justified solely on the basis of value" (L1847). Infrastructure and spikes are handled on [[cost-now-versus-cost-later]] (its section on prioritizing infrastructure) and [[spike-as-last-resort]]. The case's first iteration passes that test: the rings story opens because "That’s our biggest risk." (L5686), and the product manager's reaction is "It is great to think that we’ll make so much visible progress so quickly." (L5935).
 
-**The evidence is thin.** The case does not test the rule. The rings story was both the riskiest and a mandatory feature, so risk and value pointed the same way, and the source offers no way to trade one against the other when they diverge. That reading is this wiki's. It is also why the test on *Risk-Value Quadrants* (below) stays a judgement.
+**The evidence is thin.** The case does not test the rule. The rings story was both the riskiest and a mandatory feature, so risk and value pointed the same way, and the source offers no way to trade one against the other when they diverge. That reading is this wiki's. It is also why the test under *Which way risk moves an item* (above) stays a judgement.
 
 ### Keeping it on paper
 
 Cohn lets the procedure stay informal: "It can (and often does) take place entirely in the head of the product owner." (L1829). The team may then ask for small changes (L1829). This wiki does not keep that part. An order held in one head cannot be read back when it proves wrong. So the plugin writes, for each item that moved, the factor that moved it and the direction. Running the discussion itself is outside this base.
 
-### Inputs, where each is read from, and what would show the choice wrong
+## Risk-Value Quadrants
 
-| Input | Read from |
-|---|---|
-| Value of each item | The person steering, or [[ordering-by-value-and-urgency]] |
-| Cost today | The item's size, or its share of recent capacity (the capacity form in *Money Figures, When a Person Supplies Them*, above) |
-| Whether doing it produces needed knowledge | [[ordering-for-early-user-feedback]], the task's open questions |
-| Whether doing it removes a named risk | *Risk-Value Quadrants* (below) |
-| Whether the item is certain to be built | The person steering |
-| Whether its result can be shown | The task's acceptance ([[testable-acceptance]]) |
+Cohn's quadrants settle the "classic struggle" (L1791) between building what could derail a project and building what pays soonest. Cohn ([[cohn-agile-estimating-planning]]) refuses both extremes: "The solution, of course, is to give neither risk nor value total supremacy when prioritizing." (L1795).
 
-The source does not say what would show an order wrong, so these tests are this wiki's.
+### What counts as a risk
 
-- **A forward move was wrong** if the risk or question named for it was not one that, had it gone badly, would have changed other work: nothing else rested on its answer. This tests the judgement available when the move was made. A risk retired early with no surprise is what a successful probe looks like, and is not by itself a sign that the move was wrong.
-- **Failing to move an item was wrong** if a late item revealed a problem that forced finished work to be redone or dropped.
-- **A backward move was wrong** if the deferred item turned out to be required and its risk arrived with no time left.
+Cohn defines a risk as "anything that has not yet happened but might and that would jeopardize or limit the success of the project" (L1781). He lists schedule risk, cost risk and functionality risk, and also divides risks into technological and business (L1783-L1791). His signs of a high-risk feature are reliance on "unproven technologies, integration with unproven sub-contractors, technical innovation (such as the development of a new algorithm)" (L1795).
 
-Two candidate signs follow, and both are this wiki's. A task carrying the plan's largest unverified assumption sits late in the order while work resting on it goes first. And a period's selection contains tasks whose results the owner could not be shown. A sign raises a question: the risk may be accepted knowingly.
+### The sequence
 
-### Cost
+| Value | Risk | Cohn's label | Why |
+|---|---|---|---|
+| High | High | Do first | "These features deliver the most value and working on them eliminates significant risks." (L1806) |
+| High | Low | Do second | Equal value and less risk, so they "can therefore be done later in the schedule" (L1806) |
+| Low | Low | Do last | "they will have less impact on the total value of the product if they are dropped and because they are low risk" (L1815) |
+| Low | High | Avoid | "There is no reason to take on a high degree of risk for a feature of limited value." (L1817) |
 
-This wiki notes that the method is a judgement with no weights. Two people can apply it and reach different orders, and Cohn gives no rule for how far a factor may move an item. A written reason lets the result be checked, but it does not make it reproducible. A risky item placed early also delivers less value now, and if the risk does not materialise the value was deferred for nothing. Cohn leaves it at "consider" and "often" (L4933), so the weight comes from the case, and [[incomparable-tasks]] applies where it cannot be compared.
+The quadrant labels are from Figure 9.3 (L1811). The rule in a sentence is his: "use the guideline to work first on high-value features but use risk as a tie-breaker." (L1806).
 
-### Agent executor note
+This wiki notes what the table implies. Value is the primary sort and risk breaks ties. Which way risk moves an item, forward across bands as in Cohn's medium-priority example (L1827), or out of the project as in his last row, "Try to defer low-value, high-risk items right out of the project." (L1817), is decided by the one test under *Which way risk moves an item* (above).
 
-This wiki reads the procedure as concerning the order of results, so it survives. Writing down each move matters more here, because an agent has no memory of why an order was set unless the reason is on the board. The value input and the build-regardless answer stay with the person steering.
+### Positions change
 
-With a few people steering an agent, the owner and the builder may be one person. The split of authority then falls away and the visibility test stays, since an agent left to choose can also prefer invisible technical work. This wiki also expects an agent to make probes cheaper, which would favour trying a risky task early, though the result is only worth what the people steering can verify. No source measures this. Where the question can be answered without building a feature, see [[spike-as-last-resort]].
+"Be aware that a feature’s risk and value profile changes over time." (L1817). Cohn's example has a slip: he places a low-value, low-risk feature in the Avoid quadrant, which Figure 9.3 gives to low-value, high-risk items (L1811, L1817). This wiki reads the point as surviving the slip: a feature set aside today can become the next thing to do once everything above it is finished. So a rating expires, as a [[cost-of-delay]] rating does.
 
 ## Ordering by One Factor
 
-This defect is an order that lets one input of the *Prioritization Factors* (above) decide. Cohn ([[cohn-agile-estimating-planning]]) describes the first two forms as the drawbacks of two opposite approaches (L1793). The signs are this wiki's derivation from those consequences. A sign raises a question, because either trace can have another cause ([[smell-is-not-a-finding]]).
+The defect here is an order that lets one of the four factors decide. Cohn ([[cohn-agile-estimating-planning]]) describes the first two forms as the drawbacks of two opposite approaches (L1793). The signs are this wiki's derivation from those consequences. A sign raises a question, because either trace can have another cause ([[smell-is-not-a-finding]]).
 
 ### Value to the exclusion of risk
 
@@ -174,59 +166,7 @@ This wiki reads this as a third form: a size is compared with a benefit without 
 
 ### Why it happens
 
-Cohn says money makes the first two factors dominate discussions (L1720). This wiki adds that an order can therefore look reasoned while two of its inputs were never asked for. This wiki's remedy is *Combining Prioritization Factors* (above), and *Risk-Value Quadrants* (below) for the first two forms. Ordering for the builders' convenience is a different fault, on [[order-by-value-not-convenience]].
-
-### Agent executor note
-
-The consequences concern work products, so this wiki reads them as surviving. Risk to the exclusion of value may be the likelier form with an agent, since this wiki expects supporting work to look cheap when an agent does it, but the source says nothing on this. Cheap construction would not remove the later cost of work nobody uses, because that cost is in [[cost-now-versus-cost-later]].
-
-## Risk-Value Quadrants
-
-This rule settles the "classic struggle" (L1791) between building what could derail a project and building what pays soonest. Cohn ([[cohn-agile-estimating-planning]]) refuses both extremes: "The solution, of course, is to give neither risk nor value total supremacy when prioritizing." (L1795).
-
-### What counts as a risk
-
-Cohn defines a risk as "anything that has not yet happened but might and that would jeopardize or limit the success of the project" (L1781). He lists schedule risk, cost risk and functionality risk, and also divides risks into technological and business (L1783-L1791). His signs of a high-risk feature are reliance on "unproven technologies, integration with unproven sub-contractors, technical innovation (such as the development of a new algorithm)" (L1795).
-
-### The sequence
-
-| Value | Risk | Cohn's label | Why |
-|---|---|---|---|
-| High | High | Do first | "These features deliver the most value and working on them eliminates significant risks." (L1806) |
-| High | Low | Do second | Equal value and less risk, so they "can therefore be done later in the schedule" (L1806) |
-| Low | Low | Do last | "they will have less impact on the total value of the product if they are dropped and because they are low risk" (L1815) |
-| Low | High | Avoid | "There is no reason to take on a high degree of risk for a feature of limited value." (L1817) |
-
-The quadrant labels are from Figure 9.3 (L1811). The rule in a sentence is his: "use the guideline to work first on high-value features but use risk as a tie-breaker." (L1806).
-
-This wiki notes what the table implies. Value is the primary sort; risk breaks ties and, for an item certain to be built, can move it forward across bands, as Cohn's own medium-priority example does (L1827; *Combining Prioritization Factors*, above). For a low-value item that could be dropped, risk is a reason to drop it rather than to raise it, so its direction flips with value: it pulls an item that will be built forward and pushes one that need not be built out. Cohn's instruction for the last row is "Try to defer low-value, high-risk items right out of the project." (L1817). The test that decides between the two directions, whether the item will be built regardless, is in *Combining Prioritization Factors* (above).
-
-### Positions change
-
-"Be aware that a feature’s risk and value profile changes over time." (L1817). Cohn's example has a slip: he places a low-value, low-risk feature in the Avoid quadrant, which Figure 9.3 gives to low-value, high-risk items (L1811, L1817). This wiki reads the point as surviving the slip: a feature set aside today can become the next thing to do once everything above it is finished. So a rating expires, as a [[cost-of-delay]] rating does.
-
-### Inputs, where each is read from, and what would show the choice wrong
-
-| Input | Read from |
-|---|---|
-| Value band | The person steering, or [[ordering-by-value-and-urgency]] |
-| Named risk: what might happen and what it would stop | The task's text, the design it came from, or the person steering |
-| Whether doing the work settles the risk | The task: does it exercise the unproven thing? |
-| Date of the rating | Board history |
-
-This wiki adds that a risk band needs a named event, because a bare sense that something is hard gives nothing to check later. The tests below are this wiki's, since the source states none.
-
-- **Risk was overrated** if the event named for it would not, had it occurred, have changed any other work. A high-risk item that finished with no surprise is not by itself evidence of overrating: a risk retired early is what doing it first was for.
-- **Risk was underrated** if a low-risk item stalled, or changed the plan for other work.
-- **Avoid was wrong** if a deferred item proved necessary and its risk arrived late in the work.
-
-### Cost
-
-Doing high-risk work first means accepting what Cohn says of a risk-driven team: "work they perform will turn out to be unneeded or of low value" (L1793). This wiki notes that restricting that to high-value items reduces the exposure and does not remove it, since the value rating may itself be wrong. The ordering also leaves the easy, high-value wins until second, so visible progress can come later.
-
-### Agent executor note
-
-This wiki reads the rule as concerning results, so it survives. What changes is the reading of risk. This wiki reads "unproven technologies" (L1795) in Cohn's setting as partly meaning unproven for these people. With an agent, this wiki reads the question as whether the thing has been shown to work in this system, not whether anyone present has done it before. That transfer is ours, and the source does not test it.
+Cohn says money makes the first two factors dominate discussions (L1720). This wiki adds that an order can therefore look reasoned while two of its inputs were never asked for. This wiki's remedy is *Combining Prioritization Factors* (above), and *Risk-Value Quadrants* (above) for the first two forms. Ordering for the builders' convenience is a different fault, on [[order-by-value-not-convenience]].
 
 ## A Trade-Off Needs Cost and Benefit
 
@@ -237,16 +177,6 @@ Cohn's rule is that a trade-off cannot be decided on one side of the ledger:
 > — [[cohn-agile-estimating-planning]], L447
 
 The decisions he means are of the form: is a feature worth delaying the release, should the release be held for more features, should a tool be bought (L447). He says "Many of the decisions made while planning a project are tradeoff decisions." (L445).
-
-### Inputs and where they are read
-
-This wiki's reading, since Cohn states the rule without a procedure:
-
-- **Cost:** the task's estimate, as a range where the work is unresolved. See [[forecast-range-and-probability]].
-- **Benefit:** the value stated in the task's purpose or by whoever requested it ([[task-must-justify-itself]]). Chapter 1 gives no benefit scale; the bands this wiki uses when value cannot be put in numbers are on [[ordering-by-value-and-urgency]].
-- **Scarce people:** Cohn says "Sometimes the staffing profile of a project can be more important than its schedule." (L439). His example is a project worth starting only if a plan avoids the fully committed chief architect (L439). This wiki reads that, for a few people steering an agent, as: the steering person's attention can be the scarce input, not the agent's capacity.
-
-**What later fact would show the choice wrong.** A chosen item delivered little of the value claimed for it, or a deferred one kept returning as a request.
 
 ### How much of a feature
 
@@ -268,8 +198,49 @@ Cohn states this as reluctance, not as a gate. This wiki reads it as saying that
 
 ### Failure sign
 
-This wiki's question to check: tasks ordered with size recorded but no statement of what each is for, or the reverse, tasks ordered by claimed importance with no size. Either way the comparison had one side. The charter does not accept an omission as the sign of a rule that chooses, so this only supports the later-fact test above, and it is no proof of a bad order: a board cannot show a wrong order directly.
+This wiki's question to check: tasks ordered with size recorded but no statement of what each is for, or the reverse, tasks ordered by claimed importance with no size. Either way the comparison had one side. The charter does not accept an omission as the sign of a rule that chooses, so this only supports the later-fact test under *What would show the order wrong* (below), and it is no proof of a bad order: a board cannot show a wrong order directly.
 
-### Trade-off
+## Inputs, where each is read from
+
+One table serves every section of this page. Cohn states the trade-off rule without a procedure, so its rows are this wiki's reading.
+
+| Input | Read from |
+|---|---|
+| Value of each item, or its value band | The person steering, or [[ordering-by-value-and-urgency]]; for a trade-off, the value stated in the task's purpose or by whoever requested it ([[task-must-justify-itself]]). Chapter 1 gives no benefit scale |
+| Cost today | The item's size, as a range where the work is unresolved ([[forecast-range-and-probability]]), or its share of recent capacity (the capacity form in *Money Figures, When a Person Supplies Them*, above) |
+| Whether doing it produces needed knowledge | [[ordering-for-early-user-feedback]], the task's open questions |
+| Named risk: what might happen and what it would stop | The task's text, the design it came from, or the person steering |
+| Whether doing it settles the risk | The task: does it exercise the unproven thing? |
+| Whether the item is certain to be built | The person steering |
+| Whether its result can be shown | The task's acceptance ([[testable-acceptance]]) |
+| Date of each rating | Board history |
+
+This wiki adds that a risk band needs a named event, because a bare sense that something is hard gives nothing to check later. Scarce people enter a trade-off as well. Cohn says "Sometimes the staffing profile of a project can be more important than its schedule." (L439). His example is a project worth starting only if a plan avoids the fully committed chief architect (L439). This wiki reads that, for a few people steering an agent, as: the steering person's attention can be the scarce input, not the agent's capacity.
+
+## What would show the order wrong
+
+The source does not say what would show an order wrong, so these tests are this wiki's.
+
+- **A forward move was wrong, or risk was overrated,** if the risk or question named for it was not one that, had it gone badly, would have changed other work: nothing else rested on its answer. This tests the judgement available when the move was made. A risk retired early with no surprise is what a successful probe looks like, and is not by itself a sign that the move was wrong.
+- **Risk was underrated** if a low-risk item stalled, or changed the plan for other work.
+- **Failing to move an item was wrong** if a late item revealed a problem that forced finished work to be redone or dropped.
+- **A backward move, or Avoid, was wrong** if the deferred item turned out to be required and its risk arrived with no time left.
+- **A trade-off was wrong** if a chosen item delivered little of the value claimed for it, or a deferred one kept returning as a request.
+
+Two candidate signs follow, and both are this wiki's. A task carrying the plan's largest unverified assumption sits late in the order while work resting on it goes first. And a period's selection contains tasks whose results the owner could not be shown. A sign raises a question: the risk may be accepted knowingly.
+
+## Cost
+
+This wiki notes that the method is a judgement with no weights. Two people can apply it and reach different orders, and Cohn gives no rule for how far a factor may move an item. A written reason lets the result be checked, but it does not make it reproducible. A risky item placed early also delivers less value now, and if the risk does not materialise the value was deferred for nothing. Cohn leaves it at "consider" and "often" (L4933), so the weight comes from the case, and [[incomparable-tasks]] applies where it cannot be compared.
+
+Doing high-risk work first means accepting what Cohn says of a risk-driven team: "work they perform will turn out to be unneeded or of low value" (L1793). This wiki notes that restricting that to high-value items reduces the exposure and does not remove it, since the value rating may itself be wrong. The ordering also leaves the easy, high-value wins until second, so visible progress can come later.
 
 This wiki notes that a rough benefit estimate on every task costs effort and can give false confidence. Chapter 1 does not say how rough is acceptable; it shows only that a comparison made without both sides is not one. Where the benefit is expressed as a rate and durations vary widely, the comparison is made on [[cost-of-delay-over-duration]]. See also [[planning-horizons]].
+
+## Agent executor note
+
+This wiki reads value and cost as concerning the result and its price, and the combining procedure and the quadrants as concerning the order of results, so all of them survive. Writing down each move matters more here, because an agent has no memory of why an order was set unless the reason is on the board. The value input and the build-regardless answer stay with the person steering.
+
+The two factors that need a closer look are knowledge and risk, because part of what Cohn counts depends on who the people are; see [[ordering-for-early-user-feedback]]. This wiki reads "unproven technologies" (L1795) in Cohn's setting as partly meaning unproven for these people. With an agent, this wiki reads the question as whether the thing has been shown to work in this system, not whether anyone present has done it before. That transfer is ours, and the source does not test it.
+
+With a few people steering an agent, the owner and the builder may be one person. The split of authority then falls away and the visibility test stays, since an agent left to choose can also prefer invisible technical work. This wiki also expects an agent to make probes cheaper, which would favour trying a risky task early, though the result is only worth what the people steering can verify. Of the one-factor failures, risk to the exclusion of value may be the likelier form with an agent, since this wiki expects supporting work to look cheap when an agent does it, but the source says nothing on this. Cheap construction would not remove the later cost of work nobody uses, because that cost is in [[cost-now-versus-cost-later]]. No source measures any of this. Where the question can be answered without building a feature, see [[spike-as-last-resort]].
