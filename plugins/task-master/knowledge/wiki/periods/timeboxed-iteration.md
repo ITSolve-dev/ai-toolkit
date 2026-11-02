@@ -5,7 +5,7 @@ summary: An iteration ends on its date even if functionality is dropped; all kin
 tags: [rule, iterations, timebox, commitment]
 sources: [cohn-agile-estimating-planning]
 created: 2026-11-01
-updated: 2026-11-01
+updated: 2026-11-02
 ---
 
 # Timeboxed Iteration
@@ -57,4 +57,4 @@ Under an iteration setup. Under a flow setup there is no period and nothing is t
 
 This wiki reads "the date holds, the scope gives" as surviving an agent executing, since it is a rule about the plan and not about a person's pace. The week counts do not survive as figures: they come from human throughput. Under agent execution, this wiki's reading is that the length should come from how often the steering person can review a result, which needs a source of its own before it is treated as a rule.
 
-Related: [[release-versus-iteration]], [[fixed-date-variable-scope]].
+Related: [[planning-horizons]], [[fitting-stories-into-a-release]].

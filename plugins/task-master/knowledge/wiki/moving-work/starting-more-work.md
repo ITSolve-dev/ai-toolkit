@@ -85,7 +85,7 @@ The levers it means are longer hours, mandatory weekends, borrowed staff and hir
 
 This does not mean capacity never matters. Once flow was stable, Siemens did add capacity, and in a specific place: test automation, where the chart showed the shortfall (L4192), and a Tester instead of two Programmers in a what-if (L4224). This wiki reads the order as the rule: limit first, then add capacity only at the constraint the charts expose.
 
-**Trade-offs.** Stopping starts means visibly unstarted requests and people or agents with nothing new to do. It also goes against habit: at Siemens "mandating limits on work went against the grain of the then current beliefs" (L4100). See [[utilization-versus-slack]].
+**Trade-offs.** Stopping starts means visibly unstarted requests and people or agents with nothing new to do. It also goes against habit: at Siemens "mandating limits on work went against the grain of the then current beliefs" (L4100). See [[filling-a-period]].
 
 ## The result: a buildup of stuck work
 

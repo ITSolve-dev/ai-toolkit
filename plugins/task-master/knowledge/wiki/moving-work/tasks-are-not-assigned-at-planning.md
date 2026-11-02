@@ -5,7 +5,7 @@ summary: Cohn leaves tasks unallocated when an iteration is planned; a task gets
 tags: [rule, assignment, pull, iterations, board-state, cohn]
 sources: [cohn-agile-estimating-planning]
 created: 2026-11-01
-updated: 2026-11-01
+updated: 2026-11-02
 ---
 
 # Tasks Are Not Assigned at Planning
@@ -30,7 +30,7 @@ Cohn describes the move as one act: "a developer takes a card from the To Do col
 
 ## Reasoning
 
-Cohn gives three reasons. The first is about information: "what is obvious at the start may not be what happens during the iteration", as when the expert on a query never reaches that task and someone else steps up (L3045-L3049). The second is about the team: signing up early "works against fostering a unified commitment" (L3053). The same unallocated state is his first reason for estimating as a group ([[collaborative-task-estimation]]).
+Cohn gives three reasons. The first is about information: "what is obvious at the start may not be what happens during the iteration", as when the expert on a query never reaches that task and someone else steps up (L3045-L3049). The second is about the team: signing up early "works against fostering a unified commitment" (L3053). The same unallocated state is his first reason for estimating as a group ([[who-estimates]]).
 
 The third is that the board shows what is free: it "makes these tasks highly visible so that everyone can see which tasks are being worked on and which are available to sign up for" (L4457). This wiki reads the breakage as follows: an assignee on a queued task makes that task look taken, so the board can no longer answer what could be started next, and the choice of who does what has been made with less information than will exist when the work starts.
 

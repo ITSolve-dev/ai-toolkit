@@ -225,7 +225,7 @@ The approximation "can be very good" (L1646), and how good is conditional:
 >
 > — [[vacanti-actionable-agile-metrics]], L1620
 
-This wiki reads that as saying a reader should check the assumptions before trusting the figure. They are on [[littles-law-assumptions]]. The book also promises policies that make the approximation excellent, and does not give them at this point (L1646).
+This wiki reads that as saying a reader should check the assumptions before trusting the figure. They are on [[littles-law]]. The book also promises policies that make the approximation excellent, and does not give them at this point (L1646).
 
 ### Limit: finished items only
 
@@ -340,7 +340,7 @@ If a chart truly does look good, Vacanti moves to improvement (L1936):
 
 ### Forecasts beyond its assumptions
 
-The predictive power of a CFD "depends almost entirely on how well your process obeys the assumptions behind Little's Law" (L1964-L1970). This wiki reads that as a precondition on any figure taken from the chart: when mismatched arrivals and departures or a long flat stretch are present ([[reading-a-cfd]]), the assumptions are in question, and so is the figure. See [[littles-law-assumptions]] and [[littles-law-does-not-forecast]].
+The predictive power of a CFD "depends almost entirely on how well your process obeys the assumptions behind Little's Law" (L1964-L1970). This wiki reads that as a precondition on any figure taken from the chart: when mismatched arrivals and departures or a long flat stretch are present ([[reading-a-cfd]]), the assumptions are in question, and so is the figure. See [[littles-law]] and [[forecast-range-and-probability]].
 
 ## Segmenting
 

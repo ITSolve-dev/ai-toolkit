@@ -1,11 +1,11 @@
 ---
 title: Mid-Period Change
 category: periods
-summary: During a period the commitment is protected; the Scrum Guide protects a goal and lets the list of work change, Cohn protects the selected features and limits the period by how long priorities hold, and the setup decides which applies. A change that endangers the commitment waits, and a goal gone obsolete is cancelled openly and not quietly replaced.
+summary: During a period the commitment is protected; the Scrum Guide protects a goal and lets the list of work change, Cohn protects the selected features and limits the period by how long priorities hold, and the setup decides which applies. A change that endangers the commitment waits, and a period whose goal has gone obsolete may be cancelled openly by whoever owns scope, not quietly replaced.
 tags: [rule, iterations, commitment, period-length, scrum]
 sources: [scrum-guide-2020, kanban-guide, montgomery-tracker-smells, cohn-agile-estimating-planning]
 created: 2026-11-01
-updated: 2026-11-01
+updated: 2026-11-02
 ---
 
 # Mid-Period Change
@@ -27,7 +27,7 @@ The Scrum Guide sets out four conditions:
 
 The Guide repeats the point under the goal itself: "If the work turns out to be different than they expected, they collaborate with the Product Owner to negotiate the scope of the Sprint Backlog within the Sprint without affecting the Sprint Goal." (L303). The way out is a separate rule: "A Sprint could be cancelled if the Sprint Goal becomes obsolete. Only the Product Owner has the authority to cancel the Sprint." (L204).
 
-This wiki reads those together as a rule with three outcomes. The list of work is free to change. The goal and the standard of done are not. A goal that no longer makes sense ends the period and is not edited inside it.
+This wiki reads those together as a rule with three outcomes. The list of work is free to change. The goal and the standard of done are not. A goal that no longer makes sense is not edited inside the period. The Guide allows the period to be cancelled ("could be cancelled"), and only the Product Owner may do it; this wiki reads that as a permission held by whoever owns scope, not an outcome that follows by itself.
 
 ## Cohn: the selection is held still
 
@@ -43,20 +43,21 @@ This wiki reads Cohn's freeze as aimed at redirection from outside the team. For
 
 ## The rule, by setup
 
-Cohn's commitment is "a specific set of features". The Scrum Guide protects the goal and lets the list of work change. This wiki resolves it by setup, and the resolution is this wiki's.
+Cohn's commitment is "a specific set of features". The Scrum Guide protects the goal and lets the list of work change. This wiki resolves it by setup, and the resolution is this wiki's. The input is the project's record of whether the goal or the selection is the commitment, as on [[commitment-over-a-period]], and not whether a goal text exists: Cohn's setup commits to the selection and still states a loose goal (L3138).
 
-| Setup | What is protected | A swap during the period |
+| What the project's record makes the commitment | What is protected | A swap brought in during the period |
 |---|---|---|
-| A goal is stated for the period | The goal | Allowed if the goal is unaffected, by agreement with the owner of the scope |
-| A selection and no goal | The selection, which is then the only commitment there is | A change to the commitment, decided by the people steering and recorded |
+| The goal (the Scrum Guide's setup) | The goal | Allowed if the goal is unaffected, by agreement with the owner of the scope |
+| The selection, with a loose goal stated (Cohn's setup) | The selection | A change to the commitment, decided by the people steering and recorded. The goal does not license it; it only guides what to shrink when discovered work overflows (L3299) |
+| The selection, with no goal | The selection, which is then the only commitment there is | A change to the commitment, decided by the people steering and recorded |
 
 The setup is what the plugin knows, so it applies the row that matches and does not ask which author is right.
 
-Where a goal is stated, a change proposed during a period is judged by its effect on the goal.
+Where the goal is the commitment, a change proposed during a period is judged by its effect on the goal.
 
 1. **It serves the goal or leaves it unaffected:** it may go in, by agreement with whoever owns the scope.
 2. **It would endanger the goal:** it waits for the next period.
-3. **The goal itself is obsolete:** the period is cancelled and a new one begins.
+3. **The goal itself is obsolete:** the period may be cancelled, by whoever owns scope, and a new one begun. The goal is not edited inside the period.
 
 ## Reserve for support work
 

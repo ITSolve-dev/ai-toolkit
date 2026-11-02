@@ -5,7 +5,7 @@ summary: Interleaving several started tasks; one study has value-adding time fal
 tags: [failure-mode, wip, human-mechanism, dependencies]
 sources: [cohn-agile-estimating-planning]
 created: 2026-11-01
-updated: 2026-11-01
+updated: 2026-11-02
 ---
 
 # Multitasking
@@ -44,7 +44,7 @@ Cohn's account is that lateness triggers it: "Multitasking often becomes an issu
 
 This wiki reads a partial delivery as a sign about the cut as well. A task whose result is requested in instalments is failing the charter's test that a result is presented once ([[unit-of-work]]), and a request for a subset suggests a smaller unit was there to be cut ([[vertical-slice]]).
 
-Cohn gives two structural causes. The first is that "work is typically assigned well in advance of when the work will begin and it is impossible to efficiently allocate work in advance", which assigning to individuals rather than groups makes worse (L646). The second is the pursuit of full utilization, covered on [[utilization-versus-slack]].
+Cohn gives two structural causes. The first is that "work is typically assigned well in advance of when the work will begin and it is impossible to efficiently allocate work in advance", which assigning to individuals rather than groups makes worse (L646). The second is the pursuit of full utilization, covered on [[filling-a-period]].
 
 ## Observable signs
 

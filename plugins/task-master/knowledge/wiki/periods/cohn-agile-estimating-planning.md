@@ -34,25 +34,25 @@ The authority is a practitioner's. The author writes in the first person from pr
 
 ## Key takeaways
 
-- **Size and duration are separate estimates.** Duration is derived from size and a measured rate: [[size-versus-duration]], [[story-points]], [[velocity]], [[deriving-duration-from-velocity]].
+- **Size and duration are separate estimates.** Duration is derived from size and a measured rate: [[size-versus-duration]], [[story-points]], [[velocity]], [[velocity-range-forecast]].
 - **An estimate is a comparison on a coarse scale.** It is made independently, by analogy, and its effort is set by the decision it feeds: [[estimation-scale]], [[triangulation]], [[independent-estimates]], [[estimating-effort-by-purpose]].
 - **Order weighs four things.** They are value, cost, new knowledge and risk removed, and urgency is not among them: [[prioritization-factors]], [[combining-prioritization-factors]], [[kano-or-relative-weighting]].
 - **Cut by what is delivered.** Do not cut by activity: [[story-splitting-patterns]], [[when-to-split-a-task]], [[activity-based-plan]].
-- **Plan at several horizons.** Each horizon holds a different level of detail: [[planning-horizons]], [[iteration-plan-versus-release-plan]], [[filling-a-period]], [[velocity-versus-commitment-planning]].
-- **State uncertainty on whichever of date or scope is not fixed.** Protect what must hold with a buffer: [[stating-plan-uncertainty]], [[velocity-range-forecast]], [[choosing-a-buffer]], [[feature-buffer]], [[schedule-buffer]].
+- **Plan at several horizons.** Each horizon holds a different level of detail: [[planning-horizons]], [[filling-a-period]].
+- **State uncertainty on whichever of date or scope is not fixed.** Protect what must hold with a buffer: [[forecast-range-and-probability]], [[velocity-range-forecast]], [[choosing-a-buffer]].
 - **Only finished work counts.** Progress is read net of scope and estimate changes: [[all-or-nothing-counting]], [[unfinished-at-period-end]], [[release-progress-forces]], [[release-burndown-chart]].
-- **A plan that does not change has stopped learning.** Replanning is the normal case, and a later date can be a choice: [[replanning-on-new-knowledge]], [[adding-scope-to-a-release-plan]], [[reforecasting-a-release-from-velocity]], [[chosen-delay-versus-slip]].
+- **A plan that does not change has stopped learning.** Replanning is the normal case, and a later date can be a choice: [[replanning-on-new-knowledge]], [[adding-scope-to-a-release-plan]], [[velocity-range-forecast]], [[chosen-delay-versus-slip]].
 
 ## What transfers to an agent
 
-This wiki's reading is that the rules transfer more often than the reasons given for them. Arithmetic on size, rate and order depends on no human executor, and neither does the rule that a task counts only when finished ([[all-or-nothing-counting]]). Several reasons fall away while the rule survives on another footing ([[individual-velocity]], [[who-estimates]], [[wip-per-executor]]). Some mechanisms are human outright: [[parkinsons-law]], the calibration of the unit on [[ideal-days]], and the hours arithmetic on [[forecast-velocity-by-what-fits]] and [[iteration-capacity]]. One moves the other way, since a soft gate for people becomes a firmer one for an agent ([[tests-specified-before-start]]). Each page says which case it is. None of these transfers has been tried.
+This wiki's reading is that the rules transfer more often than the reasons given for them. Arithmetic on size, rate and order depends on no human executor, and neither does the rule that a task counts only when finished ([[all-or-nothing-counting]]). Several reasons fall away while the rule survives on another footing ([[individual-velocity]], [[who-estimates]], [[wip-per-executor]]). Some mechanisms are human outright: [[parkinsons-law]], the calibration of the unit on [[ideal-days]], and the hours arithmetic on [[choosing-velocity-estimate-approach]] and [[iteration-capacity]]. One moves the other way, since a soft gate for people becomes a firmer one for an agent ([[tests-specified-before-start]]). Each page says which case it is. None of these transfers has been tried.
 
 ## Limits
 
 - **Manuscript state.** Besides the acknowledgments, the reference list is unfinished, with notes such as "Tom P to send cop to me" (L6658) and "TBD: SPELLING" (L6646). So citations to third parties cannot always be followed from here, and the raw has typing errors, such as "going long than" (L6376) and "Sasah" (L6300), which quotations keep.
 - **Chapter 23 is fiction.** It is "written as fiction" (L4961), so its speakers are characters and its figures are illustrations. Pages using it say so, and no outcome in it counts as evidence.
 - **One voice, one setup.** Most dates here rest on a stable velocity per fixed period. The book gives no way to give a date without periods ([[commitment-over-a-period]]).
-- **Internal looseness.** The source sometimes uses "velocity" for net progress (L4288, L4373), which [[velocity]] separates. Its case study also forecasts from one averaged figure where its own method asks for a range ([[reforecasting-a-release-from-velocity]]).
+- **Internal looseness.** The source sometimes uses "velocity" for net progress (L4288, L4373), which [[velocity]] separates. Its case study also forecasts from one averaged figure where its own method asks for a range ([[velocity-range-forecast]]).
 
 ## What this wiki dropped, and why
 

@@ -42,7 +42,7 @@ This sign is this wiki's. On the board, a story inside the release depends on a 
 
 ## What breaks when it is ignored
 
-The release reaches its date with stories that cannot function, because a date-driven cut removed what they stood on. This is most exposed on a [[date-driven-vs-feature-driven|date-driven]] release, where the line falls wherever the capacity puts it ([[fitting-stories-into-a-release]]).
+The release reaches its date with stories that cannot function, because a date-driven cut removed what they stood on. This is most exposed on a date-driven release, where the line falls wherever the capacity puts it ([[fitting-stories-into-a-release]]).
 
 ## Trade-off
 

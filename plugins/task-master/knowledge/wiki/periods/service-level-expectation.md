@@ -1,7 +1,7 @@
 ---
 title: Service Level Expectation
 category: periods
-summary: A per-item statement of how long an item should take from started to finished, as an elapsed time and a probability read from cycle time history; the Kanban Guide calls it a forecast and Vacanti a small-c commitment owed at the moment of pulling, it carries no penalty, and its example figures are not targets. The percentile is chosen with whoever receives the work, usually starting at the 85th, from about 11 to 30 finished items (11 or 12 at the least) of a process that obeys Little's Law; one item, epic or project is forecast from finished items of the same type only; start with one global SLE and split by type only once the whole system is predictable and the split is needed.
+summary: A per-item statement of how long an item should take from started to finished, as an elapsed time and a probability read from cycle time history; the Kanban Guide calls it a forecast and Vacanti a small-c commitment owed at the moment of pulling, it carries no penalty, and its example figures are not targets. The percentile is chosen with whoever receives the work, usually starting at the 85th, from about 11 to 30 finished items (11 or 12 at the least) of a process that obeys Little's Law; one item, epic or project is forecast from finished items of the same level only; start with one global SLE and split by type only once the whole system is predictable and the split is needed.
 tags: [rule, forecast, commitment, kanban, flow-metrics, cycle-time, percentiles, decision-rule, estimation, method, forecasting, percentile, sla, segmentation, class-of-service]
 sources: [kanban-guide, scrum-guide-2020, radzikowska-waiting-blocked, kanban-playbook-right-sizing, vacanti-actionable-agile-metrics, flow-metrics-scrum-teams]
 created: 2026-11-01
@@ -156,7 +156,7 @@ A **single-item forecast** answers "when will this one thing finish?" by reading
 ### Inputs and where they come from
 
 - **Cycle times of finished items:** board history, read from when an item entered and left the states being measured.
-- **Item type:** the board's work types. Type is the discriminator: "If the work items we are interested in were epics or projects, for example, then we would need to capture the Cycle Time data for epics or projects" (L3580). This wiki reads that as a prohibition on forecasting an epic from story history; a percentile from another type answers another question.
+- **Item type:** the board's work types. The discriminator is the level of the item: "If the work items we are interested in were epics or projects, for example, then we would need to capture the Cycle Time data for epics or projects" (L3580). This wiki reads that as a rule about levels: an epic or a project is not forecast from story history, since a percentile from another level answers another question. Subtypes at one level, such as stories and defects on one board, are a different matter: they share one global SLE until a split is needed, as in the per-type section below.
 - **Percentile:** a choice, not a finding. Vacanti later says "85<sup>th</sup> percentile (or whatever percentile you feel comfortable with)" (L3618). The choice is made as in choosing the percentile, above.
 
 ### Numbers and their conditions
@@ -180,7 +180,7 @@ This wiki's reading: the mechanism is an empirical distribution, so it does not 
 
 ### See also, for a single item
 
-[[forecast-range-and-probability]], [[forecast-from-an-average]], [[burn-up-with-percentile-lines]], [[throughput-monte-carlo]]
+[[forecast-range-and-probability]], [[burn-up-with-percentile-lines]], [[throughput-monte-carlo]]
 
 ## An SLE per work item type
 
@@ -203,7 +203,7 @@ The first reason commits to nothing. The second makes a promise per subtype, whi
 >
 > — [[vacanti-actionable-agile-metrics]], L3098
 
-Vacanti's order is global first, then subtypes only on need: "Get predictable at an overall system level first. You may find that is good enough. Only optimize for subtypes later if you really need to." (L3098). He calls the advice to design classes of service up front misguided (L3098); the full case is on [[class-of-service]]. The checks per subtype are on [[littles-law-assumptions]], and [[littles-law]] says the law holds for each type as well as for the whole.
+Vacanti's order is global first, then subtypes only on need: "Get predictable at an overall system level first. You may find that is good enough. Only optimize for subtypes later if you really need to." (L3098). He calls the advice to design classes of service up front misguided (L3098); the full case is on [[class-of-service]]. The checks per subtype are on [[littles-law]], which also says the law holds for each type as well as for the whole.
 
 ### Inputs and what would show the choice wrong
 
@@ -223,9 +223,9 @@ This note is the wiki's own. A few people's board finishes few items, so splitti
 
 ## Which holds under which setup
 
-- **Flow setup:** required, and it is the only forecast the setup has.
+- **Flow setup:** required, and the only per-item forecast the setup has; forecasts of a batch come from [[throughput-monte-carlo]].
 - **Iteration setup:** not required. The Scrum Guide forecasts a whole selection, not an item ([[filling-a-period]]), and the period is the coarse limit.
-- **Iterations with a WIP control:** optional, and useful as an earlier warning than the period's end, because age can be checked while a task is open. [[flow-metrics-scrum-teams]] uses it this way, at selection and inside the period (L1044, L1146).
+- **Iterations with a WIP control:** optional, and useful as an earlier warning than the period's end, because age can be checked while a task is open. [[flow-metrics-scrum-teams]] uses it this way, at selection and inside the period (L1044, L1148).
 
 The resolution is this wiki's. An SLE under a period tends to be capped by the period's length, so history from such a project is not comparable with history from a flow setup. The cap is not firm: [[flow-metrics-scrum-teams]] rejects the idea that all items finish inside a two-week period (L1130), and this wiki keeps a returned task's whole span ([[unfinished-at-period-end]]), so such a task can run past the period's length.
 

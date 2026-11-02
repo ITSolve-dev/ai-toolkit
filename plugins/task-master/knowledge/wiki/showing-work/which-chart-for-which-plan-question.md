@@ -81,7 +81,7 @@ The first two columns follow the source for the first four rows. The last two ro
 | How many items by a date, or when will this set finish? | [[throughput-monte-carlo]] (L1484; the question as framed at L3622) | How long any one item takes |
 | What is open now, and how old is it? | Neither: [[work-item-age]], read against the same percentile lines | Anything, since both views count finished items only |
 
-The source's reason for leaving averages behind is the single-item case: a completion date is its example of when an average is not good enough (L2586). This wiki reads that as: a date for a single item comes from a line, stated with its probability. A question about a whole set of items by a date is a different one, which a per-item line does not answer. See [[service-level-expectation]], which is per item, and [[stating-plan-uncertainty]].
+The source's reason for leaving averages behind is the single-item case: a completion date is its example of when an average is not good enough (L2586). This wiki reads that as: a date for a single item comes from a line, stated with its probability. A question about a whole set of items by a date is a different one, which a per-item line does not answer. See [[service-level-expectation]], which is per item, and [[forecast-range-and-probability]].
 
 ### Which holds under which setup
 
@@ -96,7 +96,7 @@ This wiki's resolution, on the source's position:
 These are this wiki's readings.
 
 - Reading progress off a Gantt chart: the bars are full-length by construction.
-- Sending a forecast as one point drawn from a burndown. See [[stating-plan-uncertainty]].
+- Sending a forecast as one point drawn from a burndown. See [[forecast-range-and-probability]].
 - Sending many views at once. See [[status-buried-in-a-long-report]].
 - Sending a points-based view to a reader outside the project. See [[points-or-time-and-count]].
 - Reporting only a histogram, which hides a drift in time.

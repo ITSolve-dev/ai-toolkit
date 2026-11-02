@@ -5,7 +5,7 @@ summary: Cohn advises reluctance to compare logged hours against estimates; rema
 tags: [decision-rule, estimation, retrospective, agent-transfer]
 sources: [cohn-agile-estimating-planning]
 created: 2026-11-01
-updated: 2026-11-01
+updated: 2026-11-02
 ---
 
 # Comparing Estimate to Actual
@@ -20,7 +20,7 @@ The charter drops tracking spent hours as a practice. This page keeps Cohn's rea
 
 ## Cohn's three arguments
 
-1. **Remaining beats spent.** "On a project, it is far more useful to know how much remains to be done rather than how much has been done." (L4521). His sailboat analogy carries the reason: "Measuring the distance traveled or time spent traveling are not helpful if we’re not sure all progress was in the right direction." (L4519). See [[re-estimate-remaining-work]].
+1. **Remaining beats spent.** "On a project, it is far more useful to know how much remains to be done rather than how much has been done." (L4521). His sailboat analogy carries the reason: "Measuring the distance traveled or time spent traveling are not helpful if we’re not sure all progress was in the right direction." (L4519). See [[overrun-triggers-a-recut]].
 2. **Evaluation pressure can backfire.** Comparing effort with estimates "can lead to “evaluation apprehension” (Sanders 1984)" (L4521), under which estimators "rely more on instinct than on analytical thought (Jørgensen 2002)" (L4527). Whoever tracks must "avoid putting significant evaluation pressure on the estimators as doing so could results in estimates that are worse rather than better" (L4529).
 3. **Variability has a floor.** "No matter how much effort is put into improving estimates, a team will never be able to estimate perfectly." (L4531). His example is a morning commute, whose variation no driving skill removes.
 

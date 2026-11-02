@@ -78,7 +78,7 @@ What changes is what the bound protects. With people executing, it protects thei
 
 **Cohn:** the limit is per developer, one or two sub-story cards at a time ([[wip-per-executor]]). What work in process does to cycle time is on [[starting-more-work]].
 
-**Vacanti:** count the items in progress, and when the count is too big, start nothing until something finishes ([[vacanti-actionable-agile-metrics]] L440). His later policy states the same thing as a rate, starting new work "at about the same rate that we finish old work" ([[vacanti-actionable-agile-metrics]] L1018), which this wiki sets beside the bound on [[process-policies-from-littles-law]].
+**Vacanti:** count the items in progress, and when the count is too big, start nothing until something finishes ([[vacanti-actionable-agile-metrics]] L440). His later policy states the same thing as a rate, starting new work "at about the same rate that we finish old work" ([[vacanti-actionable-agile-metrics]] L1018), which this wiki sets beside the bound on [[littles-law]].
 
 **Scrum Guide:** there is no limit on concurrent work. The term "WIP" does not occur in it. What the Guide limits is the objective and the total. There is one Sprint Goal, "the single objective for the Sprint" ([[scrum-guide-2020]] L301), and one Product Goal at a time: "They must fulfill (or abandon) one objective before taking on the next." (L291). The selection for a period bounds how much is taken on over the period ([[filling-a-period]]). None of this bounds how much is open at one moment. How work proceeds inside the period is left to the team, which is self-managing, "meaning they internally decide who does what, when, and how." (L114).
 

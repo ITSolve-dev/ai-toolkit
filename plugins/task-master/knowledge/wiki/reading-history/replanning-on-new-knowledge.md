@@ -1,8 +1,8 @@
 ---
 title: Replanning on New Knowledge
 category: reading-history
-summary: A plan is a point-in-time guess; at each iteration start, what was learned about progress and about value is folded in, and a release plan resting on outdated information or false assumptions is updated, while priorities stay relatively stable between iterations.
-tags: [rule, retrospective-analysis, plan-versus-fact, learning, release]
+summary: A plan is a point-in-time guess revised at regular points on observed evidence: each cycle shows a result to reduce product uncertainty and corrects the plan to reduce build uncertainty; a change needs something learned, and the date is one lever among dropping or shrinking scope; the release plan is revisited after each iteration by default, four to six weeks only while velocity is steady and planning brings no surprises.
+tags: [rule, retrospective-analysis, plan-versus-fact, learning, release, iterations, uncertainty, replanning, decision-rule, planning, scope]
 sources: [cohn-agile-estimating-planning]
 created: 2026-11-01
 updated: 2026-11-02
@@ -20,7 +20,7 @@ At the start of each iteration, check whether the release plan still holds, and 
 >
 > — [[cohn-agile-estimating-planning]], L4919
 
-How often this may stretch is on [[updating-the-release-plan]].
+How often this may stretch is on *Updating the Release Plan* (below).
 
 ## What a project produces
 
@@ -45,7 +45,7 @@ Cohn separates what new knowledge corrects (L796-L798):
 | Accuracy | The team "over- or underestimated their rate of progress", or "a certain type of work is more time-consuming than previously thought" | Adjust what the plan expects |
 | Value | From seeing the software, the product owner learns users want more of one feature type and less of another | Move "more of the desired features into the release at the expense of some of the lesser-valued features" |
 
-This wiki reads the separation as useful when explaining a gap between plan and fact: slower than expected and wanted something else are different explanations with different fixes. The accuracy row goes through [[velocity]] or [[re-estimate-when-relative-size-changes]]. The value row goes through [[changing-the-plan-without-changing-the-date]].
+This wiki reads the separation as useful when explaining a gap between plan and fact: slower than expected and wanted something else are different explanations with different fixes. The accuracy row goes through [[velocity]] or [[re-estimate-when-relative-size-changes]]. The value row goes through *Changing the Plan Without Changing the Date* (below).
 
 ## When
 
@@ -69,7 +69,7 @@ Chapter 22 states the same failure from the other end: "When we create a plan ea
 
 The source names one process sign: changes are refused, or forced through "an onerous change control process" (L4897). It gives none at board level. This wiki reads the following as questions.
 
-- The plan's expected content is unchanged across several iterations although completed work has fallen short of or passed it. The verdict side of this is on [[plan-conformance-as-success]].
+- The plan's expected content is unchanged across several iterations although completed work has fallen short of or passed it. The verdict side of this is on [[good-plan-test]].
 - The rate the plan assumes differs from recent history and nobody has changed it.
 - Tasks were added or dropped and the forecast did not move.
 - A known discovery, such as a component replaced, has no time against it in the plan.
@@ -92,4 +92,137 @@ This wiki reads the rule as surviving an agent executing: it is about the plan, 
 
 Learning "how well they are working together" (L4843) is a human matter and falls away. Learning about technologies survives, but an agent does not carry it between runs on its own, so it reaches a replan only if it was written down ([[fact-stranded-outside-the-task]]). That reading is this wiki's.
 
-Related: [[iterating-reduces-uncertainty]], [[timeboxed-iteration]], [[fixed-date-variable-scope]], [[conditions-of-satisfaction]], [[stating-plan-uncertainty]], [[adding-scope-to-a-release-plan]], [[reforecasting-a-release-from-velocity]].
+Related: [[timeboxed-iteration]], [[fitting-stories-into-a-release]], [[conditions-of-satisfaction]], [[forecast-range-and-probability]], [[adding-scope-to-a-release-plan]], [[velocity-range-forecast]].
+
+## Iterating Reduces Uncertainty
+
+Cohn separates two uncertainties a plan ignores and treats iteration as the remedy for both. About the product, "We assume that users will not change their minds, refine their opinions, or come up with new needs during the period covered by the plan." ([[cohn-agile-estimating-planning]] L658). About the build, we assume precision we do not have and cannot "hope to identify every activity" (L660).
+
+> The best way of dealing with uncertainty is to iterate.
+>
+> — [[cohn-agile-estimating-planning]], L664
+
+Cohn says each uncertainty is reduced by a different action, and this wiki keeps them apart because they fail separately.
+
+| Uncertainty | What reduces it | What happens if it is ignored |
+|---|---|---|
+| What the product should be | "work in short iterations and show (or, ideally, give) working software to users every few weeks" (L664) | A project finishes on schedule without capabilities identified after the plan was made (L680) |
+| How to build it | "missing tasks can be added to plans, bad estimates can be corrected, and so on" (L664) | Missed activities, then lateness, dropped features or poor quality trade-offs (L680) |
+
+Cohn's phrase for the effect is that "the focus shifts from the plan to the planning." (L664). See [[planning-horizons]]. Chapter 9 names the two end uncertainty and means uncertainty, and uses them for ordering; see [[end-and-means-uncertainty]] and [[ordering-for-early-user-feedback]].
+
+### The rule
+
+At the end of each cycle, do both: put a working result in front of the people it is for, and change the plan on what was learned. Doing one alone leaves the other uncertainty in place. The pairing as a rule is this wiki's reading of Cohn's two sentences.
+
+### Sign of violation
+
+- **In board history:** across several cycles, no task was added, removed or re-estimated, and only states changed. The plan has not learned anything, or what was learned has not been written down.
+- **In board history:** cycles close with tasks finished and no result shown to anyone outside the team.
+- **In the plan:** a complete specification treated as settled, with no place for what users say later.
+
+These signs are this wiki's derivation from Cohn's claims. A board that does not change is a question and not a verdict: stable, well-understood work may need no changes.
+
+### Why
+
+What breaks is correction. This wiki reads the consequence as a plan whose errors, without a cycle that returns information, stay until the end of the work, when there is the least room to deal with them.
+
+### Cost
+
+This wiki notes that showing a result every cycle costs preparation and the attention of those who look at it, and that a changing plan makes earlier forecasts stale, which [[mid-period-change]] has to manage.
+
+### Which setup this applies under
+
+Cohn writes about fixed iterations. This wiki reads the mechanism as a loop of showing and replanning, which an iteration setup runs at each period's end ([[period-length]]). Under a flow setup there is no period, so the loop has to be attached to something else, most naturally each presented result. That transfer is this wiki's, and this chapter does not address it.
+
+### Agent executor note
+
+Uncertainty about the product sits with users and does not change with the executor. Uncertainty about the build survives, and this wiki notes that an agent's guess can hide it: a finished result does not show which assumptions were made ([[agent-silence-is-not-completeness]]). Cohn's "every few weeks" reflects human pace and has no evidence behind it for an agent-run project, so this wiki sets no cadence from it. The limiting factor is likely what the people steering and the users can take in.
+
+## Changing the Plan Without Changing the Date
+
+The rule separates two things that are often merged: revising a plan and moving its date. Cohn:
+
+> Just because we’re changing the plan does not mean we change the dates.
+>
+> — [[cohn-agile-estimating-planning]], L487
+
+### The decision
+
+**Should the plan change?** Yes, if something was learned; no, otherwise.
+
+> We don’t want to change the plan just for the sake of changing, but we want to change because change means we’ve learned something or that we’ve avoided a mistake.
+>
+> — [[cohn-agile-estimating-planning]], L483
+
+Cohn's examples of learning are that users want more of one feature or less of another, that usability matters more than believed, and that a new language takes longer than expected (L483). He adds that the financial impact of each can be assessed and, "if worthy," can alter plan and schedule (L483).
+
+**Which lever?** Cohn lists "We can drop a feature, we can reduce the scope of a feature, we can possibly add people to the project, and so on." (L487). Moving the date is one option among these and does not have to come first.
+
+### Inputs and where they are read
+
+This wiki's reading of what the rule needs, since Cohn gives no procedure:
+
+- **What was learned:** a discovery recorded on a task, or a task that took materially more or less than forecast.
+- **Whether the date is fixed:** stated by whoever needs the date, in the project's setup or the request.
+- **What can be cut:** open tasks ordered by value, per [[tradeoff-needs-cost-and-benefit]].
+
+**What later fact would show the choice wrong.** The cut scope is requested again soon after the date, or the date is still missed after the cut.
+
+### Failure signs
+
+These are this wiki's questions to check:
+
+- A date moved with no scope considered: the board's history shows the date changing while the open scope is unchanged.
+- Order or scope reshuffled with no stated reason, which is the "for the sake of changing" case.
+- Learning recorded with no change to the plan, which is the failure Cohn warns of under [[good-plan-test]].
+
+### Trade-offs
+
+Cutting scope to hold a date costs value, and Cohn's June example shows that sometimes a slightly later date with more features is the better answer (L403). This wiki reads the rule as not favouring dates: it only keeps the date from being the automatic lever. Where the date is the fixed thing from the start, the rule becomes [[fitting-stories-into-a-release]]. Within a running period, [[mid-period-change]] governs what may move. When the learning is a new feature worth having, [[adding-scope-to-a-release-plan]] decides whether it enters.
+
+### Agent executor note
+
+For a few people steering an agent, this wiki reads "add people" as usually unavailable, which makes dropping and reducing scope the practical levers alongside the date. Cohn hedges the lever himself with "possibly" (L487).
+
+## Updating the Release Plan
+
+A release plan ([[planning-horizons]]) is a live document. "The release plan should be revisited and updated with some regular frequency." ([[cohn-agile-estimating-planning]] L2857). Cohn warns against filing it away, and in his summary a plan is not left hanging on a wall to rot (L2973). What the update folds in is on the rule at the top of this page, and the computation is on [[velocity-range-forecast]]. This section holds the cadence.
+
+### The cadence and its conditions
+
+The figure comes with its condition:
+
+> If the development team’s velocity has remained fairly constant and iteration planning hasn’t introduced any big surprises, you may want to go as long as four to six weeks without formally updating the release plan.
+>
+> — [[cohn-agile-estimating-planning]], L2857
+
+Cohn's default leans shorter: "many projects benefit from establishing a rule that the release plan will be revisited after each iteration" (L2857), and the summary says the plan is usually updated at the start of each iteration (L2973). Chapter 22 states the outer limit in iterations: "The release plan is updated either after each iteration or, at worst, after every few iterations." (L4833). It gives "every few" no number.
+
+This wiki reads the two as one rule. Revisit after each iteration by default. The longer gap is an allowance earned only while both conditions hold, and four to six weeks is the outer limit under them, not a schedule.
+
+### Inputs, where each is read from, and what would show the choice wrong
+
+| Input | Read from |
+|---|---|
+| Velocity trend | The last iterations' completed points, on [[velocity]] |
+| Surprises in iteration planning | Whether expanding stories into tasks changed their size or revealed new ones, on [[planning-horizons]] |
+| Plan assumptions | Team, iteration length, first and last dates, where stated on the release plan ([[planning-horizons]]) |
+
+This wiki's test: the longer gap was a mistake if the first update after it moved the plan by more than the steady velocity would have implied, or if people relied on a date the arithmetic had already ruled out.
+
+### Sign of a violation
+
+Seen in board history: the release plan has not changed since it was made, while iterations have completed. A stronger form is a plan whose story list still sums to more than remaining iterations × current velocity, so the plan is no longer arithmetically possible by [[fitting-stories-into-a-release]]. The source gives the rule without a sign, so both signs are this wiki's derivation.
+
+### What breaks when it is ignored
+
+This wiki's reading: the plan stops being the current expectation of where the team will arrive, which is the job the source gives it (L2773), and people relying on it for dates are relying on an old forecast.
+
+### Trade-off
+
+Each update costs attention, and this wiki reads a project with steady velocity as getting little from one, which is why the source allows the longer gap.
+
+### Agent executor note
+
+This wiki reads the need as strengthening where velocity history is short or unstable, since the stability condition for the longer gap cannot be shown. The update itself is arithmetic the plugin can prepare from board history, so its cost falls. The four-to-six-week figure comes from human teams on iterations of weeks and should not be carried over as a number.

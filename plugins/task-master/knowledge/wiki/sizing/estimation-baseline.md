@@ -5,7 +5,7 @@ summary: A set of reference stories, agreed in one unit, that gives estimates th
 tags: [method, estimation, relative-estimation, analogy, multi-team]
 sources: [cohn-agile-estimating-planning]
 created: 2026-11-01
-updated: 2026-11-01
+updated: 2026-11-02
 ---
 
 # Estimation Baseline
@@ -19,11 +19,11 @@ Cohn's requirement is that the baseline work "so that an estimate by one team wi
 - **Mixed units cannot be summed.** A remaining total cannot be read if some stories are in ideal days and some in story points (L4107).
 - **Same unit, different scale.** Cohn's example is one team estimating a set of stories at 20 points and another estimating the same work at 100 (L4107). Both are internally consistent, and the sum across them means nothing.
 
-The choice between story points and ideal days comes first ([[story-points-or-ideal-days]]), and the baseline then fixes what the chosen unit means. See [[story-points]] and [[ideal-days]].
+The choice between story points and ideal days comes first ([[ideal-days]]), and the baseline then fixes what the chosen unit means. See [[story-points]].
 
 ## Two ways to build it
 
-**From past work.** This works only if the estimators have shared a past project. Take finished stories, find two or three that count as one unit, a few that count as two, and so on. "They may identify twenty or so old stories, agreeing upon a new estimate for each, knowing what they now know about the stories." (L4111). The re-estimate uses hindsight on purpose: the baseline records what the work turned out to be, not what it was first guessed to be. This wiki notes that this is not [[hindsight-re-estimation]], which raises finished work while open work stays on the old scale; here the set becomes the scale, before estimating starts.
+**From past work.** This works only if the estimators have shared a past project. Take finished stories, find two or three that count as one unit, a few that count as two, and so on. "They may identify twenty or so old stories, agreeing upon a new estimate for each, knowing what they now know about the stories." (L4111). The re-estimate uses hindsight on purpose: the baseline records what the work turned out to be, not what it was first guessed to be. This wiki notes that this is not [[re-estimate-when-relative-size-changes]], which raises finished work while open work stays on the old scale; here the set becomes the scale, before estimating starts.
 
 **From new work.** Select an assortment of stories planned for the release and agree estimates on them. "The stories should span a variety of sizes and should be in areas of the situation that most of the estimators can relate to." (L4113).
 

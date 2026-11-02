@@ -5,7 +5,7 @@ summary: A plan that lists what will be done rather than what will be delivered,
 tags: [failure-mode, decomposition, planning, vertical-slice]
 sources: [cohn-agile-estimating-planning]
 created: 2026-11-01
-updated: 2026-11-01
+updated: 2026-11-02
 ---
 
 # Activity-Based Plan
@@ -43,7 +43,7 @@ Four things break.
 
 - **Progress stops meaning anything.** Every activity can be finished with nothing delivered, because activities carry no value of their own (L543).
 - **Review looks in the wrong place.** A reviewer checks the list for completeness as a list of steps, so a missing feature is not looked for (L545).
-- **Overruns become likely.** Cohn gives three reasons: "Activities don’t finish early", "Lateness is passed down the schedule" and "Activities are not independent" (L549-L553). Each has its own page: [[parkinsons-law]], [[lateness-passes-down-the-schedule]] and [[similar-tasks-overrun-together]].
+- **Overruns become likely.** Cohn gives three reasons: "Activities don’t finish early", "Lateness is passed down the schedule" and "Activities are not independent" (L549-L553). Each has its own page: [[parkinsons-law]], [[lateness-passes-down-the-schedule]] and [[re-estimate-when-relative-size-changes]].
 - **A plan can look complete without understanding.** Cohn quotes Highsmith: “It is easy to plan an entire project using standard tasks without really understanding the product being built. When planning by feature, the team has a much better understanding of the product.” (L4869). This wiki reads the breakage as a plan nobody can question, since no one can say what the product gains from it.
 
 ## Relation to a component task

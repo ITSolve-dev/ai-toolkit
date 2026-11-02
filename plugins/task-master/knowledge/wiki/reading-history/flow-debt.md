@@ -139,7 +139,7 @@ This wiki derives the check from the two forms of repayment (L2444-L2452). A rea
 
 ### Related to the comparison
 
-[[cumulative-flow-diagram]], [[littles-law-assumptions]], [[smell-is-not-a-finding]], [[service-level-expectation]], [[flow-metrics]]
+[[cumulative-flow-diagram]], [[littles-law]], [[smell-is-not-a-finding]], [[service-level-expectation]], [[flow-metrics]]
 
 ## Can it be repaid: hedge, speculative or Ponzi
 

@@ -28,7 +28,7 @@ The resolution is this wiki's, and neither author states it.
 
 | Setup | Reader | State it in |
 |---|---|---|
-| Any | Someone outside the project | Elapsed time or item count, whatever produced the figure. A velocity forecast is converted before it leaves ([[deriving-duration-from-velocity]]) |
+| Any | Someone outside the project | Elapsed time or item count, whatever produced the figure. A velocity forecast is converted before it leaves ([[velocity-range-forecast]]) |
 | Estimates kept, with or without iterations | The people steering | Points and their rate may stay, per period or over a stated span as on [[velocity]]. For why something is slow, read count, age and cycle time as well |
 | No estimates | Anyone | Time and count only, since points have no input and [[throughput]] needs none |
 
@@ -52,7 +52,7 @@ The choice was wrong if outside readers keep asking what a stated figure means, 
 
 ## Cost
 
-Converting points before reporting hides what the figure rests on, so it must carry its range ([[stating-plan-uncertainty]]). A project that keeps points inside and time outside maintains two vocabularies.
+Converting points before reporting hides what the figure rests on, so it must carry its range ([[forecast-range-and-probability]]). A project that keeps points inside and time outside maintains two vocabularies.
 
 ## Agent executor note
 

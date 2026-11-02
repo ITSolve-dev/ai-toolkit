@@ -24,7 +24,7 @@ Cohn's examples: three five-point stories give 15, and two five-point stories gi
 >
 > — [[cohn-agile-estimating-planning]], L4288
 
-Its example is a team that finished twelve stories worth 30 points in its last iteration, a velocity of "30 points per iteration" (L4288). The source calls velocity "the primary measure of a team’s progress" (L4290), which is why the counting rule matters. Chapter 7 settles the partly done story: Cohn is "generally in favor of an all-or-nothing stance toward counting velocity" (L1496), and the rule and its reasons are on [[all-or-nothing-counting]]. His exception is on [[partial-credit-for-unfinished-tasks]], and the Scrum Guide's position is on [[unfinished-at-period-end]].
+Its example is a team that finished twelve stories worth 30 points in its last iteration, a velocity of "30 points per iteration" (L4288). The source calls velocity "the primary measure of a team’s progress" (L4290), which is why the counting rule matters. Chapter 7 settles the partly done story: Cohn is "generally in favor of an all-or-nothing stance toward counting velocity" (L1496), and the rule, its reasons and his exception for deferred work are on [[all-or-nothing-counting]], and the Scrum Guide's position is on [[unfinished-at-period-end]].
 
 This wiki notes that velocity can be read from board history without anyone logging anything: the points of the items that reached a finished state inside the period.
 
@@ -36,7 +36,7 @@ This wiki notes that velocity can be read from board history without anyone logg
 
 Cohn adds that this holds regardless of mix, "whether they work on two five-point stories or five two-point stories" (L1010). This wiki reads that as a consequence of the additive claim in [[story-points]], so it inherits that claim's weakness: it is true only so far as the ratios hold.
 
-Cohn calls this a best guess, and the chapter gives no error bounds. He also notes that a past velocity is not always available and that it must sometimes be estimated, which he defers to Chapter 16 (L1023-L1029); which way to estimate it is decided on [[choosing-velocity-estimate-approach]], the labelled first guess is on [[planned-velocity]], and the result is stated as a [[velocity-estimate-range]]. This wiki reads velocity as what fills the "past performance" input on [[filling-a-period]] where a project estimates, and that page also gives the count from Throughput that fills it where a project does not. The conversion to a date is on [[deriving-duration-from-velocity]], and what the rate corrects on its own is on [[velocity-self-correction]].
+Cohn calls this a best guess, and the chapter gives no error bounds. He also notes that a past velocity is not always available and that it must sometimes be estimated, which he defers to Chapter 16 (L1023-L1029); which way to estimate it, the labelled first guess and the range the result is stated as are all on [[choosing-velocity-estimate-approach]]. This wiki reads velocity as what fills the "past performance" input on [[filling-a-period]] where a project estimates, and that page also gives the count from Throughput that fills it where a project does not. The conversion to a date is on [[velocity-range-forecast]], and what the rate corrects on its own is on [[velocity-self-correction]].
 
 ## What it measures and does not
 

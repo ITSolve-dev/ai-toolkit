@@ -66,10 +66,10 @@ A single figure leaves no room for any of this.
 >
 > — [[cohn-agile-estimating-planning]], L6368
 
-This wiki reads the range as what made "two weeks past" a small statement and not a large miss against a point estimate ([[stating-plan-uncertainty]]). The figures are a narrative's and show how to read a comparison, not a typical overrun. Whether the plan was still good enough to decide on is the separate question on [[good-plan-test]].
+This wiki reads the range as what made "two weeks past" a small statement and not a large miss against a point estimate ([[forecast-range-and-probability]]). The figures are a narrative's and show how to read a comparison, not a typical overrun. Whether the plan was still good enough to decide on is the separate question on [[good-plan-test]].
 
 ## Agent executor note
 
 This wiki reads the test as independent of who executes, since it asks about dates, totals and decisions. The decision has to be written where history can find it, because an agent keeps no memory of why a date moved ([[fact-stranded-outside-the-task]]).
 
-How the scope was accepted is [[adding-scope-to-a-release-plan]]. The arithmetic behind each forecast is [[reforecasting-a-release-from-velocity]]. For a date treated as a reason to hurry, see [[a-date-is-not-urgency]].
+How the scope was accepted is [[adding-scope-to-a-release-plan]]. The arithmetic behind each forecast is [[velocity-range-forecast]]. For a date treated as a reason to hurry, see [[a-date-is-not-urgency]].

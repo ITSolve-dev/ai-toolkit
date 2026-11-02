@@ -46,7 +46,7 @@ This wiki reads the sub-steps here as a measuring instrument: they show how much
 
 ### What gives way
 
-Discovered work can still overflow. Then the team must "discuss the situation with the product owner and see if there is still a way to meet the iteration goal; they may need to reduce the functionality of a story or drop one entirely" (L3299). This wiki reads that as agreeing with the Scrum position in the case that matters: when the two collide, the goal survives and the selection gives way.
+Discovered work can still overflow. Then the team must "discuss the situation with the product owner and see if there is still a way to meet the iteration goal; they may need to reduce the functionality of a story or drop one entirely" (L3299). This wiki reads that as the route both sources share for work discovered inside the period: the selection shrinks, by a decision taken with the owner of the scope. It does not make the goal the commitment under Cohn's setup. There the goal guides which functionality to shrink, and what stays selected is still what the team answers for; a swap brought in from outside is a change to that commitment, decided and recorded ([[mid-period-change]]).
 
 ### How specific a goal must be
 
@@ -70,7 +70,7 @@ Ask what the project will answer for, and read it from the setup.
 - **Iterations with a WIP control:** the period's commitment is as in the two iteration cases, and the SLE, if the project keeps one, is a forecast inside it. Whether stories fit the period at all can be read from history on [[iteration-length-versus-cycle-time]].
 - **Under every iteration setup:** a list of sub-steps is never the commitment. The work that must be covered is on [[all-work-to-finished-is-in-the-plan]].
 
-The sources do not resolve this between them, because each describes only itself. The per-setup statement is this wiki's. How the amount is chosen is on [[velocity-versus-commitment-planning]].
+The sources do not resolve this between them, because each describes only itself. The per-setup statement is this wiki's. How the amount is chosen is on [[filling-a-period]].
 
 ## Sign of violation
 

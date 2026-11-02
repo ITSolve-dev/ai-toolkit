@@ -65,7 +65,7 @@ This wiki sets the uses out by question. The table and its grouping are ours, an
 |---|---|---|
 | Which open item needs attention now? | Each open item's age against the percentile lines | [[percentile-intervention-triggers]], [[cycle-time-percentile-lines]] |
 | Is an item being left behind? | Its age against newer items that finished or moved past it | [[flow-debt]] |
-| Is the process stable over this window? | Mean age of open items at the end of the window against the start | [[littles-law-assumptions]] |
+| Is the process stable over this window? | Mean age of open items at the end of the window against the start | [[littles-law]] |
 | Is a finished view hiding something? | Open items older than the lines, which no finished-item chart shows yet | [[which-chart-for-which-plan-question]] |
 
 ## What it does not say

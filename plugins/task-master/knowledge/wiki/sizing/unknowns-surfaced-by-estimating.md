@@ -5,7 +5,7 @@ summary: Estimating exposes what nobody knows; the unknown is then either resolv
 tags: [decision-rule, estimation, risk, spike]
 sources: [cohn-agile-estimating-planning]
 created: 2026-11-01
-updated: 2026-11-01
+updated: 2026-11-02
 ---
 
 # Unknowns Surfaced by Estimating
@@ -27,7 +27,7 @@ Cohn gives the options (L421):
 
 At project scale he adds a third outcome: some projects are so risky "that we may choose not to start once we’ve learned about the risks", and others contain features whose risks "can be contained by early attention" (L419).
 
-This wiki reads the first option as a [[spike-as-last-resort]] when the learning is large enough to be a task of its own, and the second as what [[estimates-as-ranges]] asks for.
+This wiki reads the first option as a [[spike-as-last-resort]] when the learning is large enough to be a task of its own, and the second as what [[forecast-range-and-probability]] asks for.
 
 ## Inputs and where they are read
 
@@ -45,7 +45,7 @@ This wiki's question to check: a task touching an unfamiliar system or integrati
 
 ## Trade-offs
 
-This wiki notes three costs. Learning now spends effort on work that delivers nothing directly. A larger estimate hides the reason unless it is written down. A range keeps the reason visible, at the cost of a less definite forecast; see [[single-date-plan]].
+This wiki notes three costs. Learning now spends effort on work that delivers nothing directly. A larger estimate hides the reason unless it is written down. A range keeps the reason visible, at the cost of a less definite forecast; see [[forecast-range-and-probability]].
 
 ## Agent executor note
 

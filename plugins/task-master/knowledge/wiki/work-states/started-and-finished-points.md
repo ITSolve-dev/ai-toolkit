@@ -203,4 +203,4 @@ The transfer of Vacanti's "capacity" is ours: with an agent executing, a pull is
 
 The charter treats review of a presented result as no wait inside a task, because the executor's part has ended. That concerns where a task is cut, and it does not settle where the finished point sits. This wiki treats the two as separate: if the finished point is set after acceptance, review time counts as cycle time even though it is not a wait inside the task.
 
-See also [[littles-law-assumptions]] and [[capturing-flow-data]].
+See also [[littles-law]] and [[capturing-flow-data]].

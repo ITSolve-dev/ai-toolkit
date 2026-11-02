@@ -112,7 +112,7 @@ The commitment is made to a customer by whoever steers, not by an executing agen
 
 ## Tension with ordering
 
-The claim that "prioritization does not happen until at the time of commitment" (L1474) sits against the pages in `ordering`, which rank a pile ahead of time. This wiki reads a rank on uncommitted items as a proposal for the next commitment decision: useful, cheap to change, and owed to nobody. On that reading Vacanti's point survives as the warning that a rank is not a promise. See [[estimate-is-not-a-promise]] for the same separation applied to size.
+The claim that "prioritization does not happen until at the time of commitment" (L1474) sits against the pages in `ordering`, which rank a pile ahead of time. This wiki reads a rank on uncommitted items as a proposal for the next commitment decision: useful, cheap to change, and owed to nobody. On that reading Vacanti's point survives as the warning that a rank is not a promise. See [[forecast-range-and-probability]] for the same separation applied to size.
 
 ## Agent executor note
 

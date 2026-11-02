@@ -5,7 +5,7 @@ summary: Because points are relative, a shared misjudgement of size or rate show
 tags: [concept, estimation, velocity, plan-versus-fact, forecasting]
 sources: [cohn-agile-estimating-planning]
 created: 2026-11-01
-updated: 2026-11-01
+updated: 2026-11-02
 ---
 
 # Velocity Self-Correction
@@ -54,7 +54,7 @@ Chapter 4 states the claim without qualification. Chapter 7 supplies the conditi
 
 A second condition is time. Velocity "becomes apparent over the first few iterations" (L1033), and the schedule grows reliable by "measuring velocity over the first few iterations" (L1435), so this wiki notes that the correction arrives only after those iterations have been spent. The fifty-story example corrects after one iteration only because it is constructed so, and the source gives no figure for how many "the first few" means. This wiki adds that a rate observed on early items forecasts later items only if those items are of a similar kind.
 
-A third condition is untouched estimates. Changing the estimates of finished tasks alone breaks the cancellation; see [[hindsight-re-estimation]].
+A third condition is untouched estimates. Changing the estimates of finished tasks alone breaks the cancellation; see [[re-estimate-when-relative-size-changes]].
 
 The rule for when to change an estimate is on [[re-estimate-when-relative-size-changes]]. The case this page settles is narrower: a uniform slowdown is a reason to recompute the date and not to rewrite the sizes.
 
@@ -68,7 +68,7 @@ These signs are this wiki's derivation. Each raises a question to check.
 
 - **Re-estimating instead of re-measuring.** After slow iterations, estimates across the board are raised. That spends effort on the one thing that did not need changing, and it distorts the velocity history.
 - **Treating self-correction as complete.** A date is trusted because velocity was applied, while a few items have run far beyond others of equal points. The ratios may be the error.
-- **Keeping the plan after the fact.** Observed velocity differs from the planned one and the date stays where it was. The correction is available only if someone recomputes it through [[deriving-duration-from-velocity]].
+- **Keeping the plan after the fact.** Observed velocity differs from the planned one and the date stays where it was. The correction is available only if someone recomputes it through [[velocity-range-forecast]].
 
 ## Agent executor note
 

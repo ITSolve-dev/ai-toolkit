@@ -20,7 +20,7 @@ Conservation of Flow (CoF) is the principle, in Daniel Vacanti's *Actionable Agi
 >
 > — [[vacanti-actionable-agile-metrics]], L2236
 
-“Any time that flow is not conserved, predictability suffers.” (L2008) Checking both against board history is on [[littles-law-assumptions]], and the policies that serve them are on [[process-policies-from-littles-law]].
+“Any time that flow is not conserved, predictability suffers.” (L2008) Checking both against board history, and the policies that serve them, are on [[littles-law]].
 
 ## First part: arrivals match departures
 

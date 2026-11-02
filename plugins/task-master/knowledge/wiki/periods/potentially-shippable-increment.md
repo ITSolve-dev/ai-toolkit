@@ -5,7 +5,7 @@ summary: Each iteration ends with features coded, tested and of releasable quali
 tags: [rule, iterations, done, quality, failure]
 sources: [cohn-agile-estimating-planning]
 created: 2026-11-01
-updated: 2026-11-01
+updated: 2026-11-02
 ---
 
 # Potentially Shippable Increment
@@ -26,7 +26,7 @@ The discriminating criterion is capability, not the act. Cohn says many teams do
 
 ## The exception and its conditions
 
-Cohn's single case is a product of hardware and software that needs two months of mean-time-between-failure testing before release. The team cannot shorten it, because it is "contractually required by their client" and often necessary to find hardware failures, and the team works in four-week iterations (L770). His claim is that "from running this two-month MTBF test, their product is at a truly releasable state at the end of each iteration." (L774).
+Cohn's single case is a product of hardware and software that needs two months of mean-time-between-failure testing before release. The team cannot shorten it, because it is "contractually required by their client" and often necessary to find hardware failures, and the team works in four-week iterations (L770). His claim is that, apart "from running this two-month MTBF test, their product is at a truly releasable state at the end of each iteration." (L770, L774). This wiki reads the test as the one activity left out of releasable, with everything else done each iteration.
 
 This wiki reads the conditions as what make the exception valid: the excluded activity is named, forced from outside, and longer than an iteration. "We will test at the end" meets none of them.
 
@@ -47,4 +47,4 @@ This wiki notes that finishing to this bar means fewer features per iteration th
 
 This wiki reads the rule as surviving an agent executing: it is a statement about the state of the product, not about who produced it. The "wall" does not disappear, however: this wiki reads its remaining place as between an agent's result and the person reviewing it, so what the agent presents should already be tested, not sent on to be tested.
 
-Related: [[timeboxed-iteration]], [[conditions-of-satisfaction]], [[user-valued-features-over-tasks]], [[release-versus-iteration]].
+Related: [[timeboxed-iteration]], [[conditions-of-satisfaction]], [[user-valued-features-over-tasks]], [[planning-horizons]].

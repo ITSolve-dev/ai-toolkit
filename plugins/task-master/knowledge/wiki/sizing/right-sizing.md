@@ -1,7 +1,7 @@
 ---
 title: Right-Sizing
 category: sizing
-summary: Before pulling an item, ask one yes/no question; can it finish within the SLE? Yes means pull it; no means split it, reduce its fidelity, or spike it. This replaces item-level points on a project that has an SLE.
+summary: Before pulling an item, ask one yes/no question; can it finish within the SLE? Yes means pull it; no means split it, reduce its fidelity, or spike it. On a project with an SLE this replaces item-level points once a side-by-side forecast test has passed.
 tags: [decision-rule, estimation, decomposition, cycle-time, pull]
 sources: [vacanti-actionable-agile-metrics, kanban-playbook-right-sizing, flow-metrics-scrum-teams]
 created: 2026-11-02
@@ -16,7 +16,7 @@ updated: 2026-11-02
 >
 > — [[vacanti-actionable-agile-metrics]], L3108
 
-The Kanban Playbook asks the same question ([[kanban-playbook-right-sizing]] L30), and [[size-ceiling]] places it among the other ceilings. It does not mean making items equal: [[right-sizing-not-same-sizing]].
+The Kanban Playbook asks the same question ([[kanban-playbook-right-sizing]] L30), and [[size-ceiling]] places it among the other ceilings. It does not mean making items equal: [[size-spread]].
 
 ## The test
 
@@ -33,7 +33,7 @@ Neither exact duration nor comparison is sought. Five days, nine days and 8.247 
 
 ## The same test at selection
 
-[[flow-metrics-scrum-teams]] runs the check on each item chosen for a period, after a forecast has said how many fit ([[filling-a-period]]), because that forecast counts right-sized items only (L1022). Line references in this section are to that source. Its question keeps the bar low: "based on what we know about this PBI right now–which is not much–do we think we have an 85% chance of getting it done in 7 days or less?" (L1044). It gives two ways out of a no, "(a) pull the PBI in as is and take that risk, or (b) choose not to work on that PBI in this Sprint" (L1044). Vacanti's signed note adds a third for the item next in order, an effort at refinement, meaning to "break the PBI up into several other PBIs–not tasks!–or change the acceptance criteria" (L1046).
+[[flow-metrics-scrum-teams]] runs the check on each item chosen for a period, after a forecast has said how many fit ([[filling-a-period]]), because that forecast counts right-sized items only (L1022). Line references in this section are to that source. Its question keeps the bar low: "based on what we know about this PBI right now–which is not much–do we think we have an 85% chance of getting it done in 7 days or less?" (L1044). It names refinement first, "If the answer is no, then more refinement may be required" (L1044), and besides it two options open to the Developers, "(a) pull the PBI in as is and take that risk, or (b) choose not to work on that PBI in this Sprint" (L1044). Vacanti's signed note argues for refinement when the item is next in order, meaning to "break the PBI up into several other PBIs–not tasks!–or change the acceptance criteria" (L1046).
 
 This wiki resolves those by what each costs, and the resolution is ours. An item next in order is cut first, since skipping it changes the order for a reason of size ([[order-by-value-not-convenience]]). Taking it as it stands stays open to whoever steers, and the plugin records that the check said no, so that a later overrun reads as an accepted risk. Leaving it out is for an item that cannot be cut now.
 
@@ -68,7 +68,7 @@ This sign is the wiki's phrasing: a pulled item whose text describes more than t
 
 This section resolves a disagreement between methodologies and is the wiki's own reading.
 
-- **Project with an SLE:** a stable process and enough finished items (about 11 to 30, see [[service-level-expectation]]). Right-sizing replaces point estimates at the item level.
+- **Project with an SLE:** a stable process and enough finished items (about 11 to 30, see [[service-level-expectation]]). Right-sizing replaces point estimates at the item level once the side-by-side test on [[dropping-estimates-for-flow-forecasts]] has passed; until then points stay alongside.
 - **Project without one:** a new project or a recently changed process. There is no SLE to test against, so this check is unavailable and relative estimation stays the sizing tool until the data exists.
 - **Project planning dates or filling periods:** a yes/no gives no sum to plan with. The SLE's forecast applies to one item, so filling a period needs something else, whether velocity or throughput. The count from [[throughput-monte-carlo]] and this check then work as a pair: one says how many, and the other says which items may count.
 

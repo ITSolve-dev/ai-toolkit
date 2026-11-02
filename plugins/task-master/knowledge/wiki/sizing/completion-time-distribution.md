@@ -5,12 +5,12 @@ summary: How long a unit of work takes is a right-skewed range, so a single esti
 tags: [concept, estimation, uncertainty, what-an-estimate-promises]
 sources: [cohn-agile-estimating-planning]
 created: 2026-11-01
-updated: 2026-11-01
+updated: 2026-11-02
 ---
 
 # Completion-Time Distribution
 
-The time one unit of work will take is a range with a long right tail, not a number. A single estimate names one point on that curve, and it can only be read once it is known which point. Cohn uses this as the basis for [[schedule-buffer]]: "we pretend that a single number reflects our expectations" ([[cohn-agile-estimating-planning]] L3877).
+The time one unit of work will take is a range with a long right tail, not a number. A single estimate names one point on that curve, and it can only be read once it is known which point. Cohn uses this as the basis for [[choosing-a-buffer]]: "we pretend that a single number reflects our expectations" ([[cohn-agile-estimating-planning]] L3877).
 
 ## Why the curve leans right
 
@@ -36,9 +36,9 @@ This wiki reads the table as follows: the most common finish, Day 2, covers only
 ## What each point promises
 
 - **A 50% estimate** is one "just as likely to be high as they are to be low" (L4000). It is overrun half the time by construction, so one task passing its 50% figure says nothing about the estimate. How far past an estimate justifies action is [[overrun-triggers-a-recut]].
-- **A 90% estimate** is the 50% figure plus [[local-safety]]. Cohn's programmer is "equally likely to beat or exceed" 3 days, yet would not be surprised by 5 (L3903).
+- **A 90% estimate** is the 50% figure plus [[choosing-a-buffer]]. Cohn's programmer is "equally likely to beat or exceed" 3 days, yet would not be surprised by 5 (L3903).
 
-Discriminating question for any estimate on a board: which of these two is it? An estimate is usable in a plan only if the answer is known, because [[buffer-versus-padding]] depends on it. Neither point is a promise ([[estimate-versus-commitment]]); expressing the spread is the subject of [[estimates-as-ranges]].
+Discriminating question for any estimate on a board: which of these two is it? An estimate is usable in a plan only if the answer is known, because [[choosing-a-buffer]] depends on it. Neither point is a promise ([[estimate-versus-commitment]]); expressing the spread is the subject of [[forecast-range-and-probability]].
 
 ## Checking it against fact
 

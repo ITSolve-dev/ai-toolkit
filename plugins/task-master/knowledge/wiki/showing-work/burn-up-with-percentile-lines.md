@@ -44,4 +44,4 @@ These limits are this wiki's reading, not the source's. The percentile is per it
 
 ## See also
 
-[[service-level-expectation]], [[straight-line-projection]], [[forecast-range-and-probability]], [[release-burndown-chart]]
+[[service-level-expectation]], [[forecast-range-and-probability]], [[release-burndown-chart]]

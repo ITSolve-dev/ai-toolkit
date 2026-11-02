@@ -28,7 +28,7 @@ Cohn's claim is therefore about ratios: a 2 is twice a 1 and two-thirds of a 3 (
 >
 > — [[cohn-agile-estimating-planning]], L943-L949
 
-This wiki notes that the two statements ask for different things. An ordering is weaker than a ratio, yet the arithmetic of [[deriving-duration-from-velocity]] sums points, and a sum is only meaningful if the ratios roughly hold.
+This wiki notes that the two statements ask for different things. An ordering is weaker than a ratio, yet the arithmetic of [[velocity-range-forecast]] sums points, and a sum is only meaningful if the ratios roughly hold.
 
 ## What a point is an amalgam of
 
@@ -52,15 +52,15 @@ This wiki draws the discriminating point from that: a value is only comparable w
 
 The defining property in Cohn's Chapter 8 argument is purity: "Story points are a _pure_ measure of size. Ideal days are not." (L1580). Size comes first in his sequence, as the step before estimating how long something will take (L1580).
 
-**The number does not move with proficiency.** "the size is what it is and doesn’t change." (L1580). Cohn calls this a desirable attribute of any measure of size. The contrast is on [[ideal-day-estimate-decay]].
+**The number does not move with proficiency.** "the size is what it is and doesn’t change." (L1580). Cohn calls this a desirable attribute of any measure of size. The contrast is on [[ideal-days]].
 
 **The number can only be reached by analogy.** "we can only estimate story points by analogy." (L1582). He rests this on evidence: "There is credible evidence that we are better at estimating “this is like that” than we are at estimating the absolute size of things (Lederer 1998; Vicinanza 1991)." (L1582). Ideal days can also be estimated by analogy, but then "we also tend to think of the calendar and how long a story will take to develop." (L1582). The cited studies have not been read for this wiki.
 
-**The number cannot be held against reality.** Being abstract, there "can be no temptation to compare them to reality" (L1584). The opposite case is [[ideal-days-compared-to-actual-days]].
+**The number cannot be held against reality.** Being abstract, there "can be no temptation to compare them to reality" (L1584). The opposite case is [[ideal-days]].
 
-**The number is one figure for all the work.** It "needs to be a single number that represents all of the work for the whole team" (L1558), which is what rules out the arithmetic on [[summed-role-estimates]].
+**The number is one figure for all the work.** It "needs to be a single number that represents all of the work for the whole team" (L1558), which is what rules out the arithmetic on [[one-estimate-per-task]].
 
-**People can agree on it while disagreeing on duration.** "Two developers of different skill or experience can agree on the size of something while disagreeing about how long it will take to do." (L1636). See [[executor-bound-estimates]].
+**People can agree on it while disagreeing on duration.** "Two developers of different skill or experience can agree on the size of something while disagreeing about how long it will take to do." (L1636). See [[who-estimates]].
 
 ## When a point estimate does change
 
@@ -99,7 +99,7 @@ On the next round every estimate is 20 (L5383).
 
 **Sign of violation, in an estimate's stated reason:** the reason names only one kind of work, such as the tests or the code. The wording of this sign is this wiki's.
 
-**What breaks:** the number undercounts by whatever the estimator did not picture, and the comparison between tasks stops being a comparison of like with like. The arithmetic form of the same error is on [[summed-role-estimates]].
+**What breaks:** the number undercounts by whatever the estimator did not picture, and the comparison between tasks stops being a comparison of like with like. The arithmetic form of the same error is on [[one-estimate-per-task]].
 
 ## Failure modes
 
@@ -117,6 +117,6 @@ Chapter 4 ends by asking, without answering, over what range an estimator can co
 
 The transfer here is this wiki's, not Cohn's. Relative sizing works by remembering earlier items of similar size (L943). An agent has no such memory unless reference tasks are put in front of it, so a scale used by an agent needs its reference items written down. The ratio mechanism itself does not depend on who executes the work. What the chapter does not establish is whether the components of size, effort and complexity in particular, weigh the same when an agent executes and a person steers.
 
-This wiki reads purity as surviving the move to an agent, since nothing in size depends on who does the work. The analogy evidence does not transfer automatically: it concerns human estimators, and whether the claim holds when an agent proposes the estimate is not established by this source. Choosing the unit is on [[story-points-or-ideal-days]].
+This wiki reads purity as surviving the move to an agent, since nothing in size depends on who does the work. The analogy evidence does not transfer automatically: it concerns human estimators, and whether the claim holds when an agent proposes the estimate is not established by this source. Choosing the unit is on [[ideal-days]].
 
 The comparison is between pieces of work, so this wiki expects it to survive an agent executing. The case study's anchors may not: its ratios reflect what those people found hard, and an agent's relative cost across kinds of work can differ, so a project re-derives its anchors from its own finished tasks. The whole-task rule survives and widens, in this wiki's reading: when an agent executes, the person's review of the result is part of the task's cost, and an estimate that counts only execution repeats the tester's mistake. No source measures any of this.

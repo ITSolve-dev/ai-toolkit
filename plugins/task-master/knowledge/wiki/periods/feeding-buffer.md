@@ -5,12 +5,12 @@ summary: Reserved time in the delivering team's plan that protects another team'
 tags: [method, dependencies, buffer, multi-team, uncertainty]
 sources: [cohn-agile-estimating-planning]
 created: 2026-11-01
-updated: 2026-11-01
+updated: 2026-11-02
 ---
 
 # Feeding Buffer
 
-A feeding buffer is reserved capacity placed before a hand-off, so that late delivery by one team does not become a late start for another. Cohn's plain version: "if your team needs something from my team tomorrow at 8:00 A.M., my team shouldn’t plan on finishing it at 7:59" ([[cohn-agile-estimating-planning]] L4176). It has the same purpose as the [[schedule-buffer]], applied to a single hand-off rather than the project's end.
+A feeding buffer is reserved capacity placed before a hand-off, so that late delivery by one team does not become a late start for another. Cohn's plain version: "if your team needs something from my team tomorrow at 8:00 A.M., my team shouldn’t plan on finishing it at 7:59" ([[cohn-agile-estimating-planning]] L4176). It has the same purpose as the project buffer ([[choosing-a-buffer]]), applied to a single hand-off rather than the project's end.
 
 This is a technique for multi-team projects with heavy dependencies: Cohn's summary places it "on highly complex projects with many interteam dependencies" (L4227). See the gate at [[multi-team-techniques-scale-limit]] first.
 
@@ -28,7 +28,7 @@ Only at a [[critical-dependency]]. The tests are on that page: allocate first, t
 
 ## Sizing
 
-The square-root-of-sum-of-squares calculation from [[project-buffer-sizing]] usually does not apply, because "most inter-team dependencies are based on no more than a handful of stories or features at a time" (L4203). Instead, size it as a percentage of the stories creating the dependency: "You can use 50% as a default buffer size but this should be adjusted based on team judgment." (L4203). The 50% is a default for hand-offs of a handful of stories, not a measured value.
+The square-root-of-sum-of-squares calculation from [[choosing-a-buffer]] usually does not apply, because "most inter-team dependencies are based on no more than a handful of stories or features at a time" (L4203). Instead, size it as a percentage of the stories creating the dependency: "You can use 50% as a default buffer size but this should be adjusted based on team judgment." (L4203). The 50% is a default for hand-offs of a handful of stories, not a measured value.
 
 This wiki notes that the worked example does not apply that default. Team 1's buffer is 10 points against a 30-point API, about a third of the stories creating the dependency, and half of a 20-point iteration (L4153, L4187). Cohn does not say the figure was sized by the rule, so the example should not be read as evidence for 50%.
 

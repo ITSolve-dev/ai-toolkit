@@ -5,7 +5,7 @@ summary: Estimate how big the work is first, in a unit that cannot be read as ti
 tags: [rule, estimation, duration, story-points, velocity, forecast]
 sources: [cohn-agile-estimating-planning]
 created: 2026-11-01
-updated: 2026-11-01
+updated: 2026-11-02
 ---
 
 # Separate Size from Duration
@@ -23,7 +23,7 @@ Cohn contrasts two routes to the same job, moving a pile of dirt (L914-L918):
 - **Direct:** look at the pile and the tools and say five hours. This "bypassed any estimate of size" (L914).
 - **Through size:** 300 cubic feet of dirt, 6 cubic feet per wheelbarrow load, so 50 trips; each trip takes 3 + 2 + 1 = 6 minutes, so 300 minutes, or 5 hours.
 
-This wiki notes that both routes reach five hours in this constructed example, so it shows the structure of the estimate and not that the indirect route is more accurate. Cohn adds that size alone does not answer the question either: "an estimate of size alone is not useful in this case" (L916). The size has to be converted with a rate. For software, that rate is [[velocity]] and the conversion is [[deriving-duration-from-velocity]].
+This wiki notes that both routes reach five hours in this constructed example, so it shows the structure of the estimate and not that the indirect route is more accurate. Cohn adds that size alone does not answer the question either: "an estimate of size alone is not useful in this case" (L916). The size has to be converted with a rate. For software, that rate is [[velocity]] and the conversion is [[velocity-range-forecast]].
 
 Chapter 22 repeats the structure with a novel the reader may not open. To say how long it takes, you first guess 600 pages, then a rate of one page per minute, and only then arrive at 600 minutes, or ten hours (L4849). The duration is an output of two separate guesses, and either can be corrected alone.
 
@@ -61,7 +61,7 @@ This wiki reads the consequence this way: a duration estimated directly carries 
 
 These signs are this wiki's derivation; the chapter states none. Each raises a question to check.
 
-- A task carries an estimate in hours or days and no size. Ideal days are the exception, because they are stated as a size; see [[ideal-days]] and [[ideal-estimate-read-as-deadline]].
+- A task carries an estimate in hours or days and no size. Ideal days are the exception, because they are stated as a size; see [[ideal-days]].
 - Some tasks on a project are in points and others in time.
 - A planned date exists with no size total or rate behind it.
 - After a slow iteration, the task estimates are rewritten across the board and the rate is left alone. See [[re-estimate-when-relative-size-changes]].
@@ -79,4 +79,4 @@ Cohn's stated reason, that programmers "of different skill and experience levels
 
 ## Related
 
-[[stating-plan-uncertainty]] covers how a derived duration should be stated. [[filling-a-period]] uses the rate to select work.
+[[forecast-range-and-probability]] covers how a derived duration should be stated. [[filling-a-period]] uses the rate to select work.

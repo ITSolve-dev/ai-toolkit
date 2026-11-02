@@ -5,7 +5,7 @@ summary: Move forward the features that let real or likely users react, includin
 tags: [rule, ordering, prioritization, risk, learning]
 sources: [cohn-agile-estimating-planning]
 created: 2026-11-01
-updated: 2026-11-01
+updated: 2026-11-02
 ---
 
 # Ordering for Early User Feedback
@@ -60,4 +60,4 @@ This wiki notes that the rule requires someone who can react. Where no user is r
 
 ## Agent executor note
 
-This wiki reads the rule as surviving whole, because the uncertainty lives with users and not with the executor ([[end-and-means-uncertainty]]). It may matter more with an agent, since this wiki expects an agent to build the wrong thing as readily as the right one. That expectation is ours and the source does not test it. See also [[iterating-reduces-uncertainty]].
+This wiki reads the rule as surviving whole, because the uncertainty lives with users and not with the executor ([[end-and-means-uncertainty]]). It may matter more with an agent, since this wiki expects an agent to build the wrong thing as readily as the right one. That expectation is ours and the source does not test it. See also [[replanning-on-new-knowledge]].

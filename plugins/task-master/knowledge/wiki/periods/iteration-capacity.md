@@ -5,7 +5,7 @@ summary: Plan against what is left after standing obligations are taken out, not
 tags: [rule, iterations, capacity, filling, cohn]
 sources: [cohn-agile-estimating-planning]
 created: 2026-11-01
-updated: 2026-11-01
+updated: 2026-11-02
 ---
 
 # Iteration Capacity
@@ -28,15 +28,7 @@ Cohn gives 280 to 420 hours for that team (L3307). This wiki notes that the figu
 
 ### Six hours in the case study
 
-The fictional case study in Chapter 23 (L4961) picks one value inside that band and says what fills the rest of the day:
-
-> Based on what I’ve seen after being here a couple of days, I think you should plan on six hours per day per person of productive work. The rest of each day goes to answering emails, talking to other project teams, your own daily meetings, the half day every other week we’ll spend doing this planning, and so on.
->
-> — [[cohn-agile-estimating-planning]], L5767
-
-The figure's conditions are these: it is an outsider's judgement after a couple of days and not a measurement, it assumes a two-week iteration, so "With 6 hours a day for 10 days, I’ve got 60 hours available." (L5783), and declared absences come off separately (L5789-L5797).
-
-The people in the case doubt the number. One says "It might be closer to 5 but I can try to get 6 a day on this project" (L5773), and another "I know we’re saying I’ve got 60 but that seems high to me." (L5851). This wiki reads those objections as the useful part: the figure is an assumption to be corrected, and what corrects it is the velocity observed afterwards ([[planned-velocity]]), not a timesheet.
+The fictional case study in Chapter 23 (L4961) picks six hours a day inside that band, an outsider's judgement after a couple of days (L5767), and its characters doubt it (L5773, L5851). This wiki reads the doubt as the useful part: the figure is an assumption to be corrected, and what corrects it is the velocity observed afterwards ([[choosing-velocity-estimate-approach]]), not a timesheet. Per-person hours are individual load, outside this wiki's scope, so nothing more of the case is kept here.
 
 **Sign:** capacity computed from a full working day, or a planned-hours figure reused from another setting with no check on what filled the rest of the day. This sign is this wiki's.
 
@@ -69,4 +61,4 @@ The figures of four to six hours, the case study's six, and the 50 to 75 percent
 
 ## Related
 
-How the amount is then filled is on [[velocity-versus-commitment-planning]]. What counts as planned work, including meetings about the project, is on [[all-work-to-finished-is-in-the-plan]]. Why a margin is kept at all is on [[utilization-versus-slack]]. Mid-period arrivals are on [[mid-period-change]] and [[interrupting-started-work]].
+How the amount is then filled, and why a margin is kept at all, are on [[filling-a-period]]. What counts as planned work, including meetings about the project, is on [[all-work-to-finished-is-in-the-plan]]. Mid-period arrivals are on [[mid-period-change]] and [[interrupting-started-work]].

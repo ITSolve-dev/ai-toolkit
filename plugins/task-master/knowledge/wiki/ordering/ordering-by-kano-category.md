@@ -59,7 +59,7 @@ The analyst overrides the data twice and says why. A strong opponent goes in as 
 
 ### Failure mode: everything is in
 
-The product manager says it himself: "I know. I want it all, right? Just like every product manager in the world." (L6121). The sign is that nothing, or almost nothing, sits below the line. This wiki notes that in the case 132 of 146 points are in, so only 14 lie outside, which leaves little to cut if velocity runs to the long end, and the cut would come from linear features already selected. The range and its lever are on [[stating-plan-uncertainty]], and the first figure for velocity on [[planned-velocity]].
+The product manager says it himself: "I know. I want it all, right? Just like every product manager in the world." (L6121). The sign is that nothing, or almost nothing, sits below the line. This wiki notes that in the case 132 of 146 points are in, so only 14 lie outside, which leaves little to cut if velocity runs to the long end, and the cut would come from linear features already selected. The range and its lever are on [[forecast-range-and-probability]], and the first figure for velocity on [[choosing-velocity-estimate-approach]].
 
 ## Signs this rule detects
 
@@ -87,7 +87,7 @@ The source gives no tests of the choice, so these are this wiki's.
 - **A must-have was missed** if users rejected or avoided the release over something classed lower.
 - **Depth was misjudged** if complaints after release name the limit of a partial must-have.
 - **A category had gone stale** if users object to the absence of something recorded as an exciter.
-- **The scope was too full** if observed velocity projects past the stated range ([[stating-plan-uncertainty]]), or a newly found exciter forces an extension or an equal removal (L6183).
+- **The scope was too full** if observed velocity projects past the stated range ([[forecast-range-and-probability]]), or a newly found exciter forces an extension or an equal removal (L6183).
 
 ## Setting
 

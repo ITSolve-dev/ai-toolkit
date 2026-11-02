@@ -25,7 +25,7 @@ Cohn reports success with two ([[cohn-agile-estimating-planning]] L1226, L1228):
 
 Of the two he writes: "Either sequence works well although my slight personal preference is for the first." (L1230). This wiki takes that as saying the choice between them carries no weight, and the fact that only one is used on a project carries the weight.
 
-Larger numbers such as 10, 20, 30, 50, 100 are acceptable on one condition: "I still recommend that you pre-identify the numbers you will use within that range." (L1244). Steps for distant work are on [[estimating-by-horizon]].
+Larger numbers such as 10, 20, 30, 50, 100 are "fine since these are also within a single order of magnitude", with a recommendation: "I still recommend that you pre-identify the numbers you will use within that range." (L1244). Steps for distant work are on [[estimating-by-horizon]].
 
 ## Why
 
@@ -68,7 +68,7 @@ Cohn adds that one-point gaps between 1, 2 and 3 are acceptable because they are
 The case study adds two signs that a field check would miss.
 
 - **In an estimate's history:** a change smaller than the gap between steps. Lowering an 8 to a 7 is refused: "That makes the numbers look too precise. If we want to lower it to a 5, we can. Otherwise, let’s leave it as an 8." (L5471).
-- **Across a split:** a piece's estimate adjusted so that the pieces total the original. Three pieces of a 20 came to 21, and the product manager proposed taking a point off (L5407-L5409). The coach refused: "The sum of the estimates doesn’t need to equal the estimate of the larger story." (L5417). The stated reason is that the original was never that exact and that breaking a story up shows more of what is involved (L5411-L5417). The same holds for a split at a period's end, on [[partial-credit-for-unfinished-tasks]].
+- **Across a split:** a piece's estimate adjusted so that the pieces total the original. Three pieces of a 20 came to 21, and the product manager proposed taking a point off (L5407-L5409). The coach refused: "The sum of the estimates doesn’t need to equal the estimate of the larger story." (L5417). The stated reason is that the original was never that exact and that breaking a story up shows more of what is involved (L5411-L5417). The same holds for a split at a period's end, on [[all-or-nothing-counting]].
 
 The rule discards real information, and the chapter accepts that. The programmer's 7 reported a small effect of moving work out of a story (L5469), and the step rule drops it, because the alternative is numbers that imply knowledge nobody has. That reading of the trade-off is this wiki's.
 
@@ -98,4 +98,4 @@ This wiki reads "we cannot discern" as a claim about human perception. A model w
 
 ## Related
 
-The step above which a task is cut is [[size-ceiling]]. What a point means is on [[story-points]]. A missing estimate is judged on [[empty-fields]]. Stating uncertainty in a date is a separate matter, on [[estimates-as-ranges]].
+The step above which a task is cut is [[size-ceiling]]. What a point means is on [[story-points]]. A missing estimate is judged on [[empty-fields]]. Stating uncertainty in a date is a separate matter, on [[forecast-range-and-probability]].

@@ -5,7 +5,7 @@ summary: Selection starts from a refreshed order and not last period's; feedback
 tags: [rule, ordering, iterations, cohn]
 sources: [cohn-agile-estimating-planning]
 created: 2026-11-01
-updated: 2026-11-01
+updated: 2026-11-02
 ---
 
 # Reprioritize Before Each Iteration
@@ -53,4 +53,4 @@ This rule depends on when information arrives, so this wiki expects it to hold f
 
 ## Related
 
-The wider practice of folding learning into a plan is on [[replanning-on-new-knowledge]]. The stage this happens in is on [[iteration-plan-versus-release-plan]].
+The wider practice of folding learning into a plan is on [[replanning-on-new-knowledge]]. The stage this happens in is on [[planning-horizons]].

@@ -56,7 +56,7 @@ This section is the wiki's own reading.
 
 - **Pull:** the depth of ranking equals free slots, and the trigger is a slot opening.
 - **Iterations:** the same logic bounds fine ranking to what the next iteration can hold, which is the claim of [[reprioritize-before-each-iteration]], since [[backlog-versus-commitment]] sits at the period there.
-- **Iterations with a release plan:** a coarse order beyond the next period is needed for the forecast, and its detail is what is not worth maintaining ([[release-plan-level-of-detail]]).
+- **Iterations with a release plan:** a coarse order beyond the next period is needed for the forecast, and its detail is what is not worth maintaining ([[planning-horizons]]).
 
 ## Agent note
 

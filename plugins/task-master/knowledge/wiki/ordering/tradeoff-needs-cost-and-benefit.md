@@ -5,7 +5,7 @@ summary: Decisions about what to do, delay or trim need estimates of both cost a
 tags: [rule, prioritization, estimation, value, trade-off]
 sources: [cohn-agile-estimating-planning]
 created: 2026-11-01
-updated: 2026-11-01
+updated: 2026-11-02
 ---
 
 # A Trade-Off Needs Cost and Benefit
@@ -22,7 +22,7 @@ The decisions he means are of the form: is a feature worth delaying the release,
 
 This wiki's reading, since Cohn states the rule without a procedure:
 
-- **Cost:** the task's estimate, as a range where the work is unresolved. See [[estimates-as-ranges]].
+- **Cost:** the task's estimate, as a range where the work is unresolved. See [[forecast-range-and-probability]].
 - **Benefit:** the value stated in the task's purpose or by whoever requested it ([[task-must-justify-itself]]). Chapter 1 gives no benefit scale; the bands this wiki uses when value cannot be put in numbers are on [[ordering-by-value-and-urgency]].
 - **Scarce people:** Cohn says "Sometimes the staffing profile of a project can be more important than its schedule." (L439). His example is a project worth starting only if a plan avoids the fully committed chief architect (L439). This wiki reads that, for a few people steering an agent, as: the steering person's attention can be the scarce input, not the agent's capacity.
 
@@ -52,4 +52,4 @@ This wiki's question to check: tasks ordered with size recorded but no statement
 
 ## Trade-off
 
-This wiki notes that a rough benefit estimate on every task costs effort and can give false confidence. Chapter 1 does not say how rough is acceptable; it shows only that a comparison made without both sides is not one. Where the benefit is expressed as a rate and durations vary widely, the comparison is made on [[cost-of-delay-over-duration]]. See also [[purpose-of-planning]].
+This wiki notes that a rough benefit estimate on every task costs effort and can give false confidence. Chapter 1 does not say how rough is acceptable; it shows only that a comparison made without both sides is not one. Where the benefit is expressed as a rate and durations vary widely, the comparison is made on [[cost-of-delay-over-duration]]. See also [[planning-horizons]].

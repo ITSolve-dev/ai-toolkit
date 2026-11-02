@@ -20,7 +20,7 @@ A release plan is a prediction made at one moment, so a discovery that changes w
 
 - **Size of the candidates:** estimated by the team, which "split some of her original stories and combined others" (L6358). Online play came to 30 points. Characters came to 15 for the first and 5 for each further one, 35 for five.
 - **Value of the candidates:** a revenue forecast from outside the board, built here on buyer conversations and financial models (L6350, L6360).
-- **Effect on the date:** [[reforecasting-a-release-from-velocity]] on the new total.
+- **Effect on the date:** [[velocity-range-forecast]] on the new total.
 - **Whether the feature can wait for a later release:** the project's setup and market.
 
 ## The rule
@@ -61,11 +61,11 @@ The value forecast would, and revenue is not on a board, so the check falls outs
 
 ## What it costs
 
-The date moves, and in the case the CEO told about it was not pleased at first (L6318). The plan's margin also shrank to near zero, which led to [[droppable-stories-as-a-schedule-buffer]]. Whether the delay stays defensible is tested by [[chosen-delay-versus-slip]]. For value as an ordering input, see [[cost-of-delay]] and [[ordering-by-value-and-urgency]]. The case's analyst calls the characters an exciter (L6340), which is a category on [[kano-model]].
+The date moves, and in the case the CEO told about it was not pleased at first (L6318). The plan's margin also shrank to near zero, which led to [[choosing-a-buffer]]. Whether the delay stays defensible is tested by [[chosen-delay-versus-slip]]. For value as an ordering input, see [[cost-of-delay]] and [[ordering-by-value-and-urgency]]. The case's analyst calls the characters an exciter (L6340), which is a category on [[kano-model]].
 
 ## Which setup this applies under
 
-The resolution here is this wiki's. Under an iteration setup the addition belongs at a period boundary ([[mid-period-change]]), as it does in the case. The rule on levers still applies, so the date is one choice among several ([[changing-the-plan-without-changing-the-date]]).
+The resolution here is this wiki's. Under an iteration setup the addition belongs at a period boundary ([[mid-period-change]]), as it does in the case. The rule on levers still applies, so the date is one choice among several ([[replanning-on-new-knowledge]]).
 
 ## Agent executor note
 

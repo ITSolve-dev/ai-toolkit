@@ -5,12 +5,12 @@ summary: What is unknown about a product divides into what to build (end) and ho
 tags: [concept, ordering, prioritization, learning, risk]
 sources: [cohn-agile-estimating-planning]
 created: 2026-11-01
-updated: 2026-11-01
+updated: 2026-11-02
 ---
 
 # End and Means Uncertainty
 
-This distinction separates two kinds of ignorance at the start of a project. Cohn ([[cohn-agile-estimating-planning]]) takes the terms from Laufer (1996) and pairs them with the two kinds of knowledge a team builds up (L1748-L1758). The rule that iteration reduces both is on [[iterating-reduces-uncertainty]]; this page names the two and says what ordering does with them.
+This distinction separates two kinds of ignorance at the start of a project. Cohn ([[cohn-agile-estimating-planning]]) takes the terms from Laufer (1996) and pairs them with the two kinds of knowledge a team builds up (L1748-L1758). The rule that iteration reduces both is on [[replanning-on-new-knowledge]]; this page names the two and says what ordering does with them.
 
 ## The two kinds
 

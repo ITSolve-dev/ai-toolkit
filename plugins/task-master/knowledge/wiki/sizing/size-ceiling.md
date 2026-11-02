@@ -60,25 +60,9 @@ This wiki's arithmetic: a two-week iteration has about ten working days, so 2 to
 
 Cohn also agrees with the Scrum Guide's outer bound, in stronger words: "if implementing a particular user story will take longer than the length of the iteration there’s no choice but to split the story" ([[cohn-agile-estimating-planning]] L2579). The occasions for cutting are on [[when-to-split-a-task]].
 
-### Cohn's one task per developer per day
+### Cohn's sub-story figure
 
-Cohn also gives a size for the level below a story. Like the Scrum Guide's "one day or less", it sits one level below this wiki's task, so it is not a ceiling for tasks on a board ([[unit-of-work]]).
-
-> The tasks you create should be of an approximate size so that each developer is able to finish an average of one per day.
->
-> — [[cohn-agile-estimating-planning]], L3270
-
-The figure is an average per developer and comes with stated exceptions: "there will often be tasks that are larger than this" (L3272). This wiki notes that it is a coaching rule of thumb in a person's days, with no measurement behind it, and that it counts on-task hours as defined in ideal time (L3246). Cohn gives two reasons for the size. "Larger tasks tend to get bottled up with a developer or two and the rest of the team can be left waiting for them to complete the task." (L3270). And a team holding short daily meetings can have each developer report a finished task on most days (L3270).
-
-The fictional case study in Chapter 23 (L4961) states the same level as a band. Asked whether an engine can stay one two-week item, the coach answers:
-
-> No, you can’t. When we’re identifying tasks we want them to be around 1– 16 hours. Ideally you should be able to finish one each day, which means the average should be like five or six hours since we always have a few other things to do each day.
->
-> — [[cohn-agile-estimating-planning]], L5728
-
-The top of the band is described as "A couple of solid days." (L5698). This wiki's count across Tables 23.7, 23.9 and 23.10 (L5750-L5763, L5836-L5845, L5863-L5880) gives 30 pieces and 196 hours, ranging from 2 to 16 with a mean of about 6.5, so the case's own cards run slightly above what it prescribes and two sit exactly at the ceiling. The setting is a two-week iteration at six planned hours a day ([[iteration-capacity]]). The chapter measures its stories in points, so the band says nothing about their size.
-
-**Sign at that level:** a piece above 16 hours, or a piece estimated in weeks. This wiki reads the cure as cutting along what the piece delivers, as in the worked example on [[story-splitting-patterns]], and not as finding a way to fit the number.
+Cohn also gives a size for the level below a story, about one task per developer per day (L3270), and the case study's band of 1 to 16 hours (L5728). It sits one level below this wiki's task and is counted in a person's on-task hours, so this wiki does not use it as a ceiling for tasks on a board or as agent run time ([[unit-of-work]]).
 
 ## A large item is a placeholder
 
@@ -113,7 +97,7 @@ Cohn sets a floor of a different kind. He warns against reading his chapter as a
 The sources answer different questions, so the setup decides. The resolution is this wiki's.
 
 - **A project with iterations and an SLE:** [[flow-metrics-scrum-teams]] asks the SLE question at selection (L1044), and for two-week periods it puts right sizes at 1 to 14 days, "but in reality should probably be a little less than that" (L1038). This wiki has the SLE question replace the ratio for selection, since it reads the project's own history item by item and the ratio needs iteration capacity. The Scrum Guide's one period stays the outer limit.
-- **A project with iterations and no SLE:** use the ratio. The ceiling is the capacity of one iteration divided by 6 to 10, and capacity is read from history. The ratio applies to tasks near the top of the order. The Scrum Guide's bound of one period holds for every task as the outer limit.
+- **A project with iterations and no SLE:** use the ratio. The ceiling is the capacity of one iteration divided by 6, the size at which six still fit; capacity is read from history. Below capacity divided by 10 an item is small enough that combining it with others becomes a question ([[combining-small-tasks]]). The 10 is the source's preferred upper count, not a cut line. The ratio applies to tasks near the top of the order. The Scrum Guide's bound of one period holds for every task as the outer limit.
 - **A project without iterations:** the ratio has no denominator, so ask the Playbook's question against the project's SLE, and apply Wake's scope test on top of it. A project that keeps an estimation scale can use the step fixed at setup in the same place. No source gives a universal figure for this case, and the number comes from the project's own history.
 - **Under both:** the scope test overrides the number. A task under the ceiling whose contents cannot be stated still gets cut.
 - **Never:** person-weeks as the unit, for the reason in the note below.
@@ -123,7 +107,7 @@ The sources answer different questions, so the setup decides. The resolution is 
 | Input | Read from |
 |---|---|
 | The task's estimate | The task, on the project's scale |
-| The ceiling | The scale step fixed when the project was set up, or iteration capacity divided by 6 to 10 where iterations exist with no SLE, or the SLE wherever one is kept |
+| The ceiling | The scale step fixed when the project was set up, or iteration capacity divided by 6 where iterations exist with no SLE, or the SLE wherever one is kept |
 | Iteration capacity | Board history, where iterations exist |
 | The SLE | Board history, or a best guess until there is enough of it |
 | Whether scope can be stated | The task text: can each thing inside it be listed |

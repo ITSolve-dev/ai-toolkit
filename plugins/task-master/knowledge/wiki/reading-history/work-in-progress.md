@@ -22,7 +22,7 @@ Work In Progress (WIP) is "All discrete units of customer value that have entere
 
 "To calculate WIP you simply count the discrete number of work items within your process boundaries as defined above. That’s it: just count." (L606)
 
-**Count, do not size.** Vacanti rejects weighting: WIP needs no Story Points or ideal hours, and items need not share a size or complexity (L608-L610). The chapter asks the reader to "suspend disbelief" and defers the argument to the Little's Law chapter (L610-L612); the grounds are on [[right-sizing-not-same-sizing]]. He goes further than the metric: "you need to abandon that type of thinking if you truly want to build predictable processes" (L610).
+**Count, do not size.** Vacanti rejects weighting: WIP needs no Story Points or ideal hours, and items need not share a size or complexity (L608-L610). The chapter asks the reader to "suspend disbelief" and defers the argument to the Little's Law chapter (L610-L612); the grounds are on [[size-spread]]. He goes further than the metric: "you need to abandon that type of thinking if you truly want to build predictable processes" (L610).
 
 That line conflicts with sources that make relative estimation central. This wiki resolves it by use, not by side: the source's claim concerns counting WIP and predictability, while a size scale used to decide whether a task should be cut answers a different question and is untouched by it ([[size-ceiling]]). On a project set up around points and velocity, WIP is still counted in items. The price of counting items is on [[hidden-wip-in-large-items]].
 

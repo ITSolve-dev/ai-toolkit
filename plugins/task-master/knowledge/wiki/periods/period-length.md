@@ -5,7 +5,7 @@ summary: A period has a fixed length of one month or less, in practice one to fo
 tags: [rule, iterations, period-length, planning, scrum]
 sources: [scrum-guide-2020, kanban-guide, montgomery-tracker-smells, cohn-agile-estimating-planning]
 created: 2026-11-01
-updated: 2026-11-01
+updated: 2026-11-02
 ---
 
 # Period Length
@@ -26,13 +26,15 @@ Cohn treats that choice as one made per project and not a constant. Most teams l
 
 ## Choosing the length
 
-This wiki's starting test is built from the trade-off the Guide names: choose the shortest length in which a typical selected task can finish and be reviewed, and no longer than the goal stays valid.
+This wiki's starting test is built from the trade-off the Guide names: choose the shortest length in which a selected task at the 85th percentile of Cycle Time can finish and be reviewed, and no longer than the goal stays valid. The 85th percentile is the test on [[iteration-length-versus-cycle-time]]: a length set from the median passes a test on typical tasks and leaves about one task in seven unable to fit.
 
 | Input | Read from |
 |---|---|
-| How long a task takes from started to finished | Board history |
+| How long a task takes from started to finished, at the 85th percentile | Board history |
 | How long a goal has stayed valid in earlier periods | Board history: goals gone obsolete, and tasks added or dropped mid-period |
 | How often the people steering can review | The people steering |
+
+At setup a new project has no board history for the first two inputs, so the test gives no answer. This wiki's branch for that case: take the review cadence of the people steering as the length, label it a guess, and re-check it against the 85th percentile once enough tasks have finished to read one ([[how-much-flow-data]]). No source gives a length for this case.
 
 The length was too long if goals repeatedly go obsolete during the period ([[mid-period-change]]). It was too short if tasks repeatedly go back unfinished for reasons of size ([[unfinished-at-period-end]]), or if the review of one period runs into the next.
 

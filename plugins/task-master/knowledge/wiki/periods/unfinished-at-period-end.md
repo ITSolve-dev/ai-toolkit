@@ -29,7 +29,7 @@ At a period's end, each task either met the standard of done or it did not. A ta
 - **In board history:** a task that did not meet the check is counted in what the period finished.
 - **In board history:** the same task selected in several periods running. It is what repeated return looks like, and it suggests the task is too large or badly cut, so it goes to [[overrun-triggers-a-recut]].
 
-The signs are this wiki's derivation from L311 and L319. The Guide does not use the word "carry". Cohn's split of a deferred story into a finished item and a new one is not a percentage of an open task; how it fits this rule is on [[partial-credit-for-unfinished-tasks]].
+The signs are this wiki's derivation from L311 and L319. The Guide does not use the word "carry". Cohn's split of a deferred story into a finished item and a new one is not a percentage of an open task; how it fits this rule is on [[all-or-nothing-counting]].
 
 ## Why
 

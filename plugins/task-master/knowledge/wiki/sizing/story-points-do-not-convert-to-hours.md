@@ -5,7 +5,7 @@ summary: A points-to-hours factor holds only as an average over many items; per 
 tags: [rule, estimation, relative-estimation, failure, cohn]
 sources: [cohn-agile-estimating-planning]
 created: 2026-11-01
-updated: 2026-11-01
+updated: 2026-11-02
 ---
 
 # Story Points Do Not Convert to Hours
@@ -28,7 +28,7 @@ Distributions for neighbouring steps overlap, so "it is possible that some one-p
 
 ## Numbers and their conditions
 
-Twelve hours per point is one team's ratio and not a constant. Figures 14.5 and 14.6 are illustrative: Cohn calls the three-curve case "hypothetical" (L3368). How many items are enough is discussed on [[velocity-versus-commitment-planning]], where Cohn puts it at twenty to thirty per iteration for that use (L3348).
+Twelve hours per point is one team's ratio and not a constant. Figures 14.5 and 14.6 are illustrative: Cohn calls the three-curve case "hypothetical" (L3368). How many items are enough is discussed on [[filling-a-period]], where Cohn puts it at twenty to thirty per iteration for that use (L3348).
 
 ## Sign of violation
 
@@ -38,7 +38,7 @@ These signs are this wiki's. Each raises a question and is not a verdict.
 - **In a task or a promise:** a date or duration for one task computed from its points.
 - **In a review of a period:** a task called "mis-estimated" solely because it took longer than a lower-pointed one, with no sign that its scope was misunderstood.
 
-A single task outliving its neighbours at a lower step is expected spread. Repeated overruns in one direction are what call an estimate into question, and [[overrun-triggers-a-recut]] handles the single case.
+A single task outliving its neighbours at a lower step is expected spread. The exception is a distribution per step read from history, which is not a conversion: [[overrun-triggers-a-recut]] compares a task's age with the 85th percentile of finished tasks on its step, so it fires on the tail of the spread and not on the spread itself. Repeated overruns in one direction are what call an estimate into question; the single case is handled on the same page.
 
 ## Trade-off
 

@@ -36,7 +36,7 @@ Three limits are this wiki's reading of that condition.
 
 - It averages over all periods since the start, so an early one-off is extrapolated. A single scope addition counts as a permanent slowing of the rate.
 - A flat or rising line gives no date. The source's own numbers show it: from 240 to 260 after one iteration (L4357), the straight edge never reaches the axis. This should be reported as no forecast, not as a far date.
-- It gives a point and no range. The chart shows a likely finish, and any promise needs the range treatment on [[estimates-as-ranges]].
+- It gives a point and no range. The chart shows a likely finish, and any promise needs the range treatment on [[forecast-range-and-probability]].
 
 The case's trendline in Chapter 23 rests on two points, and its speaker says "Probably" (L6467). The same speaker values each new point as "news I can trust about the progress we’re making" (L6463), even when it is bad news. This wiki reads an early line as deserving a range for that reason.
 
@@ -53,7 +53,7 @@ When 35 points were added, the line went "up to 133 points" as a vertical segmen
 This wiki reads two qualifications from that, both to the sections above.
 
 - The start-of-iteration values net completion and addition together (L4431). The vertical segment keeps them apart on one line, so a scope increase cannot pass for negative progress. That works only where the addition is a single dated decision that someone chose to draw this way.
-- The new trendline restarts from the new height at measured velocity. A straight edge from 132 through 133 would give no date, which is the flat-line limit above, while the restart gives eight more iterations. Where a rise is a known single event, forecast from [[velocity]] and not from the slope of the whole line ([[reforecasting-a-release-from-velocity]]).
+- The new trendline restarts from the new height at measured velocity. A straight edge from 132 through 133 would give no date, which is the flat-line limit above, while the restart gives eight more iterations. Where a rise is a known single event, forecast from [[velocity]] and not from the slope of the whole line ([[velocity-range-forecast]]).
 
 ## The question it cannot ask
 

@@ -68,7 +68,7 @@ This wiki adds two cautions. The dice illustrate sharpening and not the shape of
 
 The [[siemens-hs-case]] used the chart in three ways.
 
-**Percentiles.** The plot for the release before Kanban showed "50% of all stories finished in 21 days or less" and "85% of stories were finishing in 71 days or less" (L4078). Comparing these with the sprint length is the test on [[iteration-length-versus-cycle-time]]. A percentile is not a bound. The chapter itself slips, saying a release "yielded Cycle Times of 43 days or less" (L4154) when it means the 85th percentile. This wiki reads that as a warning for any report: keep the likelihood attached ([[stating-plan-uncertainty]]).
+**Percentiles.** The plot for the release before Kanban showed "50% of all stories finished in 21 days or less" and "85% of stories were finishing in 71 days or less" (L4078). Comparing these with the sprint length is the test on [[iteration-length-versus-cycle-time]]. A percentile is not a bound. The chapter itself slips, saying a release "yielded Cycle Times of 43 days or less" (L4154) when it means the 85th percentile. This wiki reads that as a warning for any report: keep the likelihood attached ([[forecast-range-and-probability]]).
 
 **The trend.** Siemens' pre-Kanban release showed Cycle Times "getting longer and longer and longer" (L4078), and the source calls this "not a picture of a very predictable process" (L4088). A flat band after a change was its sign of stabilization (L4126-L4132). See [[conservation-of-flow]].
 

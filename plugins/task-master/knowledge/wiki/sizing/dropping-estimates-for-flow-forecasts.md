@@ -45,7 +45,7 @@ The chapter gives no coefficient, method or sample for "no correlation". It come
 
 This section is this wiki's own reading, on sourced positions. [[story-points]] and [[velocity-self-correction]] hold that relative estimates plus observed velocity give usable forecasts. This chapter holds that distributions of observed Cycle Time do better.
 
-- **Stable history with enough finished items:** forecast from flow; [[throughput-monte-carlo]], [[service-level-expectation]].
+- **Stable history, and the side-by-side release test above passed:** forecast from flow; until it has passed, run it with points kept; [[throughput-monte-carlo]], [[service-level-expectation]].
 - **New project, or unstable or thin history:** keep relative estimates and a [[velocity-range-forecast]]; flow data does not yet exist ([[how-much-flow-data]]).
 - **Deciding how much fits in a period:** a count from Throughput needs no points, and the size check stands in for them ([[filling-a-period]], [[throughput-monte-carlo]]). Keeping points beside it for a while is the same test as step 3.
 - **Deciding whether to cut a task:** keep sizing either way. Retiring estimates here concerns dates. The charter's size above which a task is cut is a different question, and the chapter does not address it. See [[estimate-versus-commitment]], [[size-ceiling]] and [[right-sizing]].
@@ -58,13 +58,13 @@ The source reports that stakeholders found points confusing and were "always loo
 
 ## A stronger claim, with less behind it
 
-A later book by the same author goes further than Siemens:
+A later book, co-authored by Vacanti, goes further than Siemens:
 
 > That’s because with an MCS approach, estimation is not needed.
 >
 > — [[flow-metrics-scrum-teams]], L970
 
-The book calls estimated relative complexity "an extremely poor predictor of capacity" (L970), and its reasoning is that Throughput history already holds items of every complexity, blocked, interrupted or unlike earlier work (L978-L994). The ranges read here report no measurement. This wiki therefore treats it as a general argument, which the rule above does not accept as grounds by itself, and it does not count as a second voice beside Siemens, since the author is the same.
+The book calls estimated relative complexity "an extremely poor predictor of capacity" (L970), and its reasoning is that Throughput history already holds items of every complexity, blocked, interrupted or unlike earlier work (L978-L994). The ranges read here report no measurement. This wiki therefore treats it as a general argument, which the rule above does not accept as grounds by itself, and it does not count as a second voice beside Siemens. The Siemens chapter is Bennet Vallet's account, written up with Vacanti ([[vacanti-actionable-agile-metrics]] L3974, L3978), and the later book is co-authored by Vacanti, so his hand is in both.
 
 This wiki keeps two conditions from the book all the same. History replaces estimation only "if you choose your inputs properly" (L970). And the count covers right-sized items only (L1022), which [[right-sizing]] records as an estimate of a smaller kind, so what the book retires is the scale and the number, and not the judgement of size.
 

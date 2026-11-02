@@ -5,7 +5,7 @@ summary: A task left unfinished at period end has at least three candidate cause
 tags: [decision-rule, retrospective-analysis, iterations, sizing, failure-mode, cohn]
 sources: [cohn-agile-estimating-planning]
 created: 2026-11-01
-updated: 2026-11-01
+updated: 2026-11-02
 ---
 
 # Diagnosing Unfinished Work
@@ -35,7 +35,7 @@ The source gives causes and remedies. The inputs below are this wiki's, read fro
 | Cause | Inputs and where they are read | Remedy from the source |
 |---|---|---|
 | **Too large** | The task's estimate against [[size-ceiling]]; the task was active for most of the period | Split into smaller stories, ideally before the period starts (L4300) |
-| **Underestimated** | The estimate raised during or after the period; other tasks of the same type also ran long ([[similar-tasks-overrun-together]]) | Identify "what type of work was underestimated or forgotten" and take care with that type next time (L4302) |
+| **Underestimated** | The estimate raised during or after the period; other tasks of the same type also ran long ([[re-estimate-when-relative-size-changes]]) | Identify "what type of work was underestimated or forgotten" and take care with that type next time (L4302) |
 | **Too much selected** | The selected total against recent [[velocity]]; several tasks unfinished, some never started, none individually large | Plan iterations more carefully ([[filling-a-period]]) (L4302) |
 
 The causes can combine. This wiki reads a single unfinished task as pointing to its size or estimate, and several small ones unfinished, some not started, as pointing to the selection.

@@ -159,7 +159,7 @@ The shape a batch transfer leaves: "a flat period on a line (as discussed above)
 
 "the typical pattern that emerges on CFD between any two time instances of zero WIP" (L1904). It "is characterized by a flat beginning section, followed by a steep middle section, and finishing again with a flat end period" (L1904). Vacanti says the cause of the shape is beyond the scope of the section (L1914), so this section holds its sign and its consequence, not its mechanism.
 
-**Where it appears.** Vacanti gives two settings, both the special case of [[littles-law]] where system WIP may reach zero (L1902). [[littles-law-assumptions]] calls this the exact case.
+**Where it appears.** Vacanti gives two settings, both the special case of Little's Law where system WIP may reach zero (L1902), which [[littles-law]] calls the exact case.
 
 - A project, which "usually begins with zero WIP and (ideally) ends with zero WIP".
 - An "ideal Scrum sprint", which "starts with zero WIP and ends with zero WIP".

@@ -5,7 +5,7 @@ summary: An estimate is a probability attached to a date; a commitment is a date
 tags: [decision-rule, estimation, commitment, forecast]
 sources: [cohn-agile-estimating-planning]
 created: 2026-11-01
-updated: 2026-11-01
+updated: 2026-11-02
 ---
 
 # Estimate Versus Commitment
@@ -43,7 +43,7 @@ The first two are this wiki's derivation from Cohn's distinction.
 
 | Input | Read from |
 |---|---|
-| The estimate and its uncertainty | [[estimates-as-ranges]], and board history |
+| The estimate and its uncertainty | [[forecast-range-and-probability]], and board history |
 | Business factors and risks | The person steering; a board does not show them |
 | Who decides | The project's setup |
 
@@ -59,7 +59,7 @@ This wiki notes that the separation adds a step, and that someone asking for a d
 
 ## Relation to other pages
 
-[[commitment-over-a-period]] covers what a project promises under each setup. The Scrum Guide's forecast there is an estimate in this sense. This page holds at any scale, including one task's estimate, and [[estimates-as-ranges]] says how an estimate should be written. Cohn does not give a method for attaching a probability, and [[service-level-expectation]] is the nearest thing this base has.
+[[commitment-over-a-period]] covers what a project promises under each setup. The Scrum Guide's forecast there is an estimate in this sense. This page holds at any scale, including one task's estimate, and [[forecast-range-and-probability]] says how an estimate should be written. Cohn does not give a method for attaching a probability, and [[service-level-expectation]] is the nearest thing this base has.
 
 ## Agent executor note
 

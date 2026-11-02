@@ -113,7 +113,7 @@ This caveat is the wiki's: on few finished items the top percentiles rest on a h
 
 ## Failure modes
 
-- **Treating the line as a promise.** A 95% line is missed by design one time in twenty. See [[estimate-is-not-a-promise]].
+- **Treating the line as a promise.** A 95% line is missed by design one time in twenty. See [[forecast-range-and-probability]].
 - **Reading finished items as all items.** This wiki notes that the dots exclude open items, so when the oldest open items are older than the top line the lines are optimistic. See [[flow-metrics]].
 - **Stating the time without the probability.** See [[service-level-expectation]], where both parts are required.
 - **Mixing unlike items.** This wiki notes that one line over items with different finish points describes neither set.

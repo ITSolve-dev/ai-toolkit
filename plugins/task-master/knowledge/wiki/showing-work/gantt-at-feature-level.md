@@ -5,7 +5,7 @@ summary: A Gantt chart is acceptable for showing which features sit in which ite
 tags: [rule, visualization, gantt, iterations]
 sources: [cohn-agile-estimating-planning]
 created: 2026-11-01
-updated: 2026-11-01
+updated: 2026-11-02
 ---
 
 # Gantt Chart at Feature Level
@@ -46,4 +46,4 @@ This wiki reads the full-length bar as tied to Cohn's stated release point. If a
 
 The no-names condition rests on whole-team responsibility, a human team arrangement. This wiki reads the condition as still holding with an agent executing, since a name would not say who did the work. Whether a person steering should appear for review is not addressed here.
 
-Related: [[release-plan-level-of-detail]], [[vertical-slice]], [[sequence-versus-wait]], [[activity-based-plan]].
+Related: [[planning-horizons]], [[vertical-slice]], [[sequence-versus-wait]], [[activity-based-plan]].

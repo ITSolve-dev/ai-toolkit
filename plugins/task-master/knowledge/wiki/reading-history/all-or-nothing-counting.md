@@ -1,8 +1,8 @@
 ---
 title: All-or-Nothing Counting
 category: reading-history
-summary: A task counts toward velocity at its full estimate if complete at period end and not at all otherwise; partial credit is rejected because only not started and done can be known, so a credited fraction puts a guess into the rate, and because it hides a growing stock of unfinished work. The rule needs a done that can pass or fail.
-tags: [rule, velocity, retrospective-analysis, definition-of-done, iterations, board-history, cohn]
+summary: A task counts toward velocity at its full estimate if complete at period end and not at all otherwise, because only not started and done can be known and partial credit hides growing unfinished work; the one exception, when the remainder will not be done next period, replaces the task with two re-estimated stories that need not sum to the original. The rule needs a done that can pass or fail.
+tags: [rule, velocity, retrospective-analysis, definition-of-done, iterations, board-history, cohn, decision-rule, re-estimation]
 sources: [cohn-agile-estimating-planning]
 created: 2026-11-01
 updated: 2026-11-02
@@ -16,7 +16,7 @@ The rule that keeps [[velocity]] usable: a task is either complete or it contrib
 >
 > — [[cohn-agile-estimating-planning]], L4290
 
-The chapter summary states the split explicitly: a finished story counts its full estimate, and "If a story is partially completed during an iteration, it is not counted at all when determining velocity." (L4425). The narrow exception for work being deferred, which replaces the task with two rather than crediting a fraction, is on [[partial-credit-for-unfinished-tasks]].
+The chapter summary states the split explicitly: a finished story counts its full estimate, and "If a story is partially completed during an iteration, it is not counted at all when determining velocity." (L4425). The narrow exception for work being deferred, which replaces the task with two rather than crediting a fraction, is on *Partial Credit for Unfinished Tasks* (below).
 
 ## What complete means
 
@@ -36,7 +36,7 @@ This wiki reads that bar as one instance of the project's own standard of done (
 - **In board history:** a task's progress is taken from sub-steps closed, and it is credited before its acceptance check passes.
 - **In a task's text:** the remaining work is described as nearly nothing while the acceptance check has not been run.
 
-These signs are this wiki's derivation from L4290, L4425 and L4939. They raise a question for checking, and the last in particular has legitimate forms: [[narrowing-a-task-mid-period]] allows a split that leaves a complete, presentable piece, and [[partial-credit-for-unfinished-tasks]] allows one when the remainder is deferred.
+These signs are this wiki's derivation from L4290, L4425 and L4939. They raise a question for checking, and the last in particular has legitimate forms: [[narrowing-a-task-mid-period]] allows a split that leaves a complete, presentable piece, and *Partial Credit for Unfinished Tasks* (below) allows one when the remainder is deferred.
 
 ## Why
 
@@ -78,7 +78,7 @@ The fictional case study in Chapter 23 (L4961) runs the rule on a small figure. 
 >
 > — [[cohn-agile-estimating-planning]], L6261
 
-Velocity is 16 (L6263), and the forecast is recomputed from 16 and not from a negotiated 17 (L6267). This wiki reads the mechanism as follows: a credited fraction puts a guess into a number otherwise made of agreed estimates, and that number feeds every later forecast ([[deriving-duration-from-velocity]]).
+Velocity is 16 (L6263), and the forecast is recomputed from 16 and not from a negotiated 17 (L6267). This wiki reads the mechanism as follows: a credited fraction puts a guess into a number otherwise made of agreed estimates, and that number feeds every later forecast ([[velocity-range-forecast]]).
 
 The story returns in the next iteration at its full 2 points (L6287), although the team says it has "a bit of a headstart" on it (L6300). This wiki reads the effect as a shift and not a loss: the points move to the period the story finishes in, so velocity understates one period and overstates the next, and an average absorbs it. What became of the story itself, dropped so that its programmer could help on work held to matter more for the demonstration (L6223-L6225), is on [[unfinished-at-period-end]].
 
@@ -88,7 +88,7 @@ This wiki reads the two states of L4292 as a rule for **counting progress**, not
 
 ## Cost
 
-Chapter 19 names no cost. Chapter 7 does: velocity dips in one iteration and rises in the next, and Cohn accepts that because the interest lies in the average over time ([[partial-credit-for-unfinished-tasks]], L1496). This wiki adds that the larger the tasks, the larger the steps, which is another argument for small tasks and not for partial credit ([[size-spread]]). A large task shows nothing for a long time and then its whole size at once, and a nearly finished one counts as zero. The case study's swing was 2 points in 18.
+Chapter 19 names no cost. Chapter 7 does: velocity dips in one iteration and rises in the next, and Cohn accepts that because the interest lies in the average over time (*Partial Credit for Unfinished Tasks* (below), L1496). This wiki adds that the larger the tasks, the larger the steps, which is another argument for small tasks and not for partial credit ([[size-spread]]). A large task shows nothing for a long time and then its whole size at once, and a nearly finished one counts as zero. The case study's swing was 2 points in 18.
 
 ## Softening in the source
 
@@ -97,3 +97,61 @@ After the firm rule, the source says "How they count such a story is less import
 ## Agent executor note
 
 The measurement argument survives and strengthens. An agent's report that work is mostly done is even less measurable than a person's, and a stopped run leaves only what is in the repository ([[unfinished-at-period-end]]). Done is read from whether the tests and conditions pass, and from nothing the executor says about itself ([[agent-silence-is-not-completeness]]). The trust mechanism is human and, with a few people steering, reduces to one thing: the person steering must not be handed a false status. The work-in-process reason survives in the feedback half: unreviewed results still delay learning, whatever executes them. This assessment is this wiki's.
+
+## Partial Credit for Unfinished Tasks
+
+This rule decides what a task left unfinished at the close of an iteration contributes to velocity, and what happens to its estimate. The default is all-or-nothing. Splitting with partial credit is the exception for work that is being deferred.
+
+### Default: all or nothing
+
+"if a story is done (coded, tested, and accepted by the product owner) then the team earns all the points, but if anything on the story isn’t done, they earn nothing" ([[cohn-agile-estimating-planning]] L1496). The source's reason is that this is the easiest case to assess at the end of an iteration (L1496).
+
+The cost is that velocity dips in one iteration and rises in the next, when all the points land for work partly done earlier. The source accepts that because "we’re mostly interested in the team’s average velocity over time, not in whether velocity jumped up or down in a given iteration" (L1496).
+
+### Exception: the remainder is not coming next
+
+"in some cases the unfinished portion of a story may not be done in the next iteration. In these cases it can be appropriate to allow the team to take partial credit" (L1498). The procedure:
+
+1. Treat what was finished as a story in its own right and estimate it relative to other stories.
+2. Rewrite what is left as a new story describing only the remaining work.
+3. Estimate that story relative to other stories, with current knowledge.
+
+In the source's example, a five-point story to recommend who swims in each event finished individual events but not relays. The done part is judged equivalent to 3 points, and the rest becomes "As a coach I can have the system recommend who should swim in each relay" (L1498).
+
+The two estimates are independent: "The combined estimates would not need to equal the original estimate of five" (L1498), and the summary repeats that the sum "does not need to equal the initial estimate" (L1514). This wiki reads that as following from size being judged against other stories, not divided out of the original figure. The story was "deceptively complex" (L1486), so forcing a sum of five would carry the earlier mistake forward.
+
+### The choice
+
+**Inputs.**
+- Whether anything on the task is unfinished at the period's close: read from board state.
+- Whether the remainder will be taken in the next period: read from the next period's plan or its ordering.
+
+**Decision.** Remainder taken next: count nothing now and everything on completion. Remainder deferred: split, re-estimate both parts, and credit the finished part.
+
+**What later fact shows the choice wrong** (this wiki's derivation): a task left at nothing because the remainder was expected next is still open a period later, so its completed work stayed out of velocity for longer than the default assumes.
+
+The source's guidance is less firm than this choice implies. The chapter body says partial credit "can be appropriate", while the summary says "I do not recommend giving partial credit" yet allows that a team "may choose" to re-estimate (L1498, L1514). This wiki reads them together as a default with a narrow exception.
+
+### Against the Scrum Guide's rule
+
+[[unfinished-at-period-end]] has an item that missed the Definition of Done return to the backlog and count for nothing. Cohn's default agrees. His exception looks like a conflict, and this wiki resolves it as follows; the resolution is ours. The exception does not credit a fraction of an open task, because it replaces the task with two. Under a setup following the Scrum Guide, the split is allowed only if the finished part meets the standard of done as an item in its own right, so what is counted is a finished item. The remainder then goes back to be ordered like anything else, with no claim on the next period. A task counted at a percentage stays the sign of violation on that page.
+
+### The better answer is upstream
+
+"the two best solutions to allocating points for incomplete stories are first not to have any incomplete stories and second to use sufficiently small stories that partial credit isn’t an issue" (L1500). This wiki reads a task repeatedly crossing a period boundary as raising a question about how it was cut, not about how to credit it. That reading fits the plugin's working test that a started task can be finished without waiting, though that test has no source and comes from the plugin's design.
+
+### Observable signs
+
+Derived by this wiki from the rule; each raises a question.
+
+- A period's velocity includes points from tasks not in a done state.
+- A split pair sums exactly to the original estimate, which may mean the parts were apportioned arithmetically and not estimated against other tasks.
+- The same remainder is carried over more than one period.
+
+### Settings and executors
+
+The rule exists only where velocity is counted over a period. In this wiki's reading, a project with no iterations has no boundary at which to divide credit, and a task simply counts when it closes.
+
+Being "accepted by the product owner" (L1496) is a condition on earning, so a task whose result is presented and awaiting a verdict has earned nothing yet. This wiki takes that to carry over to a person reviewing an agent's result: the executor's part may have ended, while the points have not been earned. The all-or-nothing rule does not depend on a human executor.
+
+Related: [[velocity]], [[re-estimate-when-relative-size-changes]], [[unfinished-at-period-end]].

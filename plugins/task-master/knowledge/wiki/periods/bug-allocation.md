@@ -5,7 +5,7 @@ summary: Bugs enter a period as estimated work inside an amount the owner choose
 tags: [rule, iterations, commitment, bugs, intake]
 sources: [cohn-agile-estimating-planning]
 created: 2026-11-01
-updated: 2026-11-01
+updated: 2026-11-02
 ---
 
 # Bug Allocation
@@ -50,7 +50,7 @@ The share was wrong if open bugs keep growing across periods despite it, or if i
 - **In board history:** a started task pulled back to make room, where the swap should have taken unstarted work.
 - **In board state:** bugs worked in a period that were never selected or sized, so the amount going to bugs cannot be read.
 
-Cohn describes the practice. These signs are this wiki's. A rise alone also fits a corrected estimate ([[re-estimate-remaining-work]]), so the sign raises a question.
+Cohn describes the practice. These signs are this wiki's. A rise alone also fits a corrected estimate ([[overrun-triggers-a-recut]]), so the sign raises a question.
 
 ## Why
 

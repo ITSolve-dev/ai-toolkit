@@ -43,7 +43,7 @@ Vacanti separates the two sharply: Velocity is "measured in terms of Story Point
 
 The period difference has a practical consequence: "your choice of a time period need not necessarily coincide with an iteration boundary" (L732). So Throughput needs neither estimates nor iterations, only departure events. The source notes that "many agile coaches and consultants use the words “Velocity” and “Throughput” interchangeably" (L732) and insists they are definitely _not synonymous_ (L732).
 
-**Sign:** a figure called throughput whose unit is points, or that can only be reported per sprint. Ask whether items or points are being counted. The two can move apart, so one must not be used to check the other. A calculation that feeds velocity in as Throughput fails outright ([[littles-law-assumptions]]).
+**Sign:** a figure called throughput whose unit is points, or that can only be reported per sprint. Ask whether items or points are being counted. The two can move apart, so one must not be used to check the other. A calculation that feeds velocity in as Throughput fails outright ([[littles-law]]).
 
 For a project set up with iterations and estimates, this wiki's resolution is that both can coexist, since they measure different things. For a project set up as continuous flow with no estimates, only Throughput exists, because Velocity has no input. Which of them a report should use is on [[points-or-time-and-count]].
 
@@ -51,7 +51,7 @@ For a project set up with iterations and estimates, this wiki's resolution is th
 
 "If Throughput is how fast items depart from a process, then Arrival Rate is how fast items arrive to a process." (L734) On a CFD the slope of the top line represents "how fast work is coming into our system", and the slope of the bottom line how fast it leaves (L1658).
 
-The comparison is what matters. The source says that comparing the Arrival Rate of one step to the Throughput of another "may give you some much needed insight into predictability problems" (L736), deferring the detail to later chapters; [[littles-law-assumptions]] makes their balance the first assumption and [[conservation-of-flow]] the rule. Its immediate point is that "how fast things arrive to your process could be just as important as how fast things depart" (L736).
+The comparison is what matters. The source says that comparing the Arrival Rate of one step to the Throughput of another "may give you some much needed insight into predictability problems" (L736), deferring the detail to later chapters; [[littles-law]] makes their balance the first assumption and [[conservation-of-flow]] the rule. Its immediate point is that "how fast things arrive to your process could be just as important as how fast things depart" (L736).
 
 This wiki derives a consequence from Property #3: if arrivals outpace departures over a range, the vertical distance between the two lines widens, which means total WIP grew over that range. The sign is visible on the chart as the top and bottom lines diverging; see [[reading-a-cfd]].
 

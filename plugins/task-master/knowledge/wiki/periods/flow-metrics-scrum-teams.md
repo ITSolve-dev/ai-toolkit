@@ -21,7 +21,7 @@ The book restates much of [[vacanti-actionable-agile-metrics]] for Scrum, and it
 | L372-L382 | Work Item Age | [[work-item-age]] |
 | L776-L1095 | Sprint Planning, parts I and II | [[throughput-monte-carlo]], [[filling-a-period]] |
 | L1118-L1318 | The SLE at a daily check, and items not flowing | [[blocked-work-counts-against-wip]], [[percentile-intervention-triggers]], [[story-splitting-patterns]] |
-| L1382-L1442 | When is it done, and what can be done | [[throughput-monte-carlo]], [[date-driven-vs-feature-driven]] |
+| L1382-L1442 | When is it done, and what can be done | [[throughput-monte-carlo]], [[fitting-stories-into-a-release]] |
 | L436-L456, L637-L770 | Cycle Time and Age formulas; Chapter 4, the Scatterplot and the Aging Chart (read in a later repair pass) | [[work-item-age]] |
 
 The rest was not read. Saying that it repeats the earlier book is the direction given to this ingest and not a finding of this page. One part is new to this base: Chapter 4's Aging Chart (L728-L760), since "Aging Chart" does not occur in the raw of the earlier book. Chapter 4 and the formulas at L440-L456 were read in a later repair pass, and [[work-item-age]] carries them. The Scatterplot half of Chapter 4 repeats the earlier book's Chapter 10 with different example figures (50th percentile 8 days, 85th 15, L683-L685) and added no page.
@@ -33,7 +33,7 @@ Scrum's events can run on flow data in place of estimates. Planning forecasts a 
 ## What this wiki took from it
 
 - A recipe for simulating from daily Throughput, in both directions, with how to read each and how to choose the window and the risk: [[throughput-monte-carlo]].
-- A third way to fill a period, which this wiki resolves by setup: [[filling-a-period]], and the consequences on [[velocity]], [[velocity-versus-commitment-planning]] and [[dropping-estimates-for-flow-forecasts]].
+- A third way to fill a period, which this wiki resolves by setup: [[filling-a-period]], and the consequences on [[velocity]] and [[dropping-estimates-for-flow-forecasts]].
 - Work Item Age as a measure of its own: [[work-item-age]].
 - Three levels of policy for blocked work: [[blocked-work-counts-against-wip]].
 - What to do at a percentile line, and which question to ask first: [[percentile-intervention-triggers]].
@@ -46,9 +46,9 @@ Scrum's events can run on flow data in place of estimates. Planning forecasts a 
 
 These passages say what a page already holds, so those pages were left alone unless a condition was added.
 
-- Dividing by an average rate (L802-L812): [[forecast-from-an-average]].
+- Dividing by an average rate (L802-L812): [[forecast-range-and-probability]].
 - The general pattern of a Monte Carlo method (L842-L850): [[throughput-monte-carlo]].
-- Right size is not same size, and the wood chipper's floor and ceiling (L1034-L1036): [[right-sizing-not-same-sizing]], [[size-ceiling]].
+- Right size is not same size, and the wood chipper's floor and ceiling (L1034-L1036): [[size-spread]], [[size-ceiling]].
 - Skipping the Scrum Guide's decomposition to a day or less (L1048): [[size-ceiling]].
 - Checking a tool by computing the result yourself (L1058-L1062): [[capturing-flow-data]].
 - That not all items finish inside a period (L1130): [[iteration-length-versus-cycle-time]].

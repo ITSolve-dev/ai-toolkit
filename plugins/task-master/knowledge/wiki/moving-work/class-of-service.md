@@ -31,7 +31,7 @@ Vacanti separates the term from two neighbours, and this page keeps both as disc
 
 ## What it costs
 
-Vacanti states the cost in two sentences. "The truth is that the only part of your process that is more predictable with CoS is the highest priority class." (L3476). "CoS represents an institutionalized violation of those assumptions." (L3464), where the assumptions are those of Little's Law: he names the fourth, and potentially the first and the third ([[littles-law-assumptions]]). He says the resulting unpredictability shows up, among other things, as [[flow-debt]] (L3476). The figures are on [[fifo-pull-order]] and [[expedite-lane]].
+Vacanti states the cost in two sentences. "The truth is that the only part of your process that is more predictable with CoS is the highest priority class." (L3476). "CoS represents an institutionalized violation of those assumptions." (L3464), where the assumptions are those of Little's Law: he names the fourth, and potentially the first and the third ([[littles-law]]). He says the resulting unpredictability shows up, among other things, as [[flow-debt]] (L3476). The figures are on [[fifo-pull-order]] and [[expedite-lane]].
 
 ## It exists because a resource is shared
 

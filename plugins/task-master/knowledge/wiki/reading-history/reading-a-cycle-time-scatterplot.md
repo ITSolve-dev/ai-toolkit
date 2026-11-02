@@ -87,7 +87,7 @@ This wiki keeps that mechanism and drops the practice. Overtime as a way of mana
 
 **Under an agent.** The overtime mechanism itself does not survive: an agent has no overtime, and its hours are not the constraint. This wiki's judgement is that the general form does survive. Any temporary change in capacity or in the mix of work lowers cycle time for a while, and a forecast reads it as the process. In a setting with a few people steering an agent, the plausible equivalents are a burst of unusually available review, or a run of tasks much smaller than usual. Those equivalents are the wiki's own and are unsourced.
 
-**Source note.** The book refers to the cluster chart as “Figure 8.11” at L2910 and L2912, while introducing and describing it as Figure 11.3 at L2900 and L2910. The discussion is plainly about the one chart; this reads as a stale cross-reference in the source. See also [[velocity-trend-is-not-a-forecast]].
+**Source note.** The book refers to the cluster chart as “Figure 8.11” at L2910 and L2912, while introducing and describing it as Figure 11.3 at L2900 and L2910. The discussion is plainly about the one chart; this reads as a stale cross-reference in the source. See also [[velocity-range-forecast]].
 
 ## Gaps, and stacks at a boundary
 

@@ -5,7 +5,7 @@ summary: Estimates narrow as a project proceeds; Boehm's 0.6x-1.6x at feasibilit
 tags: [concept, estimation, uncertainty, numbers, velocity, range]
 sources: [cohn-agile-estimating-planning]
 created: 2026-11-01
-updated: 2026-11-01
+updated: 2026-11-02
 ---
 
 # Cone of Uncertainty
@@ -67,13 +67,13 @@ With three or more iterations a team can use the observed range instead (L3657).
 
 ### In an agent-executed project
 
-The transfer here is ours. The cone's phases and widths come from human projects, so nothing here shows that the funnel has the same shape when an agent executes. A project with no history still needs some width on a velocity figure, so this wiki allows the multipliers there as a labelled starting convention, and replaces them with the project's own observed spread as soon as one exists, per [[choosing-velocity-estimate-approach]]. See [[velocity-estimate-range]] for the rule, and [[run-iterations-to-observe-velocity]] for the default way to get that spread.
+The transfer here is ours. The cone's phases and widths come from human projects, so nothing here shows that the funnel has the same shape when an agent executes. A project with no history still needs some width on a velocity figure, so this wiki allows the multipliers there as a labelled starting convention, and replaces them with the project's own observed spread as soon as one exists, per [[choosing-velocity-estimate-approach]], which also holds the rule that a velocity estimate is a range and the default way to get that spread.
 
 ## What the plugin should do with it
 
-This wiki reads the cone as a limit on stated precision, and proposes this as a question to check: an estimate far narrower than the state of the work allows, for example a single date on an item with no accepted scope, claims more than the cone admits. See [[single-date-plan]], and [[estimates-as-ranges]] for the rule Cohn draws from it in Chapter 2 (L662).
+This wiki reads the cone as a limit on stated precision, and proposes this as a question to check: an estimate far narrower than the state of the work allows, for example a single date on an item with no accepted scope, claims more than the cone admits. See [[forecast-range-and-probability]], which also holds the rule Cohn draws from it in Chapter 2 (L662).
 
-This wiki also reads it as meaning thorough early planning cannot buy accuracy, which is why [[no-planning-or-over-planning]] treats detail and accuracy as separate.
+This wiki also reads it as meaning thorough early planning cannot buy accuracy, which is why [[planning-horizons]] treats detail and accuracy as separate.
 
 ## Failure mode: reading a narrow range as knowledge
 

@@ -5,7 +5,7 @@ summary: A per-story table of result, points planned and points earned shows pla
 tags: [method, retrospective, velocity, plan-versus-fact, reporting]
 sources: [cohn-agile-estimating-planning]
 created: 2026-11-01
-updated: 2026-11-01
+updated: 2026-11-02
 ---
 
 # Iteration Summary of Plan Versus Fact
@@ -55,6 +55,6 @@ Cohn: "I find that I can complete this summary document in less than 30 minutes 
 
 ## Limits
 
-This wiki notes that the sample table has no way to show a story added or removed mid-iteration, so its planned total does not reveal [[mid-period-change]]. The comparison also means nothing if the plan was never believed ([[plan-deliberately-overstated]]). Cohn's report also covers personnel and an iteration review. Both are left out here: the first is individual load and the second is a meeting record, and the charter excludes both.
+This wiki notes that the sample table has no way to show a story added or removed mid-iteration, so its planned total does not reveal [[mid-period-change]]. The comparison also means nothing if the plan was never believed ([[good-plan-test]]). Cohn's report also covers personnel and an iteration review. Both are left out here: the first is individual load and the second is a meeting record, and the charter excludes both.
 
 See also [[which-chart-for-which-plan-question]], [[commitment-over-a-period]].

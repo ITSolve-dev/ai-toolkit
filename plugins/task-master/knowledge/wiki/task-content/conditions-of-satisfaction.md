@@ -25,7 +25,7 @@ Cohn poses, and does not answer, why budget and schedule appear only at release 
 
 The conditions come first in Cohn's release planning: "Before starting to plan a release, it is important to know the criteria by which the project will be evaluated as a success or a failure." (L2802). Behind them stands a financial goal: "For most projects, the ultimate scorecard is the amount of money saved or generated." (L2802). Schedule, scope and resources serve as leading indicators of that scorecard, so the owner's conditions are a combination of goals on those three (L2802). The source's example is four themes worth 200 story points in three months without adding personnel (L2804).
 
-"While a target for each factor is often identified, one is usually preeminent." (L2804). Which one is preeminent is the test on [[date-driven-vs-feature-driven]]. The SwimStats example shows the form in practice: the season starts in four months, the release must exist a month earlier, the feature set is open, and the budget is fixed to the people already on staff (L2891).
+"While a target for each factor is often identified, one is usually preeminent." (L2804). Which one is preeminent is the test on [[fitting-stories-into-a-release]]. The SwimStats example shows the form in practice: the season starts in four months, the release must exist a month earlier, the feature set is open, and the budget is fixed to the people already on staff (L2891).
 
 This wiki reads this list as the same conditions as L857 under other words, with resources in place of budget and quality left out of the trade, as the section on quality below says.
 
@@ -125,4 +125,4 @@ The placement of a condition on the task matters more with an agent, since an ag
 
 [[testable-acceptance]] holds the test for one criterion on one task, and the shared standard is on [[started-and-finished-points]]. This page adds what they do not: conditions exist at release level too, carry schedule and budget there, and can be renegotiated. Cohn's "high-level tests" (L872, L4125) are this wiki's acceptance criteria at the task level. Reducing them during a period is on [[narrowing-a-task-mid-period]].
 
-Related: [[user-story]], [[fixed-date-variable-scope]], [[release-versus-iteration]], [[release-plan]], [[multi-team-techniques-scale-limit]].
+Related: [[user-story]], [[fitting-stories-into-a-release]], [[planning-horizons]], [[multi-team-techniques-scale-limit]].

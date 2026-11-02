@@ -12,7 +12,7 @@ updated: 2026-11-02
 
 This method answers two questions from the same history: how many items will finish in a span of time, and when a given number of items will finish. Its input is the count of items finished per day. The section on Vacanti's earlier book, below, records the general method and Siemens' version, which samples Cycle Time and gives no recipe. This page is the recipe, from [[flow-metrics-scrum-teams]], where a question of "how many" calls for a rate: "you should immediately think “Throughput”." (L860).
 
-The alternative it replaces is dividing remaining items by the average rate. The book's example is ten items in two weeks and fifty left, which gives ten weeks and no chance attached (L804-L812). That failure is on [[forecast-from-an-average]].
+The alternative it replaces is dividing remaining items by the average rate. The book's example is ten items in two weeks and fifty left, which gives ten weeks and no chance attached (L804-L812). That failure is on [[forecast-range-and-probability]].
 
 ## The procedure
 
@@ -89,7 +89,7 @@ Where scope is fixed, read it against the lines. The book's example projects 60 
 | 120 items | 95% chance of at least 129 (L1434) | Inside the high-confidence line, so the date looks safe |
 | 170 items | The 50% line is at 172 (L1436) | "almost a coin-flip" (L1436) |
 
-At the second reading the book's options are to delay a release, cut scope, remove delays, or add people, of which it says "That last one (almost) never works." (L1436). The levers are on [[changing-the-plan-without-changing-the-date]] and [[starting-more-work]]. Which form applies at all depends on which factor is fixed ([[date-driven-vs-feature-driven]]). The book says a fixed scope is the real case only sometimes, naming "legislative requirements or contractual agreements" (L1384).
+At the second reading the book's options are to delay a release, cut scope, remove delays, or add people, of which it says "That last one (almost) never works." (L1436). The levers are on [[replanning-on-new-knowledge]] and [[starting-more-work]]. Which form applies at all depends on which factor is fixed ([[fitting-stories-into-a-release]]). The book says a fixed scope is the real case only sometimes, naming "legislative requirements or contractual agreements" (L1384).
 
 ## Inputs, where each is read from, and what would show the choice wrong
 
@@ -125,7 +125,7 @@ Vacanti does not teach the modelling itself: "The intricacies and practices abou
 
 The output is a spread of outcomes, not an answer. In Vacanti's words, "there is no one predicted outcome", and "Sampling a probability distribution will lead to thousands of possible outcomes" (L3746), each of which then has to be analysed for how likely it is. The chapter's worked figures are accordingly read at a stated percentile, the 85th (L3730).
 
-This wiki reads a Monte Carlo forecast handed over as a bare date as having lost what the method produced: the percentile is part of the claim. See [[forecast-range-and-probability]] and [[single-date-plan]].
+This wiki reads a Monte Carlo forecast handed over as a bare date as having lost what the method produced: the percentile is part of the claim. See [[forecast-range-and-probability]].
 
 ### Data or an assumed distribution
 
@@ -141,7 +141,7 @@ The discriminating test is therefore whether the project has flow history at all
 
 ### How Siemens HS ran it
 
-Siemens HS adopted the method after its Cycle Times stabilized ([[siemens-hs-case]]). The argument against the alternative: "velocity forecasts attempt to apply a deterministic methodology to an inherently uncertain problem" (L4214). The source contrasts two inputs: the simulation "provides a distribution of likely completion timeframes instead of an average velocity linear based forecast", and Cycle Time metrics "are not based on an average" but "on distributions of actual Cycle Times" (L4202). See [[single-date-plan]] and [[velocity-trend-is-not-a-forecast]].
+Siemens HS adopted the method after its Cycle Times stabilized ([[siemens-hs-case]]). The argument against the alternative: "velocity forecasts attempt to apply a deterministic methodology to an inherently uncertain problem" (L4214). The source contrasts two inputs: the simulation "provides a distribution of likely completion timeframes instead of an average velocity linear based forecast", and Cycle Time metrics "are not based on an average" but "on distributions of actual Cycle Times" (L4202). See [[forecast-range-and-probability]] and [[velocity-range-forecast]].
 
 1. Reach a stable Cycle Time first; see [[conservation-of-flow]].
 2. Take the distribution of historical Cycle Times, as a histogram from best to worst case (L4202-L4214). The chapter's example covers 30% of stories at 9 days or less, 410 stories, and the next 20% at 10 to 16 days, 225 stories.
@@ -156,7 +156,7 @@ The chapter does not list the other inputs, such as remaining item count or how 
 
 **What-if use.** Facing a large scope increase, the program planned to add two Programmers, but "The modelling tool pointed to adding a Tester to the team rather than adding programming." (L4224). The source does not explain how the tool reached this, so this wiki keeps it as an example of the use and not as evidence for the capacity choice. See [[reading-a-cfd]].
 
-**A simpler neighbour.** The source also describes taking average Throughput from the CFD to "calculate an end date based on the number of stories remaining in the backlog" (L4192). This wiki notes the tension: it is the same linear, average-based arithmetic the chapter faults in velocity forecasts, only with item counts and not points. It is cheap and usable as a rough check, and it gives one date with no likelihood; see [[straight-line-projection]] and [[forecast-from-an-average]].
+**A simpler neighbour.** The source also describes taking average Throughput from the CFD to "calculate an end date based on the number of stories remaining in the backlog" (L4192). This wiki notes the tension: it is the same linear, average-based arithmetic the chapter faults in velocity forecasts, only with item counts and not points. It is cheap and usable as a rough check, and it gives one date with no likelihood; see [[forecast-range-and-probability]].
 
 ### When to rely on it
 
@@ -174,7 +174,7 @@ This wiki assembles the chapter's advice into a rule that chooses. The assembly 
 - **It depends on a tool.** Vacanti assumes one is in use (L3702), and the tool brings assumptions of its own.
 - **It needs a stable history.** Siemens' input was history "that were stable and predictable" (L4232), and this wiki reads a rising Cycle Time trend as making the past a poor sample.
 - **This chapter states no minimum amount of data.** Its one remark on scale is rhetorical, about "hundreds of items in your backlog" (L3730). For a few people with few finished tasks, this wiki has no sourced threshold from this chapter below which a simulation stops meaning anything; a source giving one would close this gap. The transfer here is ours: the Siemens histogram rests on roughly a thousand stories across 15 teams, a few people steering an agent may have dozens of finished items, so the tail of the distribution is poorly known ([[how-much-flow-data]]), and [[velocity-range-forecast]] may be all the history supports. [[flow-metrics-scrum-teams]] gives a rule of thumb for the Throughput form, in days and with no derivation, which narrows this gap and does not close it ([[how-much-flow-data]]).
-- **False precision.** A percentile date printed without its likelihood is read as a promise; see [[estimate-is-not-a-promise]] and [[stating-plan-uncertainty]].
+- **False precision.** A percentile date printed without its likelihood is read as a promise; see [[forecast-range-and-probability]].
 
 The chapter on Siemens also uses the model to attach costs to each percentile (L4214); that is dropped here as outside this wiki's purpose.
 

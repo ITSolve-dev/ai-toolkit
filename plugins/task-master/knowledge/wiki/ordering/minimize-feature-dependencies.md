@@ -5,7 +5,7 @@ summary: Features are written to reduce technical dependencies between them, bec
 tags: [rule, dependencies, prioritization, sequence]
 sources: [cohn-agile-estimating-planning]
 created: 2026-11-01
-updated: 2026-11-01
+updated: 2026-11-02
 ---
 
 # Minimize Dependencies Between Features
@@ -46,4 +46,4 @@ The source does not state a cost. This wiki notes that recutting features to rem
 
 This wiki reads the rule as surviving an agent executing, since it concerns the order of work and not who does it. It may matter more, since an agent can pick up items faster than a person and a forced sequence is then the main thing limiting order, but this has no source and is only a reading.
 
-Related: [[fixed-date-variable-scope]], [[planning-horizons]], [[lateness-passes-down-the-schedule]], [[ordering-by-value-and-urgency]].
+Related: [[fitting-stories-into-a-release]], [[planning-horizons]], [[lateness-passes-down-the-schedule]], [[ordering-by-value-and-urgency]].

@@ -5,7 +5,7 @@ summary: A release plan that shows detail only for the next two or three iterati
 tags: [method, iterations, release-planning, dependencies, multi-team]
 sources: [cohn-agile-estimating-planning]
 created: 2026-11-01
-updated: 2026-11-01
+updated: 2026-11-02
 ---
 
 # Rolling Lookahead Plan
@@ -18,7 +18,7 @@ A rolling lookahead plan is a release plan kept detailed only for a short window
 
 ## How it runs
 
-Cohn's baseline from release planning is detail for only the next couple of iterations, because "that is often enough to support the interdependencies encountered by many teams" (L4166). With several teams, the plan is "updated to show and coordinate the work of the next two or three iterations" (L4166), and "As iterations are completed, details about them are dropped from the plan." (L4166). Laufer's name for this is "peering forward" (L4166). See [[release-plan]] and [[release-plan-level-of-detail]].
+Cohn's baseline from release planning is detail for only the next couple of iterations, because "that is often enough to support the interdependencies encountered by many teams" (L4166). With several teams, the plan is "updated to show and coordinate the work of the next two or three iterations" (L4166), and "As iterations are completed, details about them are dropped from the plan." (L4166). Laufer's name for this is "peering forward" (L4166). See [[planning-horizons]].
 
 ## Choosing the window
 
@@ -50,4 +50,4 @@ The source names neither of these. Both are this wiki's inference from the metho
 
 ## Transfer to a few people and an agent
 
-The coordination purpose belongs to several teams and falls below Cohn's threshold. See [[multi-team-techniques-scale-limit]]. The transfer here is ours: what carries over is the single-team baseline, in which a plan keeps detail only for the next couple of periods. That is a rule already held by [[release-plan-level-of-detail]] and [[planning-horizons]], and it needs no lookahead document of its own.
+The coordination purpose belongs to several teams and falls below Cohn's threshold. See [[multi-team-techniques-scale-limit]]. The transfer here is ours: what carries over is the single-team baseline, in which a plan keeps detail only for the next couple of periods. That is a rule already held by [[planning-horizons]], and it needs no lookahead document of its own.

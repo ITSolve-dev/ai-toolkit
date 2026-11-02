@@ -5,7 +5,7 @@ summary: The news that a plan is off track is technically reported but sits wher
 tags: [failure-mode, visualization, reporting, status]
 sources: [cohn-agile-estimating-planning]
 created: 2026-11-01
-updated: 2026-11-01
+updated: 2026-11-02
 ---
 
 # Status Buried in a Long Report
@@ -32,7 +32,7 @@ The signs below are this wiki's reading of Cohn's example.
 
 Cohn's instruction for a project manager reporting a slip is to "do it in such a manner that no one can fail to understand" (L4587). His reason for favouring big, visible charts is that "with no more than a handful of big, visible charts hanging in the team’s workspace it is likely that everyone on the project team will understand the significance of each" (L4587). The number is a qualitative "handful", not a measured limit.
 
-This wiki reads the rule for generated output this way: the first line states the conclusion, the figures that support it follow, and detail comes last or is omitted. A forecast states its range in that first line; see [[stating-plan-uncertainty]].
+This wiki reads the rule for generated output this way: the first line states the conclusion, the figures that support it follow, and detail comes last or is omitted. A forecast states its range in that first line; see [[forecast-range-and-probability]].
 
 ## Trade-off
 

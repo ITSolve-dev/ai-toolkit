@@ -102,7 +102,7 @@ When emergencies cannot be refused, the variability they bring has to be absorbe
 >
 > — [[vacanti-actionable-agile-metrics]], L3416
 
-This rule chooses how a process is shaped given that expedites will arrive. Vacanti's example is FedEx, which on his account keeps empty planes in the air and redirects them when a location is overwhelmed (L3408). He argues that a pure waste-elimination view would forbid those flights, because they cost salaries, fuel and maintenance, and that FedEx accepts the cost to keep its service agreements (L3410, L3416). This wiki treats the FedEx story as an illustration, since the source gives no figures for it. [[utilization-versus-slack]] holds the general case.
+This rule chooses how a process is shaped given that expedites will arrive. Vacanti's example is FedEx, which on his account keeps empty planes in the air and redirects them when a location is overwhelmed (L3408). He argues that a pure waste-elimination view would forbid those flights, because they cost salaries, fuel and maintenance, and that FedEx accepts the cost to keep its service agreements (L3410, L3416). This wiki treats the FedEx story as an illustration, since the source gives no figures for it. [[filling-a-period]] holds the general case.
 
 ### Not refusing, and not idling
 
