@@ -200,7 +200,8 @@ source, and these sections sit on sourced positions.
 - 2026-11-01 — A second opinion on this charter changed four things, before any source. **Rules that
   choose got their own test:** the sign rule fits a rule that detects, but a board cannot show a wrong
   order, and the rule would have emptied prioritization, the judgement `triage` and `schedule` exist
-  for. A missing field does not count as a sign, because any rule can meet that. **Relevance moved into
+  for. For a rule that chooses, a missing field does not count as a sign, because any rule can meet
+  that; a rule about task content detects exactly that omission. **Relevance moved into
   Purpose:** the sign rule tests checkability, "limit WIP" passes it, and scout's assessors see Purpose
   rather than Scope. **Task content and dependencies became topics:** the design rests on both and the
   list named neither. **`failure-modes` as a group and the `position` kind were dropped,** repeating
@@ -209,3 +210,22 @@ source, and these sections sit on sourced positions.
   Two predictions to check rather than rules: work states will likely yield criteria for a mapping, not
   a fixed set, since Kanban has teams map their own flow; and intake triage is the likeliest topic to end
   up self-authored.
+
+- 2026-11-02 — Both predictions settled. Work states gave criteria and no fixed set. Intake triage found
+  a source in the Kubernetes guidelines and is not self-authored.
+
+  The 2026-11-01 entry above said a missing field is not a sign without saying for which rules, and
+  writers read it as covering task content; four pages repeated the misreading until review caught it.
+  The entry now names rules that choose.
+
+  Ingesting a book chapter by chapter over-split it. Cohn and Vacanti left 329 pages: one rule often cut
+  into a page per section, and the same rule under two slugs, one per author. Review by page group found
+  false sources, contradictions between pages, and runs one page serves better. Three repair passes and a
+  second review brought the base to 180 pages. **A merge is held to one rule:** the surviving page takes
+  every sign, condition, number and quotation of the pages folded in. Quotations were checked by script
+  against the commit before the merges; the only ones missing belonged to the fourteen pages cut
+  outright, which no skill of the plugin would open: money measures for themes, techniques for many
+  teams, charts for stakeholders.
+
+  Next time a book is ingested, its merge step should check each proposal against the whole base, across
+  groups, before writing a page. Review finds the duplicates afterwards anyway, at a higher cost.
