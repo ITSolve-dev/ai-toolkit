@@ -16,7 +16,7 @@ A **burn-up chart with percentile lines** adds to a projection chart a marker at
 
 Vacanti is strict on the name: "any CFD with a projection on it is not a CFD" (L3584), and he calls such charts Burn Up or Projection Charts (L3590). He gives two reasons: a projection needs a backlog on the chart, but "CFDs should not have backlogs on them" (L3590); and "CFDs are for looking backward, they are not for making projections about the future" (L3590). He adds that this is no defect of the projection view itself, which "can potentially be very useful" (L3590) when used correctly.
 
-**Sign:** a chart presented as a [[cumulative-flow-diagram]] that shows a backlog band or a trend line beyond today ([[malformed-cfd]]). The question to check is whether it is being read as a record of what happened or as a promise.
+**Sign:** a chart presented as a [[cumulative-flow-diagram]] that shows a backlog band or a trend line beyond today (its signs of malformation). The question to check is whether it is being read as a record of what happened or as a promise.
 
 ## Procedure
 
@@ -36,7 +36,7 @@ The use he names is ordering: "Product owners (or customers) can then use that i
 
 ## What the chart cannot ask
 
-The chart answers "what chance does an item started on this date have?", and does not answer "how many items will be in?". Vacanti: "this chart will not tell you the exact number of items that will be in any given release" (L3622), and he argues no chart will deterministically. He proposes the better question: "what is the likelihood of getting at least X number of work items finished by a particular date" (L3622), which is the territory of [[monte-carlo-simulation]].
+The chart answers "what chance does an item started on this date have?", and does not answer "how many items will be in?". Vacanti: "this chart will not tell you the exact number of items that will be in any given release" (L3622), and he argues no chart will deterministically. He proposes the better question: "what is the likelihood of getting at least X number of work items finished by a particular date" (L3622), which is the territory of [[throughput-monte-carlo]].
 
 ## Limits
 
@@ -44,4 +44,4 @@ These limits are this wiki's reading, not the source's. The percentile is per it
 
 ## See also
 
-[[single-item-forecast]], [[straight-line-projection]], [[forecast-range-and-probability]], [[release-burndown-chart]]
+[[service-level-expectation]], [[straight-line-projection]], [[forecast-range-and-probability]], [[release-burndown-chart]]

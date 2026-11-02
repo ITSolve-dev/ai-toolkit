@@ -3,7 +3,7 @@ title: Board Rules by Setup
 category: moving-work
 summary: The lookup from a project's setup to the rule that holds for moving, limiting and committing; two switches, a fixed period and a WIP control, resolve where Kanban and Scrum differ, and neither guide says when to pick the other.
 tags: [decision-rule, wip, iterations, kanban, scrum]
-sources: [kanban-guide, scrum-guide-2020]
+sources: [kanban-guide, scrum-guide-2020, vacanti-actionable-agile-metrics]
 created: 2026-11-01
 updated: 2026-11-02
 ---
@@ -35,7 +35,7 @@ Two switches describe a setup, and the plugin can read both from project configu
 | What is the size ceiling? | Likely to finish inside the SLE | Fits inside the period, and a fraction of it, or inside the SLE if kept | Fits inside the period, and a fraction of it, or inside the SLE if kept | [[size-ceiling]] |
 | Does a blocked task count? | Yes | There is no count to join | Yes | [[blocked-work-counts-against-wip]] |
 | Can a stopped task leave its place? | Only as a declared exception, in a narrow case | No: there is nothing to gain | Only as a declared exception, in a narrow case | [[parking-lot]] |
-| Can a task go back? | No | Only by returning to the unstarted pile at a period's end | Only by returning to the unstarted pile at a period's end | [[backward-movement]] |
+| Can a task go back? | No, except two narrow cases on [[non-standard-departure]]: an item too broken to be tested goes back one step (Vacanti, L1416), and an item expected to return leaves the board with its history kept | Only by returning to the unstarted pile at a period's end; the too-broken-to-test case also applies | Only by returning to the unstarted pile at a period's end; inside a period, the two cases of the flow column apply | [[backward-movement]] |
 
 ## Choosing a setup
 

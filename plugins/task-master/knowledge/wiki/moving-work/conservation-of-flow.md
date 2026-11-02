@@ -48,11 +48,11 @@ Siemens' first Kanban release ran without limits at first, because teams and man
 
 Once limits came in, they had "the almost immediate effect of stabilizing the system such that Cycle Times no longer continued to grow" (L4120-L4126), and the process "reached a stable state at about 41 days almost immediately" (L4132). The chapter gives conflicting dates for when this happened; see [[siemens-hs-case]]. This wiki reads delay as having less to offer a few people: there is no 15-team acceptance problem, so the plugin can propose the limit when the board is set up ([[wip-control]], [[board-rules-by-setup]]).
 
-Forecasting depends on the same condition. Siemens' simulations rested on "historical Cycle Time metrics that were stable and predictable" (L4226-L4232), and this wiki reads that as meaning [[monte-carlo-simulation]] should not be trusted on an unstable history; see [[forecast-needs-a-stable-process]].
+Forecasting depends on the same condition. Siemens' simulations rested on "historical Cycle Time metrics that were stable and predictable" (L4226-L4232), and this wiki reads that as meaning [[throughput-monte-carlo]] should not be trusted on an unstable history.
 
 ## Second part: nothing started gets lost
 
-Vacanti's framing image is a skydiver: everything before the jump can still cancel the commitment, the jump happens at the last responsible moment, and after it the expectation is arrival at the ground (L2218-L2222). Two practices follow from a pull system ([[what-may-move]]) and protect this part: [[just-in-time-prioritization]] and [[just-in-time-commitment]] (L2238, L2360).
+Vacanti's framing image is a skydiver: everything before the jump can still cancel the commitment, the jump happens at the last responsible moment, and after it the expectation is arrival at the ground (L2218-L2222). Two practices follow from a pull system ([[what-may-move]]) and protect this part: [[just-in-time-prioritization]] and [[backlog-versus-commitment]] (L2238, L2360).
 
 The two parts meet. Cycle times do not in practice grow forever: “Projects get cancelled and features get abandoned when they take too long to complete.” (L2190) The source's point is that this makes things worse and not better, because “you cannot even be certain if a certain item that is started will ever finish” (L2196).
 
@@ -68,12 +68,12 @@ The second cost is to measurement. When partly finished work is repeatedly dropp
 
 Each sign raises a question and none is a verdict. The source states the violations and gives no detection procedure, so these signs are this wiki's reading.
 
-- **In board history:** over the same interval, more items entered the process than left it, across several intervals, measured as in [[measuring-arrival-and-departure-rates]].
-- **On a chart:** the arrival line diverges from the departure line on a CFD, as Siemens saw: "our teams were starting to work on items at a faster rate than we were finishing them" (L4104). See [[reading-flow-balance-on-a-cfd]] and [[mismatched-arrivals-and-departures]].
+- **In board history:** over the same interval, more items entered the process than left it, across several intervals, measured as in [[throughput]].
+- **On a chart:** the arrival line diverges from the departure line on a CFD, as Siemens saw: "our teams were starting to work on items at a faster rate than we were finishing them" (L4104). See [[cumulative-flow-diagram]] and [[reading-a-cfd]].
 - **On a chart:** Cycle Times trend upward across a period on a [[cycle-time-scatterplot]] (L4078, L4102).
 - **In board state:** total open work keeps growing, and the age of open items rises with it.
 - **In board history:** items cancelled or abandoned after long ages (L2190).
-- **In board history:** an item that reached a started state is missing from the board or its history later, so it was deleted and not accounted for. See [[accounting-for-abandoned-work]] and [[non-standard-departure]].
+- **In board history:** an item that reached a started state is missing from the board or its history later, so it was deleted and not accounted for. See [[non-standard-departure]].
 - **In board state:** a started item keeps ageing with no movement and no decision about it. It has not exited, so whether it ever will is open.
 - **In board history:** new items are pulled while earlier started items are discarded, repeatedly. This is the failure Vacanti names: work "constantly started but never finished" (L2334).
 
@@ -85,16 +85,16 @@ CoF is not a rule to finish everything. Vacanti allows exceptions when new knowl
 >
 > — [[vacanti-actionable-agile-metrics]], L2342
 
-This wiki reads the test as forward-looking: the input is whether the outcome is still needed, as stated in what was learned since the pull, and effort already spent is not an input. Two obligations come with the choice. Ask why it happened and whether something upstream could have caught it (L2292-L2298), and keep the item in the data ([[accounting-for-abandoned-work]]). Vacanti treats a violation as a learning opportunity (L2306).
+This wiki reads the test as forward-looking: the input is whether the outcome is still needed, as stated in what was learned since the pull, and effort already spent is not an input. Two obligations come with the choice. Ask why it happened and whether something upstream could have caught it (L2292-L2298), and keep the item in the data ([[non-standard-departure]]). Vacanti treats a violation as a learning opportunity (L2306).
 
 ## Trade-offs and limits
 
-- **The cost of the first part** is refusing to start work that has been requested, which is why balance needs an explicit control: [[arrivals-column-wip-limit]] and [[constant-wip]].
+- **The cost of the first part** is refusing to start work that has been requested, which is why balance needs an explicit control: [[constant-wip]].
 - **The second part does not hold alone where commitments are made too early.** This wiki reads the less that was known when work started as the more that can arrive mid-flight, and that as the reason the rule is paired with just-in-time practices and not with pressure to finish.
-- **Balance is only a first step.** The source calls it “the first—and probably most important—step” toward balancing demand and supply (L2160), and warns that a balanced picture does not prove health; see [[reading-flow-balance-on-a-cfd]].
+- **Balance is only a first step.** The source calls it “the first—and probably most important—step” toward balancing demand and supply (L2160), and warns that a balanced picture does not prove health; see [[cumulative-flow-diagram]].
 - **Both parts together do not finish the job.** Arrival-departure matching and conserved flow make metrics more reflective of real capability, yet "doing these two things alone still does not guarantee that our system is completely stable" (L2344).
 - **Selection is left out.** Vacanti's Chapter 7 deliberately says nothing about which items are chosen at replenishment or the order they are pulled in (L2176-L2182); those belong to `ordering`.
 
 ## Agent executor note
 
-The rule is queueing arithmetic and concerns what a board's data can say, not human pace or memory, so this wiki keeps it for a person steering an agent. The transfer here is ours: on such a board the Departure Rate is set by whichever is slower, the agent or the person accepting its results, so a fast agent does not by itself raise departures if finished work waits for acceptance on the wrong side of the [[departure-point]]. This wiki also reads discarded agent output as cheaper than discarded human effort, so the waste argument weakens with an agent while the measurement argument stands unchanged.
+The rule is queueing arithmetic and concerns what a board's data can say, not human pace or memory, so this wiki keeps it for a person steering an agent. The transfer here is ours: on such a board the Departure Rate is set by whichever is slower, the agent or the person accepting its results, so a fast agent does not by itself raise departures if finished work waits for acceptance on the wrong side of the departure point ([[started-and-finished-points]]). This wiki also reads discarded agent output as cheaper than discarded human effort, so the waste argument weakens with an agent while the measurement argument stands unchanged.

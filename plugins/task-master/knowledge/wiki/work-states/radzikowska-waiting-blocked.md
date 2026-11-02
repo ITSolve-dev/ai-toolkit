@@ -5,7 +5,7 @@ summary: A Kanban Maturity Model answer to whether stopped work counts toward WI
 tags: [summary, work-states, wip, kanban]
 sources: [radzikowska-waiting-blocked]
 created: 2026-11-01
-updated: 2026-11-01
+updated: 2026-11-02
 ---
 
 # Should We Include Waiting or Blocked Items in WIP Limits?
@@ -30,7 +30,7 @@ The article gives a conditional yes. Blocked items stay where they are and count
 - What separates waiting from blocked: [[waiting-versus-blocked]].
 - Blocked work stays in place and counts: [[blocked-work-counts-against-wip]].
 - Parking external waits, tracking the time, and the expiry rule: [[parking-lot]].
-- How to set a first limit on the parking lot: [[parking-lot-wip-limit]].
+- How to set a first limit on the parking lot: [[parking-lot]].
 - The external wait as one side of the sequence-or-wait distinction: [[sequence-versus-wait]].
 
 ## What this wiki dropped, and why

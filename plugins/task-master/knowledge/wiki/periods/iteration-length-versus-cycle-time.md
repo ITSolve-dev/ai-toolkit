@@ -36,7 +36,7 @@ Stories planned into a period finish inside it at a rate clearly above what the 
 
 ## What to do when it fails
 
-The source's route is to reduce WIP, which lowers the distribution itself; see [[reduce-wip-before-raising-throughput]]. Cutting items smaller ([[hidden-wip-in-large-items]]) and changing the length ([[period-length]]) are the other levers; the source does not treat them here. Even after the change Siemens' 85th percentile was about 40 days (L4286), still above 30, which suggests in this wiki's reading that the improved process would still fail this test for a 30-day period. The chapter does not address this.
+The source's route is to reduce WIP, which lowers the distribution itself; see [[starting-more-work]]. Cutting items smaller ([[hidden-wip-in-large-items]]) and changing the length ([[period-length]]) are the other levers; the source does not treat them here. Even after the change Siemens' 85th percentile was about 40 days (L4286), still above 30, which suggests in this wiki's reading that the improved process would still fail this test for a 30-day period. The chapter does not address this.
 
 ## Trade-offs
 

@@ -22,7 +22,7 @@ The source also calls the move away from velocity estimation "an easy decision" 
 
 This wiki's rule is not to retire estimates on a general argument, and to run the test on the project's own history:
 
-1. Reach stable Cycle Times first; the forecast depends on them (L4226-L4232). See [[conservation-of-flow]] and [[forecast-needs-a-stable-process]].
+1. Reach stable Cycle Times first; the forecast depends on them (L4226-L4232). See [[conservation-of-flow]] and [[throughput-monte-carlo]].
 2. For finished items, compare points against Cycle Time.
 3. For one release, run a flow forecast beside the existing plan and compare both to the outcome, as Siemens did: "we adopted this practice along with our current points and velocity estimation planning methods and compared the results" (L4202). The conditional matters: "If these forecasts proved reliable, we would no longer need to estimate." (L4202)
 4. Retire estimates for date forecasting only if the forecast did better.
@@ -45,7 +45,7 @@ The chapter gives no coefficient, method or sample for "no correlation". It come
 
 This section is this wiki's own reading, on sourced positions. [[story-points]] and [[velocity-self-correction]] hold that relative estimates plus observed velocity give usable forecasts. This chapter holds that distributions of observed Cycle Time do better.
 
-- **Stable history with enough finished items:** forecast from flow; [[monte-carlo-simulation]], [[single-item-forecast]].
+- **Stable history with enough finished items:** forecast from flow; [[throughput-monte-carlo]], [[service-level-expectation]].
 - **New project, or unstable or thin history:** keep relative estimates and a [[velocity-range-forecast]]; flow data does not yet exist ([[how-much-flow-data]]).
 - **Deciding how much fits in a period:** a count from Throughput needs no points, and the size check stands in for them ([[filling-a-period]], [[throughput-monte-carlo]]). Keeping points beside it for a while is the same test as step 3.
 - **Deciding whether to cut a task:** keep sizing either way. Retiring estimates here concerns dates. The charter's size above which a task is cut is a different question, and the chapter does not address it. See [[estimate-versus-commitment]], [[size-ceiling]] and [[right-sizing]].

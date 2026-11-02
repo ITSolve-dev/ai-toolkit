@@ -37,18 +37,17 @@ The points below are this wiki's reading of how the chart is built.
 
 ## Failure modes
 
-- **Chart drawn on a period too short to show a trend.** Sign: a burndown kept for one-week iterations. Cohn's own condition.
 - **Flat line with tasks finishing.** Sign: tasks reach done while the total barely falls. This wiki reads that as remaining estimates being raised or work added at the same rate, and the question to ask is which.
 - **Line that drops only at the end.** Sign: no change for most of the period, then a fall. This wiki reads that as a board updated in a batch, or work that finishes all at once, since a task's estimate can't fall until someone updates it.
 
 ## Agent executor note
 
-Hours are the weak part. Cohn's input assumes someone restating hours remaining each day, and hours mean little for an agent run. This wiki's untested proposal is to sum the remaining size steps of unfinished tasks, read from board state, which needs nobody to keep anything. The chart's single daily sample also assumes tasks that live for days. With agent-executed tasks that finish within a day, the same length-of-period reasoning may rule the chart out for short periods. Nothing in this source tests either point.
+Hours are the weak part. Cohn's input assumes someone restating hours remaining each day, and this wiki reads hours as meaning little for an agent run. This wiki's untested proposal is to sum the remaining size steps of unfinished tasks, read from board state, which needs nobody to keep anything. The chart's single daily sample also assumes tasks that live for days. With agent-executed tasks that finish within a day, the same length-of-period reasoning may rule the chart out for short periods. Nothing in this source tests either point.
 
 ## Which holds under which setup
 
 The resolution is this wiki's.
 
 - **Iteration setup, two weeks or longer:** draw it, from board state.
-- **Iteration setup, one week:** skip it, per Cohn.
+- **Iteration setup, one week:** probably unnecessary (Cohn, L4502). This is a hedged judgement that the chart is not worth drawing, not a defect, so a burndown kept for one-week iterations is not a finding. The question to raise is whether a trend arrived in time to act.
 - **Flow setup:** there is no period total to burn down, so the question does not arise, and age of open work against an expectation does that job ([[service-level-expectation]]).

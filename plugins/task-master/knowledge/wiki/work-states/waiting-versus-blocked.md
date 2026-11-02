@@ -69,4 +69,4 @@ A planned review is a different case, and this page used to group the two togeth
 
 ## Related
 
-How each state is handled on the board is on [[blocked-work-counts-against-wip]] and [[parking-lot]], and what a project states in advance about blocked work is on [[blocked-work-policies]]. Whether a stop should have been inside a task at all is on [[sequence-versus-wait]].
+How each state is handled on the board is on [[blocked-work-counts-against-wip]] and [[parking-lot]], and what a project states in advance about blocked work is on the first of those. Whether a stop should have been inside a task at all is on [[sequence-versus-wait]].

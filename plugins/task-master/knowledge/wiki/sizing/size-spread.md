@@ -5,7 +5,7 @@ summary: Tasks near the top of the order are kept small and within about one ord
 tags: [rule, estimation, decomposition, cycle-time]
 sources: [cohn-agile-estimating-planning]
 created: 2026-11-01
-updated: 2026-11-01
+updated: 2026-11-02
 ---
 
 # Size Spread
@@ -65,4 +65,4 @@ Human days do not transfer ([[size-ceiling]]). The ratio should, as a starting p
 
 ## Related
 
-[[wip-lengthens-cycle-time]] covers the other main influence on cycle time. [[hidden-wip-in-large-items]] covers what a large item conceals.
+[[starting-more-work]] covers the other main influence on cycle time. [[hidden-wip-in-large-items]] covers what a large item conceals.

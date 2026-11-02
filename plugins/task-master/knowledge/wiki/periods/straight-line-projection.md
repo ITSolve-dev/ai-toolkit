@@ -17,7 +17,7 @@ A **straight-line projection** extends a trend line from the throughput line of 
 1. **It rests on an average**, with every problem in [[forecast-from-an-average]] (L3594).
 2. **Both lines move.** Vacanti notes "variability in both the Backlog and Average Throughput" (L3596), and that a single projected view "could cause managers to either panic or be overly confident depending on which way the variability pendulum swings on any given day" (L3596).
 3. **There is no date range**, so it fails [[forecast-range-and-probability]] (L3598).
-4. **Delivery is often not a line.** Vacanti observes that "any time you start a project with zero WIP and end with zero WIP, the resulting pattern of the Throughput line on the CFD mimics an “S-curve”" (L3606), and that "Using a straight line to approximate an S-curve is problematic at best and dangerous at worst." (L3606). See [[s-curve-on-a-cfd]].
+4. **Delivery is often not a line.** Vacanti observes that "any time you start a project with zero WIP and end with zero WIP, the resulting pattern of the Throughput line on the CFD mimics an “S-curve”" (L3606), and that "Using a straight line to approximate an S-curve is problematic at best and dangerous at worst." (L3606). See [[reading-a-cfd]].
 
 ## The patch that does not repair it
 
@@ -31,7 +31,7 @@ A release or project date read from the intersection of a trend line and a backl
 
 - **Gut check.** Vacanti allows it for "a quick gut check on project status" (L3608), but adds "any insight you may gain is certainly not actionable" (L3608), since acting on it "would probably be akin to tampering" (L3608).
 - **A stabilised process.** Vacanti concedes the method degrades less under good process discipline: "If you truly can keep continuous WIP, minimally violate the assumptions of Little’s Law, not introduce CoS, then this type of approach might be good enough." (L3610-L3616). His stance there is permissive: "If it is and it works for you, then, great, keep doing it." (L3616)
-- **Anything else.** A commitment should come from a method that yields a probability: [[single-item-forecast]] for one item, [[monte-carlo-simulation]] for many. A burn-up can be kept and improved with [[burn-up-with-percentile-lines]].
+- **Anything else.** A commitment should come from a method that yields a probability: [[service-level-expectation]] for one item, [[throughput-monte-carlo]] for many. A burn-up can be kept and improved with [[burn-up-with-percentile-lines]].
 
 The inputs to this choice are read from board history: whether WIP stayed continuous or the project began and ended at zero, and whether classes of service were used. This wiki's reading of what would show the choice wrong is a projected date that keeps shifting from one reading to the next, as the second problem above predicts.
 
@@ -45,4 +45,4 @@ The method is cheap and is easily explained to anyone reading the chart. Vacanti
 
 ## See also
 
-[[forecast-from-an-average]], [[forecast-range-and-probability]], [[littles-law-does-not-forecast]], [[monte-carlo-simulation]], [[velocity-trend-is-not-a-forecast]]
+[[forecast-from-an-average]], [[forecast-range-and-probability]], [[littles-law-does-not-forecast]], [[throughput-monte-carlo]], [[velocity-trend-is-not-a-forecast]]

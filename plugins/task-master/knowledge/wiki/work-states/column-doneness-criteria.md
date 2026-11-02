@@ -32,7 +32,7 @@ The source's concern is that quality steps get skipped when a story moves on. Th
 
 ## The last column fixes what the metrics cover
 
-At Siemens a feature "is declared “done” only once it has passed validation testing in a fully integrated environment" (L4014). Yet Done was not delivery: regression testing, beta testing, hosting and implementation lay outside (L4264). So Done sets the boundary of WIP, Cycle Time and Throughput ([[started-and-finished-points]], [[departure-point]]). This wiki reads the consequence plainly: a short Cycle Time measured to an early Done can coexist with long delivery. Siemens saw this and began extending Kanban across the whole value stream (L4264-L4270).
+At Siemens a feature "is declared “done” only once it has passed validation testing in a fully integrated environment" (L4014). Yet Done was not delivery: regression testing, beta testing, hosting and implementation lay outside (L4264). So Done sets the boundary of WIP, Cycle Time and Throughput ([[started-and-finished-points]]). This wiki reads the consequence plainly: a short Cycle Time measured to an early Done can coexist with long delivery. Siemens saw this and began extending Kanban across the whole value stream (L4264-L4270).
 
 ## Pairing with queue sub-states
 

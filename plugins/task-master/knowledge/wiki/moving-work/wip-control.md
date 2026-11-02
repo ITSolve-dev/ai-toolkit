@@ -19,7 +19,7 @@ WIP control is an explicit bound on how many tasks may sit between a project's s
 This wiki reads three things from that passage and its neighbours.
 
 - **The bound is on the workflow, not necessarily on a column.** The span is "from started to finished" (L139), and the 2025 edition lists "Less explicit (and hence more flexible) how WIP is controlled" among its changes (L204). A limit per column is one allowed form, and one number for the whole span is another.
-- **The count is set by position and not by activity.** The Guide says "Any work items between a started point and a finished point are considered work in progress (WIP)." (L112). A stopped item is therefore still WIP unless the project has declared otherwise ([[blocked-work-counts-against-wip]]). Vacanti's definition agrees: "All discrete units of customer value that have entered a given process but have not exited" ([[vacanti-actionable-agile-metrics]] L600). The count is of what is there, and [[work-in-progress]] defines it; a sum of the limits is no substitute ([[wip-limit-is-not-wip]]).
+- **The count is set by position and not by activity.** The Guide says "Any work items between a started point and a finished point are considered work in progress (WIP)." (L112). A stopped item is therefore still WIP unless the project has declared otherwise ([[blocked-work-counts-against-wip]]). Vacanti's definition agrees: "All discrete units of customer value that have entered a given process but have not exited" ([[vacanti-actionable-agile-metrics]] L600). The count is of what is there, and [[work-in-progress]] defines it; a sum of the limits is no substitute.
 - **Running under the bound is also a departure.** The Guide's words are "neither above nor below".
 
 ## The rule
@@ -41,17 +41,17 @@ What breaks is the start signal. The Guide says "An effect of controlling WIP is
 
 The Guide also claims that controlling WIP "helps flow and often improves the Kanban system members’ collective focus, commitment, and collaboration." (L143). It reports no measurement. This wiki keeps "helps flow" only through the pull signal, and it treats the rest under the agent note below.
 
-Vacanti reaches the bound from the queue. Since the aim is that queues never form ([[queue-buildup]]), they have to be measured, and he says the measure is a plain count:
+Vacanti reaches the bound from the queue. Since the aim is that queues never form ([[starting-more-work]]), they have to be measured, and he says the measure is a plain count:
 
 > The best way to measure a queue is to simply count the number of items you are working on at any given time. When that number gets too big then no new work gets started until something old has finished.
 >
 > — [[vacanti-actionable-agile-metrics]], L440
 
-This wiki reads two things from that passage. The start of new work is tied to a finish event, so a slot opens only when something old leaves. And the count is both a measure and a control: the same number reports the queue and stops it. The usual response that defeats the bound is on [[starting-more-work-when-cycle-time-is-long]].
+This wiki reads two things from that passage. The start of new work is tied to a finish event, so a slot opens only when something old leaves. And the count is both a measure and a control: the same number reports the queue and stops it. The usual response that defeats the bound is on [[starting-more-work]].
 
 ## Choosing the number
 
-The Guide requires a control and gives no number and no way of choosing one. Vacanti's Chapter 1 says only "too big" ([[vacanti-actionable-agile-metrics]] L440), also with no number and no method. The only method in this base is the Kanban Maturity Model's for a parking lot, which starts "slightly higher than the average WIP" ([[radzikowska-waiting-blocked]] L61; see [[parking-lot-wip-limit]]). Carrying that method over to a whole workflow is this wiki's extension, and no source states it.
+The Guide requires a control and gives no number and no way of choosing one. Vacanti's Chapter 1 says only "too big" ([[vacanti-actionable-agile-metrics]] L440), also with no number and no method. The only method in this base is the Kanban Maturity Model's for a parking lot, which starts "slightly higher than the average WIP" ([[radzikowska-waiting-blocked]] L61; see [[parking-lot]]). Carrying that method over to a whole workflow is this wiki's extension, and no source states it.
 
 | Input | Read from |
 |---|---|
@@ -76,7 +76,7 @@ What changes is what the bound protects. With people executing, it protects thei
 
 **Kanban Maturity Model:** the limit is per column, and blocked items add to it ([[blocked-work-counts-against-wip]]).
 
-**Cohn:** the limit is per developer, one or two sub-story cards at a time ([[wip-per-executor]]). What work in process does to cycle time is on [[wip-lengthens-cycle-time]].
+**Cohn:** the limit is per developer, one or two sub-story cards at a time ([[wip-per-executor]]). What work in process does to cycle time is on [[starting-more-work]].
 
 **Vacanti:** count the items in progress, and when the count is too big, start nothing until something finishes ([[vacanti-actionable-agile-metrics]] L440). His later policy states the same thing as a rate, starting new work "at about the same rate that we finish old work" ([[vacanti-actionable-agile-metrics]] L1018), which this wiki sets beside the bound on [[process-policies-from-littles-law]].
 

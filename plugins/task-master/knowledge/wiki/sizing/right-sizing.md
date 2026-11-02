@@ -10,7 +10,7 @@ updated: 2026-11-02
 
 # Right-Sizing
 
-**Right-sizing** is a yes/no check made just before an item is pulled: can it finish within the chosen [[service-level-expectation]]? It exists because deferring commitment raises the duty to make sure that a committed item has the best chance of flowing through ([[vacanti-actionable-agile-metrics]] L3106). See [[just-in-time-commitment]].
+**Right-sizing** is a yes/no check made just before an item is pulled: can it finish within the chosen [[service-level-expectation]]? It exists because deferring commitment raises the duty to make sure that a committed item has the best chance of flowing through ([[vacanti-actionable-agile-metrics]] L3106). See [[backlog-versus-commitment]].
 
 > the SLA will act as the litmus test for whether an item is of the right size to flow through the system.
 >
@@ -43,7 +43,7 @@ The book quotes Prateek Singh's guidance to one of his teams, which asks two thi
 
 ## Inputs and what would show the choice wrong
 
-- **The SLE:** from [[choosing-a-service-level-expectation]], read from board history.
+- **The SLE:** from [[service-level-expectation]], read from board history.
 - **The judgement:** the executor's belief about this item, read from the item's text.
 
 The later fact is not stated by the source. This wiki takes it to be an item that passed the check and then aged past the SLE. Such an item is what [[percentile-intervention-triggers]] catches in flight, and a pattern of them says the check is being answered carelessly or the item text does not carry what the check needs.
@@ -68,7 +68,7 @@ This sign is the wiki's phrasing: a pulled item whose text describes more than t
 
 This section resolves a disagreement between methodologies and is the wiki's own reading.
 
-- **Project with an SLE:** a stable process and enough finished items (about 11 to 30, see [[choosing-a-service-level-expectation]]). Right-sizing replaces point estimates at the item level.
+- **Project with an SLE:** a stable process and enough finished items (about 11 to 30, see [[service-level-expectation]]). Right-sizing replaces point estimates at the item level.
 - **Project without one:** a new project or a recently changed process. There is no SLE to test against, so this check is unavailable and relative estimation stays the sizing tool until the data exists.
 - **Project planning dates or filling periods:** a yes/no gives no sum to plan with. The SLE's forecast applies to one item, so filling a period needs something else, whether velocity or throughput. The count from [[throughput-monte-carlo]] and this check then work as a pair: one says how many, and the other says which items may count.
 

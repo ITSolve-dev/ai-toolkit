@@ -34,7 +34,7 @@ This wiki's reading of where the violation shows: a date, plan or promise whose 
 
 ## What to use instead
 
-Conformance comes first. Once a process mostly matches the assumptions, its data can be trusted and it is "probabilistically predictable", at which point something like [[monte-carlo-simulation]] on historical data can be used with some confidence in its results (L1088-L1094). Once distribution information exists, "we are going to run away from Little’s Law for forecasting" (L3564). The checks are on [[littles-law-assumptions]] and the policies on [[process-policies-from-littles-law]].
+Conformance comes first. Once a process mostly matches the assumptions, its data can be trusted and it is "probabilistically predictable", at which point something like [[throughput-monte-carlo]] on historical data can be used with some confidence in its results (L1088-L1094). Once distribution information exists, "we are going to run away from Little’s Law for forecasting" (L3564). The checks are on [[littles-law-assumptions]] and the policies on [[process-policies-from-littles-law]].
 
 Vacanti adds that predictability is not mainly about forecasts: "The bigger part of predictability is operating a system that behaves in a way that we expect it to" (L1100). See [[predictability]].
 

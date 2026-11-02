@@ -61,7 +61,7 @@ A breach is not by itself a failure of the process: "The last thing we want is f
 >
 > — [[flow-metrics-scrum-teams]], L1178
 
-This wiki reads the part that transfers as a rule about starting, and not about adding hands, which the book itself qualifies with Brooks' law in the same passage. The sign is a new item started after an open item crossed a line, with nothing changed on the older item. It sits beside [[starting-new-work-when-blocked]], whose trigger is a stop and not an age.
+This wiki reads the part that transfers as a rule about starting, and not about adding hands, which the book itself qualifies with Brooks' law in the same passage. The sign is a new item started after an open item crossed a line, with nothing changed on the older item. It sits beside [[starting-more-work]], whose trigger is a stop and not an age.
 
 The book lists three ways several people help (L1182-L1192), and this wiki sorts them by what an agent and a person steering can do.
 
@@ -69,7 +69,7 @@ The book lists three ways several people help (L1182-L1192), and this wiki sorts
 - **Dividing the item into subtasks** (L1184) is dropped. It sits one level below this wiki's task ([[unit-of-work]]), and expanding a task into steps is out of scope.
 - **A fresh view of a sticking point** (L1186) survives as a person reading where the run stuck. Whether a new run on a restated task counts is untested.
 
-**A blocked item goes to the project's policy for blocked work:** [[blocked-work-policies]].
+**A blocked item goes to the project's policy for blocked work:** [[blocked-work-counts-against-wip]].
 
 **A large item is recut.** The book's starting point is that "your first hypothesis should be that this large PBI is probably composed of smaller, individually deliverable bits of value." (L1222). See [[story-splitting-patterns]] and [[hidden-wip-in-large-items]].
 
@@ -79,9 +79,9 @@ The book says "usually when a PBI is stuck in your process it is because it is t
 
 | What the board shows | Read as | Response |
 |---|---|---|
-| A stop marker, or no activity since the executor stopped | Blocked | [[blocked-work-policies]] |
+| A stop marker, or no activity since the executor stopped | Blocked | [[blocked-work-counts-against-wip]] |
 | In a review state | Waiting for a person | Spend attention here before anything new starts |
-| Later items pulled past it | Aged by order | [[artificially-aged-work]] |
+| Later items pulled past it | Aged by order | [[flow-debt]] |
 | Active and still running | Size or missing information | [[overrun-triggers-a-recut]], [[hidden-wip-in-large-items]] |
 
 On a human team with no review queue the book's order may hold, since the first three rows are then rare.
@@ -98,9 +98,9 @@ A sign raises a question, not a verdict: an old item may be known, accepted and 
 
 ## Costs and limits
 
-- The method needs open-item age on the board and a percentile basis, so it needs the data of [[choosing-a-service-level-expectation]].
+- The method needs open-item age on the board and a percentile basis, so it needs the data of [[service-level-expectation]].
 - Each checkpoint costs attention, and that cost lands on items already behind.
-- This caveat is the wiki's: the source says an item at the 50th line "is now larger than half the work items" (L3138), but age measures size and waiting together. An item that is old because it sat blocked is not larger; the action differs, so the question to ask first is which it is ([[artificially-aged-work]], [[hidden-wip-in-large-items]]).
+- This caveat is the wiki's: the source says an item at the 50th line "is now larger than half the work items" (L3138), but age measures size and waiting together. An item that is old because it sat blocked is not larger; the action differs, so the question to ask first is which it is ([[flow-debt]], [[hidden-wip-in-large-items]]).
 
 ## Agent executor note
 

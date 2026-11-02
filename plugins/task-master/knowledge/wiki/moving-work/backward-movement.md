@@ -3,9 +3,9 @@ title: Backward Movement
 category: moving-work
 summary: Moving a card to an earlier state loses visibility and data, so an expected cycle such as rework after review stays in the later state or goes to a new state on the right; the Scrum Guide's return of an unfinished item to the backlog is the one sanctioned exception.
 tags: [rule, moving-work, board-history, kanban, scrum]
-sources: [wester-board-design, kanban-guide, scrum-guide-2020, montgomery-tracker-smells]
+sources: [wester-board-design, kanban-guide, scrum-guide-2020, montgomery-tracker-smells, vacanti-actionable-agile-metrics]
 created: 2026-11-01
-updated: 2026-11-01
+updated: 2026-11-02
 ---
 
 # Backward Movement
@@ -60,11 +60,13 @@ Use the *Fixing* state when rework is common, because the amount of rework is th
 
 **Scrum Guide:** it prescribes a backward move in one case. An item that misses the Definition of Done "returns to the Product Backlog for future consideration." ([[scrum-guide-2020]] L319). This wiki reads that as leaving the workflow and not as moving back within it.
 
+**Vacanti:** forward only for ordinary defects, which do "not normally constitute an egregious enough offense to cause the item to be moved back", but an item in Test "so broken that it cannot even be tested" goes back to the appropriate prior step with its Test date erased ([[vacanti-actionable-agile-metrics]] L1416); see [[non-standard-departure]].
+
 **Kanban Maturity Model:** a task leaving a [[parking-lot]] returns to the active state it left, which is a backward move of the kind Wester objects to.
 
 ## Which holds under which setup
 
-- **Inside a period or a flow:** forward only, as the rule says.
+- **Inside a period or a flow:** forward only, as the rule says, except the two narrow cases on [[non-standard-departure]]: an item too broken to be tested goes back one step, and an item expected to return leaves the board with its history kept. This wiki reads neither as an expected cycle: the first is an arrival in a step whose entry condition was not met, and the second leaves the workflow. The lookup row on [[board-rules-by-setup]] carries the same exceptions.
 - **At a period's end, under iterations:** an unfinished task leaves the workflow and returns to the unstarted pile, by [[unfinished-at-period-end]]. This is not a violation, and history should show it as a return at a period boundary.
 
 The resolution is this wiki's.

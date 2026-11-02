@@ -44,7 +44,7 @@ A low ratio directs attention to inactive time. The source's reasoning is about 
 
 **What would show this choice wrong (this wiki's reading):** inactive time falls while total Cycle Time does not, which would mean that waiting moved between states and was not removed.
 
-The chapter on Siemens does not state a split by cause; this one is this wiki's reading. Low efficiency with queue time dominant points at capacity or policy: read [[bottleneck-on-the-cfd]]. Low efficiency with blocked time dominant points at the causes of blocks. High efficiency with long Cycle Time suggests the items are large; see [[hidden-wip-in-large-items]].
+The chapter on Siemens does not state a split by cause; this one is this wiki's reading. Low efficiency with queue time dominant points at capacity or policy: read [[reading-a-cfd]]. Low efficiency with blocked time dominant points at the causes of blocks. High efficiency with long Cycle Time suggests the items are large; see [[hidden-wip-in-large-items]].
 
 ## Conditions on the 15% figure
 

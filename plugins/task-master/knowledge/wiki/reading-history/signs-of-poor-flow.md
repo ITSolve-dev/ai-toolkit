@@ -20,12 +20,12 @@ Run each row against recent history. Treat a hit as a question under [[smell-is-
 
 | Source's question | Reading | See |
 |---|---|---|
-| Asked to start new work before finishing old? | Starts exceed finishes over a span of weeks | [[wip-control]], [[queue-buildup]] |
+| Asked to start new work before finishing old? | Starts exceed finishes over a span of weeks | [[wip-control]], [[starting-more-work]] |
 | Asked to expedite on top of current commitments? | An item enters work ahead of the stated order while the dates and estimates of what it displaced stay unchanged | [[interrupting-started-work]] |
 | Features started and then cancelled? Replacements cancelled too? | Items leave a started state without finishing, repeatedly, or a replacement for a cancelled item is itself cancelled | [[mid-period-change]] |
 | Blocked work put aside to start something new? | A start happens while an earlier item sits stopped with nobody working on removing the block | [[blocked-work-counts-against-wip]], [[waiting-versus-blocked]] |
 | Estimates ignore how many items will be in progress? | Not readable from a board. Ask whether a stated date assumed a level of open work | [[stating-plan-uncertainty]] |
-| Order of items in progress ignored? | Items started later repeatedly finish before older ones with no recorded reason. Tasks of different size also do this | [[wip-lengthens-cycle-time]] |
+| Order of items in progress ignored? | Items started later repeatedly finish before older ones with no recorded reason. Tasks of different size also do this | [[starting-more-work]] |
 | Scope or acceptance criteria added to items in progress? | The task's text or acceptance criteria change after its started point | [[related-changes-temptation]], [[testable-acceptance]] |
 | “it is just bigger than we thought it was” or “it will get done when it gets done”? | An item's age runs well past the project's usual cycle time with no recut and no note | [[overrun-triggers-a-recut]], [[hidden-wip-in-large-items]] |
 

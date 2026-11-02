@@ -1,7 +1,7 @@
 ---
 title: Chosen Delay Versus Slip
 category: reading-history
-summary: Before calling a release late, check which date people were told, whether scope changed by a recorded decision, and whether the earlier date was still available; a later finish with none of these is a slip.
+summary: A release finishing after the communicated date is a chosen delay if the total rose by a dated decision and its stories were all finished by the earlier date, a replan if the decision is there but the earlier date was no longer reachable, and a slip if no decision is behind the move; the communicated date comes from the recorded forecast, the other two from board history.
 tags: [decision-rule, plan-versus-fact, retrospective-analysis, release-planning, cohn]
 sources: [cohn-agile-estimating-planning]
 created: 2026-11-02
@@ -20,17 +20,29 @@ The product manager backs that by saying the original 12-20 weeks was still achi
 
 ## The test
 
-Read each of these from history. The three questions are this wiki's reading of what the case's characters argue.
+Three yes/no tests, each with where it is read from. The tests and the outcomes are this wiki's reading of what the case's characters argue.
 
-1. **Which date were people told?** Compare with that, not with an internal figure. A tester says "We originally thought we’d be done in just over 14 weeks." (L6496), and the answer is "We never said we’d be done in 14 weeks." (L6498). People had been told 12-20.
-2. **Did the scope change, and was the change recorded when it was decided?** The total rose by 35 points at a known moment (L6362-L6364).
-3. **Was the earlier date still available?** "we could have shipped two weeks ago if we’d wanted" (L6500). The extra two weeks went to changes from beta testers.
+| Test | Read from |
+|---|---|
+| (a) The finish is later than the date communicated | The recorded forecast or plan, not the board: the communicated date is not board history |
+| (b) The release total rose by a dated decision | Board history: a rise in the total with a recorded decision at that moment |
+| (c) The release's stories were all finished by the earlier date | Board history: finish dates of the release's stories |
 
-This wiki's reading: where all three point the same way, the delay was chosen. Where the total did not change and the date moved, it is a slip, whatever it is called. A rise that came from revised estimates and not from a decision also counts as a slip here, which is why the total has to be split first ([[release-progress-forces]]).
+Test (a) decides whether there is anything to classify. Where it holds:
+
+| (b) | (c) | Outcome |
+|---|---|---|
+| Yes | Yes | **Chosen delay**: scope was added by decision, and the earlier date was still reachable |
+| Yes | No | **Replan**: scope was added by decision, but the earlier date was no longer reachable |
+| No | either | **Slip**: the date moved with no decision behind it, whatever it is called |
+
+A rise that came from revised estimates and not from a decision counts as "No" on (b), which is why the total has to be split first ([[release-progress-forces]]).
+
+The case supplies each input. **The communicated date:** a tester says "We originally thought we’d be done in just over 14 weeks." (L6496), and the answer is "We never said we’d be done in 14 weeks." (L6498). People had been told 12-20, and the comparison is with that, not with an internal figure. In the case this input is dialogue (L6496-L6498), which is why this wiki requires it to be recorded as a forecast or plan. **The decision:** the total rose by 35 points at a known moment (L6362-L6364). **The earlier date:** "we could have shipped two weeks ago if we’d wanted" (L6500). The extra two weeks went to changes from beta testers.
 
 ## The sign
 
-A forecast moves later with no rise in the release total at that point in board history. This wiki reads that as the slip's signature, to be checked against estimates that grew. A rise in the total with a dated decision beside it is a replan. Each sign raises a question ([[smell-is-not-a-finding]]).
+A forecast moves later with no rise in the release total at that point in board history. This wiki reads that as the slip's signature, to be checked against estimates that grew. A rise in the total with a dated decision beside it is a replan or a chosen delay, as test (c) decides. Each sign raises a question ([[smell-is-not-a-finding]]).
 
 ## What later fact would show the reading wrong
 

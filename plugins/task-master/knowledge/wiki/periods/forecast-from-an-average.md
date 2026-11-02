@@ -20,7 +20,7 @@ Vacanti calls the average "a meaningless statistic unless you know something abo
 >
 > — [[vacanti-actionable-agile-metrics]], L3558
 
-Vacanti then closes the chain: "If we do not know the distribution, then we cannot give a probability of where the average falls. If we do not know a probability, then we cannot make a forecast." (L3560). This wiki reads the practical consequence as follows: a date from an average is not a coin-flip date either, since even "half the time" is an unsupported reading of it. The shape of real cycle times is on [[cycle-time-histogram]] and [[completion-time-distribution]].
+Vacanti then closes the chain: "If we do not know the distribution, then we cannot give a probability of where the average falls. If we do not know a probability, then we cannot make a forecast." (L3560). This wiki reads the practical consequence as follows: a date from an average is not a coin-flip date either, since even "half the time" is an unsupported reading of it. The shape of real cycle times is on [[cycle-time-scatterplot]] and [[completion-time-distribution]].
 
 ## Sign
 
@@ -32,7 +32,7 @@ The question each sign raises is whether the distribution behind the number is k
 
 ## What to do instead
 
-Vacanti's direction is to acquire the distribution: "Further, I would argue it is worth investing in acquiring that knowledge." (L3564), and with it to leave average-based methods for percentile-based ones. For one item that is [[single-item-forecast]]; for several, [[monte-carlo-simulation]].
+Vacanti's direction is to acquire the distribution: "Further, I would argue it is worth investing in acquiring that knowledge." (L3564), and with it to leave average-based methods for percentile-based ones. For one item that is [[service-level-expectation]]; for several, [[throughput-monte-carlo]].
 
 ## Trade-off
 

@@ -37,13 +37,13 @@ This wiki does not carry that number forward. Its own arithmetic gives a differe
 
 The thresholds below are this wiki's reading of the source's numbers, not the source's.
 
-**Input:** the number of items finished inside [[process-boundaries]] since the process last changed, read from board history.
+**Input:** the number of items finished inside [[started-and-finished-points]] since the process last changed, read from board history.
 
 | Finished items | What may be said |
 |---|---|
 | Fewer than five | Show the raw values. State no range. |
 | Five or more | The smallest and largest bracket the median, with the Rule of Five's confidence, under its conditions. |
-| Eleven or twelve and up | The min and max start to describe the range: with n finished items, the chance of the next one landing inside is (n-1)/(n+1). A first [[service-level-expectation]] can be read, as on [[choosing-a-service-level-expectation]]. |
+| Eleven or twelve and up | The min and max start to describe the range: with n finished items, the chance of the next one landing inside is (n-1)/(n+1). A first SLE can be read, as on [[service-level-expectation]]. |
 
 **What would show the choice wrong:** the median of a later, larger sample falling outside the first bracket. In a stable process that should happen about one time in sixteen. If it recurs, suspect a changed process or a non-random sample.
 
@@ -71,4 +71,4 @@ The claim is probabilistic and has no human mechanism, so this wiki holds that i
 
 ## See also
 
-[[service-level-expectation]], [[board-misuse-corrupts-flow-data]], [[cycle-time-scatterplot]], [[monte-carlo-simulation]]
+[[service-level-expectation]], [[capturing-flow-data]], [[cycle-time-scatterplot]], [[throughput-monte-carlo]]

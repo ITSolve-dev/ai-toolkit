@@ -44,7 +44,7 @@ This any-two property matters little on a board, because history already holds a
 ## What it does not assert
 
 - **It does not forecast.** The exact relation applies looking back over a completed period: "Little’s Law is about examining what has happened in the past." ([[vacanti-actionable-agile-metrics]] L3550). Its use on a forecast stops at a qualitative gut check; see [[littles-law-does-not-forecast]].
-- **It does not say which metric moves.** Changing one metric will almost certainly affect one or both of the others (L908), and the law does not determine which. See [[starting-more-work-when-cycle-time-is-long]] for what this does to the usual advice.
+- **It does not say which metric moves.** Changing one metric will almost certainly affect one or both of the others (L908), and the law does not determine which. See [[starting-more-work]] for what this does to the usual advice.
 - **It does not require equal-sized items.** See [[right-sizing-not-same-sizing]].
 
 ## Segmenting by work type

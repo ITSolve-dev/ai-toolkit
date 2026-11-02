@@ -29,7 +29,7 @@ The sign raises a question and is not a verdict ([[smell-is-not-a-finding]]). Th
 >
 > — [[vacanti-actionable-agile-metrics]], L2710
 
-The consequence the source draws is that "the conclusions based on the standard deviation calculations above when applied to your non-normally distributed data will be incorrect" (L2710). The shape it describes for cycle times is "a big hump on the left and a long tail to the right" (L2796); see [[cycle-time-histogram]].
+The consequence the source draws is that "the conclusions based on the standard deviation calculations above when applied to your non-normally distributed data will be incorrect" (L2710). The shape it describes for cycle times is "a big hump on the left and a long tail to the right" (L2796); see [[cycle-time-scatterplot]].
 
 Chapter 16 states the cost: "Using the mean plus a standard deviation (or the mean plus any number of standard deviations) approach and then associating the result with percentiles is dangerous given that your data is not normally distributed. You will get calculation errors that are not insignificant and you will potentially make poor decisions based on bad data." (L3916). The source gives no size for that error. This wiki's reading is that the harm reaches planning when such a line is read as a commitment, for example "85% of tasks finish within N days" taken from a σ line and not from the data. See [[service-level-expectation]].
 
@@ -48,7 +48,7 @@ So a finding should not say Control Charts are invalid for this work. It should 
 
 ## How to check it
 
-The source's own test is the Histogram: "the shape of a normal distribution is a bell curve. When you look at your Histogram you will see that your data does not follow a bell curve pattern" (L3914). The source "can guarantee" the data is not normal (L3908). This wiki keeps the check and not the guarantee, since a sign here is a question: plot the project's own [[cycle-time-histogram]], and if it is not bell-shaped, the printed percentages do not mean what they say.
+The source's own test is the Histogram: "the shape of a normal distribution is a bell curve. When you look at your Histogram you will see that your data does not follow a bell curve pattern" (L3914). The source "can guarantee" the data is not normal (L3908). This wiki keeps the check and not the guarantee, since a sign here is a question: plot the project's own [[cycle-time-scatterplot]], and if it is not bell-shaped, the printed percentages do not mean what they say.
 
 This wiki's further checks, derived from the source's argument, need only the same cycle times.
 
@@ -58,7 +58,7 @@ This wiki's further checks, derived from the source's argument, need only the sa
 
 ## What to do instead
 
-Replace the bands with [[cycle-time-percentile-lines]], which need no assumption about the distribution (L2722). [[verifying-tool-flow-analytics]] covers the check on a tool's output.
+Replace the bands with [[cycle-time-percentile-lines]], which need no assumption about the distribution (L2722). [[capturing-flow-data]] covers the check on a tool's output.
 
 ## Cost of the fix
 

@@ -54,7 +54,7 @@ The "mostly" has a stated case. A freed resource that lacks the expertise for th
 |---|---|
 | When each item was committed | Board history, at the [[started-and-finished-points]] |
 | Whether the free executor can take the oldest item | The task's text and the project's setup |
-| Whether a declared exception applies | [[interrupting-started-work]], [[when-to-use-class-of-service]] |
+| Whether a declared exception applies | [[interrupting-started-work]], [[class-of-service]] |
 
 The table and the following tests are this wiki's. The choice was wrong if following oldest-first leaves the spread of cycle times no tighter than before, or if it repeatedly stalls capacity on an item that cannot progress, in which case that item's block is the thing to look at ([[blocked-work-counts-against-wip]]).
 
@@ -63,10 +63,10 @@ The table and the following tests are this wiki's. The choice was wrong if follo
 These signs are this wiki's derivation. Each raises a question ([[smell-is-not-a-finding]]).
 
 - **In history:** the item pulled was not the oldest, and no reason is recorded.
-- **In history:** items committed later repeatedly finish before items committed earlier ([[wip-lengthens-cycle-time]]). Size differences also produce this, so like is compared with like first.
+- **In history:** items committed later repeatedly finish before items committed earlier ([[starting-more-work]]). Size differences also produce this, so like is compared with like first.
 - **On the board:** no one can state the order used at a column with a tight limit, which means the pull is effectively random, the policy of runs 2 and 4.
 
-An item passed over this way is [[artificially-aged-work]].
+An item passed over this way is [[flow-debt]].
 
 ## Cost
 

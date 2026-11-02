@@ -48,7 +48,7 @@ Cohn adds a limit on the selection, as one of his guidelines:
 >
 > — [[cohn-agile-estimating-planning]], L4941
 
-The highway is an analogy and not a finding, and no figure comes with it. The rule, its signs and its cost are on [[utilization-versus-slack]]. This wiki reads the mechanism as the one on [[wip-lengthens-cycle-time]]: with no spare capacity, any delay queues everything behind it. The margin comes from the project's own history, since no source here gives one.
+The highway is an analogy and not a finding, and no figure comes with it. The rule, its signs and its cost are on [[utilization-versus-slack]]. This wiki reads the mechanism as the one on [[starting-more-work]]: with no spare capacity, any delay queues everything behind it. The margin comes from the project's own history, since no source here gives one.
 
 The case study below gives one more reason for stopping short: "you’re better off adding something mid-way through the iteration than dropping something." (L5931). The source states no mechanism. This wiki reads the implied cost as a commitment broken in the open against capacity left idle for a while; see [[mid-period-change]].
 
@@ -105,7 +105,7 @@ This section is this wiki's reading, on sourced positions. The Guide names input
 |---|---|---|
 | Iterations, stable Throughput history, and a size check available | The count at the chosen probability | It reads history and needs no estimate, and Cohn's objection to a fill line concerns estimate errors, which a count does not have |
 | The same, with estimates kept | The count, with summed points as a cross-check | A disagreement between them is a question to raise, and a comparison over a release feeds [[dropping-estimates-for-flow-forecasts]] |
-| Iterations, thin or unstable history, or a process that has just changed | One task at a time, as on [[velocity-versus-commitment-planning]] | There is no sample to trust ([[how-much-flow-data]], [[forecast-needs-a-stable-process]]) |
+| Iterations, thin or unstable history, or a process that has just changed | One task at a time, as on [[velocity-versus-commitment-planning]] | There is no sample to trust ([[how-much-flow-data]], [[throughput-monte-carlo]]) |
 | A selection much heavier than usual on one stage, under any of the above | The tightest stage, as in Cohn's case | The count reflects the mix in its history, so it cannot see this selection's overflow |
 | Flow setup | Nothing, and this page does not apply | Nothing is selected for a period, since the Kanban Guide replenishes on a capacity signal ([[what-may-move]]). The same forecast can still answer how many by a date |
 

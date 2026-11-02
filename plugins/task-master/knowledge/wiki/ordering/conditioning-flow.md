@@ -18,7 +18,7 @@ Conditioning flow is choosing which item to pull next by its chance of succeedin
 
 The chapter's takeaway restates it as "being smart about what items to pull in next based on contextual information that we currently have" (L2370).
 
-It decides between two courses at one moment: pull the next item in priority order, or pull a lower-ranked item or a preparatory one instead. It operates inside the free slots that [[just-in-time-prioritization]] has defined, before the [[just-in-time-commitment]] is made, because the item "has not been pulled in yet" (L2318).
+It decides between two courses at one moment: pull the next item in priority order, or pull a lower-ranked item or a preparatory one instead. It operates inside the free slots that [[just-in-time-prioritization]] has defined, before the just-in-time commitment ([[backlog-versus-commitment]]) is made, because the item "has not been pulled in yet" (L2318).
 
 ## The three cases
 
@@ -44,7 +44,7 @@ This wiki's transfer: the pulled item blocks or exceeds its communicated range f
 
 ## Trade-offs
 
-The source names no cost, and this wiki reads two. Priority is overridden, so importance is traded for predictability on that pull, and the trade should be stated when it is made. Repeated, it starves heavy items: a state that stays overloaded keeps deferring whatever needs it, so a skipped item that recurs is a sign to address the overload rather than to keep conditioning around it, and such an item is on its way to being [[artificially-aged-work]].
+The source names no cost, and this wiki reads two. Priority is overridden, so importance is traded for predictability on that pull, and the trade should be stated when it is made. Repeated, it starves heavy items: a state that stays overloaded keeps deferring whatever needs it, so a skipped item that recurs is a sign to address the overload rather than to keep conditioning around it, and such an item is on its way to being [[flow-debt]].
 
 This wiki separates the override from the failure on [[order-by-value-not-convenience]]: conditioning names a fact about the current state of flow and moves an item near the top, while that failure orders the whole plan for the builders' ease.
 

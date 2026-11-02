@@ -29,12 +29,12 @@ These are this wiki's statement of what the book amounts to for the charter.
 
 ## What it contributes to this wiki
 
-- **Part One, flow and its measures.** A definition of predictability that can be scored afterwards: [[predictability]]. Queues as the observable form of poor flow: [[queue-buildup]]. The three metrics, each defined against the process's two boundaries: [[flow-metrics]], [[work-in-progress]], [[cycle-time]], [[throughput]], [[started-and-finished-points]]. A diagnostic for where elapsed time goes: [[flow-efficiency]]. A test for whether a metric earns its place: [[actionable-metrics]]. A checklist of behaviours, which this wiki turns into board signs: [[signs-of-poor-flow]]. The claim that uniform size is not needed: [[right-sizing-not-same-sizing]].
-- **Part One, Little's Law.** The law and, above all, its assumptions: [[littles-law]], [[littles-law-assumptions]], [[littles-law-does-not-forecast]]. Assumptions turned into running policy: [[process-policies-from-littles-law]], and two ways that policy gets missed, [[starting-more-work-when-cycle-time-is-long]] and [[wip-limit-is-not-wip]].
-- **Part Two, Cumulative Flow Diagrams.** The chart and its limits: [[cumulative-flow-diagram]], [[reading-a-cfd]], [[what-a-cfd-cannot-answer]], [[malformed-cfd]]. Its shapes: [[bulging-band-on-a-cfd]], [[flat-lines-on-a-cfd]], [[stair-steps-on-a-cfd]], [[s-curve-on-a-cfd]], [[mismatched-arrivals-and-departures]]. Balance and debt: [[conservation-of-flow]], [[constant-wip]], [[flow-debt]], [[accounting-for-abandoned-work]].
-- **Part Three, scatterplots and service levels.** [[cycle-time-scatterplot]], [[cycle-time-histogram]], [[cycle-time-percentile-lines]], [[reading-a-cycle-time-scatterplot]], [[pseudo-control-chart]], [[service-level-expectation]], [[choosing-a-service-level-expectation]], [[sle-by-work-item-type]].
-- **Part Four, pull, forecasting and starting.** [[fifo-pull-order]], [[class-of-service]], [[value-decided-at-replenishment]], [[forecast-range-and-probability]], [[forecast-needs-a-stable-process]], [[single-item-forecast]], [[monte-carlo-simulation]], [[process-boundaries]], [[capturing-flow-data]], [[how-much-flow-data]], [[verifying-tool-flow-analytics]].
-- **Part Five, the case.** The setting and numbers are on [[siemens-hs-case]], which lists the pages drawing on it. Among them are [[velocity-masks-unfinished-work]], [[reduce-wip-before-raising-throughput]], [[iteration-length-versus-cycle-time]] and [[dropping-estimates-for-flow-forecasts]].
+- **Part One, flow and its measures.** A definition of predictability that can be scored afterwards: [[predictability]]. Queues as the observable form of poor flow: [[starting-more-work]]. The three metrics, each defined against the process's two boundaries: [[flow-metrics]], [[work-in-progress]], [[cycle-time]], [[throughput]], [[started-and-finished-points]]. A diagnostic for where elapsed time goes: [[flow-efficiency]]. A test for whether a metric earns its place: [[actionable-metrics]]. A checklist of behaviours, which this wiki turns into board signs: [[signs-of-poor-flow]]. The claim that uniform size is not needed: [[right-sizing-not-same-sizing]].
+- **Part One, Little's Law.** The law and, above all, its assumptions: [[littles-law]], [[littles-law-assumptions]], [[littles-law-does-not-forecast]]. Assumptions turned into running policy: [[process-policies-from-littles-law]], and two ways that policy gets missed, [[starting-more-work]] and [[work-in-progress]].
+- **Part Two, Cumulative Flow Diagrams.** The chart, how it is built and read, and its limits: [[cumulative-flow-diagram]]. Its shapes: [[reading-a-cfd]]. Balance and debt: [[conservation-of-flow]], [[constant-wip]], [[flow-debt]], [[non-standard-departure]].
+- **Part Three, scatterplots and service levels.** [[cycle-time-scatterplot]], [[cycle-time-percentile-lines]], [[reading-a-cycle-time-scatterplot]], [[pseudo-control-chart]], [[service-level-expectation]].
+- **Part Four, pull, forecasting and starting.** [[fifo-pull-order]], [[class-of-service]], [[value-decided-at-replenishment]], [[forecast-range-and-probability]], [[throughput-monte-carlo]], [[service-level-expectation]], [[started-and-finished-points]], [[capturing-flow-data]], [[how-much-flow-data]].
+- **Part Five, the case.** The setting and numbers are on [[siemens-hs-case]], which lists the pages drawing on it. Among them are [[velocity-masks-unfinished-work]], [[starting-more-work]], [[iteration-length-versus-cycle-time]] and [[dropping-estimates-for-flow-forecasts]].
 
 ## How far to trust it
 
@@ -44,11 +44,11 @@ Little's Law is the exception in kind: a proved relation, and not an opinion of 
 
 The two sources of numbers are weak in different ways. The pull-policy simulation in Chapter 13 is a constructed scenario ([[fifo-pull-order]]). The Siemens case in Chapter 17 is real, but it is one organization's before-and-after report, written up with an insider, with other changes running alongside it and several internal inconsistencies ([[siemens-hs-case]]). So no figure in the book shows that the method beats an alternative under controlled conditions.
 
-The author has a stake in the conclusion. The charts in the book were built with ActionableAgile Analytics, "one that my company has developed" (L344), and his claims that "most agile electronic tools build them incorrectly" (L292) and that tooling provides "incorrect or incomplete information" (L484) come from a tool vendor. Chapter 16 repeats this and adds what it calls a "shameless plug" (L3920). This wiki does not carry those claims, and trackers are out of scope in any case. It keeps the checks a reader can run: [[verifying-tool-flow-analytics]].
+The author has a stake in the conclusion. The charts in the book were built with ActionableAgile Analytics, "one that my company has developed" (L344), and his claims that "most agile electronic tools build them incorrectly" (L292) and that tooling provides "incorrect or incomplete information" (L484) come from a tool vendor. Chapter 16 repeats this and adds what it calls a "shameless plug" (L3920). This wiki does not carry those claims, and trackers are out of scope in any case. It keeps the checks a reader can run: [[capturing-flow-data]].
 
 The tone is deliberately provocative, and the author says so (L494). A strong sentence here is a position and not a finding, as with "I promise that you will be predictable" (L3964).
 
-The book also contains errors a reader can catch. Its statement about eleven samples does not survive arithmetic ([[how-much-flow-data]]), and it disagrees with itself on spotting bottlenecks ([[bottleneck-on-the-cfd]]) and on reporting intervals ([[cycle-time-scatterplot]]).
+The book also contains errors a reader can catch. Its statement about eleven samples does not survive arithmetic ([[how-much-flow-data]]), and it disagrees with itself on spotting bottlenecks ([[reading-a-cfd]]) and on reporting intervals ([[cycle-time-scatterplot]]).
 
 ## Scope and claimed reach
 
@@ -75,7 +75,7 @@ The author says the book builds in order and that each chapter can also stand al
 - **The argument over the words Lead Time and Cycle Time** beyond its one useful point (L682-L690). It changes no output, and [[cycle-time]] keeps the point that either word needs its boundaries stated.
 - **The respect-for-people experiment** (L500-L506). It has no sign and concerns managing people.
 - **Staffing questions** (L746). Managing people is out of scope.
-- **Spreadsheet and tool advice** (L3872-L3876, L3920). It is configuration, apart from the warning kept on [[verifying-tool-flow-analytics]].
+- **Spreadsheet and tool advice** (L3872-L3876, L3920). It is configuration, apart from the warning kept on [[capturing-flow-data]].
 - **The Monte Carlo cost figures and unit costs** at Siemens (L4214, L4234). No dollar figure reaches a board, and this wiki's purpose does not need them.
 - **The morale and stand-up reports** (L4238-L4244). They are testimony about managing people.
 

@@ -36,7 +36,7 @@ This wiki's ordering pages compare tasks by [[cost-of-delay]], and Vacanti names
 | The item has started, a slot freed | Age in process | [[fifo-pull-order]] |
 | A top-rank task arrives while work is started | A declared exception | [[interrupting-started-work]] |
 
-The third row is not a loophole taken against Vacanti. He grants it himself for "obvious high value expedites": production down, or a regulatory requirement with massive fines (L3456). The sources differ on where the line falls. The cost-of-delay source allows a switch when a very high item waits behind medium or low work, and Vacanti wants those cases rare and designed for ([[slack-for-expedites]]).
+The third row is not a loophole taken against Vacanti. He grants it himself for "obvious high value expedites": production down, or a regulatory requirement with massive fines (L3456). The sources differ on where the line falls. The cost-of-delay source allows a switch when a very high item waits behind medium or low work, and Vacanti wants those cases rare and designed for ([[expedite-lane]]).
 
 Under a flow setup, replenishment is each refill of the input queue, so ratings are read fresh at each refill ([[just-in-time-prioritization]]; [[cost-of-delay]] changes over time). Under an iteration setup, this wiki reads selection for the period as the replenishment moment ([[reprioritize-before-each-iteration]]), with the same rule for pull order inside the period. Vacanti does not discuss iterations in this chapter.
 

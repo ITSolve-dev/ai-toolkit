@@ -14,16 +14,17 @@ This is *Flow Metrics for Scrum Teams* by Daniel Vacanti and Will Seele (L115), 
 
 ## Gate: partly in scope, read in part
 
-The book restates much of [[vacanti-actionable-agile-metrics]] for Scrum, and it says so of its Chapter 9 (L1468). This ingest was directed to read only four ranges and the title page.
+The book restates much of [[vacanti-actionable-agile-metrics]] for Scrum, and it says so of its Chapter 9 (L1468). This ingest was directed to read only four ranges and the title page; a later repair pass read Chapter 4 and the formula passage.
 
 | Lines | Content | Result |
 |---|---|---|
 | L372-L382 | Work Item Age | [[work-item-age]] |
 | L776-L1095 | Sprint Planning, parts I and II | [[throughput-monte-carlo]], [[filling-a-period]] |
-| L1118-L1318 | The SLE at a daily check, and items not flowing | [[blocked-work-policies]], [[percentile-intervention-triggers]], [[story-splitting-patterns]] |
+| L1118-L1318 | The SLE at a daily check, and items not flowing | [[blocked-work-counts-against-wip]], [[percentile-intervention-triggers]], [[story-splitting-patterns]] |
 | L1382-L1442 | When is it done, and what can be done | [[throughput-monte-carlo]], [[date-driven-vs-feature-driven]] |
+| L436-L456, L637-L770 | Cycle Time and Age formulas; Chapter 4, the Scatterplot and the Aging Chart (read in a later repair pass) | [[work-item-age]] |
 
-The rest was not read. Saying that it repeats the earlier book is the direction given to this ingest and not a finding of this page. One part is known to be new to this base: Chapter 4's Aging Chart (from about L736), since "Aging Chart" does not occur in the raw of the earlier book. [[work-item-age]] holds only what L1154 says of it.
+The rest was not read. Saying that it repeats the earlier book is the direction given to this ingest and not a finding of this page. One part is new to this base: Chapter 4's Aging Chart (L728-L760), since "Aging Chart" does not occur in the raw of the earlier book. Chapter 4 and the formulas at L440-L456 were read in a later repair pass, and [[work-item-age]] carries them. The Scatterplot half of Chapter 4 repeats the earlier book's Chapter 10 with different example figures (50th percentile 8 days, 85th 15, L683-L685) and added no page.
 
 ## Thesis
 
@@ -34,7 +35,7 @@ Scrum's events can run on flow data in place of estimates. Planning forecasts a 
 - A recipe for simulating from daily Throughput, in both directions, with how to read each and how to choose the window and the risk: [[throughput-monte-carlo]].
 - A third way to fill a period, which this wiki resolves by setup: [[filling-a-period]], and the consequences on [[velocity]], [[velocity-versus-commitment-planning]] and [[dropping-estimates-for-flow-forecasts]].
 - Work Item Age as a measure of its own: [[work-item-age]].
-- Three levels of policy for blocked work: [[blocked-work-policies]].
+- Three levels of policy for blocked work: [[blocked-work-counts-against-wip]].
 - What to do at a percentile line, and which question to ask first: [[percentile-intervention-triggers]].
 - The size check run at selection, and the question of smallest value: [[right-sizing]], [[size-ceiling]].
 - Three more cuts, by acceptance criterion, by customer and by assumption: [[story-splitting-patterns]].
@@ -46,10 +47,10 @@ Scrum's events can run on flow data in place of estimates. Planning forecasts a 
 These passages say what a page already holds, so those pages were left alone unless a condition was added.
 
 - Dividing by an average rate (L802-L812): [[forecast-from-an-average]].
-- The general pattern of a Monte Carlo method (L842-L850): [[monte-carlo-simulation]].
+- The general pattern of a Monte Carlo method (L842-L850): [[throughput-monte-carlo]].
 - Right size is not same size, and the wood chipper's floor and ceiling (L1034-L1036): [[right-sizing-not-same-sizing]], [[size-ceiling]].
 - Skipping the Scrum Guide's decomposition to a day or less (L1048): [[size-ceiling]].
-- Checking a tool by computing the result yourself (L1058-L1062): [[verifying-tool-flow-analytics]].
+- Checking a tool by computing the result yourself (L1058-L1062): [[capturing-flow-data]].
 - That not all items finish inside a period (L1130): [[iteration-length-versus-cycle-time]].
 - The SLE, how it is chosen, and the rise from 15% to 30% to 50% (L1144-L1168): [[service-level-expectation]], [[percentile-intervention-triggers]].
 - WIP hidden in a large item (L1228): [[hidden-wip-in-large-items]].
@@ -71,7 +72,7 @@ It is no second voice for [[vacanti-actionable-agile-metrics]], since Vacanti is
 Its claims are wider than its support in places.
 
 - It says "estimation is not needed" (L970) and then that the count covers right-sized items only (L1022). This wiki reads the second as limiting the first ([[dropping-estimates-for-flow-forecasts]]).
-- It calls the stability assumption safe under professional Scrum (L862). This wiki does not accept that ([[forecast-needs-a-stable-process]]).
+- It calls the stability assumption safe under professional Scrum (L862). This wiki does not accept that ([[throughput-monte-carlo]]).
 - It says a stuck item is usually too big (L1210) and elsewhere gives other causes (L1178, L1196). This wiki settles the order by what the board shows ([[percentile-intervention-triggers]]).
 
 Agents appear nowhere in the ranges read, and every mechanism assumes a team of people.

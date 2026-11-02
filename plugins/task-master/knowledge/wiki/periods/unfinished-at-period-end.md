@@ -5,7 +5,7 @@ summary: A task that has not met the standard of done is not partly done; it goe
 tags: [rule, iterations, definition-of-done, scrum, wip]
 sources: [scrum-guide-2020, cohn-agile-estimating-planning]
 created: 2026-11-01
-updated: 2026-11-01
+updated: 2026-11-02
 ---
 
 # Unfinished at Period End
@@ -47,7 +47,7 @@ Cohn agrees with the Scrum Guide on the rule and adds a reason.
 >
 > — [[cohn-agile-estimating-planning]], L4881-L4885
 
-Cohn counts this as a reason planning succeeds: "all work in process is eliminated at the end of each iteration" (L4881). The stated benefit is flow: "Because work in process is eliminated at the start of each iteration, teams are more easily able to work efficiently in short iterations." (L4887), which gives a shorter loop of feedback from users and earlier learning and risk control (L4887). The reasoning connects to [[wip-lengthens-cycle-time]]. The Scrum Guide's text gives no such reason.
+Cohn counts this as a reason planning succeeds: "all work in process is eliminated at the end of each iteration" (L4881). The stated benefit is flow: "Because work in process is eliminated at the start of each iteration, teams are more easily able to work efficiently in short iterations." (L4887), which gives a shorter loop of feedback from users and earlier learning and risk control (L4887). The reasoning connects to [[starting-more-work]]. The Scrum Guide's text gives no such reason.
 
 This wiki does not read "eliminated" literally. A half-built feature still exists on the day after the boundary, and by Cohn's own account it "often" continues. What is eliminated is the feature's claim on the next period, since nothing is continued without a decision ([[reprioritize-before-each-iteration]]). If nearly every unfinished item is reselected without being compared to the rest, work in process has only been renamed. The sign is the last one listed above: the same task selected in several periods running.
 
@@ -62,7 +62,7 @@ The return is the one sanctioned exception to [[backward-movement]].
 
 ## An open point
 
-Neither guide says whether a returned task's age restarts when it is selected again. This wiki's view is that board history should keep the whole span, since a reset would hide exactly the task the sign above is looking for. No source states this.
+Neither guide says whether a returned task's age restarts when it is selected again. This wiki's view is that board history should keep the whole span, since a reset would hide exactly the task the sign above is looking for. No source states this. The erasure of an entry date on [[non-standard-departure]] applies only to the per-step dates that draw a chart, not to age or Cycle Time, so the two pages give a returned task the same age.
 
 ## Agent executor note
 

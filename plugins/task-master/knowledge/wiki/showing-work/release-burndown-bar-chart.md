@@ -5,7 +5,7 @@ summary: A burndown drawn as bars whose top tracks completed and re-estimated wo
 tags: [method, visualization, burndown, scope-change, retrospective-analysis, cohn]
 sources: [cohn-agile-estimating-planning]
 created: 2026-11-01
-updated: 2026-11-01
+updated: 2026-11-02
 ---
 
 # Release Burndown Bar Chart
@@ -62,4 +62,4 @@ Inputs: whether the readers need scope apart from progress, which is read from w
 
 ## Agent executor note
 
-The source's argument is social: someone gains by classifying a change one way. When the plugin computes the chart from board history, the classification comes from what happened: a task entering the release lowers the bottom, and an estimate edit moves the top. Two cases remain that history alone does not settle, and this wiki has no source for either. A split whose pieces sum to more than the parent is read here as re-estimation, and a task replaced by a differently worded one is read as a removal and an addition, which may overstate churn. A page generated this way should state its classification so a reader can dispute it, and the source's fallback to the line chart still holds.
+This wiki reads the source's caveat as social: the source says only that the chart needs teams "mature enough not to argue" (L4402) and "may cause arguments in some organizations" (L4433), and the motive, that someone gains by classifying a change one way, is this wiki's reading. When the plugin computes the chart from board history, the classification comes from what happened: a task entering the release lowers the bottom, and an estimate edit moves the top. Two cases remain that history alone does not settle, and this wiki has no source for either. A split whose pieces sum to more than the parent is read here as re-estimation, and a task replaced by a differently worded one is read as a removal and an addition, which may overstate churn. A page generated this way should state its classification so a reader can dispute it, and the source's fallback to the line chart still holds.

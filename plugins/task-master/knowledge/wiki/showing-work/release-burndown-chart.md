@@ -30,7 +30,7 @@ Inputs: the starting total and the current remaining, both read from the chart.
 
 Condition: it says when the project is likely to finish "if all factors affecting the project remain unchanged" (L4340).
 
-What would show it wrong: the next period's point falls off the projected line.
+This wiki's test of the forecast, since Cohn says "A team's burndown is never perfectly smooth" (L4427) and one off-line point shows nothing: the projected finish moves by more than one period across successive readings, or the release does not finish in the projected iteration.
 
 Three limits are this wiki's reading of that condition.
 
