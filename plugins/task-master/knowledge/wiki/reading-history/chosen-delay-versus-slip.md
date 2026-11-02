@@ -70,6 +70,6 @@ This wiki reads the range as what made "two weeks past" a small statement and no
 
 ## Agent executor note
 
-This wiki reads the test as independent of who executes, since it asks about dates, totals and decisions. The decision has to be written where history can find it, because an agent keeps no memory of why a date moved ([[fact-stranded-outside-the-task]]).
+This wiki reads the test as independent of who executes, since it asks about dates, totals and decisions. The decision has to be written where history can find it, because an agent keeps no memory of why a date moved ([[conversation-moves-into-the-task]]).
 
 How the scope was accepted is [[adding-scope-to-a-release-plan]]. The arithmetic behind each forecast is [[velocity-range-forecast]]. For a date treated as a reason to hurry, see [[a-date-is-not-urgency]].

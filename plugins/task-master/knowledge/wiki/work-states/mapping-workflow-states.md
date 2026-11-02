@@ -26,7 +26,7 @@ The Playbook gives this as a story (L35). The numbered form is this wiki's.
 2. **List every activity that happened to each**, as it happened and not as it was supposed to.
 3. **Note what was skipped and where work waited.** The illustrated team finds that "the bug fix skipped the spec step entirely" and that "compliance updates always wait for a legal review that no column currently represents." (L35).
 4. **Group similar activities across the tasks.** Each group is a candidate state.
-5. **Judge the candidates** against [[judging-board-columns]].
+5. **Judge the candidates** against [[distinguishable-work-states]].
 
 ## What skipping it costs
 

@@ -38,7 +38,7 @@ The source calls such a process unpredictable “by definition” (L2174) and sa
 
 ### Install it at the start
 
-Matching the two rates is the plainest form of a WIP limit, and the [[siemens-hs-case]] treats it as the precondition for everything else: "limiting WIP can be as simple as making sure that work is not started at a faster rate than work is completed" (L4098). The same passage goes on: "Matching arrival rates to departure rates is the necessary first step to stabilizing a system. Only by operating a stable system could we hope to achieve our goal of predictability." (L4098). The conclusion adds the reason to do it before improvement work: "Continuous improvement in a system that is unstable always runs the risk of improvement initiatives that result in sub-optimizations." (L4260)
+Matching the two rates is the plainest form of a WIP limit, and the Siemens case ([[vacanti-actionable-agile-metrics]]) treats it as the precondition for everything else: "limiting WIP can be as simple as making sure that work is not started at a faster rate than work is completed" (L4098). The same passage goes on: "Matching arrival rates to departure rates is the necessary first step to stabilizing a system. Only by operating a stable system could we hope to achieve our goal of predictability." (L4098). The conclusion adds the reason to do it before improvement work: "Continuous improvement in a system that is unstable always runs the risk of improvement initiatives that result in sub-optimizations." (L4260)
 
 Siemens' first Kanban release ran without limits at first, because teams and management resisted them, and it delayed so that they would become "more amenable" (L4100). The old problems returned:
 
@@ -46,7 +46,7 @@ Siemens' first Kanban release ran without limits at first, because teams and man
 >
 > — [[vacanti-actionable-agile-metrics]], L4102
 
-Once limits came in, they had "the almost immediate effect of stabilizing the system such that Cycle Times no longer continued to grow" (L4120-L4126), and the process "reached a stable state at about 41 days almost immediately" (L4132). The chapter gives conflicting dates for when this happened; see [[siemens-hs-case]]. This wiki reads delay as having less to offer a few people: there is no 15-team acceptance problem, so the plugin can propose the limit when the board is set up ([[wip-control]], [[board-rules-by-setup]]).
+Once limits came in, they had "the almost immediate effect of stabilizing the system such that Cycle Times no longer continued to grow" (L4120-L4126), and the process "reached a stable state at about 41 days almost immediately" (L4132). The chapter gives conflicting dates for when this happened; see [[vacanti-actionable-agile-metrics]]. This wiki reads delay as having less to offer a few people: there is no 15-team acceptance problem, so the plugin can propose the limit when the board is set up ([[wip-control]], [[board-rules-by-setup]]).
 
 Forecasting depends on the same condition. Siemens' simulations rested on "historical Cycle Time metrics that were stable and predictable" (L4226-L4232), and this wiki reads that as meaning [[throughput-monte-carlo]] should not be trusted on an unstable history.
 
@@ -89,7 +89,7 @@ This wiki reads the test as forward-looking: the input is whether the outcome is
 
 ## Trade-offs and limits
 
-- **The cost of the first part** is refusing to start work that has been requested, which is why balance needs an explicit control: [[constant-wip]].
+- **The cost of the first part** is refusing to start work that has been requested, which is why balance needs an explicit control: [[constant-wip]]. An arrivals column with its own limit is one form of that control, and only where such a column is needed ([[started-and-finished-points]], L2162-L2170).
 - **The second part does not hold alone where commitments are made too early.** This wiki reads the less that was known when work started as the more that can arrive mid-flight, and that as the reason the rule is paired with just-in-time practices and not with pressure to finish.
 - **Balance is only a first step.** The source calls it “the first—and probably most important—step” toward balancing demand and supply (L2160), and warns that a balanced picture does not prove health; see [[cumulative-flow-diagram]].
 - **Both parts together do not finish the job.** Arrival-departure matching and conserved flow make metrics more reflective of real capability, yet "doing these two things alone still does not guarantee that our system is completely stable" (L2344).

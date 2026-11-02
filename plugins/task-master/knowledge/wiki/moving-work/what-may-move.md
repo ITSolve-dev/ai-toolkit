@@ -5,7 +5,7 @@ summary: The trigger that lets a task start or change state; under the Kanban Gu
 tags: [decision-rule, wip, pull, kanban, scrum]
 sources: [kanban-guide, scrum-guide-2020, kubernetes-issue-triage, montgomery-tracker-smells]
 created: 2026-11-01
-updated: 2026-11-01
+updated: 2026-11-02
 ---
 
 # What May Move
@@ -18,7 +18,7 @@ Every board needs an answer to one question: what makes it allowable for this ta
 >
 > — [[kanban-guide]], L141
 
-This wiki reads three claims there. A start needs a signal. The ordinary signal is the count falling below the bound on [[wip-control]]. The same limit applies to a part of the workflow, so a state with its own bound refuses work the same way.
+This wiki reads three claims there, and hardens the first two. The Guide says members "should" start only on a clear signal, and that the count dropping below the control "can be a signal" (L141); this wiki makes a start need a signal, and makes the count falling below the bound on [[wip-control]] the ordinary signal. The same limit applies to a part of the workflow, so a state with its own bound refuses work the same way.
 
 Moves between states follow the project's own rules. The Guide requires "Explicit policies about how work items can flow through each state from started to finished." (L114). It requires that the policies exist and says nothing about what they contain, so a Kanban project cannot read its forward rule from the Guide.
 
@@ -27,7 +27,7 @@ Moves between states follow the project's own rules. The Guide requires "Explici
 The Scrum Guide has no board and no states, so it says nothing about a move between columns. Its claims concern three edges of a period.
 
 - **Entering.** Work enters by selection: "Through discussion with the Product Owner, the Developers select items from the Product Backlog to include in the current Sprint." ([[scrum-guide-2020]] L220). See [[filling-a-period]].
-- **During.** Once selected, how the work proceeds is the team's own: they "internally decide who does what, when, and how" (L114). The only constraint on change is the goal ([[mid-period-change]]).
+- **During.** Once selected, how the work proceeds is the team's own: they "internally decide who does what, when, and how" (L114). The constraints on change are the goal and quality, with scope clarified and renegotiated with the Product Owner ([[scrum-guide-2020]] L195-L198; [[mid-period-change]]).
 - **Leaving.** An item leaves by meeting the Definition of Done, or else it "returns to the Product Backlog for future consideration" (L319). See [[unfinished-at-period-end]].
 
 This wiki reads the difference between the two guides as a difference in when the decision is made. The Kanban Guide decides at each start, from the state of the board. The Scrum Guide decides once for the period, from a forecast, and then protects the result.

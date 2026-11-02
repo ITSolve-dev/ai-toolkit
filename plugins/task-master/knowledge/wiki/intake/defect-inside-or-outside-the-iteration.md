@@ -5,7 +5,7 @@ summary: A defect found in the iteration is part of the work that made it and fi
 tags: [decision-rule, triage, defects, iterations, cohn]
 sources: [cohn-agile-estimating-planning]
 created: 2026-11-01
-updated: 2026-11-01
+updated: 2026-11-02
 ---
 
 # Defect Inside or Outside the Iteration
@@ -55,4 +55,4 @@ Holding a task open until tests pass slows the count of finished work inside a p
 
 ## Agent executor note
 
-The rule rests on a test run and on when a defect was found, so this wiki expects it to survive an agent executing. An agent's report that a task is complete is not evidence that tests pass ([[agent-silence-is-not-completeness]]). Intake of a defect report is on [[incoming-report-content]] and [[triage-procedure]].
+The rule rests on a test run and on when a defect was found, so this wiki expects it to survive an agent executing. This wiki adds that an agent's report that a task is complete is not evidence that tests pass: done is what a check shows ([[testable-acceptance]]). Intake of a defect report is on [[incoming-report-content]] and [[triage-procedure]].

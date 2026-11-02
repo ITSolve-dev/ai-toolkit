@@ -44,7 +44,7 @@ These signs are this wiki's. Each raises a question and is not a verdict: an ass
 
 - **In board state:** queued tasks that already have an assignee, most clearly when every selected task has one at the start of a period.
 - **In board state:** an active task with no assignee. Cohn's single move rules this out too.
-- **In board state during a period:** one assignee holding several unrelated tasks in progress.
+- **In board state during a period:** one assignee holding more than two tasks in progress, or unrelated ones, against the threshold on [[wip-per-executor]].
 - **In board history:** the assignee was set long before the task's first move to an active state.
 - **In board history:** a task reassigned late, after sitting assigned and unstarted.
 

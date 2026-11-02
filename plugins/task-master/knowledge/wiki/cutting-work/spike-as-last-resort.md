@@ -1,16 +1,16 @@
 ---
 title: Spike as a Last Resort
 category: cutting-work
-summary: A time-boxed investigation is the right cut when a task is large because its implementation is poorly understood and no other split applies, and its acceptance criteria are questions; Cohn treats a spike as ordinary and pairs it with a placeholder, and where the unknown is the reach of a change in existing code it need not wait for the other splits.
+summary: A time-boxed investigation is the right cut when a task is large because its implementation is poorly understood and no other split applies, and its acceptance criteria are questions; Cohn pairs a spike with a placeholder at the level of task cards; this wiki adds, without a source, that where the unknown is the reach of a change in existing code it need not wait for the other splits.
 tags: [decision-rule, decomposition, estimation, splitting, cohn]
 sources: [humanizing-work-splitting, wake-invest, cohn-agile-estimating-planning]
 created: 2026-11-01
-updated: 2026-11-01
+updated: 2026-11-02
 ---
 
 # Spike as a Last Resort
 
-A spike is a time-boxed investigation cut out of a task so that the rest of the task can be estimated, implemented or split. Wake describes the move as splitting a story "into a (time-boxed) “spike” that will give the team enough information to make a decent estimate, and the rest of the story that will actually implement the desired feature" (L66). Cohn defines it as work done for knowledge: "A spike is a task included in an iteration plan that is being undertaken specifically to gain knowledge or answer a question." ([[cohn-agile-estimating-planning]] L3238). The Humanizing Work authors add when to do it and how it ends. Cohn adds a pairing and a trigger, and he does not share their last-resort condition.
+A spike is a time-boxed investigation cut out of a task so that the rest of the task can be estimated, implemented or split. Wake describes the move as splitting a story "into a (time-boxed) “spike” that will give the team enough information to make a decent estimate, and the rest of the story that will actually implement the desired feature" (L66). Cohn defines it as work done for knowledge: "A spike is a task included in an iteration plan that is being undertaken specifically to gain knowledge or answer a question." ([[cohn-agile-estimating-planning]] L3238). The Humanizing Work authors add when to do it and how it ends. Cohn adds a pairing and a trigger, at the level of task cards in iteration planning, and says nothing for or against a last resort at the level of a story.
 
 ## The decision
 
@@ -35,9 +35,9 @@ This wiki reads the pairing as useful for planning, because a board keeps showin
 
 Cohn's trigger is an impact that cannot be judged without looking at code: "We couldn’t be sure without looking at the code and we didn’t want to stop a planning meeting for that." (L3232). This wiki reads the unknown as the reach of a change, a specific case of the condition that implementation is poorly understood.
 
-## Against the last-resort position
+## An exception this wiki adds to the last-resort position
 
-The resolution is this wiki's. Cohn presents the spike as ordinary, while [[humanizing-work-splitting]] puts it last. The two differ in the kind of unknown. Building a thin slice to learn fits new behaviour. It fits badly where the unknown is what an existing change will break, since a thin slice of a change to shared code still needs that answer first. So for reach-of-change unknowns in existing code, a spike need not wait until the splitting patterns are exhausted. For anything else the last-resort rule stands.
+This is not a disagreement between the sources. Cohn's case is a level below this wiki's task (*Cohn's pairing*, above) and does not address the last resort that [[humanizing-work-splitting]] sets. The exception below is this wiki's own and has no source; Cohn's one legacy-code anecdote suggested it, and does not support it. It rests on the kind of unknown. Building a thin slice to learn fits new behaviour. It fits badly where the unknown is what an existing change will break, since a thin slice of a change to shared code still needs that answer first. So for reach-of-change unknowns in existing code, a spike need not wait until the splitting patterns are exhausted. For anything else the last-resort rule stands.
 
 ## How a spike is written
 

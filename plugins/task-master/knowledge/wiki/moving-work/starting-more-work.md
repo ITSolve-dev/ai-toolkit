@@ -41,7 +41,7 @@ The response to long [[cycle-time]] of starting additional items sooner, which r
 
 The habit of answering a stalled item by opening another. It feels productive and it keeps a points chart moving, but it adds to WIP while the stalled item stays unfinished.
 
-At Siemens HS ([[siemens-hs-case]]), two habits fed it. One was a hedge: "It had been common practice to start multiple features at one time to mitigate possible risks." (L4026). The other was the reaction to a block:
+At Siemens HS ([[vacanti-actionable-agile-metrics]]), two habits fed it. One was a hedge: "It had been common practice to start multiple features at one time to mitigate possible risks." (L4026). The other was the reaction to a block:
 
 > whenever a story or feature was blocked (for a variety of reasons such as waiting for a dependency from another team, waiting for customer validation, inability to test because of environmental or build break issues, etc.), teams would simply start the next story or feature so that we could claim the points which we had committed to achieve.
 >
@@ -63,7 +63,7 @@ These raise a question. A new start can be legitimate if the limit allows it and
 
 ## Trigger 3: Cycle Time is long, so add hours or capacity
 
-When Cycle Times are too long, a simplified reading of [[littles-law]] leaves two levers open: decrease WIP, or increase Throughput. The source's position, in the [[siemens-hs-case]], is that the first comes first.
+When Cycle Times are too long, a simplified reading of [[littles-law]] leaves two levers open: decrease WIP, or increase Throughput. The source's position, in the Siemens case ([[vacanti-actionable-agile-metrics]]), is that the first comes first.
 
 > The problem with trying to impact Throughput in these ways is that most organizations actually end up increasing WIP faster than they increase Throughput.
 >
@@ -165,7 +165,7 @@ The source credits managing queues, limiting WIP and batch size, and building a 
 
 **Numbers and their conditions.** First pass yield went from 75% before Kanban to 86% and then 95% (L4200), in a regulated product with a dedicated test role in each team (L4002, L4014). The chapter does not isolate WIP as the cause. It states that "Along with the gains we achieved through managing WIP; we had placed significant focus on reinforcing and improving our CI and quality management practices." (L4262). This wiki therefore keeps the mechanism, late feedback on unfinished work, and treats the percentages as one confounded result; the charter grades a practitioner source on mechanisms for this reason.
 
-**Trade-off.** This wiki reads the cost as more frequent integration and test runs, which Siemens could afford because CI and TDD were already in place (L4006-L4012). The source does not say how far the effect holds without them. See also [[hidden-wip-in-large-items]] and [[multitasking]].
+**Trade-off.** This wiki reads the cost as more frequent integration and test runs, which Siemens could afford because CI and TDD were already in place (L4006-L4012). The source does not say how far the effect holds without them. See also [[hidden-wip-in-large-items]] and [[wip-per-executor]].
 
 ## Which setup this applies under
 

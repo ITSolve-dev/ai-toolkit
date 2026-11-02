@@ -5,7 +5,7 @@ summary: What to do with an item that came in; mark it as not yet looked at, tak
 tags: [method, intake, triage]
 sources: [kubernetes-issue-triage, zimmermann-good-bug-report, montgomery-tracker-smells]
 created: 2026-11-01
-updated: 2026-11-01
+updated: 2026-11-02
 ---
 
 # Triage Procedure
@@ -35,10 +35,10 @@ This wiki notes the scale first. That guide describes one of the largest open-so
 |---|---|---|
 | A question or a request for help | Answer or redirect it. No task | L178 |
 | Abandoned, or in the wrong place | Close it, or say why it stays | L184 |
-| Missing what is needed | Ask once, and set a follow-up | [[incoming-report-content]], [[clarifying-questions]], L188, L206 |
+| Missing what is needed | Ask once (this wiki's choice; the guide says only to let the reporter know, L206), and set a follow-up | [[incoming-report-content]], [[clarifying-questions]], L188, L206 |
 | A duplicate | Carry what is new and close | [[duplicate-reports]] |
 | A defect that reproduces | Accepted, and rated | [[reproduce-before-accepting]] |
-| A defect that does not reproduce | Report findings and agree | [[reproduce-before-accepting]] |
+| A defect that does not reproduce | Report findings; close by agreement or after an unanswered follow-up | [[reproduce-before-accepting]] |
 | A request for new behaviour | Accepted once it can be cut and checked | [[task-must-justify-itself]], [[testable-acceptance]], [[story-splitting-patterns]] |
 | Possibly useful, with nothing yet behind it | Held as a placeholder, outside the order | [[incomparable-tasks]], L236 |
 
@@ -46,11 +46,11 @@ The list of outcomes is this wiki's assembly from the guide's Step Two and its p
 
 ## How often
 
-The guide allows either form: "Triage can happen asynchronously and continuously, or in regularly scheduled meetings." (L60). One group reports that regularity is what counts: "The api-machinery SIG has found that consistently meeting on a regular, fixed schedule is key to the success of a triaging effort. More frequent, small meetings are better than infrequent, large meetings." (L136). That is one group's report and no measurement. Its meetings are out of scope. The interviews behind [[montgomery-tracker-smells]] point the same way: the most mentioned context factor, at 48 mentions, is workflow design, defined as "Smell is caught early or prevented entirely as part of a standard workflow, such as regular issue review meetings" (L559), and seven participants saw triage meetings as a place to check quality (L609). That too is what people said. This wiki reads the point that survives as small and often, which for a plugin means triaging an item when it arrives and showing the result when the person steering next looks.
+The guide allows either form: "Triage can happen asynchronously and continuously, or in regularly scheduled meetings." (L60). One group reports that regularity is what counts: "The api-machinery SIG has found that consistently meeting on a regular, fixed schedule is key to the success of a triaging effort. More frequent, small meetings are better than infrequent, large meetings." (L136). That is one group's report and no measurement. Its meetings are out of scope. The interviews behind [[montgomery-tracker-smells]] point the same way: the most mentioned context factor, at 48 mentions, is workflow design, defined as "Smell is caught early or prevented entirely as part of a standard workflow, such as regular issue review meetings" (L559), and several participants described triage meetings as where report quality is checked (L609). That too is what people said. This wiki reads the point that survives as small and often, which for a plugin means triaging an item when it arrives and showing the result when the person steering next looks.
 
 ## Who decides
 
-The plugin can do the reading, the search, the proposal and the reproduction. Closing is the person's decision, as is the rating, because each rests on facts the repository does not hold. The guide itself requires agreement before closing as not reproducible (L202).
+The plugin can do the reading, the search, the proposal and the reproduction. Closing is the person's decision, as is the rating, because each rests on facts the repository does not hold. The guide closes as not reproducible when both parties agree (L202), and in all cases after 20 days with no response (L208).
 
 ## Sign of violation
 
@@ -73,7 +73,7 @@ A triage decision was wrong if a closed item returns as a new request, or if an 
 
 ## Cost
 
-Triage spends the attention of the people steering before any work happens. A project with few requests, all from the person steering, may need only steps 5 to 7. Nothing here says at what volume the full procedure starts to pay for itself.
+Triage spends the attention of the people steering before any work happens. This wiki's reading of when the full procedure applies, which no source gives: read two inputs, who the requests come from (the person steering, or someone else) and how many items are open and untriaged, from board state. If every request comes from the person steering and nothing waits untriaged, steps 5 to 7 suffice, and step 2's oldest-first order has no queue to act on. If requests come from others, or items wait untriaged, run all the steps. The choice was wrong if a duplicate or a non-reproducing item reaches work. Nothing here says at what volume the full procedure starts to pay for itself.
 
 ## Agent executor note
 

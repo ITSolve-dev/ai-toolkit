@@ -51,7 +51,7 @@ This wiki notes that a bare arithmetic average discards the thing the spread was
 
 ## What the plugin does with a spread
 
-The assumption goes into the task. This wiki reads a spread resolved in conversation as leaving the task as vague as it was, and that is what [[conversation-moves-into-the-task]] and [[fact-stranded-outside-the-task]] are about. The source says only that notes can be taken for later programming and testing (L1330). Making them part of the task is ours, for an executor that cannot ask. An assumption that cannot be settled yet goes to [[unknowns-surfaced-by-estimating]].
+The assumption goes into the task. This wiki reads a spread resolved in conversation as leaving the task as vague as it was, and that is what [[conversation-moves-into-the-task]] is about. The source says only that notes can be taken for later programming and testing (L1330). Making them part of the task is ours, for an executor that cannot ask. An assumption that cannot be settled yet goes to [[unknowns-surfaced-by-estimating]].
 
 ## Signs
 

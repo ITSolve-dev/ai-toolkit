@@ -45,7 +45,7 @@ Cohn allows separate units with no baseline only "when the products being built 
 
 ## Trade-off
 
-A baseline costs an agreement step before estimating starts, and with several teams that means representatives or the whole group agreeing. This wiki reads that as worth paying only when more than one estimator contributes to a sum that someone reads. See [[multi-team-techniques-scale-limit]].
+A baseline costs an agreement step before estimating starts, and with several teams that means representatives or the whole group agreeing. This wiki reads that as worth paying only when more than one estimator contributes to a sum that someone reads. Cohn himself exempts a single team from the multi-team techniques this one belongs to (L4211; the gate is quoted on [[critical-dependency]]).
 
 ## Agent executor note
 

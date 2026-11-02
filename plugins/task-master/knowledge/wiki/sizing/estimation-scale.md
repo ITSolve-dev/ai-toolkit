@@ -53,7 +53,7 @@ The large steps exist to say that a task is large and not to schedule it.
 >
 > — [[cohn-agile-estimating-planning]], L5363
 
-The cards passed out are 13, 20, 40 and 100 (L5359). This wiki reads the claim as made about this team's scale, since it is relative to the stories estimated so far, and not as a universal ceiling. The choice of ceiling is on [[size-ceiling]], and the timing of the cut on [[when-to-split-a-task]].
+The cards passed out are 13, 20, 40 and 100 (L5359). This wiki reads the claim as made about this team's scale, since it is relative to the stories estimated so far, and not as a universal ceiling. The choice of ceiling and the timing of the cut are both on [[size-ceiling]].
 
 ## Failure mode: false precision
 

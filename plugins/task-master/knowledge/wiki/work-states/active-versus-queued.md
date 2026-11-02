@@ -36,7 +36,7 @@ What breaks is the diagnosis. If waiting hides inside an active state, a long ti
 
 ## Cost
 
-The rule adds states. A board with *Doing* and *Done* under each stage has twice as many places to look, and a board for a few people has few tasks to spread across them. This wiki reads this as a reason to add a queue only where tasks actually sit, which is what [[judging-board-columns]] checks.
+The rule adds states. A board with *Doing* and *Done* under each stage has twice as many places to look, and a board for a few people has few tasks to spread across them. This wiki reads this as a reason to add a queue only where tasks actually sit, which is what [[distinguishable-work-states]] checks.
 
 ## Three meanings of waiting
 

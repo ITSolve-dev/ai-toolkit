@@ -208,7 +208,7 @@ These signs are this wiki's. The charter excludes individual load, so they are r
 
 ### Why
 
-What breaks, on Cohn's account, is the ability to absorb variation. This wiki reads the consequence as an overrun on a fully loaded plan having nowhere to go, so it falls on other tasks, and it invites the partial deliveries described on [[multitasking]].
+What breaks, on Cohn's account, is the ability to absorb variation. This wiki reads the consequence as an overrun on a fully loaded plan having nowhere to go, so it falls on other tasks, and it invites the partial deliveries described on [[wip-per-executor]].
 
 ### Cost
 

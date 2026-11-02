@@ -75,7 +75,7 @@ Cohn calls them the most useful outcome of work done ahead of an iteration (L412
 
 The reason is that "the exact set of stories that will be undertaken in the next iteration are not known until the end of the iteration planning meeting" (L4127). The product owner and team can guess the likely ones, and the conditions are written for those. This wiki notes that preparing the rest would spend effort on stories that may never be taken.
 
-Cohn's baseline is that a team can start from something vague: "Going from vague requirement to working software in one iteration is usually easier on a single team project than it is when there are multiple teams." (L4121). The case for more detail up front is coordination: "The additional detail allows multiple teams to coordinate work." (L4121). For Cohn, earlier detail is therefore a multi-team need rather than a general one ([[multi-team-techniques-scale-limit]]).
+Cohn's baseline is that a team can start from something vague: "Going from vague requirement to working software in one iteration is usually easier on a single team project than it is when there are multiple teams." (L4121). The case for more detail up front is coordination: "The additional detail allows multiple teams to coordinate work." (L4121). For Cohn, earlier detail is therefore a multi-team need rather than a general one, and he exempts a single team from it (L4211).
 
 Preparation stays inside the current period. Those preparing work should not run a full iteration ahead: "their primary responsibility should remain the work of the current iteration, but in planning the current iteration they should include some tasks related to preparing for the next iteration." (L4123). This wiki keeps the shape of that advice and drops its staffing detail about analysts and designers, which is about people.
 
@@ -125,4 +125,4 @@ The placement of a condition on the task matters more with an agent, since an ag
 
 [[testable-acceptance]] holds the test for one criterion on one task, and the shared standard is on [[started-and-finished-points]]. This page adds what they do not: conditions exist at release level too, carry schedule and budget there, and can be renegotiated. Cohn's "high-level tests" (L872, L4125) are this wiki's acceptance criteria at the task level. Reducing them during a period is on [[narrowing-a-task-mid-period]].
 
-Related: [[user-story]], [[fitting-stories-into-a-release]], [[planning-horizons]], [[multi-team-techniques-scale-limit]].
+Related: [[unit-of-work]], [[fitting-stories-into-a-release]], [[planning-horizons]].

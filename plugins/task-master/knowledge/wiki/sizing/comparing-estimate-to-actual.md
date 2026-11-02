@@ -34,7 +34,7 @@ Compare only if all three hold:
 
 1. The comparison uses data the board already has, so nobody keeps a log.
 2. The comparison looks at a size step across many tasks, not at one task.
-3. No person's estimates are singled out by it ([[individual-velocity]]).
+3. No person's estimates are singled out by it ([[velocity]], its section on reporting for the project).
 
 | Input | Read from |
 |---|---|

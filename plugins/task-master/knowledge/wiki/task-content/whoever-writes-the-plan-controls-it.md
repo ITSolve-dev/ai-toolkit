@@ -30,7 +30,7 @@ These signs are this wiki's. Each raises a question to check against the discuss
 
 ## Why it matters here
 
-Cohn's remedy is cards that anyone can write on, which is facilitation and outside this wiki. The transfer here is ours: the plugin itself holds the keyboard. It writes tasks from conversations and documents, so any softening, tightening or reinterpretation it introduces has this same effect and nobody may notice. A task should state what was decided, and should mark what is still open as open, so that a vague phrase is never the only record of either ([[conversation-moves-into-the-task]], [[fact-stranded-outside-the-task]]).
+Cohn's remedy is cards that anyone can write on, which is facilitation and outside this wiki. The transfer here is ours: the plugin itself holds the keyboard. It writes tasks from conversations and documents, so any softening, tightening or reinterpretation it introduces has this same effect and nobody may notice. A task should state what was decided, and should mark what is still open as open, so that a vague phrase is never the only record of either ([[conversation-moves-into-the-task]]).
 
 ## Trade-off
 

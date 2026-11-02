@@ -33,6 +33,14 @@ Wake concedes that this is a preference and not an absolute: "We can’t always 
 
 What breaks is ordering. If the order is fixed by construction, the prioritization step has nothing left to decide, and any later reordering silently invalidates the estimates. The authors name exactly that risk: an estimate that loads the first story means "we have to remember to change our estimates if the Product Owner later changes priorities" (L267).
 
+Cohn gives the same reason at the level of a release plan:
+
+> In order for the product owner to have the most flexibility in prioritizing, features must be written so as to minimize the technical dependencies between them. It is difficult for a product owner to prioritize features into a release plan if the selection of one feature requires the prior development of three others.
+>
+> — [[cohn-agile-estimating-planning]], L780
+
+This wiki reads the cost as falling on the ordering: a feature worth doing first may have to come fourth, and its predecessors enter the release on the strength of being prerequisites, not of being valuable. Cohn does not ask for zero: "A team is unlikely to achieve a goal of absolutely no dependencies; however, keeping dependencies at a minimum is often quite feasible." (L780). This wiki reads that as asking whether a dependency could be cut by writing the feature differently, not whether it exists. The sign at that level is this wiki's: a high-order item that sits behind lower-order items only because of a "blocked by" link, or a chain of prerequisites a person would not have asked for on their own.
+
 ## What to do with a dependency that cannot be removed
 
 The authors give three moves, and in each the dependency stays but is made harmless:

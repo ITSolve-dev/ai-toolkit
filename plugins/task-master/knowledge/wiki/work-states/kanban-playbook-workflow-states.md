@@ -23,7 +23,7 @@ Column choices are guesses unless they come from tracing how work actually moved
 ## What this wiki took from it
 
 - The procedure of tracing recent work and grouping activities: [[mapping-workflow-states]].
-- What makes something a state, and the signs of poorly designed ones: [[judging-board-columns]].
+- What makes something a state, and the signs of poorly designed ones: [[distinguishable-work-states]].
 - The evidence that no fixed set is offered: [[distinguishable-work-states]].
 - A recurring wait with no column, as an example: [[column-versus-attribute]].
 

@@ -5,7 +5,7 @@ summary: The Kubernetes contributor guide to triaging incoming issues; a five-st
 tags: [summary, intake, triage, open-source]
 sources: [kubernetes-issue-triage]
 created: 2026-11-01
-updated: 2026-11-01
+updated: 2026-11-02
 ---
 
 # Issue Triage Guidelines (Kubernetes)
@@ -29,7 +29,7 @@ Issues are reviewed as they arrive and sorted into a few outcomes: closed as not
 | The set of outcomes for an incoming item | They describe the item and not the project's size | [[triage-procedure]] |
 | A marker for "not yet looked at" (L152) | The board has to show it at any size | [[triage-procedure]] |
 | A requester's classification is a claim to check (L222) | Requesters mistake a question for a bug at any size | [[triage-procedure]] |
-| Reproduce first, and close only by agreement (L192-L202) | It is about evidence | [[reproduce-before-accepting]] |
+| Reproduce first, and close by agreement or after 20 days without a response (L192-L208) | It is about evidence | [[reproduce-before-accepting]] |
 | Reference the original and close the duplicate (L197) | It is about the record | [[duplicate-reports]] |
 | Triggers for items that have stopped (L208, L263-L271) | The triggers survive and their values do not | [[closing-what-no-longer-applies]] |
 | A held placeholder for ideas with no support yet (L236) | It answers what to do with what cannot be rated | [[incomparable-tasks]] |

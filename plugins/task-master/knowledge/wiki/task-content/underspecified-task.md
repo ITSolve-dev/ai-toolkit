@@ -5,7 +5,7 @@ summary: A task missing information an expert would need to succeed; distinct fr
 tags: [concept, task-content, agents, underspecification]
 sources: [ambig-swe, montgomery-tracker-smells]
 created: 2026-11-01
-updated: 2026-11-01
+updated: 2026-11-02
 ---
 
 # Underspecified Task
@@ -26,7 +26,7 @@ The authors separate two neighbouring failures:
 >
 > — [[ambig-swe]], L250
 
-This wiki reads the difference as a difference in what can be seen. An ambiguous sentence is on the page and can be flagged by reading it. An omission leaves nothing to read, so an underspecified task can look complete. That is why the charter's refusal of a missing field as a sign has a cost here, and why [[agent-silence-is-not-completeness]] takes its sign from later history.
+This wiki reads the difference as a difference in what can be seen. An ambiguous sentence is on the page and can be flagged by reading it. An omission leaves nothing to read, so an underspecified task can look complete. That is why the omission, though the charter lets a task-content rule use it as a sign, has to be looked for against what the task needs rather than read off the page, and why [[agent-silence-is-not-completeness]] takes its sign from later history.
 
 ## More than one gap
 

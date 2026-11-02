@@ -34,10 +34,10 @@ The first two columns follow Cohn. Audiences follow Cohn for the first three row
 |---|---|---|---|
 | Will we finish this iteration's work? | [[iteration-burndown]] | Team, daily ([[cohn-agile-estimating-planning]] L4575) | Whether what is finished is what was wanted |
 | How far along is the release? | [[release-burndown-chart]] (L4641) | Stakeholders and participants, over the release (L4575) | Why the work moved, or what was learned and what risk was retired |
-| Why did remaining work move? | [[release-burndown-bar-chart]] | A team past the simpler line chart, whose members do not argue over which side a change belongs on (L4402) | Completion apart from re-estimation |
-| Which themes of the release are behind? | [[parking-lot-chart]] | Anyone wanting "a high-level view" (L4435) | Which tasks are done, or the trend |
+| Why did remaining work move? | Burndown bar chart ([[release-burndown-chart]], its section on the bar form) | A team past the simpler line chart, whose members do not argue over which side a change belongs on (L4402) | Completion apart from re-estimation |
+| Which themes of the release are behind? | Parking lot chart: one box per [[theme]] with its story count, total points and percent of points complete (L4410-L4419), the percent counted from whole estimates of finished tasks ([[all-or-nothing-counting]]); a colour on a box needs a stated test, since the source names "needs attention" with no threshold (L4419) | Anyone wanting "a high-level view" (L4435) | Which tasks are done (L4419), or the trend |
 | How much will fit by a date, or when does this finish? | Velocity chart with the three values ([[velocity-range-forecast]], L4649-L4678) | Product owner and team | Which features will land |
-| What is planned for which iteration? | Feature-level Gantt ([[gantt-at-feature-level]]) | Anyone reading the plan | How far along anything is |
+| What is planned for which iteration? | Feature-level Gantt: rows stop at features, each bar spans its whole iteration because a feature is made available only at the iteration's end, and no names against rows (L4607-L4637, L4789) | Anyone reading the plan | How far along anything is |
 | What did we plan and what happened? | Story table ([[iteration-summary-plan-versus-fact]]) | Those reviewing the iteration | Anything forward-looking |
 
 **Condition on the audience column.** A view in points (the burndowns, the parking lot, the velocity chart) goes to the people steering. Anything for a reader outside the project is converted to elapsed time or item count first, per [[points-or-time-and-count]], which has a burndown in points converted before it goes outside. This condition is this wiki's; Cohn's audiences assume points throughout.
@@ -88,7 +88,7 @@ The source's reason for leaving averages behind is the single-item case: a compl
 This wiki's resolution, on the source's position:
 
 - **Flow setup:** the scatterplot is the default view for questions about one item; questions about a set by a date go to [[throughput-monte-carlo]].
-- **Iteration setup:** the plan questions above come first. The scatterplot is required for the test on [[iteration-length-versus-cycle-time]], since the [[siemens-hs-case]] ran 30-day sprints against an 85th percentile of 71 days (L4078), and optional for the other questions.
+- **Iteration setup:** the plan questions above come first. The scatterplot is required for the test on [[iteration-length-versus-cycle-time]], since the Siemens case ([[vacanti-actionable-agile-metrics]]) ran 30-day sprints against an 85th percentile of 71 days (L4078), and optional for the other questions.
 - **Few finished items, any setup:** prefer the scatterplot and read individual dots, because a histogram's shape needs volume that a small board does not have.
 
 ## Failure modes
@@ -97,7 +97,7 @@ These are this wiki's readings.
 
 - Reading progress off a Gantt chart: the bars are full-length by construction.
 - Sending a forecast as one point drawn from a burndown. See [[forecast-range-and-probability]].
-- Sending many views at once. See [[status-buried-in-a-long-report]].
+- Sending many views at once, or a report whose conclusion is not in its first lines. Cohn's test is that readers "need to not only hear the message, but also understand it", and news shown on "page 32 of a 40-page weekly status report" is news nobody knows (L4587). This wiki reads that, for generated output, as: the conclusion first, the supporting figures next, detail last or omitted.
 - Sending a points-based view to a reader outside the project. See [[points-or-time-and-count]].
 - Reporting only a histogram, which hides a drift in time.
 - Reporting only an average, which hides the tail and the spread.

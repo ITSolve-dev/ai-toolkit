@@ -311,4 +311,4 @@ The stories are real value held at risk, and the plan's headline scope cannot be
 
 ### Agent executor note
 
-This wiki reads nothing here as depending on a human executor. The person steering names the stories, and an agent can follow the order directly, provided the mark is on the board and not in a conversation ([[fact-stranded-outside-the-task]]). Compare [[ordering-by-value-and-urgency]].
+This wiki reads nothing here as depending on a human executor. The person steering names the stories, and an agent can follow the order directly, provided the mark is on the board and not in a conversation ([[conversation-moves-into-the-task]]). Compare [[ordering-by-value-and-urgency]].

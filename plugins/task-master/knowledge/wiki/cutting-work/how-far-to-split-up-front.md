@@ -26,7 +26,7 @@ Before cutting a large request, decide how much of it to cut now. The Humanizing
 | Chaotic | "Put out the fire; splitting stories probably isn’t important right now." | L341 |
 | Disordered | "Figure out which domain you’re in before splitting so you don’t take the wrong approach." | L342 |
 
-For a request that is neither obvious nor on fire, the working question is the one test: will starting teach us what the work is? If yes, cut one or two slices using [[find-core-complexity]]. If no, enumerate.
+For a request that is neither obvious nor on fire, the working question is the one test: will starting teach us what the work is? If yes, cut one or two slices using [[choosing-between-splits]]. If no, enumerate.
 
 ## Inputs, where each is read from, and what would show the choice wrong
 
@@ -36,7 +36,7 @@ For a request that is neither obvious nor on fire, the working question is the o
 | Whether it needs a new integration or external dependency | The request and the repository |
 | Whether similar work has been done | Finished tasks on the board |
 
-The inputs above are this wiki's translation of the test into things that can be read. The choice was wrong in one of two directions. If everything was enumerated and the task list was then substantially rewritten after the first tasks finished, the work was complex and the list was false precision. If one slice was cut and the tasks found afterwards matched what could have been listed at the start, the caution bought nothing.
+The inputs above are this wiki's translation of the test into things that can be read, and so is their combination: treat the request as complex if either of the first two holds and similar work has not been done, and otherwise enumerate. The authors give no combination, and L315 is their guidance for finding the core complexity, not their Cynefin test, so the result informs a judgement that the person steering confirms. The choice was wrong in one of two directions. If everything was enumerated and the task list was then substantially rewritten after the first tasks finished, the work was complex and the list was false precision. If one slice was cut and the tasks found afterwards matched what could have been listed at the start, the caution bought nothing.
 
 ## Trade-off
 
@@ -46,7 +46,7 @@ The cost of the complex choice is that there is no complete list to project a da
 >
 > — [[humanizing-work-splitting]], L346
 
-This wiki reads that as a reason for the plugin to state its uncertainty and not to fill out a list it expects to change. A coarse list written only to see the shape of the work is a different thing, on [[initial-task-inventory]]. When a large task has to be cut at all is on [[when-to-split-a-task]].
+This wiki reads that as a reason for the plugin to state its uncertainty and not to fill out a list it expects to change. A coarse list written only to see the shape of the work is a different thing, on [[initial-task-inventory]]. When a large task has to be cut at all is on [[size-ceiling]].
 
 ## Agent executor note
 

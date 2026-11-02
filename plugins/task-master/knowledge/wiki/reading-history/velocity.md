@@ -71,6 +71,12 @@ The resolution here is this wiki's. Velocity needs two things a project may not 
 
 The Scrum Guide does not use the word, as [[flow-metrics]] records, so velocity is Cohn's reading of an iteration setup and not a requirement of one.
 
+## Reported for the project, not per person
+
+Cohn: "Do not track individual velocity. Tracking individual velocity leads to behavior that works against the success of the project." ([[cohn-agile-estimating-planning]] L4535). His mechanism that matters here is that the record bends: where finishing early draws an accusation of padding, a person "won’t report a task as complete until its deadline" (L4891), and once finished work goes unreported every measure built on board history inherits the error ([[flow-metrics]]). The plugin reports velocity and throughput for the board as a whole and declines a per-person breakdown, saying why; a per-assignee view may still be used to find a concurrency problem ([[wip-per-executor]]). The sign is a report broken down by assignee, or a request to compare two people's output.
+
+This wiki keeps the rule on another footing than Cohn's. An agent does not hold back finished work out of fear, so the bent record applies to the few people steering, not to the executor, and the charter excludes individual load anyway. Cohn's further claim that most stories should need several people (L4539) does not transfer: with an agent, one executor often finishes a task, and this wiki cuts out the handoffs his remedy would build in ([[sequence-versus-wait]]).
+
 ## Agent executor note
 
 The transfer here is this wiki's, not Cohn's. Velocity's arithmetic survives any executor: it sums what finished. Its use as a forecast rests on a mechanism the chapter assumes without stating, namely that the rate is stable because the same team does similar work at a similar pace. When an agent executes and a person steers, the limit on the rate may sit elsewhere, for example in how fast results can be reviewed, and the stability of that rate is not shown by this source. The term "team" is the source's; the charter's setting is a few people steering an agent, so a velocity read here should be treated as a rate for that arrangement, and checked against history, not assumed to behave as Cohn's team does. On this reading a change in velocity may reflect the steering and not the execution. Points are also relative to whoever calibrated the scale, so a period run by hand and one run by an agent are compared only after checking the estimation pages ([[estimation-baseline]]).

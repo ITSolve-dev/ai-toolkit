@@ -139,7 +139,7 @@ Cohn lists five supports (L405-L415). The notes on what each changes in this set
 
 - **Reducing risk.** Estimating discussions expose what nobody knows. See [[unknowns-surfaced-by-estimating]].
 - **Reducing uncertainty.** New knowledge about product and technology has to be fed back into the plan (L425-L431). See [[good-plan-test]] and [[replanning-on-new-knowledge]].
-- **Supporting better decision making.** Trade-offs need both a cost and a benefit figure. See [[tradeoff-needs-cost-and-benefit]].
+- **Supporting better decision making.** Trade-offs need both a cost and a benefit figure. See [[prioritization-factors]].
 - **Establishing trust.** Reliable delivery of promised features builds trust, and "Reliable estimates enable reliable delivery." (L451).
 - **Conveying information.** A plan sets baseline expectations and is not a guarantee. See [[forecast-range-and-probability]].
 
@@ -331,7 +331,7 @@ The fictional case study in Chapter 23 (L4961) narrows this further, to two plac
 
 **The bottom of the list,** because items near the cut line are the ones an outside promise can get wrong: "we wouldn’t want marketing to design packaging that said, ‘Now with background music’ if that’s a feature that may get dropped at the last minute." (L6199). The source adds that this matters little at the first planning and more near the end of the release (L6199).
 
-The exception is scale: "On a larger project, particularly with multiple teams that need to coordinate work, we might look ahead two or three iterations." (L6203). This wiki notes that the exception concerns coordination across teams, which is out of scope here, so for a few people the rule stands as stated. The form for several teams is [[rolling-lookahead-plan]].
+The exception is scale: "On a larger project, particularly with multiple teams that need to coordinate work, we might look ahead two or three iterations." (L6203). This wiki notes that the exception concerns coordination across teams, which is out of scope here, so for a few people the rule stands as stated. The form for several teams is Cohn's rolling lookahead plan, detail for the next two or three iterations dropped as they finish (L4166, L4225), which this wiki does not keep at its scale.
 
 ### Sign of a violation
 

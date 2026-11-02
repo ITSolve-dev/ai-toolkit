@@ -28,7 +28,7 @@ Value is rated apart from urgency, in three bands. The author rejects a plain sc
 | Soon | "If we don’t deliver this Soon, then the value will start to decline or the risk of loss increase" | L57 |
 | Whenever | "What this means is that the total value isn’t *massively* affected by delay." | L58 |
 
-The author leaves one setting to the reader: "Whether Soon means in a matter of days, weeks or months you will need to decide for your context, given the distribution of urgency you are dealing with." (L57). This wiki gives no figure either. Under a project's own history, Soon is best read against how long tasks take there ([[a-date-is-not-urgency]]).
+The author leaves one setting to the reader: "Whether Soon means in a matter of days, weeks or months you will need to decide for your context, given the distribution of urgency you are dealing with." (L57). This wiki gives no figure either. Under a project's own history, this wiki reads Soon against how long tasks take there, as the point where the time left no longer covers the task and the queue ahead of it ([[a-date-is-not-urgency]]).
 
 The author's examples are commercial, with customers, revenue and competition. For a project with no revenue to point at, this wiki reads the value bands as questions a person can answer: would not doing this end or badly damage the thing the project exists for (Killer), would doing it be a change the people served would notice and want (Bonus), or is it upkeep (Meh)? That translation is ours.
 

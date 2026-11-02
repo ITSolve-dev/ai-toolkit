@@ -20,7 +20,7 @@ This wiki reads three things from that passage and its neighbours.
 
 - **The bound is on the workflow, not necessarily on a column.** The span is "from started to finished" (L139), and the 2025 edition lists "Less explicit (and hence more flexible) how WIP is controlled" among its changes (L204). A limit per column is one allowed form, and one number for the whole span is another.
 - **The count is set by position and not by activity.** The Guide says "Any work items between a started point and a finished point are considered work in progress (WIP)." (L112). A stopped item is therefore still WIP unless the project has declared otherwise ([[blocked-work-counts-against-wip]]). Vacanti's definition agrees: "All discrete units of customer value that have entered a given process but have not exited" ([[vacanti-actionable-agile-metrics]] L600). The count is of what is there, and [[work-in-progress]] defines it; a sum of the limits is no substitute.
-- **Running under the bound is also a departure.** The Guide's words are "neither above nor below".
+- **Running under the bound is also a departure.** The Guide's words are "Ideally, the system would operate neither above nor below the agreed upon control" (L139); treating a run under the bound as a departure is this wiki's hardening of "ideally".
 
 ## The rule
 
@@ -57,6 +57,10 @@ The Guide requires a control and gives no number and no way of choosing one. Vac
 |---|---|
 | The started, unfinished count over recent history | Board history |
 | How many results the people steering can review in the time a task is expected to live | Board history: the time tasks spend waiting for review |
+
+This wiki combines the two inputs, and the combination is its own: the bound is the smaller of the recent average started-unfinished count plus a small margin, and the number of results the people steering can review within the time a task is expected to live. History from a board that was over-started overstates the first input, since it carries the over-start forward ([[starting-more-work]]), so on such a board the second input governs. The source of the method also applied it to a previously unbounded buffer of outside waits ([[radzikowska-waiting-blocked]] L57-L61), not to a whole workflow.
+
+With no history, neither input exists. This wiki's default, which no source gives, is a stated small number per person steering, labelled as a guess, and recomputed from the inputs above once a run of tasks has finished.
 
 The number is too high if it is never reached, because it then restrains nothing. It is too low if it is reached constantly while nothing is waiting for the people steering, because capacity then sits idle.
 

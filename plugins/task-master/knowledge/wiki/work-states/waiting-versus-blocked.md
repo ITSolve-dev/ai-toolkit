@@ -1,7 +1,7 @@
 ---
 title: Waiting Versus Blocked
 category: work-states
-summary: Stopped work is waiting if an outside party holds it, an expected end is known and nothing can shorten it; otherwise, or once that end has passed, it is blocked.
+summary: Stopped work is waiting if an outside party holds it, an expected end is known and little or nothing can shorten it; once that end has passed it is blocked, and this wiki also classes as blocked whatever fails those conditions, a branch the source does not state.
 tags: [decision-rule, work-states, dependencies, kanban]
 sources: [radzikowska-waiting-blocked, kanban-guide, scrum-guide-2020, wester-board-design]
 created: 2026-11-01
@@ -35,6 +35,8 @@ An item is **waiting** only if all three hold:
 3. Little or nothing can be done to shorten it.
 
 Otherwise it is **blocked**. A waiting item becomes blocked at the moment its expected end passes.
+
+The "otherwise blocked" branch is this wiki's. The source defines only the expiry transition (L53), and the Kanban Maturity Model practice it cites describes the parking lot as for "currently waiting or blocked work requests dependent on another service or system" (VZ 3.9, L84), so the source's own line between the two is looser than this two-way test.
 
 ## Who resolves a blocked item
 

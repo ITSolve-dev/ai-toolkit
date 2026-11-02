@@ -1,7 +1,7 @@
 ---
 title: Expedite Lane
 category: moving-work
-summary: An expedite lane is exempt from the board's other limits and can block started work, so its own WIP limit, often one, is the only bound on the flow debt it creates. A limit of one bounds concurrency, not frequency: a lane never empty is a renamed standard process, and a visible speed gap (getKanban, 10-11 days against 3 or less) invites every request to claim it. Predictable delivery with expedites needs slack: study the rate of true expedites and design for it, by lower overall WIP and free capacity helping started work first.
+summary: No standing expedite lane by default: Vacanti calls the advised lane an error, emergencies go through a declared exception, and the rate of true expedites is studied and designed for. Where a lane exists it is exempt from the board's other limits and can block started work, so its own WIP limit, often one, bounds how many expedites run at once, not how often they come: a lane never empty is a renamed standard process, and a visible speed gap (getKanban, 10-11 days against 3 or less) invites every request to claim it. Predictable delivery with expedites needs slack: study the rate of true expedites and design for it, by lower overall WIP and free capacity helping started work first.
 tags: [rule, kanban, wip-limit, expedite, flow-metrics, failure-mode, class-of-service, pull-policy, wip, slack]
 sources: [vacanti-actionable-agile-metrics]
 created: 2026-11-02
@@ -10,7 +10,9 @@ updated: 2026-11-02
 
 # Expedite Lane
 
-An expedite lane is a separate swimlane on a Kanban board for work allowed to overtake everything else. The source treats it as "One great example of a process taking on Flow Debt" ([[vacanti-actionable-agile-metrics]] L2422). The rule is to keep the lane's WIP limit extremely low, because the lane is exempt from the other limits and its own limit is the only thing bounding what it borrows.
+An expedite lane is a separate swimlane on a Kanban board for work allowed to overtake everything else. The source treats it as "One great example of a process taking on Flow Debt" ([[vacanti-actionable-agile-metrics]] L2422).
+
+The default is no standing lane. In his Chapter 13 Vacanti calls the advised use of an expedite lane one of the errors of class-of-service implementations (L3430), true emergencies go through a declared exception ([[class-of-service]], its section on when to use one), and the rate of those emergencies is studied and designed for (*Slack for the rate of true expedites*, below). This ordering of his chapters is this wiki's. If a lane does exist, Chapter 9's policies below are what to check: keep its WIP limit extremely low, because the lane is exempt from the other limits. A limit of one bounds how many expedites run at once, not how often they arrive, so the frequency needs its own check (*When the lane never empties, and when it attracts everything*, below).
 
 ## The usual policies
 
@@ -106,7 +108,7 @@ This rule chooses how a process is shaped given that expedites will arrive. Vaca
 
 ### Not refusing, and not idling
 
-Vacanti rejects two easy answers. Telling teams to stop expediting ignores that expedites "happen all the time" and vary in size and number, which he accepts for most teams (L3392). Keeping people idle in wait for them is not something management will accept (L3418), and that objection concerns people, so it is noted here only for the agent case below. Capping expedites at one is the third answer, and it fails too (previous section).
+Vacanti, who argues for dumping expedites, concedes the objection he hears most, that expedites "happen all the time" and vary in size and number, and accepts it for most teams (L3392). Keeping people idle in wait for them is not something management will accept (L3418), and that objection concerns people, so it is noted here only for the agent case below. Capping expedites at one is the third answer, and it fails too (previous section).
 
 What he offers for a true emergency, such as production being down or a new regulatory requirement, is design around the frequency:
 

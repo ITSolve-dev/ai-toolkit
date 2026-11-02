@@ -5,7 +5,7 @@ summary: A task states why it exists and how it contributes to the larger result
 tags: [rule, task-content, purpose, smart]
 sources: [wake-invest, humanizing-work-splitting]
 created: 2026-11-01
-updated: 2026-11-01
+updated: 2026-11-02
 ---
 
 # A Task Must Justify Itself
@@ -28,7 +28,7 @@ The Humanizing Work authors ask the same of a story with three questions:
 
 ## The rule
 
-A task states what it contributes to, and the tasks cut from one request add up to that request. A reader must be able to answer who it is for, what changes and why. Those answers need not be in a template or in separate fields, and the authors are explicit on both counts:
+A task states what it contributes to, and the tasks cut from one request add up to that request. A reader must be able to answer who it is for, what changes and why. Those answers need not be in a template or in separate fields. The authors are explicit about the template (L89), and L91 shows where the answers go instead:
 
 > The important thing isn’t the template, though. It’s answering the three questions.
 >
@@ -36,7 +36,7 @@ A task states what it contributes to, and the tasks cut from one request add up 
 
 The authors then show that an answer may live outside the task. A title can carry the "what", and "The “who” is often provided by a product or release vision that describes a core target customer. If the story is for the target customer, we won’t repeat ourselves." (L91). Their short form is a title plus a reason, as in "**Find by Exact Title**" with "because I know the specific book I want, and I want to avoid noise in the search results" (L101-L103).
 
-This wiki reads that as support for the charter's rejection of a missing field as a sign: the authors' good story has no "who" field on purpose.
+This wiki reads that as saying a field is only one place for an answer: the authors' good story has no "who" field on purpose. The reason itself is not optional, since they add "we’ll make sure we cover the why, either in the description field of the tool or in lighter print on the Post-it" (L91).
 
 ## Sign of violation
 
@@ -44,7 +44,9 @@ This wiki reads that as support for the charter's rejection of a missing field a
 - **In task text:** the template is filled and the beneficiary is the implementer, as in "As a developer, I want a database diagram" (L105), which the authors call "magic words" (L105). See [[component-task-masquerading]].
 - **Across tasks:** the tasks cut from one request, all finished, would still leave part of the request undone, or would do something the request did not ask for.
 
-Apart from the authors' "magic words", the wordings of the sign are this wiki's, drawn from Wake's L98 and L110. An empty purpose field is not on the list, since the charter does not accept a missing field as a sign.
+- **In task text and its brief:** nothing states why the task exists. The charter lets a rule about task content use the omission as its sign, and this rule does.
+
+Apart from the authors' "magic words", the wordings of the sign are this wiki's, drawn from Wake's L98 and L110. An empty purpose field alone is not the last sign, since the reason may live in the title or the description ([[empty-fields]]).
 
 ## Why
 

@@ -5,7 +5,7 @@ summary: Read the repository first, then ask only what it cannot answer, about b
 tags: [rule, intake, agents, clarification, evidence]
 sources: [ambig-swe]
 created: 2026-11-01
-updated: 2026-11-01
+updated: 2026-11-02
 ---
 
 # Clarifying Questions
@@ -40,7 +40,7 @@ This wiki reads those as two independent filters on a question: is the answer un
 
 ## Numbers and their conditions
 
-Information gain is cosine distance between embeddings, which the authors concede weighs all information equally (L264). Claude Sonnet 4 scored 0.171 with 4.03 questions on average and Qwen 3 Coder 0.179 with 6.02 (L230, L244). More questions did not produce more resolved issues for Qwen 3 Coder: "this high volume does not translate to better performance" (L238). Do not quote the paper's "50% fewer" for this pair, because the figures it gives come to about 33% fewer (see [[ambig-swe]]). All of this uses a simulated user who answers only from the issue, is possibly more cooperative than a real one (L264), and is an LLM.
+Information gain is cosine distance between embeddings, which the authors concede weighs all information equally (L264). Claude Sonnet 4 scored 0.171 with 4.03 questions on average and Qwen 3 Coder 0.179 with 6.02 (L230, L244). More questions did not produce more resolved issues for Qwen 3 Coder: "this high volume does not translate to better performance" (L238). Do not quote the paper's "50% fewer" for this pair, because the figures it gives come to about 33% fewer (see [[ambig-swe]]). All of this uses a simulated user who answers only from the full issue, the developer hints and the locations of the files to modify (L135 of the paper), is possibly more cooperative than a real one (L264), and is an LLM.
 
 ## Cost
 

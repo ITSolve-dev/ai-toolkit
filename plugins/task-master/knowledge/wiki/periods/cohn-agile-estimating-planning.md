@@ -36,8 +36,8 @@ The authority is a practitioner's. The author writes in the first person from pr
 
 - **Size and duration are separate estimates.** Duration is derived from size and a measured rate: [[size-versus-duration]], [[story-points]], [[velocity]], [[velocity-range-forecast]].
 - **An estimate is a comparison on a coarse scale.** It is made independently, by analogy, and its effort is set by the decision it feeds: [[estimation-scale]], [[triangulation]], [[independent-estimates]], [[estimating-effort-by-purpose]].
-- **Order weighs four things.** They are value, cost, new knowledge and risk removed, and urgency is not among them: [[prioritization-factors]], [[combining-prioritization-factors]], [[kano-or-relative-weighting]].
-- **Cut by what is delivered.** Do not cut by activity: [[story-splitting-patterns]], [[when-to-split-a-task]], [[activity-based-plan]].
+- **Order weighs four things.** They are value, cost, new knowledge and risk removed, and urgency is not among them: [[prioritization-factors]], [[kano-model]].
+- **Cut by what is delivered.** Do not cut by activity: [[story-splitting-patterns]], [[size-ceiling]], [[vertical-slice]].
 - **Plan at several horizons.** Each horizon holds a different level of detail: [[planning-horizons]], [[filling-a-period]].
 - **State uncertainty on whichever of date or scope is not fixed.** Protect what must hold with a buffer: [[forecast-range-and-probability]], [[velocity-range-forecast]], [[choosing-a-buffer]].
 - **Only finished work counts.** Progress is read net of scope and estimate changes: [[all-or-nothing-counting]], [[unfinished-at-period-end]], [[release-progress-forces]], [[release-burndown-chart]].
@@ -45,7 +45,7 @@ The authority is a practitioner's. The author writes in the first person from pr
 
 ## What transfers to an agent
 
-This wiki's reading is that the rules transfer more often than the reasons given for them. Arithmetic on size, rate and order depends on no human executor, and neither does the rule that a task counts only when finished ([[all-or-nothing-counting]]). Several reasons fall away while the rule survives on another footing ([[individual-velocity]], [[who-estimates]], [[wip-per-executor]]). Some mechanisms are human outright: [[parkinsons-law]], the calibration of the unit on [[ideal-days]], and the hours arithmetic on [[choosing-velocity-estimate-approach]] and [[iteration-capacity]]. One moves the other way, since a soft gate for people becomes a firmer one for an agent ([[tests-specified-before-start]]). Each page says which case it is. None of these transfers has been tried.
+This wiki's reading is that the rules transfer more often than the reasons given for them. Arithmetic on size, rate and order depends on no human executor, and neither does the rule that a task counts only when finished ([[all-or-nothing-counting]]). Several reasons fall away while the rule survives on another footing ([[velocity]] on reporting per person, [[who-estimates]], [[wip-per-executor]]). Some mechanisms are human outright: [[parkinsons-law]], the calibration of the unit on [[ideal-days]], and the hours arithmetic on [[choosing-velocity-estimate-approach]] and [[iteration-capacity]]. One moves the other way, since a soft gate for people becomes a firmer one for an agent ([[testable-acceptance]]). Each page says which case it is. None of these transfers has been tried.
 
 ## Limits
 
@@ -60,7 +60,7 @@ This wiki's reading is that the rules transfer more often than the reasons given
 - **Tracking effort expended** (L4517) as a practice. The charter excludes logged hours, and [[comparing-estimate-to-actual]] keeps only the argument.
 - **Getting more time on a project** (L3708) and the personnel part of the end-of-iteration summary (L4707). These are about managing people.
 - **The budget or personnel buffer** (L4031), which the source itself says is seen less on small projects ([[choosing-a-buffer]]).
-- **Most of Chapter 18 as practice.** The charter excludes frameworks for scaling. A scale limit is kept ([[multi-team-techniques-scale-limit]]), along with two techniques that say when they apply ([[rolling-lookahead-plan]], [[feeding-buffer]]).
+- **Most of Chapter 18 as practice.** The charter excludes frameworks for scaling. Only the scale gate (L4211) and the reading of a hand-off passed whole as a cutting problem are kept, on [[critical-dependency]]; the rolling lookahead plan and the feeding buffer were cut as multi-team practice.
 - **Build results as a metric** (L4727). This is about tooling and not about a board.
 - **The narrative of Chapter 23.** Only its decisions and arithmetic are kept.
 

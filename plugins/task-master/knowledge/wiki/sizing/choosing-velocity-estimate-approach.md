@@ -103,7 +103,7 @@ This wiki reads the first two as *Run Iterations to Observe Velocity* (above), a
 
 1. Commit to a first iteration, by [[filling-a-period]].
 2. Sum the points of the committed stories. In the case: 8 + 5 + 2 + 3 = 18 (L6169).
-3. Divide the points wanted in the release by that sum. In the case 132 points divided by 18 gives just over 7 iterations (L6173). The 132 comes from the walk on [[ordering-by-kano-category]].
+3. Divide the points wanted in the release by that sum. In the case 132 points divided by 18 gives just over 7 iterations (L6173). The 132 comes from the walk on [[kano-model]].
 4. Publish the result as a range and name its velocity as planned, on [[forecast-range-and-probability]].
 5. Replace it with an observed figure as soon as one exists. The message for those waiting on the schedule is "we can provide better information every two weeks" (L6191).
 
@@ -204,7 +204,7 @@ These are planning hours, estimated ahead. They are not logged hours, which this
 
 **No adjustment for holidays or sickness.** "Don’t bother; it’s not worth the extra effort and it’s unlikely to be more accurate anyway" (L3720). The availability figure already allows for them.
 
-**Part-time members need a per-person table.** With a uniform figure the SwimStats team gets 240 hours; listing Sergey at 4, Yury at 6, Carina at 2 and Sasha at 6 gives 180 (L3757-L3773). Carina is the mechanism to note: split across two projects, she could give nearly six hours in total, yet is shown at two on this project, because she moves between them many times a day and "this multitasking impacts her productivity" (L3759-L3763). See [[multitasking]].
+**Part-time members need a per-person table.** With a uniform figure the SwimStats team gets 240 hours; listing Sergey at 4, Yury at 6, Carina at 2 and Sasha at 6 gives 180 (L3757-L3773). Carina is the mechanism to note: split across two projects, she could give nearly six hours in total, yet is shown at two on this project, because she moves between them many times a day and "this multitasking impacts her productivity" (L3759-L3763). See [[wip-per-executor]].
 
 ### Numbers and their conditions
 

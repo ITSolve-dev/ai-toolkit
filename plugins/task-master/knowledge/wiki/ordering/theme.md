@@ -26,7 +26,7 @@ His answer is to aggregate, and then compare stories and themes together: "Stori
 
 Cohn gives one test: "Themes should be selected such that each defines a discrete set of user- or customer-valued functionality." (L1688). His SwimStats examples include tracking and viewing personal records, assigning swimmers to events and predicting a meet's score, and integration with handheld computers at the pool (L1690-L1696). This wiki notes that each one says what someone gets, and none of them names a part of the system.
 
-A theme can be given a money value. Cohn's illustration sets ¤150,000 of new sales from handheld support against ¤200,000 from scoring a meet (L1706). These figures are invented for the example, and ¤ is his generic currency sign (L1728). His next sentence is the warning: "There is more to prioritizing, however, than simply considering the monetary return from each new set of features." (L1706). See [[prioritization-factors]], and [[financial-measures-for-themes]] for the comparison when money figures exist.
+A theme can be given a money value. Cohn's illustration sets ¤150,000 of new sales from handheld support against ¤200,000 from scoring a meet (L1706). These figures are invented for the example, and ¤ is his generic currency sign (L1728). His next sentence is the warning: "There is more to prioritizing, however, than simply considering the monetary return from each new set of features." (L1706). See [[prioritization-factors]], whose section on money figures says what of the comparison survives when a person supplies them.
 
 ## Signs of a bad grouping
 

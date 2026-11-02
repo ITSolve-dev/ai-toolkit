@@ -27,7 +27,7 @@ For the period being explained, read from board history:
 3. The sum of estimate changes on tasks still open: re-estimation.
 4. Check that remaining at start, minus completed, plus scope change, plus re-estimation, equals remaining at end. A residual means the history is incomplete.
 
-The steps are this wiki's; the source supplies the three forces and the burndown reading ([[release-burndown-chart]], [[release-burndown-bar-chart]]). When a re-estimate is justified at all is on [[re-estimate-when-relative-size-changes]].
+The steps are this wiki's; the source supplies the three forces and the burndown reading ([[release-burndown-chart]], line and bar forms). When a re-estimate is justified at all is on [[re-estimate-when-relative-size-changes]].
 
 ## Reading the result
 

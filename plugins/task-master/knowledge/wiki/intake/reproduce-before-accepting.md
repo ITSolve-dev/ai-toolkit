@@ -1,11 +1,11 @@
 ---
 title: Reproduce Before Accepting
 category: intake
-summary: A reported defect is accepted once someone has seen it happen; if it cannot be reproduced the findings go back to the reporter and it closes only by agreement, and a successful reproduction yields the check the task will be judged by.
+summary: A reported defect is accepted once someone has seen it happen; if it cannot be reproduced the findings go back to the reporter and it closes by agreement or after a stated follow-up goes unanswered, and a successful reproduction yields the check the task will be judged by.
 tags: [decision-rule, intake, triage, bug-reports]
 sources: [kubernetes-issue-triage, zimmermann-good-bug-report]
 created: 2026-11-01
-updated: 2026-11-01
+updated: 2026-11-02
 ---
 
 # Reproduce Before Accepting
@@ -26,7 +26,7 @@ This wiki keeps the source's stray space before the full stop. The guide's next 
 | Reproduction | Next step |
 |---|---|
 | It reproduces | Accept it, keep the reproduction as a failing case, and rate it |
-| It does not reproduce | Send the findings to the reporter. Close only if both agree |
+| It does not reproduce | Send the findings to the reporter. Close by agreement, or after a stated follow-up goes unanswered: the guide closes on silence after 20 days "In all cases" (L208; [[closing-what-no-longer-applies]] rule 1) |
 | It cannot be tried, or more is needed | Ask the reporter for what is missing, and set a follow-up |
 
 Keeping the failing case is this wiki's addition, and the guide stops at validating. A failing case is the check that [[testable-acceptance]] asks for, so a successful reproduction has already written the task's acceptance.

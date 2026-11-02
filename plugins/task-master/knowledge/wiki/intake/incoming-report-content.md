@@ -5,7 +5,7 @@ summary: A defect report is fit to become a task when it says how to reach the f
 tags: [rule, intake, task-content, bug-reports, agents, evidence]
 sources: [zimmermann-good-bug-report, ambig-swe, montgomery-tracker-smells]
 created: 2026-11-01
-updated: 2026-11-01
+updated: 2026-11-02
 ---
 
 # What an Incoming Report Must Carry
@@ -38,7 +38,7 @@ The study's column is from the paper's prose, since its tables are lost ([[zimme
 |---|---|---|
 | Steps to reproduce, or a failing case | Stands out for importance (L265) | Required. It is task-only unless the repository's tests already show the failure |
 | Observed behaviour | Rated important, "albeit weakly" as a stand-in for steps (L265) | Required. The repository cannot show what the reporter saw |
-| Expected behaviour | Among items of "relatively low importance" (L267) | Required, against the study; see below |
+| Expected behaviour | Among the most widely used items (L263) and provided by most reporters (L277), but of "relatively low importance" on the study's conditional score (L267), low in Eclipse in particular (L1109) | Required, against the importance score; see below |
 | Environment | Developers favoured a description of "the environment (or the context) when the error occurred" (L619), while a Mozilla developer found OS fields rarely needed (L271) | Required only if the failure depends on it |
 | Stack trace, log output | Next in line, but "often hidden in log files and difficult to find" (L291) | Welcome. Recoverable if the executor can run the software |
 | Test case | Helpful, and "test cases being the most difficult item" for reporters (L277) | Not asked of a reporter. Produced at reproduction ([[reproduce-before-accepting]]) |
@@ -49,7 +49,7 @@ The authors warn against reading low as useless: "Items with low importance in o
 
 ## Where this wiki departs from the study
 
-Expected behaviour scored low with the study's developers. This wiki still requires it, for two reasons. The authors' own category of what agents gain from asking is "informational, which relates to the expected behavior or nature of the error" ([[ambig-swe]] L165), which this wiki treats as task-only. And an experienced developer who knows a system can usually tell what it should have done, while an agent reading a report guesses. That second reason is this wiki's reading, and neither source tests it. The transfer would be shown wrong if agents given observed behaviour alone resolved reports as well as agents also given the expected behaviour.
+Expected behaviour scored low on the study's importance score, which measures how often developers who used an item also rated it most helpful (L211). Developers use it widely (L263), reporters provide it most often (L277), incorrect expected behaviour is among the common problems (L311), and the low rating is Eclipse's (L1109). This wiki requires it, for two further reasons. The authors' own category of what agents gain from asking is "informational, which relates to the expected behavior or nature of the error" ([[ambig-swe]] L165), which this wiki treats as task-only. And an experienced developer who knows a system can usually tell what it should have done, while an agent reading a report guesses. That second reason is this wiki's reading, and neither source tests it. The transfer would be shown wrong if agents given observed behaviour alone resolved reports as well as agents also given the expected behaviour.
 
 ## Sign of violation
 
@@ -68,7 +68,7 @@ The paper contains a quotable line that overstates its own finding. One develope
 
 The study's central result is that reporters mostly know what is wanted. The relation between what developers find important and what reporters provide is about zero, at -0.035 (L299), while the relation between what developers find important and what reporters expect to be relevant is 0.839 (L305). The authors conclude that "ignorance of reporters is not a reason for the aforementioned information mismatch" (L305), and they point to difficulty (L277). They do suggest telling reporters what matters, for items like screenshots, and they add "At the same time, one should provide better tools to collect important information" (L307).
 
-This wiki reads that as a limit on what a template can do: a form reminds people of what they already know. So the plugin should ask a reporter only for what is cheap for the reporter and impossible for the executor, which is the three items above, and it should leave the rest to the run, on the condition that the executor can run the software. That division is this wiki's and is unmeasured.
+This wiki reads that as a limit on what a template can do: a form reminds people of what they already know. So the plugin should ask a reporter only for what the executor cannot obtain, which is the three items above, and it should leave the rest to the run, on the condition that the executor can run the software. Steps to reproduce are not cheap for reporters: "Surprisingly, steps to reproduce and component are considered to be difficult as well." (L277). So the plugin accepts a rough description of how the failure was reached and turns it into steps at reproduction ([[reproduce-before-accepting]]). That division is this wiki's and is unmeasured.
 
 ## Numbers and their conditions
 

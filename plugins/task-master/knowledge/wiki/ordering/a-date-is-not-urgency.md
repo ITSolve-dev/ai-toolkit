@@ -22,12 +22,14 @@ The author also says most dated things start with no cost of delay at all: "it c
 
 1. Ask what changes outside the project at the date, if the work is not done.
 2. **If nothing changes,** the date does not affect urgency. Rate urgency as if the date were absent ([[ordering-by-value-and-urgency]]).
-3. **If something changes,** urgency depends on the time left. A task starts at Whenever and moves to Soon and then to ASAP as the date approaches.
+3. **If something changes,** urgency depends on the time left. A task may start at Whenever and move to Soon and then to ASAP as the date approaches; the source's example says "could start off" (L62).
 4. Work out the band when the order is decided, from the date and the current day. Do not store it.
 
 ## How close is close
 
 The author gives no distance, only "approaches" and "very close" (L62). This wiki does not supply a figure. It reads closeness against how long the task takes: a task reaches ASAP when the time left is about what such tasks need, because after that point starting later means missing the date. That time is read from the project's own history ([[service-level-expectation]]), or from the size where there is no history. This reading is ours.
+
+This wiki reads Soon the same way, one step earlier, and this reading is also ours: a task reaches Soon when the time left no longer covers both its own time and the time of the tasks ahead of it in the order, so it can still make the date but not if it waits its turn. The input is the same history, summed over the tasks ranked above it. The source gives no figure for Soon either, leaving it to context (L57).
 
 ## Inputs, where each is read from, and what would show the choice wrong
 

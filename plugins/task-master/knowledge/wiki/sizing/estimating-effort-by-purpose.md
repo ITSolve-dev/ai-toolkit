@@ -68,4 +68,4 @@ The curve describes people thinking about work, and no source here measures it f
 
 ## Related
 
-Effort is also saved by leaving distant work coarse, on [[estimating-by-horizon]]. Splitting further to get a better number can make it worse, on [[over-disaggregation]]. The size at which a large number should be cut instead of refined is on [[size-ceiling]]. Why a trade-off needs an estimate at all is on [[tradeoff-needs-cost-and-benefit]].
+Effort is also saved by leaving distant work coarse, on [[estimating-by-horizon]]. Splitting further to get a better number can make it worse, on [[over-disaggregation]]. The size at which a large number should be cut instead of refined is on [[size-ceiling]]. Why a trade-off needs an estimate at all is on [[prioritization-factors]].

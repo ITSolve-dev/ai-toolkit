@@ -31,7 +31,7 @@ The raw file lost the example stories that the page displays as callouts, along 
 - The definition of a vertical slice and of a horizontal one: [[vertical-slice]].
 - Tasks and components pretending to be stories, and the remedy of combining them: [[component-task-masquerading]].
 - The flowchart and its nine patterns: [[story-splitting-patterns]].
-- The meta-pattern, used directly: [[find-core-complexity]].
+- The meta-pattern, used directly: [[choosing-between-splits]].
 - The two tests for choosing a split: [[choosing-between-splits]].
 - The Cynefin reading of how far to split: [[how-far-to-split-up-front]].
 - The spike as a last resort: [[spike-as-last-resort]].

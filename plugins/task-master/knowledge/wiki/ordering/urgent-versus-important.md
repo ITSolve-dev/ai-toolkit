@@ -3,9 +3,9 @@ title: Urgent Versus Important
 category: ordering
 summary: Value says how much a result is worth and urgency says how fast that worth drains away; they are rated apart because people conflate them, and two ratings that always move together are the sign they were not.
 tags: [decision-rule, ordering, cost-of-delay, prioritization]
-sources: [black-swan-qualitative-cod, kubernetes-issue-triage]
+sources: [black-swan-qualitative-cod, kubernetes-issue-triage, cohn-agile-estimating-planning]
 created: 2026-11-01
-updated: 2026-11-01
+updated: 2026-11-02
 ---
 
 # Urgent Versus Important
@@ -23,7 +23,7 @@ The author repeats the point for urgency: "Again, we need to try and think about
 This wording is this wiki's, built from the band definitions on [[ordering-by-value-and-urgency]].
 
 - **Importance, or value:** if this were delivered now, how much would it be worth? Time plays no part in the question.
-- **Urgency:** if this were delivered later instead, how much less would it be worth? The size of the worth plays no part in the question.
+- **Urgency:** if this were delivered later instead, what share of its worth would be gone, and how fast? The size of the worth plays no part in the question. The share follows the source's band, where the value "(whatever total value that might be) will quickly evaporate" (L56); a question about how much would be lost in absolute terms would rate every high-value task urgent, which is the correlation the first sign below detects.
 
 A task can be high on one and low on the other. The author's examples: "Most cost-reducing initiatives would normally fall into this band." of Whenever (L58), whatever their total value, and an opportunity "however big or small" can sit at ASAP (L56).
 
@@ -43,7 +43,7 @@ This wiki reads that scale as folding three things into one word: how much it ma
 
 The disagreement resolves by project setup, and the resolution is this wiki's.
 
-- **A project that ships in releases:** the guide's test, would this block the next release, is a sharp reading of urgency. Use it to separate ASAP from Soon, and rate value apart.
+- **A project that ships in releases:** the guide's test, would this block the next release, is a sharp reading of urgency for defects and incoming requests against a release already under way. Use it there to separate ASAP from Soon, and rate value apart. It does not apply to the release's planned content: a release date is a date like any other, so membership in a release raises urgency only as the date approaches ([[a-date-is-not-urgency]]). Otherwise every must-have would be ASAP, since must-haves "need to be available before the product is released" ([[cohn-agile-estimating-planning]] L2413), and the category says nothing about when they are built ([[kano-model]], its section on ordering by category).
 - **A project with no releases:** the test has nothing to act on, so use the two ratings as they stand.
 - **Under both:** do not carry over "staffed", and read `priority/awaiting-more-evidence` as an item that has not been rated ([[incomparable-tasks]]).
 

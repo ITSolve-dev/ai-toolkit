@@ -74,7 +74,7 @@ On a software project the gap comes from "the natural overhead we experience eve
 
 Cohn cites a figure for interruptions: "managers are able to work an average of only five minutes between interruptions (Hobbs 1987)" (L1117). The measured population is managers. The figure of one interruption every fifteen minutes for a developer is Cohn's supposition of a third of that rate, not a measurement (L1117).
 
-Cohn adds that multitasking widens the gap further: "A software developer who is told to multitask loses a great deal of efficiency while switching between two (or more) tasks." (L1121). This chapter gives no magnitude for that loss. Cohn's study of it is on [[multitasking]].
+Cohn adds that multitasking widens the gap further: "A software developer who is told to multitask loses a great deal of efficiency while switching between two (or more) tasks." (L1121). This chapter gives no magnitude for that loss. Cohn's study of it is on [[wip-per-executor]].
 
 ### The assumptions behind an ideal estimate
 

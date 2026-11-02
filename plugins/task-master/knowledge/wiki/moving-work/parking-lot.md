@@ -73,7 +73,7 @@ This wiki notes that the source does not define "upper limit" or say how to comp
 | The average of that count | Calculated from board history |
 | Whether the outside parties keep to their times | Board history: time parked against expected end |
 
-The limit is too high if it is never reached, because then it does nothing. It is too low if it is reached constantly while the parked items are all within their expected times, because it then stalls work over delays nobody can shorten.
+The limit is too high if it is never reached, because then it does nothing. Reaching the limit while every parked item is within its expected time is the stress the source intends: the limit "acts as a stressor, potentially causing upstream stalling", to be discussed and escalated (L59). This wiki reads the limit as too low only if it is full for weeks with that stress never acted on.
 
 ### Scale note
 

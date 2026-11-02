@@ -28,6 +28,8 @@ Having a limit is not the same as holding one ([[work-in-progress]]). The source
 
 ## Setting the arrivals column limit
 
+This applies only where an arrivals column exists. Whether one is needed is on [[started-and-finished-points]]: the column "may be superfluous" when items can be pulled ad hoc with no coordination with an outside stakeholder (L2162-L2170), which is often the case for a few people steering an agent.
+
 The limit on the arrivals column ([[started-and-finished-points]]) is set so that the Arrival Rate matches the Departure Rate, the balance [[conservation-of-flow]] requires. It is derived from what the process actually finishes, not from what the team would like to start.
 
 ### Inputs and where each comes from

@@ -5,7 +5,7 @@ summary: An agent not asking a question does not show the task was complete; rea
 tags: [rule, task-content, agents, readiness, evidence]
 sources: [ambig-swe]
 created: 2026-11-01
-updated: 2026-11-01
+updated: 2026-11-02
 ---
 
 # Agent Silence Is Not Completeness
@@ -29,9 +29,9 @@ Decide whether a task is ready from its text and the repository, before an agent
 
 Three findings carry the rule. All come from the detection experiment summarised on [[ambig-swe]], with stripped issues and detection counted in the first three turns only.
 
-**Asking is not calibrated to the input.** The authors report: "Despite the stark difference in the language and detail of summarized issues and fully specified issues, the models, except Claude Sonnet, fail to reliably distinguish them, indicating that LLMs struggle to detect missing information even in obvious cases." (L211). Even the best result in the table, Claude Sonnet 4 under the Strong prompt, missed 18% of the stripped issues (FNR 0.18, L193).
+**Most models do not calibrate asking to the input; Claude Sonnet is the exception.** The authors report: "Despite the stark difference in the language and detail of summarized issues and fully specified issues, the models, except Claude Sonnet, fail to reliably distinguish them, indicating that LLMs struggle to detect missing information even in obvious cases." (L211). Even the best result in the table, Claude Sonnet 4 under the Strong prompt, missed 18% of the stripped issues (FNR 0.18, L193).
 
-**Encouragement moves the error and does not remove it.** Claude Sonnet 3.5 went from FPR 0.24 at Moderate to 0.36 at Strong with no gain on misses (FNR 0.09 to 0.10), and accuracy fell from 0.84 to 0.76 (L195). Deepseek-v2 got worse as encouragement rose, from accuracy 0.69 at Neutral to 0.51 at Strong (L197). Llama 3.1 70B asked on nearly everything at Moderate and Strong (FPR 0.95 and 0.93, L198). Qwen 3 Coder did not ask under any of the three prompts (FNR 1.00, L194).
+**Encouragement helps some models and harms others.** Claude Sonnet 4 improved on both errors from Neutral to Strong, FPR 0.08 to 0.03 and FNR 0.44 to 0.18, with accuracy 0.74 to 0.89 (L193). Claude Sonnet 3.5 went from Neutral to Moderate with FNR 0.81 to 0.09 and accuracy 0.60 to 0.84, and Claude Haiku 3.5 also improved (L195, L196). The others moved the error or worsened. Claude Sonnet 3.5 went from FPR 0.24 at Moderate to 0.36 at Strong with no gain on misses (FNR 0.09 to 0.10), and accuracy fell from 0.84 to 0.76 (L195). Deepseek-v2 got worse as encouragement rose, from accuracy 0.69 at Neutral to 0.51 at Strong (L197). Llama 3.1 70B asked on nearly everything at Moderate and Strong (FPR 0.95 and 0.93, L198). Qwen 3 Coder did not ask under any of the three prompts (FNR 1.00, L194).
 
 **The authors reach the same conclusion about prompts:**
 

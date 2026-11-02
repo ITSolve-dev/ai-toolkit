@@ -1,7 +1,7 @@
 ---
 title: FIFO Pull Order
 category: moving-work
-summary: Once work is committed, pull the item waiting longest; strict FIFO is impractical, so the working form is mostly first-in-first-served. In Vacanti's simulation, changing only pull policy moved the 85th percentile cycle time from 50 to 100 days.
+summary: Once work is committed, pull the item waiting longest; strict FIFO is often impractical (L3378), so the working form is mostly first-in-first-served. In Vacanti's simulation, changing only pull policy moved the 85th percentile cycle time from 50 to 100 days.
 tags: [rule, pull-policy, class-of-service, cycle-time, flow-metrics, kanban]
 sources: [vacanti-actionable-agile-metrics]
 created: 2026-11-02
@@ -62,9 +62,8 @@ The table and the following tests are this wiki's. The choice was wrong if follo
 
 These signs are this wiki's derivation. Each raises a question ([[smell-is-not-a-finding]]).
 
-- **In history:** the item pulled was not the oldest, and no reason is recorded.
+- **In history:** the item pulled was not the oldest, among items of like size.
 - **In history:** items committed later repeatedly finish before items committed earlier ([[starting-more-work]]). Size differences also produce this, so like is compared with like first.
-- **On the board:** no one can state the order used at a column with a tight limit, which means the pull is effectively random, the policy of runs 2 and 4.
 
 An item passed over this way is [[flow-debt]].
 

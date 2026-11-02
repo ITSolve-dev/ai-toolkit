@@ -45,10 +45,10 @@ The last sign needs care: a miss can have other causes, so it asks whether the o
 
 ## Trade-off
 
-This wiki notes that the rule costs utilisation or duration, since a receiver held to the next boundary may start later than it could have. Cohn does not make it absolute, as his "to the extent possible" shows. This wiki reads a mid-period dependency as acceptable when it is recognised as a risk to that commitment, and when it matters enough, the protection is [[feeding-buffer]]. Whether it matters is decided at [[critical-dependency]].
+This wiki notes that the rule costs utilisation or duration, since a receiver held to the next boundary may start later than it could have. Cohn does not make it absolute, as his "to the extent possible" shows. This wiki reads a mid-period dependency as acceptable when it is recognised as a risk to that commitment, and when it matters enough, Cohn's protection on a multi-team project is a feeding buffer (L4187), a technique this wiki does not keep at its scale. Whether it matters is decided at [[critical-dependency]].
 
 ## Agent executor note
 
 The rule is about commitments and dependency, and neither depends on a human. The transfer here is ours: with one agent and no parallel stream, a period rarely contains a true mid-period hand-off, and the same logic applies at the grain of a task. An agent handed a task whose input is not finished cannot wait productively and will either stop or guess. So this wiki expects the sign to be more useful on a task's prerequisites than on a calendar boundary. Without fixed iterations, the boundary becomes the moment the task is started.
 
-The rule's setting in Cohn is multi-team. See [[multi-team-techniques-scale-limit]].
+The rule's setting in Cohn is multi-team, and he exempts a single team from that chapter's techniques (L4211; see [[critical-dependency]]).

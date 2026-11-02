@@ -33,9 +33,9 @@ Vacanti separates the term from two neighbours, and this page keeps both as disc
 
 Vacanti states the cost in two sentences. "The truth is that the only part of your process that is more predictable with CoS is the highest priority class." (L3476). "CoS represents an institutionalized violation of those assumptions." (L3464), where the assumptions are those of Little's Law: he names the fourth, and potentially the first and the third ([[littles-law]]). He says the resulting unpredictability shows up, among other things, as [[flow-debt]] (L3476). The figures are on [[fifo-pull-order]] and [[expedite-lane]].
 
-## It exists because a resource is shared
+## It matters where a resource is shared
 
-The chapter's airport has one agent serving several queues. Vacanti's conclusion is that more agents remove the classes altogether: "If each queue had its own server, then there would be no need for CoS." (L3468). His remark on hiring is out of this wiki's scope, and the mechanism is not: a pull-order policy exists only where several queues compete for one executor.
+The chapter's airport has one agent serving several queues. Vacanti's conclusion is that more agents remove the classes altogether: "If each queue had its own server, then there would be no need for CoS." (L3468). His remark on hiring is out of this wiki's scope, and the mechanism is not. This wiki reads L3468 as saying that a pull-order policy matters only where several queues share a server; every board still has some pull order, so the question elsewhere is only whether it is the default one.
 
 ## Observable signs
 
@@ -43,7 +43,7 @@ These signs are this wiki's derivation from the distinctions above. Each one rai
 
 - **In a task's text or labels:** items still in the backlog carry a class such as expedite or fixed date. Check whether the label is an order among committed work or only a rating, which belongs at replenishment.
 - **On the board:** class names sit in the list of work types. Check whether the two questions, what kind of work this is and in what order it is pulled, have been merged.
-- **In history:** items do not finish in commitment order, and nobody can state the rule that produced this. An undeclared CoS is in force. Tasks of very different size also finish out of order, so size is checked first.
+- **In history:** items of like size do not finish in commitment order. An undeclared CoS may be in force. Tasks of very different size also finish out of order, so size is checked first.
 
 ## When to use a class of service
 

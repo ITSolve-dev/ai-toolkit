@@ -54,4 +54,4 @@ This wiki's reading is that the check survives and matters more, since an agent 
 
 ## Related
 
-What a move out of the assumed order costs is on [[natural-order-of-work]]. The general case against dependencies is on [[minimize-feature-dependencies]]. The same division of labour for risk and learning is on [[combining-prioritization-factors]].
+What a move out of the assumed order costs, and which remedy a dependency gets, is on [[handling-a-sequence-dependency]]. The general case against dependencies is on [[independent-tasks]]. The same division of labour for risk and learning is on [[prioritization-factors]].

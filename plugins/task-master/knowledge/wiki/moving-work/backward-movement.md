@@ -22,7 +22,7 @@ The post does not spell out the data problem and links to another article for it
 
 ## The rule
 
-A task moves forward only. A cycle that is expected is drawn on the board in advance, by staying in the later state or by a state to its right.
+An expected cycle is drawn forward: it is drawn on the board in advance, by staying in the later state or by a state to its right, and a move back is a declared exception. Wester's claim covers rework found in validation (L32-L36), not every move, and he ends with "there are no board police" (L61); the declared exceptions this wiki allows are on [[non-standard-departure]] and [[parking-lot]].
 
 ## Sign of violation
 

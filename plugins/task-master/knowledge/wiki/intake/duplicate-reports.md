@@ -55,7 +55,7 @@ In the last case, the authors say users resubmit "often out of frustration that 
 
 Apart from the listed smell, these signs are this wiki's.
 
-Duplicates are also a symptom of something else. Participants traced them to search, "Difficulties in locating relevant existing issues lead to a less connected ITS, as well as duplicate issues." ([[montgomery-tracker-smells]] L454), and to overload ([[issue-overload]]). This wiki keeps the effect and leaves search features out as tool capability.
+Duplicates are also a symptom of something else. Participants traced them to search, "Difficulties in locating relevant existing issues lead to a less connected ITS, as well as duplicate issues." ([[montgomery-tracker-smells]] L454), and to overload ([[closing-what-no-longer-applies]]). This wiki keeps the effect and leaves search features out as tool capability.
 
 ## Inputs, where each is read from, and what would show the choice wrong
 

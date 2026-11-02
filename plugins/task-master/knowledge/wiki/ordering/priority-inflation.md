@@ -20,10 +20,11 @@ The author ties the remedy to the shape of value: the band should be small becau
 
 ## Sign
 
-- **In board state:** the top band holds so many open tasks that choosing the next task among them needs some other criterion. The band has stopped deciding.
+- **In board state:** more top-band tasks are open than the capacity can start before the time their urgency band allows runs out ([[a-date-is-not-urgency]]). Ties inside a band are expected and broken by design ([[cost-of-delay-over-duration]], [[incomparable-tasks]]), so two top-band tasks are not a sign; a band that cannot all be served in time is.
+- **In board history:** the top band's share of open tasks rises across successive readings while no new rating sentences are written.
 - **In board history:** a task's rating rose with no new sentence saying what changed ([[ordering-by-value-and-urgency]]).
 
-These signs are this wiki's. The source says "very few" and gives no number, and this wiki does not supply one. A share of tasks would depend on how many tasks are open.
+These signs are this wiki's. The source says "very few" and gives no number, and this wiki does not supply a fixed share: the first sign is read against capacity and the second against the board's own past.
 
 ## Remedy
 
@@ -31,7 +32,7 @@ Rate again relative to each other, starting from the sentences that justify the 
 
 The Kubernetes guide offers a way of contesting a rating without raising it: "if you notice an issue that you believe to be incorrectly prioritized, please leave a comment offering your counter-proposal and we will evaluate it." ([[kubernetes-issue-triage]] L228). This wiki reads that as separating the claim from the label, so a person who disagrees argues and does not simply promote.
 
-One published remedy for old items works against this. The authors of [[montgomery-tracker-smells]] suggest: "If open issues are left too long, unassigned, then the curator can increase the priority/severity until a developer chooses to work on the issue." (L773). This wiki rejects that for the plugin. Age alone changes neither value nor urgency ([[cost-of-delay]]), so raising the rating records a falsehood in order to push a person, and an agent cannot be pushed. An old item is read again and its rating changes only if a sentence changes ([[zombie-issue]]).
+One published remedy for old items works against this. The authors of [[montgomery-tracker-smells]] suggest: "If open issues are left too long, unassigned, then the curator can increase the priority/severity until a developer chooses to work on the issue." (L773). This wiki rejects that for the plugin. Age alone changes neither value nor urgency ([[cost-of-delay]]), so raising the rating records a falsehood in order to push a person, and an agent cannot be pushed. An old item is read again and its rating changes only if a sentence changes ([[closing-what-no-longer-applies]]).
 
 ## Why
 
@@ -39,4 +40,4 @@ What breaks is the plugin's output. If the top band is full, the next task is ch
 
 ## Agent executor note
 
-The mechanism the source describes is social: labels rise because people want their work done. With a few people steering there is less of that pressure, but also nobody else to push back. Whether an agent proposing bands inflates them has not been tested, and the plugin's proposals should be read for it.
+The source names no mechanism. This wiki reads it as social: labels rise because people want their work done. With a few people steering there is less of that pressure, but also nobody else to push back. Whether an agent proposing bands inflates them has not been tested, and the plugin's proposals should be read for it.

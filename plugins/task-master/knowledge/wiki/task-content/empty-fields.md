@@ -5,7 +5,7 @@ summary: An empty field is a failure only at the stage where the workflow reads 
 tags: [decision-rule, task-content, audit, evidence]
 sources: [montgomery-tracker-smells, kubernetes-issue-triage]
 created: 2026-11-01
-updated: 2026-11-01
+updated: 2026-11-02
 ---
 
 # Empty Fields
@@ -29,7 +29,7 @@ Examples for a project of this kind. An unrated item before triage is fine ([[tr
 
 ## How this fits the charter
 
-The charter says a rule about task content can use an omission as its sign, and pages such as [[testable-acceptance]] and [[task-must-justify-itself]] refuse a merely empty field. This page is consistent with both. It gives the condition under which the omission counts, and it treats the field as only one place for a fact. The test for the fact itself is on [[recoverable-versus-task-only-facts]].
+The charter lets a rule about task content use an omission as its sign, and [[testable-acceptance]] and [[task-must-justify-itself]] do: their sign is that the fact is missing from the task and its brief. This page adds only that a field is one place a fact can live, so an empty field is a failure only under the two conditions above. The test for the fact itself is on [[recoverable-versus-task-only-facts]].
 
 ## A filled field proves little
 

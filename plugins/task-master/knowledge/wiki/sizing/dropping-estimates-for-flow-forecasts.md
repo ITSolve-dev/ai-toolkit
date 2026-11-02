@@ -10,7 +10,7 @@ updated: 2026-11-02
 
 # Dropping Estimates for Flow Forecasts
 
-This rule decides whether relative estimates should still drive date forecasts once Cycle Time history exists. Siemens HS decided they should not ([[siemens-hs-case]]), and the way it decided is more portable than the verdict.
+This rule decides whether relative estimates should still drive date forecasts once Cycle Time history exists. Siemens HS decided they should not ([[vacanti-actionable-agile-metrics]]), and the way it decided is more portable than the verdict.
 
 > In analyzing the metrics, Siemens also discovered that there was no correlation between story point estimates and actual Cycle Time.
 >

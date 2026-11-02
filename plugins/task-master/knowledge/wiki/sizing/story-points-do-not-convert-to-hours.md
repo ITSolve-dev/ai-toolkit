@@ -50,4 +50,4 @@ The argument is about spread and sample size, so this wiki expects it to hold fo
 
 ## Related
 
-The scale itself and its ceiling are on [[estimation-scale]] and [[size-ceiling]]. The unit is defined on [[story-points]]. An aggregate conversion to money, used over a stretch of work and not per item, is on [[cost-per-story-point]].
+The scale itself and its ceiling are on [[estimation-scale]] and [[size-ceiling]]. The unit is defined on [[story-points]]. An aggregate conversion over a stretch of work, not per item, as a share of capacity, is on [[prioritization-factors]].

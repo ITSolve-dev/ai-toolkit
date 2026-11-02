@@ -5,7 +5,7 @@ summary: A dependency needs protection only if planned high-priority work cannot
 tags: [decision-rule, dependencies, prioritization, sequencing]
 sources: [cohn-agile-estimating-planning]
 created: 2026-11-01
-updated: 2026-11-01
+updated: 2026-11-02
 ---
 
 # Critical Dependency
@@ -41,4 +41,16 @@ Treating every dependency as critical is the cheap judgement and the expensive p
 
 The three questions are the part of this chapter that survives the scale change, since none refers to team count. This transfer is ours, and it goes beyond Cohn, who applies them only to the buffer decision. This wiki also reads them as a check on the dependency itself. For a few people steering an agent, they decide what comes first more than whether to buffer. A critical dependency fixes order. A dependency with a swap or a useful partial leaves order open, and the partial may suggest a better cut.
 
-Related: [[sequence-versus-wait]], [[natural-order-of-work]], [[handoff-at-iteration-boundary]], [[feeding-buffer]], [[multi-team-techniques-scale-limit]].
+## Scale, and a hand-off passed whole
+
+The buffer these questions were written for is one of four techniques Cohn gives for projects of several teams (a common estimation basis, detail added to stories sooner, a rolling lookahead plan, and the feeding buffer), and he gates all four by scale himself:
+
+> Keep in mind that you don’t need to do any of this if you’ve got a single team. You probably don’t even need to do this if you have just three or four approximately seven-person teams as long as those teams communicate often.
+>
+> — [[cohn-agile-estimating-planning]], L4211
+
+This wiki therefore keeps none of the four as practice for a few people steering an agent; frameworks for scaling are outside the charter. The case that would reopen the gate is several agents or people working parallel streams with real hand-offs.
+
+One point from the feeding-buffer passage does carry over. Cohn reads a buffer longer than an iteration as "usually the result of planning to pass a large chunk of functionality on to another team", and says such a hand-off "should almost certainly be divided so that the functionality is delivered incrementally" (L4205). This wiki reads that as a cutting problem: a task whose output is passed on whole, with the next task unable to start on any part of it, is a candidate for a cut into increments ([[vertical-slice]]). The sign is a dependency link whose receiving task uses only part of the deliverable while waiting for all of it.
+
+Related: [[sequence-versus-wait]], [[handling-a-sequence-dependency]], [[handoff-at-iteration-boundary]].

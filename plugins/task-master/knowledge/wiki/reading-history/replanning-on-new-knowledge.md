@@ -29,7 +29,7 @@ Cohn says projects should be viewed "as rapidly and reliably generating a flow o
 - **Product knowledge:** what the product should be.
 - **Project knowledge:** "information about the team, the technologies in use, the risks, and so on".
 
-Chapter 22 names the same split by what stays unknown ([[end-and-means-uncertainty]]), and says what each does to a plan:
+Chapter 22 names the same split by what stays unknown ([[ordering-for-early-user-feedback]]), and says what each does to a plan:
 
 - **End uncertainty** concerns what is being built: "End uncertainty (about the product ultimately being built) is reduced as product increments are shown to potential users and other stakeholders at the end of each iteration." (L4899). It changes scope, as new features are added to the release plan (L4843).
 - **Means uncertainty** concerns how it is built: "Means uncertainty (about how the product will be built) is reduced as the team learns more about the technologies in use and themselves." (L4899). It changes the rate and sometimes the approach (L4929). His example is an early finding that a third-party component cannot meet performance requirements, after which "The time to find and switch to the new component will need to be factored into new plans once the need is identified." (L4905).
@@ -90,7 +90,7 @@ The resolution here is this wiki's. Under an iteration setup, the boundary is th
 
 This wiki reads the rule as surviving an agent executing: it is about the plan, and it can be read from board history. The product side still comes from people seeing the result, so it needs someone to present to. This wiki adds that rates must come from agent-executed work, since an earlier human team's rate says little about it ([[filling-a-period]]).
 
-Learning "how well they are working together" (L4843) is a human matter and falls away. Learning about technologies survives, but an agent does not carry it between runs on its own, so it reaches a replan only if it was written down ([[fact-stranded-outside-the-task]]). That reading is this wiki's.
+Learning "how well they are working together" (L4843) is a human matter and falls away. Learning about technologies survives, but an agent does not carry it between runs on its own, so it reaches a replan only if it was written down ([[conversation-moves-into-the-task]]). That reading is this wiki's.
 
 Related: [[timeboxed-iteration]], [[fitting-stories-into-a-release]], [[conditions-of-satisfaction]], [[forecast-range-and-probability]], [[adding-scope-to-a-release-plan]], [[velocity-range-forecast]].
 
@@ -109,7 +109,7 @@ Cohn says each uncertainty is reduced by a different action, and this wiki keeps
 | What the product should be | "work in short iterations and show (or, ideally, give) working software to users every few weeks" (L664) | A project finishes on schedule without capabilities identified after the plan was made (L680) |
 | How to build it | "missing tasks can be added to plans, bad estimates can be corrected, and so on" (L664) | Missed activities, then lateness, dropped features or poor quality trade-offs (L680) |
 
-Cohn's phrase for the effect is that "the focus shifts from the plan to the planning." (L664). See [[planning-horizons]]. Chapter 9 names the two end uncertainty and means uncertainty, and uses them for ordering; see [[end-and-means-uncertainty]] and [[ordering-for-early-user-feedback]].
+Cohn's phrase for the effect is that "the focus shifts from the plan to the planning." (L664). See [[planning-horizons]]. Chapter 9 names the two end uncertainty and means uncertainty, and uses them for ordering; see [[ordering-for-early-user-feedback]].
 
 ### The rule
 
@@ -165,7 +165,7 @@ This wiki's reading of what the rule needs, since Cohn gives no procedure:
 
 - **What was learned:** a discovery recorded on a task, or a task that took materially more or less than forecast.
 - **Whether the date is fixed:** stated by whoever needs the date, in the project's setup or the request.
-- **What can be cut:** open tasks ordered by value, per [[tradeoff-needs-cost-and-benefit]].
+- **What can be cut:** open tasks ordered by value, per [[prioritization-factors]].
 
 **What later fact would show the choice wrong.** The cut scope is requested again soon after the date, or the date is still missed after the cut.
 

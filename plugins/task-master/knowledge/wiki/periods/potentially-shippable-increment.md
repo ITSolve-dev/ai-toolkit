@@ -36,7 +36,7 @@ Cohn's form of this failure is "coders do not throw half-tested code over a wall
 
 Cohn gives no observable sign. This wiki reads the following as questions to ask.
 
-- A feature counted as finished while a separate item for its testing stays open or arrives later. [[activity-based-plan]] has the same "Test" item as a planning fault.
+- A feature counted as finished while a separate item for its testing stays open or arrives later. [[vertical-slice]] has the same "Test" item as a planning fault.
 - A run of iterations whose finished features cannot be shown working, or a hardening stretch before a release that the plan did not name as an exception.
 
 ## Trade-offs
@@ -47,4 +47,4 @@ This wiki notes that finishing to this bar means fewer features per iteration th
 
 This wiki reads the rule as surviving an agent executing: it is a statement about the state of the product, not about who produced it. The "wall" does not disappear, however: this wiki reads its remaining place as between an agent's result and the person reviewing it, so what the agent presents should already be tested, not sent on to be tested.
 
-Related: [[timeboxed-iteration]], [[conditions-of-satisfaction]], [[user-valued-features-over-tasks]], [[planning-horizons]].
+Related: [[timeboxed-iteration]], [[conditions-of-satisfaction]], [[vertical-slice]], [[planning-horizons]].

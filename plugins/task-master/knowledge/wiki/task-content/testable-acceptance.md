@@ -1,11 +1,11 @@
 ---
 title: Testable Acceptance
 category: task-content
-summary: A task states what would show it done in a form that can be checked; a requester who cannot say how to test it is a sign with three possible diagnoses.
-tags: [rule, task-content, acceptance-criteria, invest, smart]
-sources: [wake-invest, humanizing-work-splitting, montgomery-tracker-smells]
+summary: A task states what would show it done in a form that can be checked, and states it before it enters active work, a soft gate for people and a firm one for an agent, which guesses at what it is not told; a requester who cannot say how to test it is a sign with three possible diagnoses, and nothing in the task stating what would show it done is the omission the rule detects.
+tags: [rule, task-content, acceptance-criteria, invest, smart, readiness, iterations]
+sources: [wake-invest, humanizing-work-splitting, montgomery-tracker-smells, cohn-agile-estimating-planning]
 created: 2026-11-01
-updated: 2026-11-01
+updated: 2026-11-02
 ---
 
 # Testable Acceptance
@@ -37,7 +37,9 @@ A spike is the one exception to the demand for a change in behaviour: its accept
 
 This wiki reads those three causes as three different next steps: clarify the request, question whether it should exist, or propose a check for the requester to confirm.
 
-A criteria field that is merely empty is not a sign under the charter. The two signs above can both fire on a filled-in field.
+- **In task text and its brief:** nothing states what would show the task done. The charter lets a rule about task content use the omission as its sign, and this rule does; it is the rule's main violation, since a task with no stated check cannot be judged finished.
+
+A criteria field that is merely empty is not by itself that sign, because a field is only one place the statement can live ([[empty-fields]]). The first two signs above can fire on a filled-in field.
 
 Many criteria are not a defect on this page. The opposite sign is on [[compound-task-text-signs]], and it fires only on criteria that could each be delivered alone. The shared standard of done that applies to every task is a separate thing, on [[started-and-finished-points]].
 
@@ -62,3 +64,41 @@ What breaks is the ending. Without a check, "done" is whatever the executor stop
 ## Agent executor note
 
 This rule survives and matters more with an agent. Wake's team could settle what "done" means by talking; he says the team "needs to agree" (L102). An agent stops at whatever its own reading of the text allows, so the agreement has to be on the page before work starts. Both sources speak from human teams, and neither reports a measurement for it.
+
+## Specified Before the Task Starts
+
+This rule puts a readiness gate on the move into active work: what a task will be judged against is written down first. On Cohn's board the gate is a column of checkmarks.
+
+> I have teams put a big checkmark in the Tests Ready column when they have specified the high level tests for a story. Further, I encourage teams not to move many cards to the fourth column, In Process, unless the tests are specified.
+>
+> — [[cohn-agile-estimating-planning]], L4482
+
+Cohn keeps the gate soft in three ways. His verb is "encourage", the limit falls on "many cards" and not on every card, and he allows that the column is optional: "You may not need a Tests Specified column but it’s a useful, visible reminder to a team that is trying to become accustomed to specifying acceptance tests before coding a feature." (L4482). His gate is on the story, which is this wiki's task ([[unit-of-work]]), so it transfers without a change of level.
+
+### The rule
+
+A task enters an active state only with its acceptance tests specified. A few exploratory starts are tolerated by Cohn. This wiki allows that for people and not for an agent, as the note below explains.
+
+### Sign of violation
+
+- **In a task's text:** no checkable acceptance criteria (the rule at the top of this page). This rule is about task content, so the omission is the sign.
+- **In board state:** an active task whose acceptance section is empty, or whose readiness marker is unset.
+- **In board history:** acceptance criteria first added after the task moved to active.
+
+These signs are this wiki's.
+
+### Why
+
+Cohn's reason is what the programmer gets: "they can refer to specific examples of how each function and business rule is expected to work" (L4480). The gate also costs little where planning already did the work: if the conditions of satisfaction were identified at iteration planning, this "is easy as the conditions of satisfactions are essentially a user story’s high-level acceptance tests" (L4476). See [[conditions-of-satisfaction]].
+
+### Cost
+
+Work that could start waits for a specification. That cost falls on planning, and Cohn's tolerance of a few cards is the concession to it.
+
+### Column or marker
+
+Cohn's own use is a marker: a checkmark on a row, and no cards pass through the column ([[distinguishable-work-states]]). This wiki reads that as a case for [[column-versus-attribute]]: readiness belongs on the task, and a board does not need a column for it. Cohn offers the column as a training aid, which fits, because he expects a team to outgrow it.
+
+### Agent executor note
+
+Cohn's mechanism is a habit forming in a team, and that part does not transfer. This wiki reads the rule as stronger for an agent: a person lacking a test can ask or recall, and an agent proceeds on a guess ([[agent-silence-is-not-completeness]], [[underspecified-task]]). So the tolerance of a few untested starts is dropped there, and the gate is firm. Cohn does not say this, and nothing in his chapter tests it.

@@ -1,8 +1,8 @@
 ---
 title: Story Splitting Patterns
 category: cutting-work
-summary: The three-step procedure and nine patterns for cutting a too-big task into thin vertical slices, each pattern with the trigger that selects it, and Cohn's guidelines with the worked examples the first source lost; data boundaries, exceptional conditions, operations and CRUD, cross-cutting concerns, nonfunctional targets and mixed priority, plus cuts by case of the domain and by rising capability, which buy order and not reduced size, and Vacanti and Seele's cuts by acceptance criterion, customer and assumption.
-tags: [method, decomposition, splitting]
+summary: The three-step procedure and nine patterns for cutting a too-big task into thin vertical slices, each pattern with the trigger that selects it, and Cohn's guidelines with the worked examples the first source lost; data boundaries, exceptional conditions, operations and CRUD, cross-cutting concerns, nonfunctional targets and mixed priority, plus cuts by case of the domain and by rising capability, which buy order and not reduced size, and Vacanti and Seele's cuts by acceptance criterion, customer and assumption. A cut that defers a cross-cutting concern or a nonfunctional target is allowed only if the first version says what it omits, the second exists, and the first is not released alone.
+tags: [method, decomposition, splitting, rule, nonfunctional]
 sources: [humanizing-work-splitting, kanban-playbook-right-sizing, cohn-agile-estimating-planning, flow-metrics-scrum-teams]
 created: 2026-11-01
 updated: 2026-11-02
@@ -64,7 +64,7 @@ Cohn's chapter on splitting offers guidelines for a task too big to fit its iter
 | Functional and nonfunctional | A performance or resource target adds the size | Separate the target into its own task | Stock chart caching | L2669-L2673 |
 | Mixed priority | Conditions of satisfaction differ in priority | Cut along the difference | Login, lockout, alert email | L2677-L2691 |
 
-Cohn gives no order among them. He calls data boundaries "One of the best ways" (L2597), and nothing in the chapter measures any of this: the evidence is his own projects and clients. Exceptional conditions has no guideline sentence of its own: it sits inside the section on data boundaries, and the row is this wiki's. The two cross-cutting rows carry a cost that has its own page, [[deferred-concern-slice]].
+Cohn gives no order among them. He calls data boundaries "One of the best ways" (L2597), and nothing in the chapter measures any of this: the evidence is his own projects and clients. Exceptional conditions has no guideline sentence of its own: it sits inside the section on data boundaries, and the row is this wiki's. The two cross-cutting rows carry a cost that has its own page, *Deferred Concern Slice* (below).
 
 This wiki maps them onto the numbered patterns above. Data boundaries is pattern 4, CRUD and operations are pattern 2, functional and nonfunctional is pattern 8, and exceptional conditions is closest to pattern 7. Cross-cutting concerns widens pattern 8 from making a thing fast or secure to logging and error handling. Mixed priority has no number: it is the first test of [[choosing-between-splits]] used as a way to find a cut.
 
@@ -86,7 +86,7 @@ In the loan example the first task reads "As a borrower, I want to pay off my lo
 
 ### Operations is wider than CRUD
 
-Cohn's example for operations is not CRUD. The search screen was cut into part of the criteria fields with the query builder, then the results grid, then the remaining fields, across three iterations (L2627-L2629). This wiki reads that as: an operation here means a separable piece of behaviour, and CRUD is the common case. The order of those pieces was a decision of its own, on [[uncertain-piece-goes-earlier]].
+Cohn's example for operations is not CRUD. The search screen was cut into part of the criteria fields with the query builder, then the results grid, then the remaining fields, across three iterations (L2627-L2629). This wiki reads that as: an operation here means a separable piece of behaviour, and CRUD is the common case. The order of those pieces was a decision of its own, on [[ordering-for-early-user-feedback]].
 
 CRUD is also not a formula. The coach's task became add, edit and delete, and Cohn notes that "These stories very closely correspond to the Create, Update, and Delete portions of CRUD." (L2643). Read got no task, and it is not among what the coach was found to want (L2633). This wiki takes from that: the list of tasks comes from what was asked for, not from the four letters.
 
@@ -138,11 +138,11 @@ A second kind of cut pulls something shared out of several tasks. Recognizing a 
 
 ### What such cuts buy
 
-This wiki reads these cuts together: none of them made the work smaller. The first raised the total from 20 to 21, and the pull-out added 2 with nothing removed. What they bought was order, meaning that a playable result could arrive earlier and that weaker slices could be dropped or postponed. The chapter bears that out, since the pulled-out story is the one dropped at the end of the first iteration (L6223), and two people could still play (L6235). So a cut judged by whether the total fell will look like a failure, and [[estimation-scale]] says why totals are not reconciled. Which cut to prefer is on [[choosing-between-splits]], and the deliberate order of the pieces on [[uncertain-piece-goes-earlier]].
+This wiki reads these cuts together: none of them made the work smaller. The first raised the total from 20 to 21, and the pull-out added 2 with nothing removed. What they bought was order, meaning that a playable result could arrive earlier and that weaker slices could be dropped or postponed. The chapter bears that out, since the pulled-out story is the one dropped at the end of the first iteration (L6223), and two people could still play (L6235). So a cut judged by whether the total fell will look like a failure, and [[estimation-scale]] says why totals are not reconciled. Which cut to prefer is on [[choosing-between-splits]], and the deliberate order of the pieces on [[ordering-for-early-user-feedback]].
 
 ### What the guidelines forbid and when they start
 
-Two guidelines in the same chapter say what not to do: do not cut by layer or activity ([[component-task-masquerading]], [[vertical-slice]]), and do not refill a task once it is sized ([[related-changes-temptation]]). [[when-to-split-a-task]] holds the triggers for cutting at all, and [[combining-small-tasks]] the opposite move.
+Two guidelines in the same chapter say what not to do: do not cut by layer or activity ([[component-task-masquerading]], [[vertical-slice]]), and do not refill a task once it is sized ([[related-changes-temptation]]). [[size-ceiling]] holds the triggers for cutting at all, and [[combining-small-tasks]] the opposite move.
 
 ## Vacanti and Seele's cuts
 
@@ -158,7 +158,7 @@ Two guidelines in the same chapter say what not to do: do not cut by layer or ac
 
 **By customer.** The example is "Enable secure login for employees." (L1262), cut by place of work, country, department or role (L1266-L1274). The book's claim is that a generic customer "increases the size of the work" (L1258), and it adds "Not all customers are equal" (L1280). This wiki reads that as an order as well as a cut, so the narrow group that matters most comes first ([[choosing-between-splits]]). It has no number in the table above. This wiki's sign in text is a plural population with no narrowing, which is the Kanban Playbook's question "For which users?" ([[kanban-playbook-right-sizing]] L45) turned into a cut.
 
-**By assumption.** The question is "what are all the assumptions we’re making about the value of this thing?" (L1286), and each assumption becomes a separately delivered piece. The effort for each "should comfortable fit within your SLE" (L1304). This wiki separates it from a spike by the kind of unknown: a spike asks how to build something, and this asks whether it is worth building ([[end-and-means-uncertainty]], [[spike-as-last-resort]]). Like a spike, the task's acceptance is a question answered. That distinction is ours.
+**By assumption.** The question is "what are all the assumptions we’re making about the value of this thing?" (L1286), and each assumption becomes a separately delivered piece. The effort for each "should comfortable fit within your SLE" (L1304). This wiki separates it from a spike by the kind of unknown: a spike asks how to build something, and this asks whether it is worth building ([[ordering-for-early-user-feedback]], [[spike-as-last-resort]]). Like a spike, the task's acceptance is a question answered. That distinction is ours.
 
 This wiki notes the limit for an agent. The book's ladder of evidence runs through conversations, observation, paper prototypes and a Wizard of Oz experiment (L1306-L1312), which are people's work. The plugin can propose the question and cut the task, and a person has to run most of it.
 
@@ -170,6 +170,52 @@ The case study's detail that the shape idea came from a non-programmer is a rema
 
 ## Related
 
-The patterns share one underlying move, which [[find-core-complexity]] describes and which can be used directly.
+The patterns share one underlying move, which [[choosing-between-splits]] describes and which can be used directly.
 
-The Kanban Playbook's four moves overlap with these, and it adds no new pattern ([[kanban-playbook-right-sizing]] L35-L49). This mapping is this wiki's. Generic terms and plurals point toward patterns 3 and 4. Solving a smaller problem first is pattern 7 and [[find-core-complexity]]. Its conjunctions and its splitting by acceptance criteria are signs for finding a split rather than patterns, and they are on [[compound-task-text-signs]].
+The Kanban Playbook's four moves overlap with these, and it adds no new pattern ([[kanban-playbook-right-sizing]] L35-L49). This mapping is this wiki's. Generic terms and plurals point toward patterns 3 and 4. Solving a smaller problem first is pattern 7 and [[choosing-between-splits]]. Its conjunctions and its splitting by acceptance criteria are signs for finding a split rather than patterns, and they are on [[compound-task-text-signs]].
+
+## Deferred Concern Slice
+
+A deferred concern slice is a version of a task built without one of the qualities it will finally need: security, logging, error handling, or a performance or resource target. It is the one cut in *Story Splitting Patterns* (above) that deliberately produces something that should not ship alone. Cohn recommends it with that cost stated.
+
+### The rule
+
+Cut a concern away only if the first version says what it leaves out and a second task carries the concern. This wording is this wiki's, built from Cohn's two guidelines and his marking.
+
+Cohn states the two forms separately:
+
+> Consider removing cross-cutting concerns (such as security, logging, error handling, and so on) and creating two versions of the story: one with and one without support for the cross-cutting concern.
+>
+> — [[cohn-agile-estimating-planning]], L2665
+
+> Considering splitting a large story by separating the functional and nonfunctional aspects into separate stories.
+>
+> — [[cohn-agile-estimating-planning]], L2671
+
+Cohn also gives the marking: "The version would clearly note that it is not secure." (L2657). The nonfunctional form extends beyond speed, to a feature that "must consume less than a defined amount of memory, be drawn with fewer than a number of shapes, or use a critical resource for less than a defined amount of time" (L2673).
+
+### When it applies
+
+The concern has to be what makes the task too big. In the login example the password rules were small one by one: "None of this may be particularly time-consuming, but in aggregate it may make the story a little too big to fit in an iteration." (L2657). In the stock chart example, "caching would be a significant part of the effort" (L2669), so it became its own task in the next iteration.
+
+This wiki reads the condition as a limit: a task that fits gets no such cut, since the cut exists only to reach a size. [[size-ceiling]] decides that.
+
+### Observable signs
+
+The signs are this wiki's reading of Cohn's marking and of his two-versions wording.
+
+- **In task text:** a task's result omits a concern the request names, and the task does not say so.
+- **On the board:** the first version is present and the second is not, so the omission is recorded nowhere that anyone will schedule.
+- **In board history:** a release includes the first version while the second is still open. A sign raises a question, and the check is whether anyone decided that on purpose.
+
+### Cost
+
+Cohn is direct: "You probably would not choose to release the product with only the first story supported, but there may be value in splittng the stories in this way." (L2657). The search example shows how far the first version can go: "Their solution was to ignore this security restriction and in the first iteration on this feature users could see the entire result set." (L2653). That passage does not say whether this version ever reached real users, and this wiki reads it as acceptable only if it did not.
+
+This wiki therefore reads the first version as possibly a [[vertical-slice]] and still not finished work. The Humanizing Work trap on pattern 8 of *Story Splitting Patterns* (above) is the same risk, and the same remedy applies: each half gets its own acceptance check, per [[testable-acceptance]]. A deferred concern is also a sequence between two tasks and not a wait, per [[sequence-versus-wait]].
+
+The chapter does not discuss the cost of adding a concern later to code built without it. Its own citation points the other way, Kernighan and Plauger's "Make it work then make it faster." (L2669), and it is given second-hand with no measurement.
+
+### Agent executor note
+
+The evidence is Cohn's own projects, with no measurement. The rule survives an agent executing, and this wiki expects the marking to matter more with one: a person who built the insecure version remembers it, and an agent working the next task knows only what the task says, as [[recoverable-versus-task-only-facts]] sets out. The omission has to be written where the next executor will read it.

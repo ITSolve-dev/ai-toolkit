@@ -27,7 +27,7 @@ The Kanban Guide's wording is "The elapsed time between when a work item started
 This wiki draws four consequences from that passage and the definition.
 
 - **One clock.** Age and [[cycle-time]] are the same clock, read before and after the finish, so they need the same started and finished points and the same counting convention. The book states the convention for both: "Cycle Time equals the finished date minus the started date plus one (CT = FD - SD + 1)" (L440), and "Work Item Age equals the current date minus the started date plus one (Age = CD - SD + 1)." (L454). It adds: "The “plus one” argument is the same as for Cycle Time above. Our apologies, but you will never have a PBI that has an Age of zero days." (L456). Its Chapter 4 describes plotting a dot by subtracting the start date from today's (L754) without the added one; this wiki reads that as shorthand for L454. Vacanti's earlier book gives the same added unit for Cycle Time (on the same page).
-- **No age before the start.** An item in a backlog has none, and how old an unstarted item is gets read separately ([[zombie-issue]], [[backlog-versus-commitment]]).
+- **No age before the start.** An item in a backlog has none, and how old an unstarted item is gets read separately ([[closing-what-no-longer-applies]], [[backlog-versus-commitment]]).
 - **It runs through stops.** The book says of blocked and on-hold work, "These PBIs age" (L1196). This wiki reads that as saying a stopped item's age includes the stop, so nothing pauses the clock.
 - **A return does not reset it.** This wiki keeps the whole span for a task that went back and was selected again ([[unfinished-at-period-end]]), or that left the board and came back ([[non-standard-departure]], whose erasure of a step's date feeds the chart and not age). No source here states that.
 
@@ -77,7 +77,7 @@ Age rises at the same rate for an item being worked on, one waiting for review a
 The signs below are this wiki's. Each raises a question ([[smell-is-not-a-finding]]).
 
 - **In board state:** an open item in an active state with no recorded entry date. Its age cannot be read, so the board cannot be audited for it ([[started-and-finished-points]]).
-- **In board history:** states that do not separate waiting from working, which is the failure the Kanban Playbook describes as age being "hard to interpret" ([[kanban-playbook-workflow-states]] L22, see [[judging-board-columns]]).
+- **In board history:** states that do not separate waiting from working, which is the failure the Kanban Playbook describes as age being "hard to interpret" ([[kanban-playbook-workflow-states]] L22, see [[distinguishable-work-states]]).
 - **In a report:** an age figure with no stated started point. Two ages with different starts are not comparable.
 
 ## Agent executor note

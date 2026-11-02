@@ -72,17 +72,17 @@ This wiki states the signs from the source's two figures (L2488, L2498) as check
 - A blocked item with no recorded action on its blocker across a long stretch.
 - At board level, the Approximate Average Cycle Time exceeds the exact one: the comparison of averages below.
 
-The first two are questions rather than verdicts. This wiki adds a discriminator the source does not give: a long-lived item that nobody overtook may simply be large, which is a sizing question ([[hidden-wip-in-large-items]]). Overtaking, or an unattended blocker, is what marks it as aged. Pulling a later item first may also be a deliberate ordering decision, as on [[conditioning-flow]], in which case the question is whether the older item still belongs on the board.
+The first two are questions rather than verdicts. This wiki adds a discriminator the source does not give: a long-lived item that nobody overtook may simply be large, which is a sizing question ([[hidden-wip-in-large-items]]). Overtaking, or an unattended blocker, is what marks it as aged. Conditioning flow ([[conditioning-flow]]) does not excuse overtaking a committed item: it applies only to items that have "not been pulled in yet" (L2318), and the passed-over item in the example sits in Design Done (L2482). For items still unstarted, a deliberate reordering is not aging.
 
 ### What it costs
 
-The aged item pays one of the two repayments above. It finishes with a Cycle Time "much longer than they normally would have been" (L2444), which distorts the numbers later reported as capability, or it is dropped once its window has passed, and the time already spent is waste (L2452). The dropped case is where this meets [[closing-what-no-longer-applies]] and [[zombie-issue]].
+The aged item pays one of the two repayments above. It finishes with a Cycle Time "much longer than they normally would have been" (L2444), which distorts the numbers later reported as capability, or it is dropped once its window has passed, and the time already spent is waste (L2452). The dropped case is where this meets [[closing-what-no-longer-applies]], including its zombie-issue section.
 
 The source's stable case names the opposite conditions: "you are not allowing items to stay blocked indefinitely, and you are not allowing items to queue arbitrarily" (L2522).
 
 ### Remedy and its cost
 
-The source's direction is to make the policy explicit and consider restoring stability through it: "Think about what process policies you can put in place to restore some stability to your system." (L2542) It names no specific policy here. Pulling strictly by arrival would remove overtaking, but this wiki notes that doing so spends the freedom to order by value, so the trade sits with [[ordering-by-value-and-urgency]]. The chapter does not settle it.
+The source's direction is to make the policy explicit and consider restoring stability through it: "Think about what process policies you can put in place to restore some stability to your system." (L2542) It names no specific policy here. Vacanti settles it two chapters later: once an item is committed he orders by arrival and confines business value to replenishment, "After an item is placed in process then I believe the best long term strategy is to pull that item—and all other items—through the process as predictably as possible" (L3454); see [[fifo-pull-order]] and [[value-decided-at-replenishment]].
 
 ### Agent executor note on aged work
 

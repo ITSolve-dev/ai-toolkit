@@ -12,7 +12,7 @@ updated: 2026-11-02
 
 This test compares a period's length with the observed Cycle Time distribution, to find out whether stories can fit in the period at all. It reads a commitment against history without any estimate.
 
-The [[siemens-hs-case]] ran 30-day sprints against a 50th percentile of 21 days and an 85th percentile of 71 days:
+The Siemens case ([[vacanti-actionable-agile-metrics]]) ran 30-day sprints against a 50th percentile of 21 days and an 85th percentile of 71 days:
 
 > That means that any story that started at the beginning of a sprint had little better than 50% chance of finishing within the sprint.
 >

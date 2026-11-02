@@ -5,7 +5,7 @@ summary: An interview study of 26 practitioners on 31 issue-tracker smells and 1
 tags: [summary, intake, failures, audit, evidence]
 sources: [montgomery-tracker-smells]
 created: 2026-11-01
-updated: 2026-11-01
+updated: 2026-11-02
 ---
 
 # Smells Depend on the Context (Montgomery et al.)
@@ -53,17 +53,17 @@ A count is "participants in disagreement / participants who answered", from the 
 | S1.3 | Issues are missing properties | 9/15 (L518) | [[empty-fields]] |
 | S1.4 | Issues are assigned to a team | 8/9 (L514) | Not kept: assignment and people, and it is mostly refuted |
 | S1.5 | Often switching properties | 4/13 (L528) | [[backward-movement]] |
-| S1.6 | Too many issue types | None | [[judging-board-columns]] |
+| S1.6 | Too many issue types | None | [[distinguishable-work-states]] |
 | S1.7 | No link to commit | 4/12 (L526) | Not kept: tracker configuration prevents it |
 | S1.8 | Non-assignee resolved issue | 7/10 (L516) | Not kept: assignment and people, and it is mostly refuted |
-| S1.9 | Ignored issue or delayed for too long | 4/19; 15 problematic, 1 refuted (L530, L763) | [[zombie-issue]] |
+| S1.9 | Ignored issue or delayed for too long | 4/19; 15 problematic, 1 refuted (L530, L763) | [[closing-what-no-longer-applies]] |
 | S1.10 | No comments or too many comments | 9/19 (L520) | Not kept: nothing separates the good case from the bad |
 | S1.11 | Toxic discussions | None | Not kept: managing people |
-| S1.12 | Properties discussed in comments but not updated | 12 problematic, 0 refuted (L765) | [[fact-stranded-outside-the-task]] |
+| S1.12 | Properties discussed in comments but not updated | 12 problematic, 0 refuted (L765) | [[conversation-moves-into-the-task]] |
 | S2.1 | Issue without any links | 7/14 (L538) | Not kept: half refuted, and no sign of harm |
 | S2.2 | Too many link types | None | Not kept: tracker configuration |
 | S2.3 | Multiple links with differing types | None | Not kept: tracker configuration |
-| S2.4 | Known link mentioned in comments but not documented | None | [[fact-stranded-outside-the-task]] |
+| S2.4 | Known link mentioned in comments but not documented | None | [[conversation-moves-into-the-task]] |
 | S2.5 | Mismatch between link types and properties | 4/7 (L536) | [[duplicate-reports]] |
 | S2.6 | Mismatch of linked issues' priorities and statuses | 2/10 (L540) | [[what-may-move]] |
 | S2.7 | Epic without sub-issues, or the reverse | None | Not kept: tracker hierarchy |
@@ -86,20 +86,20 @@ These came up before participants saw the smell list (L417). Counts are particip
 
 | Problem | Count | Line | Filed under |
 |---|---|---|---|
-| Missing Issue Information | 18 | L438 | [[underspecified-task]], [[fact-stranded-outside-the-task]] |
-| Lack of a Fitting Workflow | 17 | L423 | [[judging-board-columns]] |
+| Missing Issue Information | 18 | L438 | [[underspecified-task]], [[conversation-moves-into-the-task]] |
+| Lack of a Fitting Workflow | 17 | L423 | [[distinguishable-work-states]] |
 | Lack of Workflow Support | 15 | L425 | Not kept: tracker automation |
-| Workflow Bloat | 14 | L427 | [[judging-board-columns]], [[incoming-report-content]] |
+| Workflow Bloat | 14 | L427 | [[distinguishable-work-states]], [[incoming-report-content]] |
 | Divergent Tracking Needs | 11 | L467 | Not kept: many teams on one tracker |
 | Ineffective Search | 10 | L448 | Tool not kept; its effect is on [[duplicate-reports]] |
-| Information Islands | 10 | L470 | [[fact-stranded-outside-the-task]] |
+| Information Islands | 10 | L470 | [[conversation-moves-into-the-task]] |
 | Lack of Mindset & Discipline | 9 | L479 | Not kept: managing people |
 | Scoping Issues is Hard | 9 | L487 | [[started-and-finished-points]] |
-| Issue Overload | 8 | L457 | [[issue-overload]] |
-| Zombie Issues | 8 | L459 | [[zombie-issue]] |
+| Issue Overload | 8 | L457 | [[closing-what-no-longer-applies]] |
+| Zombie Issues | 8 | L459 | [[closing-what-no-longer-applies]] |
 | Lack of Comprehensive Overview | 8 | L461 | Not kept: a tracker feature, and this wiki has no visualization pages yet |
 | Lack of Workflow Enforcement | 6 | L429 | [[empty-fields]] |
-| Unclear Workflow | 5 | L431 | [[started-and-finished-points]], [[judging-board-columns]] |
+| Unclear Workflow | 5 | L431 | [[started-and-finished-points]], [[distinguishable-work-states]] |
 
 ## What this wiki took from it
 
@@ -107,9 +107,9 @@ The governing point, that a smell is reported as a question until its context is
 
 ## What this wiki dropped, and why
 
-- **All of RQ3** (L582-L628), apart from two remarks on the form of a report kept on [[smell-is-not-a-finding]]. It is tool design, feedback on four prototype screens.
+- **All of RQ3** (L582-L628), apart from two remarks on the form of a report kept on [[smell-is-not-a-finding]] and one on triage meetings checking report quality (L609), kept on [[triage-procedure]]. It is tool design, feedback on four prototype screens.
 - **Recommendations to tool vendors and on training** (L734-L740, L757, L777). Tool capabilities and managing people.
-- **Management assigning issues and forbidding self-assignment** (L773). Managing people. The other two workflows there, regular review and a curated backlog, are kept on [[zombie-issue]].
+- **Management assigning issues and forbidding self-assignment** (L773). Managing people. The other two workflows there, regular review and a curated backlog, are kept on [[closing-what-no-longer-applies]].
 - **Role differences** between managers and developers (L425, L440, L461, L739). Individual and organisational.
 - **Related work** (L630-L694). This wiki does not cite the authors' secondary reports of other studies as findings.
 
@@ -126,4 +126,4 @@ The conclusion lists "missing commits in issue reports" among what is generally 
 
 ## How to read it
 
-Read it as a catalogue of what to look at and a warning about what looking proves. It is independent of the Kanban school behind [[judging-board-columns]], which is worth something on its own. Its strongest finding is negative: a sign that seems plainly bad is often an intended part of how someone works.
+Read it as a catalogue of what to look at and a warning about what looking proves. It is independent of the Kanban school behind [[distinguishable-work-states]], which is worth something on its own. Its strongest finding is negative: a sign that seems plainly bad is often an intended part of how someone works.

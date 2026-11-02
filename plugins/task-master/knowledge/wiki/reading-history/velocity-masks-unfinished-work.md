@@ -12,7 +12,7 @@ updated: 2026-11-02
 
 Velocity masking unfinished work is the defect where a period's points look healthy while the work a release actually needs is not finishing. Velocity counts what was claimed. It does not count what was started, so a growing pile of open work leaves it unchanged.
 
-At Siemens HS, the case behind this page ([[siemens-hs-case]]):
+At Siemens HS, the case behind this page ([[vacanti-actionable-agile-metrics]]):
 
 > While velocity rates at sprint reviews often seemed good, reality pointed to a large number of stories blocked or incomplete and multiple features in progress with few, if any, features completing until end of the release.
 >

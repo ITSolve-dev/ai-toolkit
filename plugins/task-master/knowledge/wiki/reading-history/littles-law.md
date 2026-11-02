@@ -198,4 +198,4 @@ This wiki's reading: the loop does not depend on a human executor. For the plugi
 
 ### See also
 
-[[good-plan-test]], [[diagnosing-unfinished-work]], [[what-may-move]], [[siemens-hs-case]]
+[[good-plan-test]], [[diagnosing-unfinished-work]], [[what-may-move]], [[vacanti-actionable-agile-metrics]]

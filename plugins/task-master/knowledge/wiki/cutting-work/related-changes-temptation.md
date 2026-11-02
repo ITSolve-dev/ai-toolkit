@@ -5,7 +5,7 @@ summary: Work added to an already sized task because it is nearby; it is kept on
 tags: [failure-mode, decomposition, sizing]
 sources: [cohn-agile-estimating-planning]
 created: 2026-11-01
-updated: 2026-11-01
+updated: 2026-11-02
 ---
 
 # Related Changes Temptation
@@ -18,9 +18,9 @@ The related changes temptation is the undoing of a good cut by refilling it. A t
 
 ## Observable signs
 
-Cohn gives the phrase. The other signs are this wiki's reading of his summary, which sets the bar at "related changes that are not necessary for the delivery of the user story" (L2729).
+Cohn gives the phrase: "While I’m in that code, I might as well take care of these other lingering changes…" (L2711). The signs below are this wiki's reading of it and of his summary, which sets the bar at "related changes that are not necessary for the delivery of the user story" (L2729).
 
-- **In task text:** added lines in the manner of "while we are in there" or "also clean up", with no link to the task's purpose ([[task-must-justify-itself]]).
+- **In task text:** added lines in the manner of Cohn's "I might as well take care of these other lingering changes" (L2711), or an also-clean-up item, with no link to the task's purpose ([[task-must-justify-itself]]).
 - **In the result:** changes that no acceptance criterion accounts for.
 - **In board history:** a task's estimate or scope grows after it was sized and cut. A sign raises a question, since scope can grow for other reasons, and [[overrun-triggers-a-recut]] covers those.
 

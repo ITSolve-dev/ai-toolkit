@@ -32,7 +32,7 @@ A list that never grows is treated as a warning: "Hopefully we do think of some 
 
 The list stays coarse on purpose, and coarseness is enforced in the opposite direction from usual. Undo and redo are written as two stories, and the coach says "Undo and redo are pretty small. We don’t need our stories to be that small. In fact, we should probably combine undo and redo." (L5153). The two cards are torn up and replaced by one (L5157-L5159).
 
-This wiki reads the sign as follows. At the inventory stage, two entries so closely paired that one has no use without the other show writing too fine. Cutting comes later, on the schedule in [[when-to-split-a-task]], and the general move is [[combining-small-tasks]].
+This wiki reads the sign as follows. At the inventory stage, two entries so closely paired that one has no use without the other show writing too fine. Cutting comes later, on the schedule in [[size-ceiling]], and the general move is [[combining-small-tasks]].
 
 ## What an entry carries
 

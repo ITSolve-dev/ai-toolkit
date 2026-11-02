@@ -3,7 +3,7 @@ title: Board Rules by Setup
 category: moving-work
 summary: The lookup from a project's setup to the rule that holds for moving, limiting and committing; two switches, a fixed period and a WIP control, resolve where Kanban and Scrum differ, and neither guide says when to pick the other.
 tags: [decision-rule, wip, iterations, kanban, scrum]
-sources: [kanban-guide, scrum-guide-2020, vacanti-actionable-agile-metrics]
+sources: [kanban-guide, scrum-guide-2020, vacanti-actionable-agile-metrics, wester-board-design]
 created: 2026-11-01
 updated: 2026-11-02
 ---
@@ -25,9 +25,9 @@ Two switches describe a setup, and the plugin can read both from project configu
 
 | Question | Flow setup | Iteration setup | Iterations with a WIP control | Page |
 |---|---|---|---|---|
-| What lets a task start? | The count falls below the bound | Selected for the period | Selected, and the count is below the bound | [[what-may-move]] |
+| What lets a task start? | The count falls below the bound, which the Guide says "can be a signal" (L141); this wiki makes it the default trigger | Selected for the period | Selected, and the count is below the bound | [[what-may-move]] |
 | Is concurrent work limited? | Yes, by the stated bound | Not by the guide; the period bounds the total only | Yes, by the stated bound | [[wip-control]] |
-| What is promised? | Nothing for a period; a forecast per task | The period's goal; the items are a forecast | The period's goal | [[commitment-over-a-period]] |
+| What is promised? | Nothing for a period. Per task, a forecast in the Guide's words (the SLE, L115), which Vacanti treats as a small-c commitment once the item is pulled ([[backlog-versus-commitment]]) | The period's goal; the items are a forecast | The period's goal | [[commitment-over-a-period]] |
 | How much goes in? | Replenished on the signal | Filled from history at the start | Filled from history, started on the signal | [[filling-a-period]] |
 | Can the list change mid-way? | Yes, up to the moment of starting | Yes, if the goal is safe | Yes, if the goal is safe | [[mid-period-change]] |
 | What if a task is unfinished? | It stays and ages | It goes back and is ordered again | It goes back and is ordered again | [[unfinished-at-period-end]] |
@@ -35,7 +35,7 @@ Two switches describe a setup, and the plugin can read both from project configu
 | What is the size ceiling? | Likely to finish inside the SLE | Fits inside the period, and a fraction of it, or inside the SLE if kept | Fits inside the period, and a fraction of it, or inside the SLE if kept | [[size-ceiling]] |
 | Does a blocked task count? | Yes | There is no count to join | Yes | [[blocked-work-counts-against-wip]] |
 | Can a stopped task leave its place? | Only as a declared exception, in a narrow case | No: there is nothing to gain | Only as a declared exception, in a narrow case | [[parking-lot]] |
-| Can a task go back? | No, except two narrow cases on [[non-standard-departure]]: an item too broken to be tested goes back one step (Vacanti, L1416), and an item expected to return leaves the board with its history kept | Only by returning to the unstarted pile at a period's end; the too-broken-to-test case also applies | Only by returning to the unstarted pile at a period's end; inside a period, the two cases of the flow column apply | [[backward-movement]] |
+| Can a task go back? | Not by default: an expected cycle is drawn forward as a state (Wester, [[wester-board-design]] L34-L36). The Guide is silent and leaves flow rules to project policy (L114), so a declared exception is allowed: the two narrow cases on [[non-standard-departure]] (an item too broken to be tested goes back one step, Vacanti L1416; an item expected to return leaves the board with its history kept) and a return from a [[parking-lot]] | Only by returning to the unstarted pile at a period's end; the too-broken-to-test case also applies | Only by returning to the unstarted pile at a period's end; inside a period, the two cases of the flow column apply | [[backward-movement]] |
 
 ## Choosing a setup
 

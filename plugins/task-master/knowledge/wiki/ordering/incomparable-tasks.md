@@ -26,7 +26,7 @@ Sometimes nobody can say what a task is worth or what waiting does to it. A forc
 
 - **If a person can answer, ask.** Value and urgency are task-only facts ([[recoverable-versus-task-only-facts]]), so one question is usually the cheapest step ([[clarifying-questions]]).
 - **If nothing stands behind it yet, hold it outside the order.** The Kubernetes guide has a level for this: "Possibly useful, but not yet enough support to actually get it done." and "Mostly placeholders for potentially good ideas, so that they don’t get completely forgotten, and can be referenced or deduped every time they come up" ([[kubernetes-issue-triage]] L236). This wiki reads that as a place for what cannot be compared, and it counts each time the idea comes up again as evidence for rating it. The holding rule is on [[closing-what-no-longer-applies]].
-- **If the answer depends on learning something,** the first step is the smallest thing that shows it, which is a matter of cutting ([[find-core-complexity]], [[spike-as-last-resort]]).
+- **If the answer depends on learning something,** the first step is the smallest thing that shows it, which is a matter of cutting ([[choosing-between-splits]], [[spike-as-last-resort]]).
 
 ## Inputs, where each is read from, and what would show the choice wrong
 

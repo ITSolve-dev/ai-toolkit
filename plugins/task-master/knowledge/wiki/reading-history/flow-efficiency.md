@@ -24,7 +24,7 @@ Worked example from the source: a story that took 20 days at 15% had 3 active da
 
 ## The Siemens HS form
 
-The [[siemens-hs-case]] gives the same calculation as a procedure against a board (L4184-L4190):
+The Siemens case ([[vacanti-actionable-agile-metrics]]) gives the same calculation as a procedure against a board (L4184-L4190):
 
 1. Take total Cycle Time for the item from board history.
 2. Add time in queue states, at Siemens the "specifying done and developing done" column.

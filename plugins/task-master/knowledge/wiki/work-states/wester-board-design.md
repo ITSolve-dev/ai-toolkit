@@ -30,7 +30,7 @@ A board can cause dysfunction through the way it draws work. Five design moves a
 - The argument against holding columns, which disagrees with the Kanban Maturity Model: [[parking-lot]].
 - Staying in place where the wait happened: [[blocked-work-counts-against-wip]].
 - Blocked and On Hold as attributes: [[waiting-versus-blocked]].
-- The role-named column as a test: [[judging-board-columns]].
+- The role-named column as a test: [[distinguishable-work-states]].
 
 ## What this wiki dropped, and why
 

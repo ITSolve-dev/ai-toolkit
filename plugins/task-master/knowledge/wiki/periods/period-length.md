@@ -103,7 +103,7 @@ Cohn's early teams chose each length from the work coming in, so two weeks could
 - **In board history:** successive periods of different lengths with no change of setup recorded, or lengths that track the size of the selection.
 - **In board history:** a gap between periods, which contradicts "starts immediately after".
 
-The signs are this wiki's derivation from the Guide's L189 and Cohn's L3486. A planned macro-cycle such as [[6x2-plus-1]] is not a violation if it is recorded as setup.
+The signs are this wiki's derivation from the Guide's L189 and Cohn's L3486. A planned macro-cycle, such as Cohn's "six two-week iterations followed by a one-week iteration" (L3512), is not a violation if it is recorded as setup.
 
 The study behind [[montgomery-tracker-smells]] lists the first two as smells: "Instead of moving open issues to the next sprint, the sprint end date is extended." (L218) and "Sprints are not consistent lengths." (L221), along with "The same sprint is delayed over and over." (L227). The results for these three are in a figure that is lost, so this wiki cannot say how practitioners judged them, and it cites them only as independent statements of the sign. A fourth, "The sprint length differs from the recommendations made by Agile." (L224), is not a sign here, because this wiki's sources recommend no length that holds across projects: the Guide gives only the upper bound, and Cohn's two weeks is a preference with conditions.
 
@@ -131,6 +131,10 @@ Cohn's factors do not all survive an agent executing and a person steering. This
 - **Survives with a change:** overhead of iterating, where Cohn's main cost is regression testing. Automated checks shrink it, which removes his condition against one-week periods when they exist. Review by the people steering becomes the larger cost.
 - **Do not survive for the executor:** urgency, sustained pace and the recovery argument about someone being out sick. They describe people. They may still describe the people steering, who review on a human clock.
 
+## Where a period or release ends
+
+Cohn warns: "If you tie iterations to the ends of months, one out of every three iterations will coincide with the end of a fiscal quarter." ([[cohn-agile-estimating-planning]] L3552). His case is one release planned for March 31 that slipped a week to April 7, so its revenue could not be recognised until the next quarter (L3554-L3556). It is one project, and his "at all costs" (L3552) is stronger than one case supports. This wiki keeps the mechanism, a step in value at a date, where a one-week slip costs a week before the step and a full quarter across it ([[a-date-is-not-urgency]]). The sign is a planned release or final period end on or just before a known step in value, with no room for a normal slip as read from planned-against-actual dates in board history. The source gives no margin, and a date with no outside effect is not a violation.
+
 ## Related
 
-Whether stories fit a period at all, read from Cycle Time history, is on [[iteration-length-versus-cycle-time]]. Where a period starts in the week is on [[iteration-boundary-day]]. Why period ends should stay away from dates where value steps down is on [[quarter-end-release-date]].
+Whether stories fit a period at all, read from Cycle Time history, is on [[iteration-length-versus-cycle-time]].

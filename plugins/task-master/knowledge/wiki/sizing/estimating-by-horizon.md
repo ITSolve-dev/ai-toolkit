@@ -70,7 +70,7 @@ Estimation before a release has a bounded scope in both directions. The test at 
 
 ### Why the floor exists
 
-"Because an estimate represents the cost of developing a user story, it is important that each has been estimated." ([[cohn-agile-estimating-planning]] L2810). Cohn's image is shopping for a whole wardrobe in a mall where every price tag has been removed, which he says is what choosing feels like for a product owner given no estimates (L2810). This wiki reads the mechanism as the one on [[tradeoff-needs-cost-and-benefit]]: priority weighs value against cost, and the capacity arithmetic on [[fitting-stories-into-a-release]] cannot run on an unestimated story.
+"Because an estimate represents the cost of developing a user story, it is important that each has been estimated." ([[cohn-agile-estimating-planning]] L2810). Cohn's image is shopping for a whole wardrobe in a mall where every price tag has been removed, which he says is what choosing feels like for a product owner given no estimates (L2810). This wiki reads the mechanism as the one on [[prioritization-factors]]: priority weighs value against cost, and the capacity arithmetic on [[fitting-stories-into-a-release]] cannot run on an unestimated story.
 
 ### Why the ceiling exists
 

@@ -32,7 +32,7 @@ The source states the rule. These signs are this wiki's derivation from it.
 
 ## Why
 
-What breaks is the signal. If a blocked item leaves the count, the state has room again and work continues to be pulled, so the stop has no effect on anything and nothing forces attention to it. The source's own wording is that counting "impedes pulling" and that this "encourages fast resolution" (L34). The waiting case is different: an item that cannot be shortened goes to a [[parking-lot]] instead, which has its own bookkeeping.
+What breaks is the signal. If a blocked item leaves the count, the state has room again and work continues to be pulled, so the stop has no effect on anything and nothing forces attention to it. The source's own wording is that counting "impedes pulling" and that this "encourages fast resolution" (L34). The waiting case is different: an item that cannot be shortened may go to a [[parking-lot]] only as the declared exception set out there; otherwise it stays and counts.
 
 ## Cost
 

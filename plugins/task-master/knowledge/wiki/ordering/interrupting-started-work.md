@@ -3,7 +3,7 @@ title: Interrupting Started Work
 category: ordering
 summary: Reordering unstarted work costs nothing, while stopping started work costs something; this wiki allows it only for a task at the top rank, against work rated well below it, and through the route the project's setup permits.
 tags: [decision-rule, ordering, cost-of-delay, wip, prioritization]
-sources: [black-swan-qualitative-cod, kubernetes-issue-triage, montgomery-tracker-smells]
+sources: [black-swan-qualitative-cod, kubernetes-issue-triage, montgomery-tracker-smells, vacanti-actionable-agile-metrics]
 created: 2026-11-01
 updated: 2026-11-01
 ---
@@ -23,7 +23,7 @@ This wiki reads two cases in the first passage. A task that is only waiting in a
 ## The rule
 
 1. If the higher task has not displaced anything, reorder and finish here.
-2. Interrupt only when the incoming task is at rank 1 of [[ordering-by-value-and-urgency]], and the work it would displace is well below it. The text fixes "Very High" as rank 1 and does not map "Medium" or "Low" to ranks, so "well below" is a judgement here and not a line.
+2. Interrupt only when the incoming task is at rank 1 of [[ordering-by-value-and-urgency]], and the work it would displace is well below it. The text fixes "Very High" as rank 1 and does not map "Medium" or "Low" to ranks, so "well below" is a judgement here and not a line. Under a flow setup with a WIP bound, rank 1 is not enough: Vacanti grants precedence only to "obvious high value expedites" such as production down or a regulatory requirement with massive fines ([[vacanti-actionable-agile-metrics]] L3456), so the incoming task must name such a loss outside the project, and the rate of such interruptions is studied ([[expedite-lane]]). This setup condition is this wiki's resolution ([[value-decided-at-replenishment]]).
 3. Use the route the setup allows. Under a flow setup, that means a declared exception to the bound on [[wip-control]]. Under an iteration setup, it means a change judged by its effect on the goal ([[mid-period-change]]).
 4. Record the interruption, so that its cost can be read later.
 

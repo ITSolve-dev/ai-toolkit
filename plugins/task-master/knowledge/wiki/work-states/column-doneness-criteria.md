@@ -10,7 +10,7 @@ updated: 2026-11-02
 
 # Column Doneness Criteria
 
-Column doneness criteria are explicit conditions a story must satisfy before moving to the next column. They turn a board column from a label into a checkable state. In the [[siemens-hs-case]]:
+Column doneness criteria are explicit conditions a story must satisfy before moving to the next column. They turn a board column from a label into a checkable state. In the Siemens case ([[vacanti-actionable-agile-metrics]]):
 
 > Each column had its own doneness criteria and by incorporating “doneness procedures” into our explicit policies we were able to ensure that all quality steps were followed before moving a story to the next column
 >
@@ -28,7 +28,7 @@ The signs are this wiki's reading, and each is a question to check.
 
 ## What breaks when ignored
 
-The source's concern is that quality steps get skipped when a story moves on. This wiki adds a second consequence: time in state means nothing if nobody can say what ending a state requires, so [[judging-board-columns]] and any per-column reading lose their footing.
+The source's concern is that quality steps get skipped when a story moves on. This wiki adds a second consequence: time in state means nothing if nobody can say what ending a state requires, so [[distinguishable-work-states]] and any per-column reading lose their footing.
 
 ## The last column fixes what the metrics cover
 

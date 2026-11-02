@@ -141,7 +141,7 @@ The discriminating test is therefore whether the project has flow history at all
 
 ### How Siemens HS ran it
 
-Siemens HS adopted the method after its Cycle Times stabilized ([[siemens-hs-case]]). The argument against the alternative: "velocity forecasts attempt to apply a deterministic methodology to an inherently uncertain problem" (L4214). The source contrasts two inputs: the simulation "provides a distribution of likely completion timeframes instead of an average velocity linear based forecast", and Cycle Time metrics "are not based on an average" but "on distributions of actual Cycle Times" (L4202). See [[forecast-range-and-probability]] and [[velocity-range-forecast]].
+Siemens HS adopted the method after its Cycle Times stabilized ([[vacanti-actionable-agile-metrics]]). The argument against the alternative: "velocity forecasts attempt to apply a deterministic methodology to an inherently uncertain problem" (L4214). The source contrasts two inputs: the simulation "provides a distribution of likely completion timeframes instead of an average velocity linear based forecast", and Cycle Time metrics "are not based on an average" but "on distributions of actual Cycle Times" (L4202). See [[forecast-range-and-probability]] and [[velocity-range-forecast]].
 
 1. Reach a stable Cycle Time first; see [[conservation-of-flow]].
 2. Take the distribution of historical Cycle Times, as a histogram from best to worst case (L4202-L4214). The chapter's example covers 30% of stories at 9 days or less, 410 stories, and the next 20% at 10 to 16 days, 225 stories.

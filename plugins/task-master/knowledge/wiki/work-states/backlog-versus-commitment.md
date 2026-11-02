@@ -3,7 +3,7 @@ title: Backlog Versus Commitment
 category: work-states
 summary: A backlog is a container of candidates, not committed or prioritized work; commitment happens just in time, when capacity exists, so a backlog belongs inside a process's boundaries, and on its CFD, only if it really has been committed, a choice that moves the start of Cycle Time. Commitment means small-c effort, flow through to completion, and a communicated range with a probability; flow commits per item from measurement, Scrum per sprint from estimation. The started point is never earlier than commitment and sits where capacity is first taken.
 tags: [decision-rule, work-states, ordering, cfd, flow-metrics, kanban, scrum, rule, commitment, pull-system, service-level, vacanti]
-sources: [vacanti-actionable-agile-metrics]
+sources: [vacanti-actionable-agile-metrics, kanban-guide]
 created: 2026-11-02
 updated: 2026-11-02
 ---
@@ -80,7 +80,7 @@ Vacanti's body text gives three aspects (L2276-L2280), while the chapter's takea
 >
 > — [[vacanti-actionable-agile-metrics]], L2282
 
-This wiki reads the 14 days and 85% as an example of the wording, not a target. The form is what the source calls a Service Level Agreement, with setting it deferred to its Chapter 12 ([[service-level-expectation]]). "Everything in its power" starts with choosing a range and probability that are achievable (same page), and with [[conditioning-flow]] (L2316).
+This wiki reads the 14 days and 85% as an example of the wording, not a target. The Kanban Guide calls the same figure, the SLE, "a forecast" ([[kanban-guide]] L115), where Vacanti calls it a commitment and an agreement. This wiki resolves the wording by what the plugin says: per task it states a forecast with its range and probability, and treats meeting it as a small-c commitment once the item is pulled, so a miss is a data point and not a breach ([[board-rules-by-setup]]). The form is what the source calls a Service Level Agreement, with setting it deferred to its Chapter 12 ([[service-level-expectation]]). "Everything in its power" starts with choosing a range and probability that are achievable (same page), and with [[conditioning-flow]] (L2316).
 
 ### Signs
 

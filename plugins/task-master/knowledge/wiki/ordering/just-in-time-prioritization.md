@@ -3,7 +3,7 @@ title: Just-in-Time Prioritization
 category: ordering
 summary: Rank work only when the process signals free capacity, and only as many items as there are free slots; ranking deeper is waste because needs and knowledge change before the next pull.
 tags: [rule, prioritization, pull-system, backlog, wip-limit, vacanti]
-sources: [vacanti-actionable-agile-metrics]
+sources: [vacanti-actionable-agile-metrics, cohn-agile-estimating-planning]
 created: 2026-11-02
 updated: 2026-11-02
 ---
@@ -55,7 +55,7 @@ Most of `ordering` ranks work ahead of time, and a release plan needs an order o
 This section is the wiki's own reading.
 
 - **Pull:** the depth of ranking equals free slots, and the trigger is a slot opening.
-- **Iterations:** the same logic bounds fine ranking to what the next iteration can hold, which is the claim of [[reprioritize-before-each-iteration]], since [[backlog-versus-commitment]] sits at the period there.
+- **Iterations:** this wiki reads the same logic as bounding fine ranking to what the next iteration can hold, since [[backlog-versus-commitment]] sits at the period there. That reading is compatible with [[reprioritize-before-each-iteration]], though Cohn keeps a fully ranked list, "the most valuable story is at the top, the least valuable is at the bottom" ([[cohn-agile-estimating-planning]] L3104), and Vacanti's depth limit is not his.
 - **Iterations with a release plan:** a coarse order beyond the next period is needed for the forecast, and its detail is what is not worth maintaining ([[planning-horizons]]).
 
 ## Agent note

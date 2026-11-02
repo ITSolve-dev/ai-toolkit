@@ -43,7 +43,7 @@ Cohn says there is "no upfront requirements phase followed by analysis followed 
 Cohn names no observable sign. This wiki reads the following as questions to ask of a board's history.
 
 - The end date of an iteration moved after it started, or an iteration was extended to let an item finish. That spends the date to keep the scope, the reverse of the rule, and it is the sign on [[period-length]].
-- An iteration holds only one kind of work, such as a run of iterations named for design and then for testing. That is a phase wearing an iteration's name, and [[activity-based-plan]] is the same fault at task level.
+- An iteration holds only one kind of work, such as a run of iterations named for design and then for testing. That is a phase wearing an iteration's name, and [[vertical-slice]] is the same fault at task level.
 
 ## Trade-offs
 

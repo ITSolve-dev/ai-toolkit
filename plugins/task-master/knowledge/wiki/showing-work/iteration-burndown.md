@@ -14,7 +14,7 @@ An iteration burndown is the chart for one question: at today's rate of change i
 
 ## How to build it
 
-"To create an iteration burndown chart, simply sum all of the hours on your task board once per day and plot that on the chart." (L4515). The input is the remaining estimate on each open item, totalled by row ([[iteration-task-board]]). So the chart is only as honest as the discipline in [[overrun-triggers-a-recut]].
+"To create an iteration burndown chart, simply sum all of the hours on your task board once per day and plot that on the chart." (L4515). The input is the remaining estimate on each open item, totalled by row ([[distinguishable-work-states]]). So the chart is only as honest as the discipline in [[overrun-triggers-a-recut]].
 
 ## When it earns its place
 
