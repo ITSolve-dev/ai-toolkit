@@ -60,9 +60,11 @@ charter, continue on a marked general-knowledge assumption, and outside the char
   estimate it, because an estimate reads exactly like a measurement. Never present an approximation
   as a measurement. Before quoting a figure read its `basis`, `reason` and `scope_complete`; a
   scope not complete or unknown is said beside the figure, with its `scope_reason`.
-- **Tool words come from the config.** A link type, close reason, marker or field is the value the
-  config records under `[links]`, `[board.close_reasons]`, `[markers]` or `[fields]`; no entry
-  makes that step `not_covered`, never a guess at the tool's word.
+- **Tool words come from the caller.** A task's `links` carry the tool's type names; match them to
+  the relations `blocks`, `duplicates` and `relates` by the tool's type for each, as the question
+  records it from the tool's help. A marker is its label in the snapshot's `marker_specs` (`spec`). A
+  relation with no type named makes that step `not_covered`, never a guess at the tool's word. Ops
+  in a changeset use the plugin's relations and close reasons, not the tool's words.
 - **One question only.** What you noticed about other dimensions stays out: it crowds out the one
   asked, and another run answers it.
 - **A sign is a question, not a verdict** (`wiki/reading-history/smell-is-not-a-finding.md`; open it

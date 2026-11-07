@@ -2,8 +2,9 @@
 
 Which linked tasks sit in states the link rules out? Read `README.md`, *Every dimension*, first.
 
-**Reads:** every task's `kind`, `parent`, `subtasks`, `links` (the types `[links].blocks`,
-`[links].blocked_by`, `[links].relates`; one the config lacks: its step is `not_covered`), `markers`.
+**Reads:** every task's `kind`, `parent`, `subtasks`, `links` of the tool's types for `blocks`
+(either direction: `blocks` and `blocked_by` below) and `relates`, as the question names them; a
+relation with no type named: its step is `not_covered`), `markers`.
 
 ## Steps
 
@@ -26,7 +27,7 @@ Which linked tasks sit in states the link rules out? Read `README.md`, *Every di
 ## Not a finding
 
 - A `relates` link between tasks in any states.
-- A `duplicates` or `duplicated_by` link: the `duplicates` dimension owns every one.
+- A `duplicates` link, either direction: the `duplicates` dimension owns every one.
 - A cancelled parent with open children the process document says are kept on purpose.
 - An empty `links`, `subtasks` or null `parent`: in a composed snapshot the tool may not have read
   them; record under `not_covered` which of them the snapshot lacks, never infer no link.

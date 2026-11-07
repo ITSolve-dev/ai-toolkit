@@ -39,7 +39,7 @@ On Claude Code 2.1.275 or later this works in one step:
 | `decompose`     | A document or description into a tree of tasks an agent can each finish | No                           |
 | `estimate`      | Relative sizes, what each rests on, which tasks to cut again            | No                           |
 | `schedule`      | Order estimated tasks over periods; the date as a range                 | No                           |
-| `init`          | Find the board tool, record its commands and capabilities               | Finds it                     |
+| `init`          | Find the board tool, bring the workflow config and the board in line    | Finds it                     |
 | `board`         | Read, snapshot, apply a changeset, show how a single move looks         | Yes                          |
 | `tend-board`    | Check an area of the board, one dimension at a time                     | Yes                          |
 | `triage`        | Read and sort incoming items, draft questions to reporters              | Yes, or items as text        |
@@ -68,12 +68,15 @@ therefore always runs where you can see it.
 
 The plugin names no board tool. A project may reach its board through an adapter, its tracker's own
 CLI or an MCP server, and its own scripts use the same tool, so the plugin uses what the project
-already has rather than carrying a tool of its own. `init` looks in the project's configuration, its
-`CLAUDE.md` and the environment, shows what it found for you to confirm, and records in
-`.claude/task-master.toml` the exact commands, what the tool can and cannot do, and how the board's
-statuses map to the plugin's kinds of work state. Every board skill reads that file and never probes
-the tool again. A status missing from the mapping is named on the first read, not guessed into a
-kind; the fix is a rerun of `init`.
+already has rather than carrying a tool of its own. The plugin keeps no file of its own: it reads the
+project's workflow config file, the one `CLAUDE.md` or `AGENTS.md` names, else `workflow.toml` at
+the root. `[board]` there belongs to the board tool, `[board.labels]` and `[board.size]` are the
+project's labels and estimate scale, and `[process]` is how the team works, which the plugin owns.
+`init` finds the tool, shows what it found for you to confirm, asks only for what is missing, and
+brings the board to the file. Each board skill reads the tool's `--help` on every run and uses only
+what it documents. A task's kind comes from its status's category on the board, or from
+`[process.kinds]` where the tool gives none; a status with neither is named on the first read, not
+guessed into a kind; the fix is a rerun of `init`. Full list: `skills/init/settings.md`.
 
 ### Where the tool falls short
 
@@ -89,13 +92,13 @@ the tool nor a fallback can do, the skill does not do, and says so.
 | Batch with preview                  | One write per operation, in order, each under its own prompt; ids written back after each, so a rerun skips what is done | As many prompts as operations; the set cannot be refused whole before the first write |
 | Link to a task not yet created      | Create first, then link by the ids in the changeset file                                       | A failure between the two leaves tasks unlinked until the rerun              |
 | List of iterations                  | The caller or the person names them                                                            | —                                                                            |
-| Contract version                    | The tool version found at `init` is recorded and checked on every run                          | A behaviour change without a version change goes unnoticed                   |
+| Contract version                    | The tool's help is read on every run; only what it documents is used                           | A behaviour change the help does not show goes unnoticed                     |
 
 ### Permissions
 
 `init` proposes rules for `.claude/settings.json` as a fragment you add yourself:
 
-- every recorded read is allowed by its fixed prefix;
+- every read the skills run is allowed by its fixed prefix;
 - every write is left to a prompt;
 - a single-task move is allowed in advance only where the tool itself checks the expected state,
   because a move nobody is asked about must refuse when the task has already moved on.
@@ -149,7 +152,7 @@ holds the charter and the record of these decisions.
 
 **The board skills have not been run against a real board.** `init`, `board`, `tend-board`,
 `triage`, `review-period` and `visualize` have run only on invented data, which shows that their
-steps execute, not that the commands they record work on a live tracker. The design holds that a
+steps execute, not that the commands they take from the help work on a live tracker. The design holds that a
 skill resting on a path no live board has exercised does not ship, so the plugin stays unreleased
 until that check is done. Also unchecked: permission rules built on `${CLAUDE_PLUGIN_ROOT}` on
 Windows.

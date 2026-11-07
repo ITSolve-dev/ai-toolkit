@@ -21,22 +21,25 @@ Runs in your context and writes nothing to the board. Each dimension is judged b
 merge and relay what they return. The dimensions and what each needs are listed in
 `${CLAUDE_PLUGIN_ROOT}/skills/tend-board/dimensions/README.md`.
 
-1. **Read `.claude/task-master.toml`** (format: `${CLAUDE_PLUGIN_ROOT}/skills/init/config-format.md`).
-   Absent: say the board is not set up and point to `init`. A snapshot the caller hands over, with
-   its state mapping, is checked in its place, as composed and with no history; otherwise stop.
+1. **Find the settings and learn the tool** as `${CLAUDE_PLUGIN_ROOT}/skills/board/method.md`,
+   *Before any job*, says. No board: say it is not set up and point to `init`. A snapshot the
+   caller hands over, with its kinds, is checked in its place, as composed and with no history;
+   otherwise stop.
 2. **Pick the scope and the dimensions.** The scope as given, in the form of the `board` method;
    none given, the whole board, recorded in `assumptions`. The dimensions named, else every row of
-   the README. An unknown name goes to `not_covered`. A dimension whose README row needs data the
-   config records as unavailable is skipped with that reason, and not dispatched.
+   the README. An unknown name goes to `not_covered`. A dimension whose README row needs data an
+   obligation decided in step 1 leaves unavailable is skipped with that reason, and not dispatched.
 3. **Take one snapshot** of the scope, open and finished tasks, by
-   `${CLAUDE_PLUGIN_ROOT}/skills/board/method.md`, *Before any job* and *Reads and the snapshot*,
+   `${CLAUDE_PLUGIN_ROOT}/skills/board/method.md`, *Reads and the snapshot*,
    to `.task-master/tend-board-snapshot.json`; history, where read per issue, for the started
    tasks (age) and the finished ones (cycle time) only.
 4. **Compute the arithmetic once**:
-   `python ${CLAUDE_PLUGIN_ROOT}/scripts/board_metrics.py .task-master/tend-board-snapshot.json --config .claude/task-master.toml --out .task-master/tend-board-metrics.json`.
+   `python ${CLAUDE_PLUGIN_ROOT}/scripts/board_metrics.py .task-master/tend-board-snapshot.json --settings <settings> --out .task-master/tend-board-metrics.json`.
 5. **Write one question per dimension** to `.task-master/tend-board-q-<dimension>.md`: the
-   dimension, the scope, the config path, `[project].process_doc` (absent, or named but not found:
-   say which, and that nothing counts as declared intended), and the changeset path
+   dimension, the scope, the settings path, `[process].doc` (absent, or named but not found:
+   say which, and that nothing counts as declared intended), the tool's link type for each of the
+   relations `blocks`, `duplicates`, `relates` its help shows, one per direction where it names two
+   (none: say so), and the changeset path
    `.task-master/changeset-tend-board-<dimension>.json`, refs `<dimension>-<n>`.
 6. **Dispatch the inspectors in parallel**, in one message, one per dimension, each with the
    snapshot, the metrics, its question, and two method paths in this order, every path absolute

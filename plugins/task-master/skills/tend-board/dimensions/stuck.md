@@ -3,9 +3,10 @@
 Which started task has stopped or outlived its expectation, and nobody has acted on it? Read
 `README.md`, *Every dimension*, first.
 
-**Reads:** tasks of a kind in `[project].started_kinds` (absent: `active`, `handed_off`); their
-`markers`, `subtasks`; `age.items` (`work_item_age_days` with its `work_item_age_basis` and
-`work_item_age_reason`; `days` with its `basis`); `cycle_time.percentiles`, where not null.
+**Reads:** started tasks, those `age.items` marks `started` (kinds `active`, `handed_off`, and
+`queued` where `[process.wip]` limits it: `wip.started_statuses`); their `markers`, `subtasks`;
+`age.items` (`work_item_age_days` with its `work_item_age_basis` and `work_item_age_reason`;
+`days` with its `basis`); `cycle_time.percentiles`, where not null.
 
 ## Steps
 
@@ -14,15 +15,15 @@ Which started task has stopped or outlived its expectation, and nobody has acted
    says why; then `days` stands in, named by its `basis`: `exact` is time in the current status, not
    Work Item Age, so an age under the line does not clear a task that changed status recently;
    `since_created` overstates age, so an age over the line does not show a stop, and the finding
-   says so (`${CLAUDE_PLUGIN_ROOT}/skills/init/config-format.md`, `[board.capabilities]`). `unknown`: the task cannot be aged; list it
+   says so (`${CLAUDE_PLUGIN_ROOT}/skills/board/method.md`, Before any job: history). `unknown`: the task cannot be aged; list it
    under `not_covered` (`wiki/reading-history/work-item-age.md`, What an audit needs).
    *Output:* one line naming the basis. *Wrong if:* an approximate age is called Work Item Age.
 2. **Fix the line by setup** (`wiki/moving-work/board-rules-by-setup.md`, the expectation for a
-   task's life). `[project].sle` set (flow, or iterations keeping one): it wins over `period_days`;
-   its days are the metrics' `sle.days`, never parsed from the config string. No SLE, under
-   iterations: `[project].period_days`. Neither: no age line; run steps 4-5 only and name the
+   task's life). `[process].sle` set (flow, or iterations keeping one): it wins over `period_days`;
+   its days are the metrics' `sle.days`, never parsed from the settings string. No SLE, under
+   iterations: `[process].period_days`. Neither: no age line; run steps 4-5 only and name the
    missing inputs under `not_covered`. The checkpoint is the 70th percentile of finished work's
-   cycle time, `cycle_time.percentiles."70"`, with its `n` and `start_source`; null, name it missing
+   cycle time, `cycle_time.percentiles."70"`, with its `n` and each item's `start_source`; null, name it missing
    with `percentile_reasons`, never estimate it (`wiki/moving-work/percentile-intervention-triggers.md`).
    *Output:* the line and the checkpoint, in days, with their sources.
 3. **Age over the line.** A task whose age (step 1) exceeds the line, with no blocked or waiting
@@ -46,18 +47,18 @@ Which started task has stopped or outlived its expectation, and nobody has acted
      (`wiki/work-states/started-and-finished-points.md`, Sign of violation);
    - `active`, no marker: size or missing information; propose asking whether to re-cut, through
      `decompose` (`wiki/sizing/hidden-wip-in-large-items.md`).
-   Where `[project].executor` is `agent` or `mixed`, ask the blocker question first: a stop for a person's decision is
+   Where `[process].executor` is `agent` or `mixed`, ask the blocker question first: a stop for a person's decision is
    blocked, not waiting (`wiki/work-states/waiting-versus-blocked.md`, Agent executor note).
 5. **Propose** a comment asking the question of step 4. Blocked or waiting cannot be told from the
    snapshot, so no `add_label` for either: on a stopped task with no marker the comment asks what
-   it waits on and who acts, and names the marker each answer sets: `[markers].waiting` for an
-   outside party with an expected end, `[markers].blocked` otherwise (`wiki/work-states/waiting-versus-blocked.md`,
+   it waits on and who acts, and names the marker each answer sets, by its label in `marker_specs`: waiting for an
+   outside party with an expected end, blocked otherwise (`wiki/work-states/waiting-versus-blocked.md`,
    The test). Never a move out of the state: a blocked task stays and counts
    (`wiki/moving-work/blocked-work-counts-against-wip.md`, The rule).
 
 ## Not a finding
 
-- A task of a kind outside `started_kinds`: it has no age before the start
+- A task not started (kinds above): it has no age before the start
   (`wiki/reading-history/work-item-age.md`, What it covers). Old unstarted items are triage's.
 - A finished task, or one under the line.
 - A task marked blocked or waiting that is inside the project's stated policy: the marker is the

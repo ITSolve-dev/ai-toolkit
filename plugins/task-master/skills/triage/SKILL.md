@@ -18,19 +18,20 @@ allowed-tools: Read(${CLAUDE_PLUGIN_ROOT}/knowledge/**), Read(${CLAUDE_PLUGIN_RO
 Runs in your context and writes nothing to the board. The judgement happens in
 `task-master:board-inspector`; you prepare its files and relay its result.
 
-1. **Read `.claude/task-master.toml`** (format: `${CLAUDE_PLUGIN_ROOT}/skills/init/config-format.md`).
-   Absent: say the board is not set up and point to `init`. Items passed as text are still triaged
+1. **Find the settings and learn the tool** as `${CLAUDE_PLUGIN_ROOT}/skills/board/method.md`,
+   *Before any job*, says. No board: say it is not set up and point to `init`. Items passed as text are still triaged
    on what needs no board: write them to `.task-master/triage-items.md`, pass that file in place of
    the snapshot and `none` for the metrics, and state in the result that duplicates on the board,
-   staleness and every write were not checked. No config and no items: stop there.
+   staleness and every write were not checked. No board and no items: stop there.
 2. **Take a snapshot** of scope `board`, open and closed items, by
-   `${CLAUDE_PLUGIN_ROOT}/skills/board/method.md`, *Before any job* and *Reads and the snapshot*,
+   `${CLAUDE_PLUGIN_ROOT}/skills/board/method.md`, *Reads and the snapshot*,
    to `.task-master/triage-snapshot.json`. The whole board, because a duplicate is searched for
    among closed items too (`wiki/intake/duplicate-reports.md`).
 3. **Compute the arithmetic**:
-   `python ${CLAUDE_PLUGIN_ROOT}/scripts/board_metrics.py .task-master/triage-snapshot.json --config .claude/task-master.toml --out .task-master/triage-metrics.json`.
+   `python ${CLAUDE_PLUGIN_ROOT}/scripts/board_metrics.py .task-master/triage-snapshot.json --settings <settings> --out .task-master/triage-metrics.json`.
 4. **Write the question** to `.task-master/triage-question.md`: which items to triage (the text
-   items, or "the board's untriaged items"), the path of `.claude/task-master.toml`, and who the
+   items, or "the board's untriaged items"), the settings path, which plugin ops, link relations and
+   close reasons the tool's help shows a way for (`assign` included only if it does), and who the
    requests come from if you know (the person steering, or others).
 5. **Dispatch `task-master:board-inspector`** with four absolute paths (`${CLAUDE_PLUGIN_ROOT}`
    expanded, `.task-master/` resolved in the project): snapshot, metrics, question, and

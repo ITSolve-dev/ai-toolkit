@@ -10,18 +10,15 @@ import snapshot  # noqa: E402
 
 SCRIPT = Path(__file__).parent / "snapshot.py"
 
-CONFIG = """
-version = 1
+SETTINGS = """
 [board]
-tool = "sometool"
-tool_version = "0.1.0"
-[states]
-"Backlog" = "before_start"
-"In Progress" = "active"
-"Done" = "finished"
-[markers]
-blocked = "label:blocked"
-waiting = "field:flagged"
+kind = "sometool"
+[board.labels]
+blocked = "work cannot proceed"
+"needs-info" = "waiting on someone outside the team"
+"needs-triage" = "not yet looked at"
+[process]
+setup = "flow"
 """
 
 
@@ -41,14 +38,19 @@ def issue(id="1", status="In Progress", labels=None, **over):
 STATUSES = [{"id": "s1", "name": "Backlog", "category": "todo"},
             {"id": "s2", "name": "In Progress", "category": "in_progress"},
             {"id": "s3", "name": "Done", "category": "done"},
-            {"id": "s4", "name": "QA", "category": None}]
+            {"id": "s4", "name": "QA", "category": None},
+            {"id": "s5", "name": "Canceled", "category": "canceled"}]
+
+
+def settings(tmp_path, text=SETTINGS):
+    p = tmp_path / "workflow.toml"
+    p.write_text(text, encoding="utf-8")
+    return snapshot.load_settings(p)
 
 
 @pytest.fixture
 def cfg(tmp_path):
-    p = tmp_path / "task-master.toml"
-    p.write_text(CONFIG, encoding="utf-8")
-    return snapshot.load_config(p)
+    return settings(tmp_path)
 
 
 def compose(cfg, issues, statuses=STATUSES, sprints=None):
@@ -60,13 +62,33 @@ def test_composed_header(cfg):
     assert s["schema"] == 1
     assert s["source"] == "composed"
     assert s["taken_at"] == "2026-02-01T00:00:00Z"
-    assert s["tool"] == "sometool" and s["tool_version"] == "0.1.0"
+    assert s["tool"] is None and s["tool_version"] is None  # [board] is the tool's; not read for this
     assert s["mapping"]["Done"] == "finished"
+    t = snapshot.compose([issue()], STATUSES, None, cfg, "2026-02-01T00:00:00Z", tool="sometool",
+                         tool_version="0.1.0")
+    assert t["tool"] == "sometool" and t["tool_version"] == "0.1.0"
 
 
-def test_kind_from_states(cfg):
+def test_native_tool_claim_conflicting_with_flag_fails(cfg):
+    n = {"taken_at": "2026-02-01T00:00:00Z", "tool": "a", "issues": [issue()]}
+    assert snapshot.enrich_native(n, cfg, tool="a")["tool"] == "a"
+    assert snapshot.enrich_native({**n, "tool": None}, cfg, tool_version="9")["tool_version"] == "9"
+    with pytest.raises(snapshot.InputError, match="tool"):
+        snapshot.enrich_native(n, cfg, tool="b")
+
+
+def test_kind_from_category_of_the_statuses_read(cfg):
     s = compose(cfg, [issue(status="Backlog")])
     assert s["issues"][0]["kind"] == "before_start"
+    assert s["mapping_sources"]["Backlog"] == "category"
+
+
+def test_kind_from_the_issues_own_category(cfg):
+    s = compose(cfg, [dict(issue(), status={"name": "Triage", "category": "in_progress"}),
+                      dict(issue(id="2"), status={"name": "Done", "category": "canceled"})])
+    assert s["issues"][0]["kind"] == "active"
+    assert s["mapping"]["Triage"] == "active" and "Triage" not in s["unmapped_statuses"]
+    assert s["issues"][1]["kind"] == "finished"
 
 
 def test_tool_kind_is_kept_aside(cfg):
@@ -91,20 +113,105 @@ def test_null_status_name_is_not_guessed(cfg):
 
 
 def test_mapping_naming_absent_status_is_reported(tmp_path):
-    p = tmp_path / "c.toml"
-    p.write_text(CONFIG.replace('"Done" = "finished"', '"Done" = "finished"\n"Gone" = "queued"'),
-                 encoding="utf-8")
-    s = compose(snapshot.load_config(p), [issue()])
-    assert s["mapping_unknown_statuses"] == ["Gone"]
+    c = settings(tmp_path, SETTINGS + 'review_statuses = ["Ghost"]\n[process.kinds]\n"Gone" = "queued"\n')
+    s = compose(c, [issue()])
+    assert s["mapping_unknown_statuses"] == ["Ghost", "Gone"]
 
 
-def test_label_marker_recognised_other_left_null(cfg):
-    s = compose(cfg, [issue(labels=["blocked"]), issue(id="2", labels=[{"name": "x"}])])
+ORDER = SETTINGS + '''review_statuses = ["In Review", "Ready"]
+[process.kinds]
+"Ready" = "queued"
+"QA" = "handed_off"
+'''
+
+
+def test_kind_derivation_order(tmp_path):
+    statuses = STATUSES + [{"name": "In Review", "category": "in_progress"},
+                           {"name": "Ready", "category": "todo"}]
+    issues = [issue(id="r", status="Ready"), issue(id="v", status="In Review"),
+              issue(id="q", status="QA"), issue(id="b", status="Backlog"), issue(id="t", status="Triage")]
+    s = compose(settings(tmp_path, ORDER), issues, statuses=statuses)
+    kinds = {o["id"]: o["kind"] for o in s["issues"]}
+    # [process.kinds] beats review_statuses and the category
+    assert kinds["r"] == "queued" and s["mapping_sources"]["Ready"] == "process.kinds"
+    # review_statuses beats the category
+    assert kinds["v"] == "handed_off" and s["mapping_sources"]["In Review"] == "review_statuses"
+    # [process.kinds] gives a kind where the tool gives no category
+    assert kinds["q"] == "handed_off" and "QA" not in s["unmapped_statuses"]
+    assert kinds["b"] == "before_start" and s["mapping_sources"]["Backlog"] == "category"
+    # no category and no entry: unmapped, never guessed
+    assert kinds["t"] is None and s["unmapped_statuses"] == ["Triage"]
+
+
+def test_settings_without_process_decide_by_category(tmp_path):
+    c = settings(tmp_path, '[board]\nkind = "sometool"\n')
+    s = compose(c, [issue(), issue(id="2", status="QA")])
+    assert s["issues"][0]["kind"] == "active" and s["issues"][1]["kind"] is None
+    assert s["mapping_unknown_statuses"] == []
+
+
+@pytest.mark.parametrize("category", ["Done", "closed", 3])
+def test_unknown_category_fails(cfg, category):
+    with pytest.raises(snapshot.InputError, match="category"):
+        compose(cfg, [dict(issue(), status={"name": "X", "category": category})])
+    with pytest.raises(snapshot.InputError, match="category"):
+        compose(cfg, [issue()], statuses=[{"name": "X", "category": category}])
+
+
+def test_marker_defaults_are_labels(cfg):
+    s = compose(cfg, [issue(labels=["blocked", "needs-info"]), issue(id="2", labels=[{"name": "needs-triage"}])])
     a, b = s["issues"]
-    assert a["markers"]["blocked"] is True
-    assert b["markers"]["blocked"] is False
-    assert a["markers"]["waiting"] is None  # not label-based: unrecognisable
-    assert a["markers"]["untriaged"] is None  # not declared: board cannot show it
+    assert a["markers"]["blocked"] is True and b["markers"]["blocked"] is False
+    assert a["markers"]["waiting"] is True and b["markers"]["waiting"] is False
+    assert a["markers"]["untriaged"] is False and b["markers"]["untriaged"] is True
+    assert s["marker_specs"] == {"blocked": {"spec": "label:blocked", "source": "default"},
+                                 "waiting": {"spec": "label:needs-info", "source": "default"},
+                                 "untriaged": {"spec": "label:needs-triage", "source": "default"},
+                                 "abandoned": {"spec": "category:canceled", "source": "category"}}
+
+
+def test_marker_overrides_and_status_form(tmp_path):
+    c = settings(tmp_path, SETTINGS + '[process.markers]\nblocked = "impeded"\nwaiting = "status:Waiting"\n')
+    s = compose(c, [issue(labels=["impeded", "blocked"]), issue(id="2", status="Waiting")])
+    a, b = s["issues"]
+    assert a["markers"]["blocked"] is True and b["markers"]["blocked"] is False
+    assert a["markers"]["waiting"] is False and b["markers"]["waiting"] is True
+    assert a["markers"]["untriaged"] is False  # the default still applies
+    assert s["marker_specs"]["waiting"] == {"spec": "status:Waiting", "source": "settings"}
+    assert s["marker_specs"]["blocked"] == {"spec": "label:impeded", "source": "settings"}
+
+
+def test_canceled_is_finished_and_abandoned(cfg):
+    s = compose(cfg, [issue(status="Canceled"), issue(id="2", status="Done"), issue(id="3", status="QA")])
+    c, d, q = s["issues"]
+    assert c["kind"] == "finished" and c["markers"]["abandoned"] is True
+    assert d["kind"] == "finished" and d["markers"]["abandoned"] is False
+    assert q["markers"]["abandoned"] is None  # no category: cannot be told
+
+
+def test_declared_abandoned_column_reads_without_category(tmp_path):
+    c = settings(tmp_path, SETTINGS + '[process.kinds]\n"Dropped" = "finished"\n'
+                                      '[process.markers]\nabandoned = "status:Dropped"\n')
+    s = compose(c, [issue(status="Dropped"), issue(id="2", status="QA"), issue(id="3", status="Canceled")])
+    assert [o["markers"]["abandoned"] for o in s["issues"]] == [True, False, True]
+
+
+def test_markers_undeclared_lists_label_markers_missing_from_board_labels(tmp_path):
+    text = SETTINGS.replace('"needs-info" = "waiting on someone outside the team"\n', "")
+    s = compose(settings(tmp_path, text + '[process.markers]\nuntriaged = "status:Triage"\n'), [issue()])
+    assert s["markers_undeclared"] == [{"marker": "waiting", "label": "needs-info"}]
+    assert s["markers_undeclared_reason"] is None
+
+
+def test_markers_undeclared_without_board_labels_lists_all(tmp_path):
+    s = compose(settings(tmp_path, '[board]\nkind = "t"\n[process]\nsetup = "flow"\n'), [issue()])
+    assert [m["marker"] for m in s["markers_undeclared"]] == ["blocked", "waiting", "untriaged"]
+    assert "[board.labels]" in s["markers_undeclared_reason"]
+
+
+def test_all_markers_declared(cfg):
+    s = compose(cfg, [issue()])
+    assert s["markers_undeclared"] == [] and s["markers_undeclared_reason"] is None
 
 
 def test_label_objects_are_read(cfg):
@@ -127,7 +234,8 @@ def test_sprints_carried(cfg):
 
 def test_native_snapshot_enriched_and_validated(cfg):
     native = {"taken_at": "2026-02-01T00:00:00Z", "tool": "native-tool", "tool_version": "2.0",
-              "issues": [issue(status="Done", labels=["blocked"], finished_at="2026-01-10T00:00:00Z")]}
+              "issues": [dict(issue(labels=["blocked"], finished_at="2026-01-10T00:00:00Z"),
+                              status={"name": "Done", "category": "done"})]}
     s = snapshot.enrich_native(native, cfg)
     assert s["source"] == "native"
     assert s["tool"] == "native-tool" and s["tool_version"] == "2.0"
@@ -159,18 +267,20 @@ def test_issues_not_array_fails(cfg):
         compose(cfg, {"issues": []})
 
 
-def test_bad_kind_in_config_fails(tmp_path):
-    p = tmp_path / "c.toml"
-    p.write_text(CONFIG.replace('"finished"', '"closed"'), encoding="utf-8")
-    with pytest.raises(snapshot.InputError):
-        snapshot.load_config(p)
+def test_bad_kind_in_process_kinds_fails(tmp_path):
+    with pytest.raises(snapshot.InputError, match="process.kinds"):
+        settings(tmp_path, SETTINGS + '[process.kinds]\n"Ready" = "closed"\n')
 
 
-def test_config_without_states_fails(tmp_path):
-    p = tmp_path / "c.toml"
-    p.write_text("version = 1\n", encoding="utf-8")
-    with pytest.raises(snapshot.InputError):
-        snapshot.load_config(p)
+@pytest.mark.parametrize("extra", ['review_statuses = "Review"\n', 'review_statuses = [1]\n'])
+def test_bad_review_statuses_fail(tmp_path, extra):
+    with pytest.raises(snapshot.InputError, match="review_statuses"):
+        settings(tmp_path, SETTINGS + extra)
+
+
+def test_malformed_settings_toml_fails(tmp_path):
+    with pytest.raises(snapshot.InputError, match="TOML"):
+        settings(tmp_path, "[process\n")
 
 
 def run(*args):
@@ -179,63 +289,53 @@ def run(*args):
 
 
 def test_cli_composed_to_file(tmp_path):
-    (tmp_path / "c.toml").write_text(CONFIG, encoding="utf-8")
+    (tmp_path / "c.toml").write_text(SETTINGS, encoding="utf-8")
     (tmp_path / "i.json").write_text(json.dumps([issue()]), encoding="utf-8")
     (tmp_path / "s.json").write_text(json.dumps(STATUSES), encoding="utf-8")
     out = tmp_path / "snap.json"
     r = run("--issues", tmp_path / "i.json", "--statuses", tmp_path / "s.json",
-            "--config", tmp_path / "c.toml", "--out", out)
+            "--settings", tmp_path / "c.toml", "--out", out)
     assert r.returncode == 0, r.stderr
     data = json.loads(out.read_text(encoding="utf-8"))
     assert data["source"] == "composed" and data["issues"][0]["kind"] == "active"
 
 
 def test_cli_native_stdout(tmp_path):
-    (tmp_path / "c.toml").write_text(CONFIG, encoding="utf-8")
+    (tmp_path / "c.toml").write_text(SETTINGS, encoding="utf-8")
     (tmp_path / "n.json").write_text(json.dumps(
         {"taken_at": "2026-02-01T00:00:00Z", "issues": [issue()]}), encoding="utf-8")
-    r = run("--native", tmp_path / "n.json", "--config", tmp_path / "c.toml")
+    r = run("--native", tmp_path / "n.json", "--settings", tmp_path / "c.toml")
     assert r.returncode == 0, r.stderr
     assert json.loads(r.stdout)["source"] == "native"
 
 
 def test_cli_malformed_json_fails_loudly(tmp_path):
-    (tmp_path / "c.toml").write_text(CONFIG, encoding="utf-8")
+    (tmp_path / "c.toml").write_text(SETTINGS, encoding="utf-8")
     (tmp_path / "i.json").write_text("[{not json", encoding="utf-8")
     (tmp_path / "s.json").write_text(json.dumps(STATUSES), encoding="utf-8")
     r = run("--issues", tmp_path / "i.json", "--statuses", tmp_path / "s.json",
-            "--config", tmp_path / "c.toml")
+            "--settings", tmp_path / "c.toml")
     assert r.returncode != 0
     assert "i.json" in r.stderr
     assert r.stdout == ""
 
 
 def test_cli_composed_needs_statuses(tmp_path):
-    (tmp_path / "c.toml").write_text(CONFIG, encoding="utf-8")
+    (tmp_path / "c.toml").write_text(SETTINGS, encoding="utf-8")
     (tmp_path / "i.json").write_text(json.dumps([issue()]), encoding="utf-8")
-    r = run("--issues", tmp_path / "i.json", "--config", tmp_path / "c.toml")
+    r = run("--issues", tmp_path / "i.json", "--settings", tmp_path / "c.toml")
     assert r.returncode != 0
 
 
-def test_status_marker_recognised(tmp_path):
-    p = tmp_path / "c.toml"
-    p.write_text(CONFIG.replace('[markers]', '[markers]\nabandoned = "status:Canceled"')
-                 .replace('"Done" = "finished"', '"Done" = "finished"\n"Canceled" = "finished"'),
-                 encoding="utf-8")
-    s = compose(snapshot.load_config(p), [issue(status="Canceled"), issue(id="2", status="Done")])
-    assert s["issues"][0]["markers"]["abandoned"] is True
-    assert s["issues"][1]["markers"]["abandoned"] is False
-
-
 def test_cli_out_prints_summary_to_stderr(tmp_path):
-    (tmp_path / "c.toml").write_text(CONFIG.replace('"Done" = "finished"', '"Done" = "finished"\n"Gone" = "queued"'),
-                                     encoding="utf-8")
+    (tmp_path / "c.toml").write_text(SETTINGS.replace('"needs-triage" = "not yet looked at"\n', "")
+                                     + '[process.kinds]\n"Gone" = "queued"\n', encoding="utf-8")
     (tmp_path / "i.json").write_text(json.dumps([issue(), issue(id="2", status="Triage"),
                                                  issue(id="3", status=None)]), encoding="utf-8")
     (tmp_path / "s.json").write_text(json.dumps(STATUSES), encoding="utf-8")
     out = tmp_path / "snap.json"
     r = run("--issues", tmp_path / "i.json", "--statuses", tmp_path / "s.json",
-            "--config", tmp_path / "c.toml", "--out", out)
+            "--settings", tmp_path / "c.toml", "--out", out)
     assert r.returncode == 0, r.stderr
     lines = r.stderr.strip().splitlines()
     assert len(lines) == 1
@@ -247,14 +347,15 @@ def test_cli_out_prints_summary_to_stderr(tmp_path):
     assert summary["unmapped_statuses"] == ["QA", "Triage"]
     assert summary["issues_without_status"] == ["3"]
     assert summary["mapping_unknown_statuses"] == ["Gone"]
+    assert summary["markers_undeclared"] == ["untriaged"]
     assert r.stdout == ""
 
 
 def test_cli_stdout_prints_no_summary(tmp_path):
-    (tmp_path / "c.toml").write_text(CONFIG, encoding="utf-8")
+    (tmp_path / "c.toml").write_text(SETTINGS, encoding="utf-8")
     (tmp_path / "n.json").write_text(json.dumps(
         {"taken_at": "2026-02-01T00:00:00Z", "issues": [issue()]}), encoding="utf-8")
-    r = run("--native", tmp_path / "n.json", "--config", tmp_path / "c.toml")
+    r = run("--native", tmp_path / "n.json", "--settings", tmp_path / "c.toml")
     assert r.returncode == 0 and r.stderr == ""
 
 
@@ -335,16 +436,11 @@ def test_assignees_must_be_list_or_null(cfg):
         compose(cfg, [issue(assignees="ann")])
 
 
-@pytest.mark.parametrize("spec", ["Label:Abandoned", "STATUS:Canceled", "abandoned", "label:"])
+@pytest.mark.parametrize("spec", ["label:blocked", "Label:blocked", "Status:Waiting", "STATUS:Waiting",
+                                  "status:", " "])
 def test_marker_spec_typo_fails(tmp_path, spec):
-    p = tmp_path / "c.toml"
-    p.write_text(CONFIG.replace('[markers]', f'[markers]\nabandoned = "{spec}"'), encoding="utf-8")
     with pytest.raises(snapshot.InputError, match="markers"):
-        snapshot.load_config(p)
-
-
-def test_marker_shown_another_way_is_listed(cfg):
-    assert compose(cfg, [issue()])["markers_unreadable"] == {"waiting": "field:flagged"}
+        settings(tmp_path, SETTINGS + f'[process.markers]\nwaiting = "{spec}"\n')
 
 
 def test_mapping_unknown_is_null_when_statuses_not_read(cfg):
@@ -383,10 +479,10 @@ def test_native_scope_merged_and_conflict_fails(cfg):
 
 
 def write_cli_inputs(tmp_path, issues):
-    (tmp_path / "c.toml").write_text(CONFIG, encoding="utf-8")
+    (tmp_path / "c.toml").write_text(SETTINGS, encoding="utf-8")
     (tmp_path / "i.json").write_text(json.dumps(issues), encoding="utf-8")
     (tmp_path / "s.json").write_text(json.dumps(STATUSES), encoding="utf-8")
-    return ["--issues", tmp_path / "i.json", "--statuses", tmp_path / "s.json", "--config", tmp_path / "c.toml"]
+    return ["--issues", tmp_path / "i.json", "--statuses", tmp_path / "s.json", "--settings", tmp_path / "c.toml"]
 
 
 def test_cli_scope_flags(tmp_path):
@@ -457,3 +553,107 @@ def test_cli_history_dir(tmp_path):
     r = run(*write_cli_inputs(tmp_path, [issue(id="PROJ-1", status="Done")]), "--history", hist)
     assert r.returncode == 0, r.stderr
     assert json.loads(r.stdout)["issues"][0]["finished_at"] == "2026-01-03T00:00:00Z"
+
+
+# --- settings validation and consistency --------------------------------------------------------
+
+@pytest.mark.parametrize("extra, match", [
+    ('review_status = "Review"\n', "unknown key review_status in \\[process\\]"),
+    ('time_zone = "+03:00"\n', "unknown key time_zone"),
+    ('[process.limits]\n"In Progress" = 1\n', "unknown key limits"),
+    ('[process.markers]\nblokced = "impeded"\n', "unknown key blokced in \\[process.markers\\]"),
+    ('commitment = "promise"\n', "commitment"),
+    ('executor = "robots"\n', "executor"),
+    ('ceiling = "XL"\n[board.size]\nS = 1\nL = 3\n', "ceiling"),
+    ('[process.markers]\nwaiting = "L"\n[board.size]\nS = 1\nL = 3\n', "marker label"),
+    ('[process.markers]\nblocked = "status: Blocked"\n', "markers"),
+    ('[process.markers]\nblocked = " impeded"\n', "markers"),
+])
+def test_settings_mistakes_fail(tmp_path, extra, match):
+    with pytest.raises(snapshot.InputError, match=match):
+        settings(tmp_path, SETTINGS + extra)
+
+
+def test_ceiling_in_board_size_passes(tmp_path):
+    settings(tmp_path, SETTINGS + 'ceiling = "L"\n[board.size]\nS = 1\nL = 3\n')
+
+
+@pytest.mark.parametrize("text", ['[process]\nsle = "5 days at 85%"\n', '[process]\nsetup = "kanban"\n'])
+def test_process_present_needs_a_valid_setup(tmp_path, text):
+    with pytest.raises(snapshot.InputError, match="setup"):
+        settings(tmp_path, text)
+
+
+def test_validated_also_when_given_as_a_table(cfg):
+    with pytest.raises(snapshot.InputError, match="unknown key"):
+        compose({"process": {"setup": "flow", "wip_limits": {}}}, [issue()])
+
+
+DRAFT = """
+[board]
+kind = "sometool"
+url = "https://example.invalid/board"
+[board.statuses]
+"In Progress" = "doing"
+[board.labels]
+blocked = "work cannot proceed"
+"""
+
+
+def test_draft_settings_with_only_board_tables(tmp_path):
+    (tmp_path / ".task-master").mkdir()
+    p = tmp_path / ".task-master" / "settings-draft.toml"
+    p.write_text(DRAFT, encoding="utf-8")
+    c = snapshot.load_settings(p)
+    s = compose(c, [issue(), issue(id="2", status="QA")])
+    assert s["issues"][0]["kind"] == "active" and s["issues"][1]["kind"] is None
+    assert s["unmapped_statuses"] == ["QA"]
+    assert [m["marker"] for m in s["markers_undeclared"]] == ["waiting", "untriaged"]
+
+
+def test_cli_draft_settings_and_tool_flags(tmp_path):
+    (tmp_path / "d.toml").write_text(DRAFT, encoding="utf-8")
+    (tmp_path / "i.json").write_text(json.dumps([issue()]), encoding="utf-8")
+    (tmp_path / "s.json").write_text(json.dumps(STATUSES), encoding="utf-8")
+    r = run("--issues", tmp_path / "i.json", "--statuses", tmp_path / "s.json", "--settings", tmp_path / "d.toml",
+            "--tool", "sometool", "--tool-version", "1.2")
+    assert r.returncode == 0, r.stderr
+    out = json.loads(r.stdout)
+    assert out["tool"] == "sometool" and out["tool_version"] == "1.2"
+    assert out["issues"][0]["kind"] == "active"
+
+
+def test_status_marker_naming_a_status_the_board_lacks_is_listed(tmp_path):
+    c = settings(tmp_path, SETTINGS + '[process.markers]\nblocked = "status:Blocked"\nwaiting = "status:QA"\n')
+    s = compose(c, [issue()])
+    assert s["markers_unknown_statuses"] == ["Blocked"]
+    n = snapshot.enrich_native({"taken_at": "2026-02-01T00:00:00Z", "issues": [issue()]}, c)
+    assert n["markers_unknown_statuses"] is None
+
+
+def test_category_conflict_statuses_read_win_and_kinds_agree(cfg):
+    s = compose(cfg, [dict(issue(), status={"name": "X", "category": "in_progress"})],
+                statuses=[{"name": "X", "category": "todo"}])
+    assert s["issues"][0]["kind"] == "before_start" and s["mapping"]["X"] == "before_start"
+    assert s["category_conflicts"] == [{"status": "X", "categories": ["todo", "in_progress"]}]
+
+
+def test_category_conflict_between_issues_first_wins(cfg):
+    s = compose(cfg, [dict(issue(), status={"name": "Y", "category": "in_progress"}),
+                      dict(issue(id="2"), status={"name": "Y", "category": "done"})],
+                statuses=[{"name": "Y", "category": None}])
+    assert [o["kind"] for o in s["issues"]] == ["active", "active"] and s["mapping"]["Y"] == "active"
+    assert s["category_conflicts"] == [{"status": "Y", "categories": ["in_progress", "done"]}]
+    assert compose(cfg, [issue()])["category_conflicts"] == []
+
+
+@pytest.mark.parametrize("extra, status", [('review_statuses = ["Done"]\n', "Done"),
+                                           ('[process.kinds]\n"Canceled" = "queued"\n', "Canceled")])
+def test_unfinishing_a_finished_category_fails(tmp_path, extra, status):
+    with pytest.raises(snapshot.InputError, match=status):
+        compose(settings(tmp_path, SETTINGS + extra), [issue()])
+
+
+def test_finished_kind_for_a_done_status_is_allowed(tmp_path):
+    s = compose(settings(tmp_path, SETTINGS + '[process.kinds]\n"Done" = "finished"\n'), [issue()])
+    assert s["mapping_sources"]["Done"] == "process.kinds"

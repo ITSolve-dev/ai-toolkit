@@ -27,11 +27,11 @@ def snap(issues, source="composed", sprints=None):
 
 
 def cfg(limits=None, headings=None):
-    c = {}
+    c = {"process": {"setup": "iterations"}}
     if limits is not None:
-        c["limits"] = limits
+        c["process"]["wip"] = limits
     if headings is not None:
-        c["checks"] = {"acceptance_headings": headings}
+        c["process"]["acceptance_headings"] = headings
     return c
 
 
@@ -199,10 +199,11 @@ def run(*args):
                           capture_output=True, text=True, encoding="utf-8")
 
 
-def test_cli_reads_snapshot_and_config(tmp_path):
+def test_cli_reads_snapshot_and_settings(tmp_path):
     (tmp_path / "s.json").write_text(json.dumps(snap(BOARD)), encoding="utf-8")
-    (tmp_path / "c.toml").write_text('[limits]\n"In Progress" = 1\n', encoding="utf-8")
-    r = run(tmp_path / "s.json", "--config", tmp_path / "c.toml")
+    (tmp_path / "w.toml").write_text('[process]\nsetup = "flow"\n[process.wip]\n"In Progress" = 1\n',
+                                     encoding="utf-8")
+    r = run(tmp_path / "s.json", "--settings", tmp_path / "w.toml")
     assert r.returncode == 0, r.stderr
     assert json.loads(r.stdout)["limits"]["breaches"][0]["key"] == "In Progress"
 
@@ -294,7 +295,7 @@ def test_cycle_time_within_window_only():
 
 
 def sle_cfg(sle):
-    return {"project": {"sle": sle}}
+    return {"process": {"setup": "flow", "sle": sle}}
 
 
 def test_sle_share_from_cycle_times():
@@ -369,39 +370,41 @@ def test_window_end_before_start_fails():
 
 # --- estimates and velocity -------------------------------------------------------------------
 
-def est_cfg(spec):
-    return {"fields": {"estimate": spec}}
+SIZE = {"size-1": 1, "size-2": 2, "size-3": 3, "size-5": 5, "size-8": 8, "half": 0.5}
 
 
-def test_estimate_from_labels_totals_and_missing_counted_apart():
-    issues = [issue("1", "queued", "Ready", labels=["size-3"]),
+def est_cfg(size=SIZE):
+    return {"board": {"size": size}, "process": {"setup": "flow"}}
+
+
+def test_estimate_from_size_labels_totals_and_missing_counted_apart():
+    issues = [issue("1", "queued", "Ready", labels=["size-3", "bug"]),
               issue("2", "active", "In Progress", labels=[{"name": "size-5"}]),
               issue("3", "active", "In Progress", labels=[]),
               issue("4", "queued", "Ready", labels=["size-XL"]),
-              issue("5", "queued", "Ready", labels=["size-1", "size-2"])]
-    e = board_metrics.compute(snap(issues), est_cfg("label:size-{value}"))["estimates"]
-    assert e["declared"] is True and e["total"] == 8
-    assert e["by_kind"] == {"queued": 3, "active": 5}
-    assert e["with_estimate"] == 2
-    assert e["without_estimate"] == {"count": 1, "ids": ["3"]}
-    assert e["unreadable"] == {"count": 2, "ids": ["4", "5"]}
+              issue("5", "queued", "Ready", labels=["size-1", "size-2"]),
+              issue("6", "queued", "Ready", labels=["half"])]
+    e = board_metrics.compute(snap(issues), est_cfg())["estimates"]
+    assert e["declared"] is True and e["total"] == 8.5 and e["scale"] == SIZE
+    assert e["by_kind"] == {"queued": 3.5, "active": 5}
+    assert e["with_estimate"] == 3
+    # a label that is not a key of [board.size] is no estimate
+    assert e["without_estimate"] == {"count": 2, "ids": ["3", "4"]}
+    # two size labels: unreadable, never summed or guessed
+    assert e["unreadable"] == {"count": 1, "ids": ["5"]}
+    assert e["complete"] is False
 
 
-def test_estimate_from_field():
-    issues = [issue("1", "queued", "Ready", points=2), issue("2", "queued", "Ready", points=None),
-              issue("3", "queued", "Ready", fields={"points": "1.5"})]
-    e = board_metrics.compute(snap(issues), est_cfg("field:points"))["estimates"]
-    assert e["total"] == 3.5 and e["without_estimate"]["ids"] == ["2"]
-
-
-def test_estimates_not_declared():
+def test_estimates_not_declared_without_board_size():
     e = board_metrics.compute(snap(BOARD), cfg())["estimates"]
     assert e["declared"] is False and e["total"] is None
+    assert e["reason"] == "no [board.size] in settings"
 
 
-def test_bad_estimate_spec_fails():
-    with pytest.raises(board_metrics.InputError):
-        board_metrics.compute(snap(BOARD), est_cfg("size"))
+@pytest.mark.parametrize("size", [{}, {"S": "one"}, {"S": -1}, {"S": True}, ["S"]])
+def test_bad_board_size_fails(size):
+    with pytest.raises(board_metrics.InputError, match="board.size"):
+        board_metrics.compute(snap(BOARD), est_cfg(size))
 
 
 def test_velocity_by_sprint_field():
@@ -412,7 +415,7 @@ def test_velocity_by_sprint_field():
               issue("e", "finished", "Done", labels=["size-2"], sprint="S2"),
               issue("f", "finished", "Canceled", labels=["size-2"], sprint="S2", markers={"abandoned": True}),
               issue("g", "finished", "Done", labels=["size-1"], sprint=None)]
-    v = board_metrics.compute(snap(issues, sprints=SPRINTS), est_cfg("label:size-{value}"))["velocity"]
+    v = board_metrics.compute(snap(issues, sprints=SPRINTS), est_cfg())["velocity"]
     assert v["basis"] == "by_sprint_field"
     assert "carried" in v["method"]
     p = {x["sprint"]: x for x in v["periods"]}
@@ -428,7 +431,7 @@ def test_velocity_without_estimates_is_by_count():
     v = board_metrics.compute(snap(issues, sprints=SPRINTS), cfg())["velocity"]
     p = v["periods"][0]
     assert p["finished"] == 1 and p["points"] is None
-    assert "estimate" in v["points_reason"]
+    assert "[board.size]" in v["points_reason"]
 
 
 def test_velocity_refuses_without_sprints():
@@ -446,7 +449,7 @@ def test_compare_two_snapshots():
     later = snap([issue("1", "active", "In Progress", labels=["size-5"], sprint="S1"),
                   issue("3", "active", "In Progress", sprint="S2"),
                   issue("4", "queued", "Ready")])
-    c = board_metrics.compute(later, est_cfg("label:size-{value}"), earlier=earlier)["comparison"]
+    c = board_metrics.compute(later, est_cfg(), earlier=earlier)["comparison"]
     assert c["made"] is True and c["earlier_taken_at"] == "2026-01-15T00:00:00Z"
     assert c["added"] == ["4"] and c["removed"] == ["2"]
     assert c["status_changed"] == [{"id": "1", "from": "Ready", "to": "In Progress"}]
@@ -476,7 +479,7 @@ def test_compare_earlier_after_later_fails():
 # --- series -----------------------------------------------------------------------------------
 
 def test_series_refuse_without_history():
-    s = board_metrics.compute(snap(BOARD, sprints=SPRINTS), est_cfg("label:size-{value}"))["series"]
+    s = board_metrics.compute(snap(BOARD, sprints=SPRINTS), est_cfg())["series"]
     for name in ("cfd", "burndown", "scatterplot", "histogram"):
         assert s[name]["points"] is None, name
         assert s[name]["reason"], name
@@ -532,7 +535,7 @@ def test_burndown_remaining_estimate_per_day():
               issue("d", "queued", "Ready", labels=["size-8"], sprint="S2")]
     s = snap(issues, sprints=sprints)
     s["taken_at"] = "2026-01-03T12:00:00Z"
-    b = board_metrics.compute(s, est_cfg("label:size-{value}"))["series"]["burndown"]
+    b = board_metrics.compute(s, est_cfg())["series"]["burndown"]
     assert b["sprint"] == "S1"
     assert b["points"] == [{"date": "2026-01-01", "remaining": 8},
                            {"date": "2026-01-02", "remaining": 5},
@@ -544,13 +547,13 @@ def test_burndown_remaining_estimate_per_day():
 def test_burndown_refuses_without_finish_times():
     sprints = [{"id": "1", "name": "S1", "state": "active", "start_date": "2026-01-01", "end_date": "2026-01-04"}]
     issues = [issue("a", "finished", "Done", labels=["size-3"], sprint="S1")]
-    b = board_metrics.compute(snap(issues, sprints=sprints), est_cfg("label:size-{value}"))["series"]["burndown"]
+    b = board_metrics.compute(snap(issues, sprints=sprints), est_cfg())["series"]["burndown"]
     assert b["points"] is None and "finish time" in b["reason"]
 
 
 def test_burndown_named_sprint():
     issues = [issue("a", "active", "In Progress", labels=["size-3"], sprint="S1")]
-    b = board_metrics.compute(snap(issues, sprints=SPRINTS), est_cfg("label:size-{value}"),
+    b = board_metrics.compute(snap(issues, sprints=SPRINTS), est_cfg(),
                               sprint="S1")["series"]["burndown"]
     assert b["sprint"] == "S1" and len(b["points"]) == 14
 
@@ -580,29 +583,69 @@ def test_cli_window_needs_both_ends(tmp_path):
     assert r.returncode == 2 and r.stdout == ""
 
 
-# --- started kinds from config ----------------------------------------------------------------
+# --- started statuses ------------------------------------------------------------------------
 
-def sk_cfg(kinds, **extra):
-    return {"project": {"started_kinds": kinds, **extra}}
+def wip_cfg(wip):
+    return {"process": {"setup": "flow", "wip": wip}}
 
 
-def test_started_kinds_default_is_active_and_handed_off():
+def with_ready(issues):
+    s = snap(issues)
+    s["mapping"] = {"Ready": "queued", "In Progress": "active", "In Review": "handed_off", "Done": "finished"}
+    return s
+
+
+def test_started_statuses_default_are_active_and_handed_off():
     m = board_metrics.compute(snap(BOARD), cfg())
-    assert m["wip"]["started_kinds"] == ["active", "handed_off"]
-    assert m["age"]["started_kinds"] == ["active", "handed_off"]
+    assert m["wip"]["started_statuses"] == ["In Progress", "In Review"]
+    assert m["age"]["started_statuses"] == ["In Progress", "In Review"]
+    assert "no queued status" in m["wip"]["started_reason"]
 
 
-def test_started_kinds_with_queued_counts_queued_as_wip():
+def test_queued_status_in_process_wip_counts_queued_as_wip():
     issues = BOARD[:5] + [issue("7", "queued", "Ready", assignees=[{"id": "u1", "name": "Ann"}])]
-    m = board_metrics.compute(snap(issues), sk_cfg(["queued", "active", "handed_off"]))
+    m = board_metrics.compute(with_ready(issues), wip_cfg({"Ready": 5}))
     w = m["wip"]
     assert w["total"] == 5
     assert w["by_kind"] == {"active": 2, "handed_off": 1, "queued": 2}
     assert w["by_assignee"] == {"Ann": 1}
-    assert w["started_kinds"] == ["queued", "active", "handed_off"]
-    assert "queued" in w["basis"]
+    assert w["started_statuses"] == ["In Progress", "In Review", "Ready"]
+    assert "Ready" in w["started_reason"]
     a = {x["id"]: x for x in m["age"]["items"]}
     assert a["4"]["started"] is True and a["1"]["started"] is True
+
+
+def test_queued_kind_key_in_process_wip_counts_every_queued_status():
+    issues = BOARD + [issue("8", "queued", "Selected")]
+    m = board_metrics.compute(snap(issues), wip_cfg({"queued": 5}))
+    assert m["wip"]["started_statuses"] == ["In Progress", "In Review", "Ready", "Selected"]
+    assert m["wip"]["total"] == 5 and "every queued status" in m["wip"]["started_reason"]
+
+
+def test_only_the_limited_queued_status_is_started():
+    issues = [issue("1", "queued", "Ready"), issue("2", "queued", "Selected"), issue("3", "queued", "Selected"),
+              issue("4", "active", "Doing")]
+    s = snap(issues)
+    s["mapping"] = {"Ready": "queued", "Selected": "queued", "Doing": "active"}
+    m = board_metrics.compute(s, wip_cfg({"Ready": 2}))
+    assert m["wip"]["total"] == 2 and m["wip"]["by_status"] == {"Ready": 1, "Doing": 1}
+    assert m["wip"]["started_statuses"] == ["Doing", "Ready"]
+    a = {x["id"]: x["started"] for x in m["age"]["items"]}
+    assert a == {"1": True, "2": False, "3": False, "4": True}
+
+
+def test_cycle_time_starts_only_at_a_limited_queued_status():
+    s = snap([issue("1", "finished", "Done", finished_at="2026-01-05T00:00:00Z",
+                    transitions=tr(("Selected", "2026-01-01T00:00:00Z"), ("Ready", "2026-01-02T00:00:00Z"),
+                                   ("Doing", "2026-01-03T00:00:00Z"), ("Done", "2026-01-05T00:00:00Z")))])
+    s["mapping"] = {"Selected": "queued", "Ready": "queued", "Doing": "active", "Done": "finished"}
+    item = board_metrics.compute(s, wip_cfg({"Ready": 2}))["cycle_time"]["items"][0]
+    assert item["started_at"] == "2026-01-02T00:00:00Z" and item["days"] == 3.0
+
+
+def test_queued_not_started_when_process_wip_names_no_queued_status():
+    m = board_metrics.compute(with_ready(BOARD), wip_cfg({"In Progress": 3}))
+    assert m["wip"]["started_statuses"] == ["In Progress", "In Review"] and m["wip"]["total"] == 3
 
 
 def test_age_marks_unstarted_items():
@@ -618,7 +661,7 @@ def test_cycle_time_starts_at_first_started_kind_in_transitions():
     s["mapping"] = {"Backlog": "before_start", "Ready": "queued", "In Progress": "active", "Done": "finished"}
     default = board_metrics.compute(s, cfg())["cycle_time"]["items"][0]
     assert default["days"] == 2.0 and default["start_source"] == "transitions"
-    wide = board_metrics.compute(s, sk_cfg(["queued", "active"]))["cycle_time"]["items"][0]
+    wide = board_metrics.compute(s, wip_cfg({"Ready": 2}))["cycle_time"]["items"][0]
     assert wide["days"] == 3.0 and wide["started_at"] == "2026-01-02T00:00:00Z"
 
 
@@ -633,12 +676,6 @@ def test_cycle_time_refuses_when_transitions_never_reach_a_started_kind():
 def test_cycle_time_from_tool_started_at_is_labelled():
     c = board_metrics.compute(snap(TEN[:1]), cfg())["cycle_time"]
     assert c["items"][0]["start_source"] == "started_at"
-
-
-@pytest.mark.parametrize("bad", [[], ["running"], ["finished"], "active", [1]])
-def test_bad_started_kinds_fail(bad):
-    with pytest.raises(board_metrics.InputError):
-        board_metrics.compute(snap(BOARD), sk_cfg(bad))
 
 
 # --- silent-failure fixes ---------------------------------------------------------------------
@@ -670,7 +707,7 @@ def test_missing_scope_is_labelled_unknown():
 
 def test_scope_excluding_finished_refuses_finished_figures():
     s = scoped(TEN, includes_finished=False, sprints=SPRINTS)
-    m = board_metrics.compute(s, est_cfg("label:size-{value}"), window=("2026-01-01", "2026-01-31"))
+    m = board_metrics.compute(s, est_cfg(), window=("2026-01-01", "2026-01-31"))
     for fig in (m["throughput"], m["throughput"]["window"], m["cycle_time"], m["velocity"],
                 m["series"]["burndown"]):
         assert fig["basis"] == "not_computed" and "excluded finished" in fig["reason"]
@@ -743,24 +780,24 @@ def test_velocity_points_null_when_an_item_lacks_an_estimate():
     issues = [issue("a", "finished", "Done", labels=["size-3"], sprint="S1"),
               issue("c", "finished", "Done", labels=[], sprint="S1"),
               issue("e", "finished", "Done", labels=["size-2"], sprint="S2")]
-    v = board_metrics.compute(snap(issues, sprints=SPRINTS), est_cfg("label:size-{value}"))["velocity"]
+    v = board_metrics.compute(snap(issues, sprints=SPRINTS), est_cfg())["velocity"]
     p = {x["sprint"]: x for x in v["periods"]}
     assert p["S1"]["points"] is None and "c" in p["S1"]["points_reason"]
     assert p["S2"]["points"] == 2 and p["S2"]["points_reason"] is None
 
 
-def test_estimates_total_null_when_none_estimated_and_not_read_apart():
-    issues = [issue("1", "queued", "Ready"), issue("2", "queued", "Ready", points=None)]
-    e = board_metrics.compute(snap(issues), est_cfg("field:points"))["estimates"]
+def test_estimates_total_null_when_none_estimated():
+    issues = [issue("1", "queued", "Ready"), issue("2", "queued", "Ready", labels=["size-1", "size-3"])]
+    e = board_metrics.compute(snap(issues), est_cfg())["estimates"]
     assert e["total"] is None and e["by_kind"] is None and e["total_reason"]
-    assert e["estimate_not_read"] == {"count": 1, "ids": ["1"]}
-    assert e["without_estimate"] == {"count": 1, "ids": ["2"]}
+    assert e["without_estimate"] == {"count": 1, "ids": ["1"]}
+    assert e["unreadable"] == {"count": 1, "ids": ["2"]}
     assert e["complete"] is False
 
 
 def test_estimates_complete_flag():
     e = board_metrics.compute(snap([issue("1", "queued", "Ready", labels=["size-3"])]),
-                              est_cfg("label:size-{value}"))["estimates"]
+                              est_cfg())["estimates"]
     assert e["complete"] is True and e["total"] == 3
 
 
@@ -770,7 +807,7 @@ def test_burndown_flags_incomplete_estimates():
               issue("c", "active", "In Progress", labels=[], sprint="S1")]
     s = snap(issues, sprints=sprints)
     s["taken_at"] = "2026-01-03T12:00:00Z"
-    b = board_metrics.compute(s, est_cfg("label:size-{value}"))["series"]["burndown"]
+    b = board_metrics.compute(s, est_cfg())["series"]["burndown"]
     assert b["complete"] is False and "c" in b["complete_reason"]
 
 
@@ -788,16 +825,70 @@ def test_sle_small_sample_flagged():
     assert board_metrics.compute(snap(TEN), sle_cfg("7 days at 85%"))["sle"]["small_sample"] is False
 
 
-def test_no_config_is_not_an_empty_config():
+def test_no_settings_is_not_empty_settings():
     m = board_metrics.compute(snap(BOARD), None)
-    assert m["config"] == {"given": False, "reason": "no config given (--config)"}
-    assert m["limits"]["declared"] is None and "no config given" in m["limits"]["basis"]
-    assert m["sle"]["declared"] is None and "no config given" in m["sle"]["reason"]
-    assert m["estimates"]["declared"] is None and "no config given" in m["estimates"]["reason"]
-    assert m["wip"]["started_kinds_source"] == "default"
+    assert m["settings"] == {"given": False, "reason": "no settings given (--settings)"}
+    assert m["limits"]["declared"] is None and "no settings given" in m["limits"]["basis"]
+    assert m["sle"]["declared"] is None and "no settings given" in m["sle"]["reason"]
+    assert m["estimates"]["declared"] is None and "no settings given" in m["estimates"]["reason"]
+    assert m["wip"]["started_statuses"] == ["In Progress", "In Review"]
     assert m["missing_acceptance_criteria"]["headings_source"] == "default"
-    m = board_metrics.compute(snap(BOARD), sk_cfg(["active"]))
-    assert m["config"]["given"] is True and m["wip"]["started_kinds_source"] == "config"
+    m = board_metrics.compute(snap(BOARD), wip_cfg({"In Progress": 3}))
+    assert m["settings"]["given"] is True and m["limits"]["declared"] is True
+
+
+@pytest.mark.parametrize("settings", [{"board": {"kind": "x"}}, {"project": {"name": "x"}},
+                                      {"process": {"sle": "5 days at 85%"}}])
+def test_settings_without_process_setup_are_refused(settings):
+    with pytest.raises(board_metrics.InputError, match="does not look like the project's workflow settings"):
+        board_metrics.compute(snap(BOARD), settings)
+
+
+def test_settings_with_only_setup_are_defaults():
+    m = board_metrics.compute(snap(BOARD), {"process": {"setup": "flow"}})
+    assert m["settings"]["given"] is True
+    assert m["limits"]["declared"] is False and "[process.wip]" in m["limits"]["basis"]
+    assert m["sle"]["declared"] is False and "[process].sle" in m["sle"]["reason"]
+    assert m["wip"]["started_statuses"] == ["In Progress", "In Review"]
+    assert m["missing_acceptance_criteria"]["headings"] == ["Acceptance criteria"]
+    assert m["snapshot"]["day_boundaries"] == "UTC"
+
+
+def test_acceptance_headings_from_process():
+    m = board_metrics.compute(snap(BOARD), cfg(headings=["Done when"]))
+    assert m["missing_acceptance_criteria"]["headings_source"] == "settings"
+
+
+def test_cli_wrong_settings_file_is_refused(tmp_path):
+    (tmp_path / "s.json").write_text(json.dumps(snap(BOARD)), encoding="utf-8")
+    (tmp_path / "pyproject.toml").write_text('[project]\nname = "x"\n[tool.ruff]\nline-length = 100\n',
+                                             encoding="utf-8")
+    r = run(tmp_path / "s.json", "--settings", tmp_path / "pyproject.toml")
+    assert r.returncode == 2 and r.stdout == ""
+    assert "does not look like the project's workflow settings" in r.stderr
+
+
+@pytest.mark.parametrize("extra", ['time_zone = "+03:00"\n', '[process.limits]\n"In Progress" = 1\n',
+                                   '[process.markers]\nblokced = "impeded"\n'])
+def test_cli_unknown_settings_key_is_refused(tmp_path, extra):
+    (tmp_path / "s.json").write_text(json.dumps(snap(BOARD)), encoding="utf-8")
+    (tmp_path / "w.toml").write_text('[process]\nsetup = "flow"\n' + extra, encoding="utf-8")
+    r = run(tmp_path / "s.json", "--settings", tmp_path / "w.toml")
+    assert r.returncode == 2 and "unknown key" in r.stderr
+
+
+def test_estimate_case_mismatch_is_listed():
+    issues = [issue("1", "queued", "Ready", labels=["SIZE-3"]), issue("2", "queued", "Ready", labels=["size-3"]),
+              issue("3", "queued", "Ready", labels=["Size-5", "size-1"])]
+    e = board_metrics.compute(snap(issues), est_cfg())["estimates"]
+    assert e["total"] == 4 and e["without_estimate"]["ids"] == ["1"]
+    assert e["case_mismatch"] == [{"id": "1", "label": "SIZE-3"}]
+
+
+def test_size_key_that_is_a_marker_label_is_refused():
+    with pytest.raises(board_metrics.InputError, match="marker label"):
+        board_metrics.compute(snap(BOARD), {"board": {"size": {"S": 1, "L": 3}},
+                                            "process": {"setup": "flow", "markers": {"waiting": "L"}}})
 
 
 def test_sprints_not_read_differs_from_no_sprints():
@@ -838,15 +929,15 @@ def test_timezone_moves_day_boundaries():
     late = issue("a", "finished", "Done", finished_at="2026-01-14T22:00:00Z")  # 01:00 on the 15th at +03:00
     utc = board_metrics.compute(snap([late], sprints=sprints), cfg())["throughput"]["periods"][0]
     msk = board_metrics.compute(snap([late], sprints=sprints),
-                                {"project": {"timezone": "+03:00"}})["throughput"]["periods"][0]
+                                {"process": {"setup": "flow", "timezone": "+03:00"}})["throughput"]["periods"][0]
     assert utc["finished"] == 1 and msk["finished"] == 0
-    m = board_metrics.compute(snap([late], sprints=sprints), {"project": {"timezone": "+03:00"}})
+    m = board_metrics.compute(snap([late], sprints=sprints), {"process": {"setup": "flow", "timezone": "+03:00"}})
     assert "+03:00" in m["throughput"]["method"]
 
 
 def test_bad_timezone_fails():
     with pytest.raises(board_metrics.InputError, match="timezone"):
-        board_metrics.compute(snap(BOARD), {"project": {"timezone": "Mars/Olympus"}})
+        board_metrics.compute(snap(BOARD), {"process": {"setup": "flow", "timezone": "Mars/Olympus"}})
 
 
 def test_naive_timestamps_reported():
@@ -874,7 +965,7 @@ def test_closed_sprint_without_end_is_skipped():
 def test_future_sprint_burndown_refuses():
     sprints = [{"id": "3", "name": "S3", "state": "future", "start_date": "2026-03-01", "end_date": "2026-03-14"}]
     b = board_metrics.compute(snap([issue("a", "queued", "Ready", labels=["size-3"], sprint="S3")], sprints=sprints),
-                              est_cfg("label:size-{value}"), sprint="S3")["series"]["burndown"]
+                              est_cfg(), sprint="S3")["series"]["burndown"]
     assert b["points"] is None and "not started" in b["reason"]
 
 
@@ -882,7 +973,7 @@ def test_burndown_refuses_ambiguous_sprint_name():
     sprints = [{"id": "1", "name": "S1", "state": "closed", "start_date": "2026-01-01", "end_date": "2026-01-14"},
                {"id": "9", "name": "S1", "state": "closed", "start_date": "2025-01-01", "end_date": "2025-01-14"}]
     b = board_metrics.compute(snap([issue("a", "queued", "Ready", labels=["size-3"], sprint="S1")], sprints=sprints),
-                              est_cfg("label:size-{value}"), sprint="S1")["series"]["burndown"]
+                              est_cfg(), sprint="S1")["series"]["burndown"]
     assert b["points"] is None and "2 sprints" in b["reason"]
 
 
@@ -964,27 +1055,6 @@ def test_age_at_a_window_end():
         board_metrics.compute(snap([b]), cfg(), age_at="2026-03-01")
 
 
-# --- themes -----------------------------------------------------------------------------------
-
-def test_themes_by_kind():
-    issues = [issue("1", "queued", "Ready", labels=["theme-billing"]),
-              issue("2", "active", "In Progress", labels=["theme-billing"]),
-              issue("3", "finished", "Done", labels=["theme-auth"]),
-              issue("4", None, "Triage", labels=["theme-auth"]),
-              issue("5", "queued", "Ready"),
-              issue("6", "queued", "Ready", labels=["theme-a", "theme-b"])]
-    t = board_metrics.compute(snap(issues), {"fields": {"theme": "label:theme-{value}"}})["themes"]
-    assert t["by_theme"] == {"billing": {"queued": 1, "active": 1, "total": 2},
-                             "auth": {"finished": 1, "(unmapped)": 1, "total": 2}}
-    assert t["without_theme"] == {"count": 1, "ids": ["5"]}
-    assert t["theme_unreadable"] == {"count": 1, "ids": ["6"]}
-
-
-def test_themes_undeclared():
-    t = board_metrics.compute(snap(BOARD), cfg())["themes"]
-    assert t["by_theme"] is None and "[fields].theme" in t["reason"]
-
-
 # --- forces between snapshots -----------------------------------------------------------------
 
 def test_comparison_forces():
@@ -998,7 +1068,7 @@ def test_comparison_forces():
                   issue("4", "queued", "Ready", labels=["size-1"]),
                   issue("5", "queued", "Ready", labels=["size-2"]),
                   issue("6", "queued", "Ready")])
-    f = board_metrics.compute(later, est_cfg("label:size-{value}"), earlier=earlier)["comparison"]["forces"]
+    f = board_metrics.compute(later, est_cfg(), earlier=earlier)["comparison"]["forces"]
     assert f["completed"] == {"points": 3, "ids": ["1"], "without_estimate": []}
     assert f["removed"] == {"points": 5, "ids": ["3"], "without_estimate": []}
     assert f["added"] == {"points": None, "ids": ["5", "6"], "without_estimate": ["6"]}
@@ -1006,28 +1076,30 @@ def test_comparison_forces():
     assert f["residual"]["ids"] == ["2", "4", "5", "6"] and f["residual"]["points"] is None
 
 
-def test_forces_need_an_estimate_field():
+def test_forces_need_a_size_scale():
     e = snap(BOARD)
     e["taken_at"] = "2026-01-15T00:00:00Z"
     f = board_metrics.compute(snap(BOARD), cfg(), earlier=e)["comparison"]["forces"]
-    assert f["completed"] is None and "[fields].estimate" in f["reason"]
+    assert f["completed"] is None and "[board.size]" in f["reason"]
 
 
 def test_reads_what_snapshot_py_writes():
     import snapshot
-    cfg_ = {"states": {"Ready": "queued", "Done": "finished"}, "markers": {"abandoned": "label:dropped"}}
-    raw = [dict(issue("1", None, "Done", finished_at="2026-01-10T00:00:00Z"), labels=[]),
+    cfg_ = {"process": {"setup": "flow", "kinds": {"Ready": "queued"}, "wip": {"Ready": 2}}}
+    raw = [dict(issue("1", None, "Done", finished_at="2026-01-10T00:00:00Z"), labels=[],
+                status={"name": "Done", "category": "done"}),
            dict(issue("2", None, "Ready"), labels=[])]
-    s = snapshot.compose(raw, [{"name": "Ready"}, {"name": "Done"}], SPRINTS, cfg_, TAKEN,
-                         scope={"query": "all", "complete": True, "includes_finished": True})
-    m = board_metrics.compute(s, {})
+    s = snapshot.compose(raw, [{"name": "Ready"}, {"name": "Done", "category": "done"}], SPRINTS, cfg_,
+                         TAKEN, scope={"query": "all", "complete": True, "includes_finished": True})
+    m = board_metrics.compute(s, cfg_)
+    assert m["wip"]["started_statuses"] == ["Ready"] and m["wip"]["total"] == 1
     assert m["counts"]["scope_complete"] is True and m["throughput"]["abandoned_unknown"]["count"] == 0
     assert m["snapshot"]["atomic"] is False and m["snapshot"]["taken_at_basis"] == "given"
 
 
-def test_cli_age_at_and_no_config(tmp_path):
+def test_cli_age_at_and_no_settings(tmp_path):
     (tmp_path / "s.json").write_text(json.dumps(snap(TEN)), encoding="utf-8")
     r = run(tmp_path / "s.json", "--age-at", "2026-01-20")
     assert r.returncode == 0, r.stderr
     out = json.loads(r.stdout)
-    assert out["config"]["given"] is False and out["age"]["reference_time"] == "2026-01-20"
+    assert out["settings"]["given"] is False and out["age"]["reference_time"] == "2026-01-20"

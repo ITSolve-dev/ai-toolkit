@@ -1,139 +1,106 @@
 # init: method
 
-Produce `.claude/task-master.toml` as `config-format.md` specifies it, with every field confirmed by
-the person or marked absent. "This method's own rule" marks a step no page of the base stands behind.
+Bring the project's workflow config file and its board to what `settings.md` describes, adding
+only what is missing, every value confirmed by the person. "This method's own rule" marks a step no
+page of the base stands behind.
 
 ## A rerun
 
-If the file exists, this is a rerun: a skill reported an unmapped status or a changed tool version,
-or the person says the board or tool changed. Redo only the steps the change touches (a new status
-is step 5 alone; a new tool version is steps 2-4 and 9), build the new file in
-`.task-master/task-master.toml.new`, and show the difference field by field before writing it.
-Unchanged fields are not asked again (this method's own rule: a rerun that re-asks everything gets
-answered carelessly). *Wrong if:* the file is overwritten before the person saw the difference.
+A skill reported an unmapped status, an undeclared marker label or a missing `[process]` key, or
+the person says the board changed. Redo only the steps the change touches (an unmapped status is
+step 4 alone), and show the difference before writing it. Values already in the file are not asked
+again (this method's own rule: a rerun that re-asks everything gets answered carelessly).
 
 ## Steps
 
-1. **Find how the project reaches its board.** Look, in this order: the project's configuration
-   (a declaration file of a board tool, a workflow or tool config, environment variables it names),
-   `CLAUDE.md` and similar agent instructions, the tools installed on the path, and the MCP servers
-   configured for the project. Prefer a board adapter; then the tracker's own CLI; then an MCP server
-   (the design's ladder). Show the person what you found and where; they confirm the tool and the
-   board. Nothing found and the person names nothing: `access = "none"`, skip to step 7, and say the
-   board skills will do only what needs no board.
-   *Output:* `[board]` `tool`, `access`, `found_from`. *Wrong if:* a board was picked because its
-   id looked familiar; ids look alike across boards, and the error shows up as work on the wrong one.
+1. **Find the workflow config file.** As `settings.md` says: the file the agent instructions name,
+   else `workflow.toml` at the root. None: propose creating `workflow.toml` at the root; only if the
+   person declines, `.claude/task-master.toml` with the same sections. Either way, propose one line
+   in the agent instructions naming the file as the workflow config file.
+   *Wrong if:* a second settings file is created beside an existing one.
 
-2. **Read the tool's help and record the commands.** Read the help of the tool and of every
-   subcommand an entry in `[board.commands]` would use; record the tool's version. Each entry is the
-   exact command with placeholders. Rules for each (this method's own, from what the skills need):
-   - a list returns the whole scope, every status and no page limit; a tool's default page silently
-     truncates a snapshot;
-   - flags come after the subcommand, so a permission rule on the command's prefix matches it;
-   - text goes through a file placeholder, never an argument;
-   - an operation the adapter lacks may come from the tracker's CLI or MCP, except moves, types and
-     links, which stay with the adapter where there is one (the design's "Запись").
-   Also record the exit codes the help documents, especially a partial write and an unsupported
-   operation, and, in `[board.notes]`, anything a command does besides what it is named for (a link
-   that closes a task, a move that closes it), the fields of a list's reply that report its total
-   and completeness as `list_total` and `list_complete`, and a list that leaves finished work out.
-   Each command holds the real executable, never `<tool>`. Note how a task with no status comes
-   back: if the tool fills one in, say so in `[board.notes]`, because the snapshot cannot name what
-   the tool hid. From the help, record the tool's names for link types in `[links]`, its close
-   reasons in `[board.close_reasons]` and, if it groups statuses, its categories in
-   `[board.categories]`: the skills name only these keys, never the tool's words.
-   Never run a command to see what it does, and never ask for the help of one that changes the tool
-   itself: if it ignored the help flag it would run.
-   *Wrong if:* an entry was written from memory of a tool rather than from its help.
+2. **The board.** `[board]` present: its values stand and are not asked again; run the tool's own
+   check, if its help names one, and go on.
+   Absent: find the tool (the agent instructions, the tools on the path, the MCP servers configured)
+   and the board, show both and where they were found, and let the person confirm; ids look alike
+   across boards, and the error shows up as work on the wrong one. Then use the tool's own command
+   that declares a board in this file, if its help names one, and check afterwards that it kept
+   the rest of the file; otherwise write `[board]` as the tool's help describes it. Nothing found and the person names nothing: say the board skills will
+   do only what needs no board, and stop after step 6.
 
-3. **Decide each capability.** `native` only when a recorded command delivers it as the help
-   documents (`history`: the list's reply carries status_since, started_at, finished_at and
-   transitions, or a `history` command returns them for one task); otherwise the fallback its row
-   in `config-format.md` names, and tell the person its cost:
-   snapshot composed from reads, not atomic; no history, so age counts from creation and the analyses
-   that need history are unavailable; read-then-move leaves a window between the read and the move,
-   and the move is not allowed in advance; sequential batch asks once per operation and cannot be
-   refused as a whole before the first write; sprints from the caller.
-   *Output:* `[board.capabilities]`. *Wrong if:* a row says `native` for a command that exists but
-   lacks the obligation, such as a move with no expected-state check.
+3. **Read the board as it is.** Read the tool's help (as `skills/board/method.md`, Before any job),
+   then its statuses, labels and the list of the whole board into `.task-master/`. Write nothing
+   to the board yet. A failure, or a sign of truncation, goes to the person before going on. Until
+   the rules of step 10 are in, each board command prompts, and so does every write to the
+   settings file: that is intended.
 
-4. **Check the reads work.** Run `version`, `statuses`, and `list` once, and `history` on one task
-   if recorded: its reply must be one object of those four fields. A failure, a sign of
-   truncation, or a version different from the help's goes to the person before going on. Write
-   nothing to the board. *Wrong if:* a read command is recorded that was never run.
-
-5. **Map every status to a kind** with the person (`wiki/work-states/distinguishable-work-states.md`,
-   What the plugin can treat as canonical). Take statuses from the `statuses` read and from the
-   tasks the `list` returned. For each, propose a kind with its reason; the person confirms. Read off
-   the started and finished points first, because every count hangs from them
-   (`wiki/work-states/started-and-finished-points.md`). Where history is readable, check proposals
-   against recent tasks of different kinds (`wiki/work-states/mapping-workflow-states.md`).
-   - A column that is a condition and not a stage (Blocked, On Hold) is a marker: record it in
-     `[markers]` as `status:<name>`, ask which kind its tasks hold, and say once that it fails the
-     column test (`wiki/work-states/column-versus-attribute.md`).
+4. **Statuses.** Each status needs a kind (`settings.md`, How a task's kind is decided). Write
+   the settings drafted so far to `.task-master/settings-draft.toml` (on a first run, `[board]` and
+   whatever the file already holds), run `snapshot.py` on the reads of step 3 with that file
+   (`--empty-ok` if the board has no tasks, said to the person), and take `unmapped_statuses`. For each status the
+   tool gives no category, propose one in the tool's own status table where the file has one,
+   else an entry in `[process.kinds]`; the person confirms. A status the team will add (a review
+   column the board lacks) is declared the same way, with category `in_progress`. Then ask which statuses hold work
+   handed off rather than being done: `review_statuses`. Read the started and finished points first,
+   since every count hangs from them (`wiki/work-states/started-and-finished-points.md`).
+   - A status that is a condition, not a stage (Blocked, On Hold) is a marker: declare it as
+     `status:<name>` in `[process.markers]` and say once that it fails the column test
+     (`wiki/work-states/column-versus-attribute.md`). It still needs a kind; say which one
+     miscounts least.
    - A status covering two kinds is said so, never mapped to the nearer one (the design's
-     "Значение состояний принадлежит плагину": a silent approximation gives rules that fire wrongly
-     and look as if they work). The person splits it on the
-     board, picks one kind knowing what it miscounts (recorded with a comment), or leaves it unmapped,
-     and then every read names it.
-   - A status for dropped work is `finished` with the `abandoned` marker, so counts of finished work
-     can filter it (`wiki/reading-history/non-standard-departure.md`, Abandoned work).
-   - Then record the kinds past the started point, `started_kinds`: `active` and `handed_off`, plus
-     `queued` where the queued status is a WIP-limited arrivals column or a queue between working
-     stages. An unlimited first column is a backlog under another name: propose `before_start` for
-     it (`wiki/work-states/started-and-finished-points.md`, The decision; Where the clock starts on
-     such a board). A board with both kinds of queue cannot be told apart by kind: say so.
-   *Output:* `[states]`, `[project].started_kinds`. *Wrong if:* a status is in `[states]` without
-   the person's word, or `queued` is counted as started on a column with no limit.
+     "Значение состояний принадлежит плагину"): the person splits it on the board, or picks one kind
+     knowing what it miscounts.
+   - A ready column counts as started only if it is WIP-limited: then propose it as `queued` in
+     `[process.kinds]` with its limit in `[process.wip]`; an unlimited one is a backlog under
+     another name, left as it is (`wiki/work-states/started-and-finished-points.md`, The decision).
+   *Wrong if:* a status got a kind without the person's word.
 
-6. **Markers, fields, labels.** Ask how the board shows each marker: `blocked` and `waiting`
-   (`wiki/work-states/waiting-versus-blocked.md`, The test), `untriaged`
-   (`wiki/intake/triage-procedure.md`, step 1), `abandoned`; absent means it cannot. Record a marker
-   as `label:<name>` or `status:<name>` where the board allows: the scripts read no other form, and
-   say so when it is another. Ask where the board keeps a task's estimate, type and priority, and
-   which headings in a task's text mark its acceptance criteria (read a few tasks' text), and
-   whether something groups tasks into themes (`[fields].theme`, optional: only the parking-lot
-   chart reads it). Run
-   `labels`, and give each label the plugin may set a one-line meaning, reusing an existing label of
-   that meaning: a list of names alone breeds a second label for the same thing (the design's
-   "Объявление несёт значение").
-   *Output:* `[markers]`, `[fields]`, `[checks].acceptance_headings`, `[labels.meaning]`.
+5. **Labels and sizes.** The markers `blocked`, `waiting`, `untriaged`
+   (`wiki/work-states/waiting-versus-blocked.md`, The test; `wiki/intake/triage-procedure.md`,
+   step 1): reuse an existing label of that meaning, else propose the default name; each goes into
+   `[board.labels]` with a one-line meaning, since a list of names alone breeds a second label for
+   the same thing (the design's "Объявление несёт значение"). Then whether the team estimates: if
+   so, `[board.size]`, one label per step with its number, and the same labels in `[board.labels]`
+   with what each step means, fixed before estimating (`wiki/sizing/estimation-scale.md`).
 
-7. **Find the process document.** Look for it in agent instructions, the docs folder and contributor
-   guides; show what you found; the person confirms, or names it, or says there is none. Read it and
-   take what it states about setup, period, SLE, scale and limits as the defaults in step 8, citing
-   where. Never create it (the design's "Правила процесса живут там, где их читают все").
-   *Output:* `process_doc`, or absent with that said. *Wrong if:* a path was assumed.
-
-8. **Ask the setup.** Where the process document already states a value, offer it; where the person
-   contradicts it, the document is the team's truth: say so and propose the edit to it.
-   - `setup` and `wip_control`: a fixed period, a stated bound on started work, or both; neither is
-     no setup the base supports, so ask again (`wiki/moving-work/board-rules-by-setup.md`). The
-     bound is a team agreement: copy into `[limits]` only the numbers the process document states,
-     keyed by status or kind, and propose adding them there if it has none; never invent one
-     (`wiki/moving-work/wip-control.md`). `[limits]` present means `wip_control = true`.
-   - `executor`: agent, people or mixed; several rules differ when an agent does the work.
-   - `timezone`: where the team's days begin and end, for dated figures; a UTC offset works on
-     every machine, an IANA name may need the tzdata package.
-   - `period_days` under iterations: one month or less, held, not fitted to the work
-     (`wiki/periods/period-length.md`).
-   - `commitment` under iterations: the goal or the selected tasks
-     (`wiki/periods/commitment-over-a-period.md`, The decision); not stated: absent, and a review
-     asks it per period.
+6. **`[process]`.** Find the process document (agent instructions, the docs folder, contributor
+   guides) and take what it states, citing where; never create or edit it, and where the person
+   contradicts it, say so and propose the edit. Ask only `setup`, plus `period_days` under
+   iterations and `[process.wip]` under flow. Every other key is written only when the document
+   states it or the person brings it up; otherwise it stays absent, and the report lists the
+   defaults in one line. What each key means:
+   - `setup`: a fixed period, a bound on started work, or both; neither is no setup the base
+     supports (`wiki/moving-work/board-rules-by-setup.md`).
+   - `period_days` under iterations: a month or less, held, not fitted to the work
+     (`wiki/periods/period-length.md`); `commitment`: the goal or the selected tasks
+     (`wiki/periods/commitment-over-a-period.md`).
+   - `[process.wip]`: only numbers the team states; never invent one
+     (`wiki/moving-work/wip-control.md`). Under flow, ask for them.
    - `sle`: a time and a probability, or absent (`wiki/periods/service-level-expectation.md`).
-   - `scale`, `scale_far` and a one-line meaning per step, fixed before estimating, one per project
-     (`wiki/sizing/estimation-scale.md`); no estimates kept: absent.
-   - `ceiling`: a step, chosen by setup (`wiki/sizing/size-ceiling.md`, Which figure applies under
-     which setup); under flow with an SLE, the SLE question replaces it and the step is optional.
-   *Wrong if:* a value was filled from a default without the person's word, and not marked absent.
+   - `ceiling`: a `[board.size]` step (`wiki/sizing/size-ceiling.md`).
+   - `review_statuses`: asked in step 4.
+   - `doc`: the process document found, if any.
+   - `executor`, `timezone`, `acceptance_headings` (search the raw list for the headings task
+     bodies use).
+   Velocity and throughput are never asked: the scripts compute them from history.
+   *Wrong if:* a value was written without the person's word. An absent key is not a value.
 
-9. **Propose permission rules.** For `.claude/settings.json`, as a fragment the person edits in:
-   allow each recorded read by its fixed prefix; leave every write to a prompt; allow `move` only if
-   `guarded_move = "native"`, because a move allowed in advance must refuse on the wrong state (the
-   design's "Перевод состояния стоит один вызов"). Never allow a read whose arguments reach beyond
-   reading, such as an expression evaluator or a pass-through to the raw API. If the tool accepts
-   flags before the subcommand, say that ask or deny rules can be passed around and only the
-   prompt on writes protects the board.
+7. **Write.** Show every addition to the file in full (on a rerun, the difference), and write after
+   the person confirms. Add `.task-master/` to `.gitignore` if absent.
 
-10. **Write.** Show the whole file (on a rerun, the difference), write it after the person confirms,
-    and add `.task-master/` to `.gitignore` if absent.
+8. **Bring the board to the file.** init does this itself; a changeset has no op for it. Create
+   each label of `[board.labels]` and `[board.size]`, and each status the person added, that the
+   board lacks, with the tool's commands, one prompt each. Only add: never
+   rename or delete, which the person does. What the tool cannot do (statuses that need an
+   administrator, say) goes to the person as steps to take by hand.
+
+9. **Check.** Read again as in step 3 and run `snapshot.py`: no unmapped status, no undeclared
+   marker. What remains goes to the person.
+
+10. **Propose permission rules** for `.claude/settings.json`, as a fragment the person edits in:
+    allow each read the skills run by its fixed prefix; leave every write to a prompt; allow a move
+    only if the tool guards it, because a move allowed in advance must refuse on the wrong state
+    (the design's "Перевод состояния стоит один вызов"). Never allow a read whose arguments reach
+    beyond reading, such as an expression evaluator or a pass-through to the raw API. If the tool
+    accepts flags before the subcommand, say that ask or deny rules can be passed around and only
+    the prompt on writes protects the board.

@@ -11,7 +11,8 @@ Open a cited page when a case is borderline.
   value/urgency rating, and which are started.
 - Setup: fixed periods or flow, period length, the calendar (period start dates, known capacity
   changes), and whether the date or the scope is fixed.
-- History, computed by the caller. Under iterations: points finished in each closed period
+- History, computed by the caller: where the project's board is set up, from `board_metrics.py`
+  output (`velocity.periods`, `throughput`), never asked of a person. Under iterations: points finished in each closed period
   (all-or-nothing, `wiki/reading-history/all-or-nothing-counting.md`), the count of closed periods
   since the last change of setup, and the range values for that count (step 3). Under flow:
   forecast lines at stated probabilities, the window they came from, and how many items finished.

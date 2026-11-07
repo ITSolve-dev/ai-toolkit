@@ -8,35 +8,35 @@ own, not a source's.
 ## Inputs and output
 
 - **Passed by the skill:** the snapshot (or a file of items passed as text), the metrics file (or
-  `none`), the question, and the path of `.claude/task-master.toml`. No config means no board: skip
-  the steps that need one, and record each one skipped in `not_covered`; with no commands to name,
-  no changeset file is written and the proposals stay in `findings`.
+  `none`), the question, and the settings path. The question also says which ops, link relations and close
+  reasons the tool's help shows a way for. No settings means no board: skip the steps that need
+  one, and record each one skipped in `not_covered`; with no tool to apply them, no changeset file
+  is written and the proposals stay in `findings`.
 - **`findings`:** one block per item, oldest first: item id (or `new-N` for a text item not on the
   board), outcome, kind, bands, size class, and the ops proposed for it by `ref`.
 - **The changeset** goes to `.task-master/changeset-triage-<slug>.json` in the `board` method's form,
   each op with `why` (one line) and `page`, and an op on an existing task with its `updated_at`
   from the snapshot. Ops by what they do: type or priority, `set_type` or `set_priority`; a size,
-  `add_label` where `[fields].estimate` is a `label:` form, else its own recorded command, else
-  `needs_caller`; a `label:` marker, `add_label` or `remove_label` with its name without the prefix
+  `add_label` of its `[board.size]` key (no `[board.size]`: the size is reported, not applied); a
+  `label:` marker in `marker_specs`, `add_label` or `remove_label` with its name without the prefix
   (a `status:` marker is a column: ask, do not propose it); a text edit, `edit` with the whole new
-  text; a question to a reporter, `comment`; `link` of a `[links]` type; `close`, with `decide` and
-  a `[board.close_reasons]` value; an accepted text item, `create`. An op whose key
-  `[board.commands]` (or whose value `[links]`, `[board.close_reasons]`) lacks goes to
-  `needs_caller`, not into the file.
+  text; a question to a reporter, `comment`; `link` with relation `blocks`, `duplicates` or `relates`; `close`, with
+  `decide` and reason `done`, `duplicate` or `abandoned`; an accepted text item, `create`. An op,
+  relation or reason the question says the tool lacks goes to `needs_caller`, not into the file.
 - **Questions instead of assumptions:** a closing that rests on a fact only the requester holds,
   and a rating with no sentence behind it. Comments to reporters go in the changeset, not in
   `questions`.
 
 ## Steps
 
-1. **Read the setup.** From the config: `[project].setup`, `process_doc`, `scale`, `scale_far`,
-   `ceiling`, `sle`, `[markers]`, `[fields]`, `[labels.meaning]`, `[states]`, and which keys
-   `[board.commands]` has. Read the process document if one is named. It may hold an assignment
-   rule (step 10), a review interval (step 9) or the release rhythm (step 7). An item whose status is not in `[states]` is reported as unmapped and is not
-   triaged as any kind.
+1. **Read the setup.** From the settings: `[process].setup`, `doc`, `ceiling`, `sle`,
+   `[process.markers]`, `[board.size]`, `[board.labels]`; from the snapshot, `marker_specs` and
+   `markers_undeclared`. Read the process document if one is named. It may hold an assignment
+   rule (step 10), a review interval (step 9) or the release rhythm (step 7). An item whose kind is
+   null is reported as unmapped and is not triaged as any kind.
    *Wrong if:* a later step uses a scale, ceiling or interval that this step found absent.
 
-2. **Select and order.** Items carrying `[markers].untriaged`. With no marker declared: items of
+2. **Select and order.** Items carrying the untriaged marker. With that marker in `markers_undeclared`: items of
    kind `before_start` with no priority set, because an absent rating means the item has not been
    reviewed (`wiki/intake/triage-procedure.md`, step 7). Say that the board cannot show the
    difference, and propose a marker for the process document in `needs_caller`. Order oldest first:
@@ -80,7 +80,7 @@ own, not a source's.
    (`wiki/intake/clarifying-questions.md`; `wiki/task-content/recoverable-versus-task-only-facts.md`).
    Send one `comment` per item holding all of its questions, and ask once
    (`wiki/intake/triage-procedure.md`, Outcomes). An item awaiting its answer keeps the untriaged
-   marker and gets `[markers].waiting` if declared (this method's own rule). A defect cannot be
+   marker and gets the waiting marker if declared (this method's own rule). A defect cannot be
    reproduced from files. Give its steps in `needs_caller` and leave it accepted pending
    reproduction (`wiki/intake/reproduce-before-accepting.md`).
    *Wrong if:* a question's answer is in the repository, or the question is one nobody could
@@ -99,13 +99,13 @@ own, not a source's.
    *Wrong if:* a value sentence is about time or an urgency sentence is about size, or across the
    items the two bands always move together.
 
-8. **Give a size class; do not cut.** Use the project's scale, `scale_far` for work not near
-   starting (`wiki/sizing/estimating-by-horizon.md`). A vague item still gets a size, with its
+8. **Give a size class; do not cut.** Use the project's scale, `[board.size]`
+   (`wiki/sizing/estimating-by-horizon.md`). A vague item still gets a size, with its
    assumption stated (`wiki/sizing/estimating-underspecified-work.md`). The item needs cutting
    when it is above `ceiling`, or when its contents cannot be listed, whichever comes first. Under
    flow with no scale, ask whether it has a good chance of finishing within the SLE
-   (`wiki/sizing/size-ceiling.md`). With no ceiling in the config, use the top of the near scale
-   and say so (this method's own default, as in decompose). Mark such an item `needs cutting →
+   (`wiki/sizing/size-ceiling.md`). With no `ceiling` in the settings, ask, and meanwhile take the
+   `[board.size]` step below the largest, saying so (this method's own default). Mark such an item `needs cutting →
    decompose`. Do not list its pieces. The size is a proposal (`wiki/sizing/who-estimates.md`).
    *Wrong if:* the block for an item lists subtasks, or a size has no stated basis.
 
@@ -122,8 +122,8 @@ own, not a source's.
 10. **Assign only by a written rule.** By default an item is not assigned until it starts
     (`wiki/moving-work/tasks-are-not-assigned-at-planning.md`). If the process document states an
     assignment rule, apply it, cite the passage, and say once where the base disagrees.
-    An assignment is an op only where `[board.commands]` records `assign`; otherwise it goes to
-    `needs_caller`.
+    An assignment is an op only where the question says the tool's help shows a way to assign;
+    otherwise it goes to `needs_caller`.
     *Wrong if:* an assignee appears in the changeset with no process-document passage behind it.
 
 11. **Close each item's block.** An item whose outcome is decided gets `remove_label` for a

@@ -2,7 +2,7 @@
 
 A question in; one chart that answers it, as a Mermaid file, and a short text reading. The chart is
 chosen by the question, not by the occasion. Read the question file first: it names the scope, the
-reader, the setup and the capabilities that are not `native`. Open a cited page when a case is
+reader, the setup and the obligations met by a fallback. Open a cited page when a case is
 borderline. "This wiki's reading" means the base marks the rule as its own, not a source's.
 
 ## Inputs and output
@@ -25,7 +25,7 @@ What each reads. One snapshot is one moment and cannot stand in for history.
 | Release burndown, line | How far along is the release? | One snapshot per period start, each run compared to the first: `comparison.forces.residual.points` per run |
 | Release burndown, bars | Why did remaining work move? | `comparison.forces` between two period starts: completion, scope and re-estimation apart |
 | Velocity | How much fits by a date, at what rate? | `velocity.periods`: per sprint, finished tasks naming it and their estimates; by count without estimates |
-| Parking lot | Which themes are behind? | `themes.by_theme`, read through `[fields].theme` |
+| Parking lot | Which themes are behind? | Not available: the settings keep no theme field; refuse, naming it |
 | Feature Gantt | What is planned for which period? | The snapshot's sprint on each task; sprint dates |
 | Cumulative flow | How long do items take on average? Is more starting than finishing? | `series.cfd`: every item's transitions |
 | Cycle time scatterplot | How long may one item take? Did it change over time? | `series.scatterplot`: start and finish per finished item |
@@ -54,7 +54,7 @@ page's "Cannot ask" column. The "Reads" column is this method's reading of how e
    (`wiki/showing-work/iteration-burndown.md`). *Wrong if:* points reach an outside reader.
 
 3. **Check the data; refuse what it cannot support.** Hold the row's "Reads" against the metrics
-   and the question file. Unmet: refuse, naming the input and the capability that lacks it,
+   and the question file. Unmet: refuse, naming the input and the obligation that lacks it,
    and say which question can still be answered from what there is. Nothing is approximated: a
    cumulative chart built from counts of what sits in each column is "dubious"
    (`wiki/showing-work/cumulative-flow-diagram.md`, Building it), and a burndown from one snapshot is
@@ -82,7 +82,6 @@ page's "Cannot ask" column. The "Reads" column is this method's reading of how e
    | Histogram | `xychart-beta`, bars per cycle time band | Percentile lines cannot be vertical; they go in the reading |
    | Aging view | `xychart-beta`, one bar per open item, states as label prefixes in workflow order | States are labels, not columns |
    | Feature Gantt | `gantt`, a section per period | Nothing the question needs |
-   | Parking lot | `flowchart`, one node per theme with its counts | Layout; a colour only with its stated test |
 
    A diagram type the table does not name, `pie` among them, answers no question here.
 

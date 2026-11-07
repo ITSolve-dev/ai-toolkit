@@ -38,12 +38,12 @@ marks the rule as its own, not a source's.
    `wiki/reading-history/iteration-summary-plan-versus-fact.md`, Limits). *Output:* one line per
    comparison, made or not and why. *Wrong if:* a planned column is filled from the snapshot taken now.
 
-2. **Name the promise.** Iterations: the goal or the selection, per `[project].commitment`, else
+2. **Name the promise.** Iterations: the goal or the selection, per `[process].commitment`, else
    the process document or the caller (`wiki/periods/commitment-over-a-period.md`, The decision);
    none says, report per task,
    the goal beside it if given, and record which was assumed. A list of sub-steps is never the
    promise. Flow: no period promise exists; each item carries the SLE, and a set carries only a
-   forecast the caller passes (same page). No SLE in the config: say there is no per-item promise.
+   forecast the caller passes (same page). No SLE in the settings: say there is no per-item promise.
    *Wrong if:* sub-tasks closed are counted as progress, or a goal-led period is reported as a share
    of items with its goal unmentioned.
 
@@ -64,7 +64,7 @@ marks the rule as its own, not a source's.
    whole estimates.
 
 5. **Velocity.** Take it from `velocity.periods` (`points`, or `points_reason` where null; by
-   count where no estimate field exists), counted all-or-nothing by the sprint each task names now. Then check what it can mask:
+   count where the settings have no `[board.size]`), counted all-or-nothing by the sprint each task names now. Then check what it can mask:
    tasks finished while their parents stay open, or blocked and unfinished work accumulating, is
    read before velocity is called healthy (`wiki/reading-history/velocity-masks-unfinished-work.md`,
    Observable signs). A forecast from it belongs to `schedule`. *Wrong if:* a velocity is computed
@@ -78,7 +78,8 @@ marks the rule as its own, not a source's.
    carry-over is proposed as the default, or the same task unfinished across periods gets no cause.
 
 7. **Forces behind the gap.** Copy the split from `comparison.forces`: `completed`, `abandoned`,
-   `added`, `removed` and `re_estimated.delta`, each with its `without_estimate`; its `residual` is
+   `added`, `removed` and `re_estimated.delta`, each with its `without_estimate` (for
+   `re_estimated`, `estimate_appeared_or_lost`); its `residual` is
    the work unfinished now. Whether the forces account for the change needs the remaining work at
    the start, which the metrics do not give: say that check is not made, and never spread a gap
    over the forces (`wiki/reading-history/release-progress-forces.md`, Method). No comparison:
