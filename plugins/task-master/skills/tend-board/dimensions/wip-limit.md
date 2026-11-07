@@ -3,15 +3,20 @@
 Is more started than the project's bound allows? Read `README.md`, *Every dimension*, first.
 Findings here are per status or kind and per board, not per task.
 
-**Reads:** `limits` (`declared`, `breaches`, `unknown_keys`) and `wip`, each with its `basis`.
+**Reads:** `[project].wip_control`; `limits` (`declared`, `breaches`, `unknown_keys`) and `wip`,
+each with its `basis`. A status limit counts every issue in that status, whatever its kind.
 
 ## Steps
 
-1. **Is a bound stated?** `limits.declared` false:
+1. **Is a bound stated?** `limits.declared` true: go to step 2 (beside `wip_control = false` the
+   config contradicts itself: `needs_caller`). `wip_control = true` with no `[limits]`: a bound is
+   stated but its numbers are not written; one board-level question asking that the process
+   document hold them, then stop. Neither:
    - flow: one board-level finding. A flow setup requires a bound,
      because it is the only start signal (`wiki/moving-work/wip-control.md`, Which holds under which
      setup);
-   - iterations: one board-level question, not a defect. With an agent executing, the
+   - iterations: one board-level question, not a defect. Where `[project].executor` is `agent`
+     or `mixed`, the
      period restrains the total and not the moment, so the base suggests adding a bound
      (`wiki/moving-work/board-rules-by-setup.md`, Agent executor note). If the process document
      records the choice, say nothing (`wiki/reading-history/smell-is-not-a-finding.md`, step 5).

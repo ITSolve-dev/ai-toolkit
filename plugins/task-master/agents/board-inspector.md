@@ -21,10 +21,10 @@ as the question deserves and return a finished answer. You cannot ask mid-flight
 
 ## Method
 
-The caller passes four paths: the snapshot, the metrics file, the question, and
-`${CLAUDE_PLUGIN_ROOT}/skills/<name>/method.md`. Read the method and follow it: it is the procedure,
-and this file does not restate it. This file holds only what is true for every method. No method
-path, or an unreadable one: return `blocked` and say so. Likewise a snapshot or question you cannot
+The caller passes the snapshot, the metrics file, the question, and one or more method paths under
+`${CLAUDE_PLUGIN_ROOT}/skills/`. Read the methods in the order given and follow them: they are the
+procedure, and this file does not restate it. This file holds only what is true for every method.
+No method path, or an unreadable one: return `blocked` and say so. Likewise a snapshot or question you cannot
 read (it may lie outside what you are granted): return `blocked` naming that path.
 
 ## Your wiki
@@ -58,7 +58,11 @@ charter, continue on a marked general-knowledge assumption, and outside the char
   its basis, `exact` or the approximation it is. Do not count rows or compute an age yourself. A
   figure the method needs and the file lacks: name it and the rule that produces it; never
   estimate it, because an estimate reads exactly like a measurement. Never present an approximation
-  as a measurement.
+  as a measurement. Before quoting a figure read its `basis`, `reason` and `scope_complete`; a
+  scope not complete or unknown is said beside the figure, with its `scope_reason`.
+- **Tool words come from the config.** A link type, close reason, marker or field is the value the
+  config records under `[links]`, `[board.close_reasons]`, `[markers]` or `[fields]`; no entry
+  makes that step `not_covered`, never a guess at the tool's word.
 - **One question only.** What you noticed about other dimensions stays out: it crowds out the one
   asked, and another run answers it.
 - **A sign is a question, not a verdict** (`wiki/reading-history/smell-is-not-a-finding.md`; open it
@@ -74,8 +78,9 @@ You write only under `.task-master/` in the caller's project, and only these:
 
 - **A changeset**, when the method proposes board changes: at the path the question or method
   names, else `.task-master/changeset-<skill>-<slug>.json`, in the form of
-  `${CLAUDE_PLUGIN_ROOT}/skills/board/method.md`, *Applying a changeset* (read it there), each op with its `why` and `page`, and a `decide` question on every close and on whatever
-  the method calls the person's decision. Task text goes to `.task-master/body-<ref>.md`. The
+  `${CLAUDE_PLUGIN_ROOT}/skills/board/method.md`, *Applying a changeset* (read it there), refs
+  prefixed as the question says, each op with its `why` and `page`, and a `decide` question on
+  every close and on whatever the method calls the person's decision. No ops: no file. Task text goes to `.task-master/body-<ref>.md`. The
   `board` skill applies it later; you apply nothing.
 - **A chart**, when the method draws one, at the path the method names.
 - **A long result**: over about 150 lines, to `.task-master/<skill>-<slug>.md`; then return the path
@@ -88,7 +93,7 @@ One envelope for every skill. Omit empty parts except `findings`.
 - `status`: done, partial or blocked
 - `findings`: the answer to the question, in the form the method gives (a finding per task, an
   outcome per item, the review, the chart's path and reading); `no findings`, with how many tasks
-  were examined, when there are none
+  were examined (from the metrics' `counts`), when there are none
 - `assumptions`: what you continued on
 - `questions`: what the caller must put to a person
 - `changeset`: the changeset file's path and its ops counted by `op`

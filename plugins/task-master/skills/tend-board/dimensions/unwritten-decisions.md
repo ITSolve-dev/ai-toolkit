@@ -5,8 +5,7 @@ task depends on is made and written, or explicitly left to the executor
 (`wiki/task-content/conversation-moves-into-the-task.md`, The rule). Read `README.md`, *Every
 dimension*, first.
 
-**Reads:** tasks of kind `queued`, `active`, `handed_off`: title and description. Comments only if
-the snapshot carries them.
+**Reads:** tasks of kind `queued`, `active`, `handed_off`: title and description.
 
 ## Steps
 
@@ -21,9 +20,9 @@ the snapshot carries them.
    repository, or to a linked document that holds the decision, is not a gap
    (`wiki/task-content/recoverable-versus-task-only-facts.md`, The decision). Expected behaviour,
    constraints and choices that live in someone's head are task-only.
-4. **Comments, if present.** A decision recorded in a comment that contradicts or is missing from
-   the text is a fact stranded outside the task (same page, Fact Stranded Outside the Task). If the
-   snapshot has no comments, put this check under `not_covered`.
+4. **Comments.** A decision recorded in a comment and missing from the text is a fact stranded
+   outside the task (same page, Fact Stranded Outside the Task). The snapshot carries no comments,
+   so this check goes under `not_covered`.
 5. **Propose** a question to the person who holds the decision, naming the phrase and what it leaves
    open, and a text edit once answered. Never fill in the decision.
 

@@ -10,7 +10,7 @@ description: >-
   triage go to ask; estimating or scheduling known tasks to estimate and schedule; applying the
   proposed changes to board.
 argument-hint: "[items as text or a file path; default: the board's untriaged items]"
-allowed-tools: Read(${CLAUDE_PLUGIN_ROOT}/knowledge/**), Read(${CLAUDE_PLUGIN_ROOT}/skills/**), Edit(./.task-master/**), Bash(python*${CLAUDE_PLUGIN_ROOT}/scripts/*)
+allowed-tools: Read(${CLAUDE_PLUGIN_ROOT}/knowledge/**), Read(${CLAUDE_PLUGIN_ROOT}/skills/**), Edit(./.task-master/**), Bash(python ${CLAUDE_PLUGIN_ROOT}/scripts/snapshot.py *), Bash(python ${CLAUDE_PLUGIN_ROOT}/scripts/board_metrics.py *)
 ---
 
 # triage
@@ -23,24 +23,17 @@ Runs in your context and writes nothing to the board. The judgement happens in
    on what needs no board: write them to `.task-master/triage-items.md`, pass that file in place of
    the snapshot and `none` for the metrics, and state in the result that duplicates on the board,
    staleness and every write were not checked. No config and no items: stop there.
-2. **Take a snapshot** of the whole board, open and closed items, by
-   `${CLAUDE_PLUGIN_ROOT}/skills/board/method.md` (*Before any job*, step 2, and *Reads and the
-   snapshot*), to `.task-master/triage-snapshot.json`. The whole board, because a duplicate is
-   searched for among closed items too (`wiki/intake/duplicate-reports.md`). Where
-   `[board.capabilities].snapshot` is not `native`, the procedure composes it from reads: record in
-   the result that it is not atomic.
-3. **Compute the arithmetic**: run `${CLAUDE_PLUGIN_ROOT}/scripts/board_metrics.py` over the snapshot
-   with `--config .claude/task-master.toml` (its `--help` gives the rest), output to
-   `.task-master/triage-metrics.json`. Where
-   `[board.capabilities].history` is `none`, ages run from creation: record in the result that a
-   long-stalled item cannot be told from a long-open one.
+2. **Take a snapshot** of scope `board`, open and closed items, by
+   `${CLAUDE_PLUGIN_ROOT}/skills/board/method.md`, *Before any job* and *Reads and the snapshot*,
+   to `.task-master/triage-snapshot.json`. The whole board, because a duplicate is searched for
+   among closed items too (`wiki/intake/duplicate-reports.md`).
+3. **Compute the arithmetic**:
+   `python ${CLAUDE_PLUGIN_ROOT}/scripts/board_metrics.py .task-master/triage-snapshot.json --config .claude/task-master.toml --out .task-master/triage-metrics.json`.
 4. **Write the question** to `.task-master/triage-question.md`: which items to triage (the text
    items, or "the board's untriaged items"), the path of `.claude/task-master.toml`, and who the
    requests come from if you know (the person steering, or others).
 5. **Dispatch `task-master:board-inspector`** with four paths: snapshot, metrics, question, and
    `${CLAUDE_PLUGIN_ROOT}/skills/triage/method.md`.
-6. **Relay its envelope** with the fallbacks from steps 1-3 added to `assumptions`: the `findings`
-   per item, and the changeset file's path. It is a proposal: say it is applied through the `board`
-   skill, item by item where
-   `[board.capabilities].batch` is not `native`, and that every closing is the person's decision at
-   that point. Items sized as needing cutting go to `decompose`.
+6. **Relay its envelope** in the shape of the `board` method, *The reply*, with step 1's fallback
+   and the snapshot reply's caveats added to `assumptions`: the `findings` per item, then the
+   changeset. Items sized as needing cutting go to `decompose`.

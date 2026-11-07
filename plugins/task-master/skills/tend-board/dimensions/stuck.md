@@ -4,27 +4,29 @@ Which started task has stopped or outlived its expectation, and nobody has acted
 `README.md`, *Every dimension*, first.
 
 **Reads:** tasks of a kind in `[project].started_kinds` (absent: `active`, `handed_off`); their
-`markers`; `age.items` with each `basis`; cycle-time percentiles, where the metrics carry them.
+`markers`, `subtasks`; `age.items` (`work_item_age_days` with its `work_item_age_basis` and
+`work_item_age_reason`; `days` with its `basis`); `cycle_time.percentiles`, where not null.
 
 ## Steps
 
-1. **Fix the basis and say it.** `exact` is time in the current status, from the tool's history:
-   it is not Work Item Age, which runs from the started point, so an age under the line does not
-   clear a task that changed status recently. An age the metrics give from `started_at` is Work
-   Item Age, and step 3 reads that one. `since_created` overstates age, so an age over the
-   line does not show a stop: a stuck task cannot be told from a long-open one, and the finding
+1. **Fix the age and say its basis.** Step 3 reads `work_item_age_days`, Work Item Age from the
+   started point (basis `transitions` or `started_at`). Where it is null, its `work_item_age_reason`
+   says why; then `days` stands in, named by its `basis`: `exact` is time in the current status, not
+   Work Item Age, so an age under the line does not clear a task that changed status recently;
+   `since_created` overstates age, so an age over the line does not show a stop, and the finding
    says so (design table "Чего инструмент не умеет"). `unknown`: the task cannot be aged; list it
    under `not_covered` (`wiki/reading-history/work-item-age.md`, What an audit needs).
-   *Output:* one line naming the basis. *Wrong if:* an approximate age is called time in state.
+   *Output:* one line naming the basis. *Wrong if:* an approximate age is called Work Item Age.
 2. **Fix the line by setup** (`wiki/moving-work/board-rules-by-setup.md`, the expectation for a
    task's life). Flow, or iterations keeping one: the days of `[project].sle`. Iterations without
    one: `[project].period_days`. Neither: no age line; run steps 4-5 only and name the missing
    inputs under `not_covered`. The 50th and 70th percentile checkpoints need cycle-time
-   percentiles of finished work: take them from the metrics; absent there, name them as missing,
-   never estimate them (`wiki/moving-work/percentile-intervention-triggers.md`).
+   percentiles of finished work: take them from `cycle_time.percentiles`, with its `n` and
+   `start_source`; null there, name them as missing with `percentile_reasons`, never estimate them (`wiki/moving-work/percentile-intervention-triggers.md`).
    *Output:* the line, in days, with its source.
-3. **Age over the line.** A task whose `age.items[].days` exceeds the line, with nothing on it
-   since (no blocker marked, no split): finding. Past an 85th-percentile SLE the question is why
+3. **Age over the line.** A task whose age (step 1) exceeds the line, with no blocked or waiting
+   marker and no subtasks: finding. Comments are not in the snapshot, so whether anyone acted in
+   them is the question, not the finding. Past an 85th-percentile SLE the question is why
    nobody intervened earlier (`wiki/moving-work/percentile-intervention-triggers.md`, Signs).
 4. **Read state before size** for each task from step 3, and for each task marked blocked or
    waiting (`wiki/moving-work/percentile-intervention-triggers.md`, Which question comes first):
@@ -41,9 +43,10 @@ Which started task has stopped or outlived its expectation, and nobody has acted
      (`wiki/work-states/started-and-finished-points.md`, Sign of violation);
    - `active`, no marker: size or missing information; propose asking whether to re-cut, through
      `decompose` (`wiki/sizing/hidden-wip-in-large-items.md`).
-   With an agent executing, ask the blocker question first: a stop for a person's decision is
+   Where `[project].executor` is `agent` or `mixed`, ask the blocker question first: a stop for a person's decision is
    blocked, not waiting (`wiki/work-states/waiting-versus-blocked.md`, Agent executor note).
-5. **Propose.** A marker where a stopped task carries none; a comment asking the question of step 4.
+5. **Propose.** A `label:` marker where a stopped task carries none (a `status:` marker is asked,
+   not proposed); a comment asking the question of step 4.
    Never a move out of the state: a blocked task stays and counts
    (`wiki/moving-work/blocked-work-counts-against-wip.md`, The rule).
 

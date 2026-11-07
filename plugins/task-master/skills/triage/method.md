@@ -14,12 +14,15 @@ own, not a source's.
 - **`findings`:** one block per item, oldest first: item id (or `new-N` for a text item not on the
   board), outcome, kind, bands, size class, and the ops proposed for it by `ref`.
 - **The changeset** goes to `.task-master/changeset-triage-<slug>.json` in the `board` method's form,
-  each op with `why` (one line) and `page`. Ops by what they do: type or priority, `set_type` or
-  `set_priority`; a size, `add_label` where `[fields].estimate` is a `label:` form, else its own
-  recorded command, else `needs_caller`; a marker, `add_label` or `remove_label` (`move` where the
-  marker is a `status:` form); a text edit, `edit` with the whole new text; a question to a
-  reporter, `comment`; `link`; `close`, with `decide`; an accepted text item, `create`. An op whose
-  key `[board.commands]` lacks goes to `needs_caller`, not into the file.
+  each op with `why` (one line) and `page`, and an op on an existing task with its `updated_at`
+  from the snapshot. Ops by what they do: type or priority, `set_type` or `set_priority`; a size,
+  `add_label` where `[fields].estimate` is a `label:` form, else its own recorded command, else
+  `needs_caller`; a `label:` marker, `add_label` or `remove_label` with its name without the prefix
+  (a `status:` marker is a column: ask, do not propose it); a text edit, `edit` with the whole new
+  text; a question to a reporter, `comment`; `link` of a `[links]` type; `close`, with `decide` and
+  a `[board.close_reasons]` value; an accepted text item, `create`. An op whose key
+  `[board.commands]` (or whose value `[links]`, `[board.close_reasons]`) lacks goes to
+  `needs_caller`, not into the file.
 - **Questions instead of assumptions:** a closing that rests on a fact only the requester holds,
   and a rating with no sentence behind it. Comments to reporters go in the changeset, not in
   `questions`.
@@ -36,11 +39,12 @@ own, not a source's.
 2. **Select and order.** Items carrying `[markers].untriaged`. With no marker declared: items of
    kind `before_start` with no priority set, because an absent rating means the item has not been
    reviewed (`wiki/intake/triage-procedure.md`, step 7). Say that the board cannot show the
-   difference, and propose a marker for the process document in `needs_caller`. Order oldest first
-   by the metrics file. This is the order of triage, not of work (same page, step 2). If every
+   difference, and propose a marker for the process document in `needs_caller`. Order oldest first:
+   by `age.items[].days` where its basis is `since_created`, else by the snapshot's `created_at`;
+   text items as given. This is the order of triage, not of work (same page, step 2). If every
    request comes from the person steering and nothing else waits untriaged, steps 5 to 7 suffice.
    Otherwise run all the steps (same page, Cost; this wiki's reading).
-   *Wrong if:* the order comes from reading dates in the snapshot rather than from the metrics.
+   *Wrong if:* an age is computed here rather than read from the metrics.
 
 3. **Close the cheap cases first** (`wiki/intake/triage-procedure.md`, Outcomes). A question or a
    request for help gets an answer or a redirect and no task. An item that is abandoned or in the
@@ -69,8 +73,8 @@ own, not a source's.
    happened and what should have happened. An environment is required only if the failure depends
    on it (`wiki/intake/incoming-report-content.md`). A request for new behaviour says why it exists
    and what would show it done (`wiki/task-content/task-must-justify-itself.md`,
-   `wiki/task-content/testable-acceptance.md`). A decision recorded in a comment and missing from
-   the text is a fact stranded outside the task: propose an edit that moves it into the text
+   `wiki/task-content/testable-acceptance.md`). A decision stranded in a comment cannot be seen:
+   the snapshot carries no comments, so that check is `not_covered`
    (`wiki/task-content/conversation-moves-into-the-task.md`). Before asking, read the repository.
    Ask only what it cannot show, about behaviour and failure, in terms the reporter can answer
    (`wiki/intake/clarifying-questions.md`; `wiki/task-content/recoverable-versus-task-only-facts.md`).
@@ -109,13 +113,11 @@ own, not a source's.
    (`wiki/intake/closing-what-no-longer-applies.md`). If it awaits a requester's answer that never
    came, close it with a comment saying how to reopen. If it waits for nobody in particular, ask
    the requester whether the need still stands. If it is kept on purpose, it must say why and what
-   would promote it, and one with no such statement is a candidate. The length of time comes from
-   the project's own history: for an unstarted item, time since last activity against how long
-   started items waited before they started. Where the metrics lack that, use a review interval
-   from the process document. Where there is none, leave the time unjudged, put the interval in
-   `questions`, and use no borrowed figure (same page).
-   *Wrong if:* a closing rests on a number of days that comes from neither the metrics nor the
-   process document.
+   would promote it, and one with no such statement is a candidate. How long is too long is the
+   project's own: the metrics give no time since last activity, so use the review interval the
+   process document states, against the item's age. None stated: leave the time unjudged, put the
+   interval in `questions`, and use no borrowed figure (same page).
+   *Wrong if:* a closing rests on a number of days the process document does not state.
 
 10. **Assign only by a written rule.** By default an item is not assigned until it starts
     (`wiki/moving-work/tasks-are-not-assigned-at-planning.md`). If the process document states an
@@ -124,7 +126,8 @@ own, not a source's.
     `needs_caller`.
     *Wrong if:* an assignee appears in the changeset with no process-document passage behind it.
 
-11. **Close each item's block.** An item whose outcome is decided gets `remove_label` for the
-    untriaged marker. Every `close` in the changeset carries `decide`: it is the person's decision
+11. **Close each item's block.** An item whose outcome is decided gets `remove_label` for a
+    `label:` untriaged marker; for a `status:` one, a `move` with `expected` to the status the
+    process document names for triaged work, none named a question. Every `close` in the changeset carries `decide`: it is the person's decision
     (`wiki/intake/triage-procedure.md`, Who decides).
     *Wrong if:* an item from step 2 has no outcome and no question.

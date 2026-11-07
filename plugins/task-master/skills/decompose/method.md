@@ -13,7 +13,7 @@ means the base marks the rule as its own, not a source's.
   enumerating and first slices, where the work lands.
 - **`changeset`:** the tree. Per leaf: id, title, the five headings of step 7, `Depends on` (each
   edge marked `sequence` or `wait`), `Size` (a step and what it rests on). Placeholders (step 2)
-  are marked as such and carry only purpose and a coarse size.
+  are marked as such and carry only purpose and a coarse size. `board` maps it to ops (*From decompose*).
 
 ## Steps
 

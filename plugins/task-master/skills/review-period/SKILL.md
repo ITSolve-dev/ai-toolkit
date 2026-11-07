@@ -9,7 +9,7 @@ description: >-
   why a release finished late, or for a retrospective in figures. A question about how to read such
   figures goes to ask; what comes next goes to schedule; changes it proposes are applied by board.
 argument-hint: "<period name, or a window's start and end> [snapshot taken at its start] [goal, communicated date or forecast]"
-allowed-tools: Read(${CLAUDE_PLUGIN_ROOT}/knowledge/**), Read(${CLAUDE_PLUGIN_ROOT}/skills/**), Edit(./.task-master/**), Bash(python*${CLAUDE_PLUGIN_ROOT}/scripts/*)
+allowed-tools: Read(${CLAUDE_PLUGIN_ROOT}/knowledge/**), Read(${CLAUDE_PLUGIN_ROOT}/skills/**), Edit(./.task-master/**), Bash(python ${CLAUDE_PLUGIN_ROOT}/scripts/snapshot.py *), Bash(python ${CLAUDE_PLUGIN_ROOT}/scripts/board_metrics.py *)
 ---
 
 # review-period
@@ -28,13 +28,14 @@ does the judging, in its own.
    first day. Neither: the plan-against-fact table, scope and estimate changes, and the
    delay-or-slip test are not made. Today's membership of the period is never offered as its plan:
    work added since the start would read as planned, and work removed would vanish.
-4. **Snapshot** the period's tasks (flow: the whole board, since finishing in a window is not a
-   filter the board offers) by `${CLAUDE_PLUGIN_ROOT}/skills/board/method.md` (*Before any job*,
-   step 2, and *Reads and the snapshot*), to `.task-master/review-period-snapshot.json`.
-5. **Metrics:** run `${CLAUDE_PLUGIN_ROOT}/scripts/board_metrics.py` with python on the snapshot and
-   the config, output to `.task-master/review-period-metrics.json`; with an earlier snapshot, also
-   its comparison of the two where its `--help` offers one, else a run on that snapshot to
-   `review-period-metrics-start.json`.
+4. **Snapshot** the period's tasks, scope `sprint:<name>` (flow: `board`, since finishing in a
+   window is not a filter the board offers), by `${CLAUDE_PLUGIN_ROOT}/skills/board/method.md`,
+   *Before any job* and *Reads and the snapshot*, to `.task-master/review-period-snapshot.json`.
+5. **Metrics**, with `<start>` and `<end>` the period's dates (a sprint's own dates under iterations):
+   `python ${CLAUDE_PLUGIN_ROOT}/scripts/board_metrics.py .task-master/review-period-snapshot.json --config .claude/task-master.toml --window-start <start> --window-end <end> [--sprint "<name>"] [--age-at <end>] [--compare <earlier snapshot>] --out .task-master/review-period-metrics.json`.
+   `--sprint` under iterations. `--age-at` under flow, and only when `<end>` is not after the
+   snapshot's read time. `--compare` with an earlier snapshot taken with the same scope: another
+   scope makes the comparison refuse.
 6. **Write the question** to `.task-master/review-period-question.md`: what the caller asked; the
    period and its dates; setup, `period_days`, `commitment`, `sle`, `process_doc`; every
    capability not `native`;
@@ -42,7 +43,5 @@ does the judging, in its own.
    what step 3 ruled out.
 7. **Dispatch `task-master:board-inspector`** with four paths: the snapshot, the metrics, the
    question, and `${CLAUDE_PLUGIN_ROOT}/skills/review-period/method.md`.
-8. **Relay its result.** Add to `assumptions` each fallback taken here and its cost: a composed
-   snapshot is not atomic; age without history runs from creation and cannot tell a task stuck in a
-   state from one long open. The review is in `findings`; a changeset file, if any, goes to `board`;
-   nothing is written to the board here.
+8. **Relay its result** in the shape of the `board` method, *The reply*, with the snapshot reply's
+   caveats added to `assumptions`. Nothing is written to the board here.

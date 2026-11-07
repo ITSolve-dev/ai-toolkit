@@ -6,11 +6,11 @@ description: >-
   changeset another skill produced (tasks from decompose, proposals from triage or tend-board),
   with the tool's preview or one prompted write per operation, so nothing lands unseen; and says
   how a single-task move looks so the working agent can run it directly. Use to read tasks, to
-  snapshot a sprint or the board, to send a changeset to the board, or to ask how to move a task.
+  snapshot a sprint or the board, to send a changeset to the board, or for the filled-in command that moves one task.
   Judging the board is tend-board, triage or review-period; making tasks is decompose, estimate or
   schedule; questions go to ask; no configuration yet is init.
 argument-hint: "<read | snapshot <scope> | apply <changeset> | move>"
-allowed-tools: Read(${CLAUDE_PLUGIN_ROOT}/knowledge/**), Read(${CLAUDE_PLUGIN_ROOT}/skills/**), Edit(./.task-master/**), Bash(python*${CLAUDE_PLUGIN_ROOT}/scripts/*)
+allowed-tools: Read(${CLAUDE_PLUGIN_ROOT}/knowledge/**), Read(${CLAUDE_PLUGIN_ROOT}/skills/**), Edit(./.task-master/**), Bash(python ${CLAUDE_PLUGIN_ROOT}/scripts/snapshot.py *)
 ---
 
 # board

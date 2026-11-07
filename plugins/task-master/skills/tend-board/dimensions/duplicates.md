@@ -3,8 +3,9 @@
 Which tasks are one defect or one change, and which duplicate closings lost a fact or a
 reference? Read `README.md`, *Every dimension*, first.
 
-**Reads:** every task in the snapshot, open and finished: titles, descriptions, `links` of type
-`duplicates` and `duplicated-by`. Only the scope the skill read is searched; an original outside it
+**Reads:** every task in the snapshot, open and finished: titles, descriptions, `links` of the types
+`[links].duplicates` and `[links].duplicated_by` (absent from the config: links are not read, and
+steps 4-5 say so). Only the scope the skill read is searched; an original outside it
 is not found, and the result says so.
 
 ## Steps
@@ -25,19 +26,19 @@ is not found, and the result says so.
    (`wiki/intake/duplicate-reports.md`, The rule, step 3).
 4. **A task closed as a duplicate with no reference to its original**: finding, at the strength the
    page gives it: a missing record, not harm (`wiki/intake/duplicate-reports.md`, Sign of violation,
-   last item). Without a `duplicates` link, a closing reason or a note naming it in the text, you
+   last item). Without a duplicate link, a `[board.close_reasons].duplicate` close or a note naming it in the text, you
    cannot tell a task was closed as a duplicate; then there is no finding.
 5. **Propose** in the page's order: carry what is new, link to the original, close the duplicate
-   (`wiki/intake/duplicate-reports.md`, The rule): `comment`, `link` of type `duplicates`, `close`
-   with `decide`. On some boards a duplicate link moves or closes the task by itself: say so in
-   the link's `why`, so the `board` skill's notes are not the first warning.
+   (`wiki/intake/duplicate-reports.md`, The rule): `comment`, `link` of type `[links].duplicates`,
+   `close` with `decide` and reason `[board.close_reasons].duplicate`. Where `[board.notes].link`
+   records a side effect, repeat it in the link's `why`.
 
 ## Not a finding
 
 - Two tasks on the same feature or file that need different changes.
-- A parent and its subtasks, or tasks linked as `blocks` or `relates`: related is not the same.
+- A parent and its subtasks, or tasks linked as `[links].blocks` or `[links].relates`: related is not the same.
 - A closed accidental resubmission with nothing to carry.
 - An empty `links` list: in a composed snapshot it may mean the links were not read
   (`not_covered`), not that there are none.
-- A pair whose `duplicates` link contradicts states (both open, or the original closed while the
+- A pair whose duplicate link contradicts states (both open, or the original closed while the
   duplicate stays open): report here as step 2 or 3, not under `link-contradictions`.

@@ -7,34 +7,34 @@ borderline. "This wiki's reading" means the base marks the rule as its own, not 
 
 ## Inputs and output
 
-- **Passed:** the snapshot, its metrics file, the question file.
-- **Every value in the chart is copied from the metrics file**, with its basis. A series the chart
-  needs and the metrics lack: refuse and name the series and what produces it.
+- **Passed:** the snapshot, its metrics file or files, the question file.
+- **Every number in the chart is copied from the metrics**, with its basis; which tasks a bar or
+  node holds, their sprints and the sprint dates, come from the snapshot. A series the metrics
+  lack, or refuse with a `reason`: refuse the chart and name the series and that reason.
 - **Output:** you write the chart to `.task-master/visualize-<slug>.mmd`; `findings` holds its
   path and the reading (step 6). A refusal writes no file and says why in `findings`. Publishing goes to `needs_caller`: the plugin
   has no means of publishing. `changeset` stays empty.
 
 ## The charts
 
-What each needs beyond the snapshot taken now. "History" means `history = "native"`; one snapshot
-is one moment and cannot stand in for it.
+What each reads. One snapshot is one moment and cannot stand in for history.
 
-| Chart | Answers | Needs |
+| Chart | Answers | Reads |
 |---|---|---|
-| Iteration burndown | Will this period's work finish? | History: remaining size per day of the period |
-| Release burndown, line | How far along is the release? | History, or one snapshot per period start; estimates |
-| Release burndown, bars | Why did remaining work move? | History, to separate scope change from completion and re-estimation |
-| Velocity | How much fits by a date, at what rate? | Estimates and finish times per closed period; by count without estimates |
-| Parking lot | Which themes are behind? | The snapshot; the field naming a theme: `[fields].theme`, else the caller or process document |
+| Iteration burndown | Will this period's work finish? | `series.burndown` (`--sprint`): finish times and estimates, membership as of now |
+| Release burndown, line | How far along is the release? | One snapshot per period start, each run compared to the first: `comparison.forces.residual.points` per run |
+| Release burndown, bars | Why did remaining work move? | `comparison.forces` between two period starts: completion, scope and re-estimation apart |
+| Velocity | How much fits by a date, at what rate? | `velocity.periods`: per sprint, finished tasks naming it and their estimates; by count without estimates |
+| Parking lot | Which themes are behind? | `themes.by_theme`, read through `[fields].theme` |
 | Feature Gantt | What is planned for which period? | The snapshot's sprint on each task; sprint dates |
-| Cumulative flow | How long do items take on average? Is more starting than finishing? | History: each item's transitions, with the date it entered each state |
-| Cycle time scatterplot | How long may one item take? Did it change over time? | History: start and finish per finished item |
-| Cycle time histogram | What shape is the data, how long the tail? | As the scatterplot |
-| Aging view | What is open now, and how old? | Age from `started_at` per started open item (kinds in `started_kinds`), and percentile lines from finished items |
+| Cumulative flow | How long do items take on average? Is more starting than finishing? | `series.cfd`: every item's transitions |
+| Cycle time scatterplot | How long may one item take? Did it change over time? | `series.scatterplot`: start and finish per finished item |
+| Cycle time histogram | What shape is the data, how long the tail? | `series.histogram` |
+| Aging view | What is open now, and how old? | `age.items[].work_item_age_days` of started open items, and `cycle_time.percentiles` as lines |
 
 Rows and questions follow `wiki/showing-work/which-chart-for-which-plan-question.md`; the aging view
 is `wiki/reading-history/work-item-age.md`, How to read it. What each chart cannot answer is that
-page's "Cannot ask" column. The "Needs" column is this method's reading of how each chart is built.
+page's "Cannot ask" column. The "Reads" column is this method's reading of how each chart is built.
 
 ## Steps
 
@@ -53,13 +53,13 @@ page's "Cannot ask" column. The "Needs" column is this method's reading of how e
    burndown is probably not worth drawing, and the reading says so
    (`wiki/showing-work/iteration-burndown.md`). *Wrong if:* points reach an outside reader.
 
-3. **Check the data; refuse what it cannot support.** Hold the row's "Needs" against the question
-   file and the snapshot header. Unmet: refuse, naming the input and the capability that lacks it,
+3. **Check the data; refuse what it cannot support.** Hold the row's "Reads" against the metrics
+   and the question file. Unmet: refuse, naming the input and the capability that lacks it,
    and say which question can still be answered from what there is. Nothing is approximated: a
    cumulative chart built from counts of what sits in each column is "dubious"
    (`wiki/showing-work/cumulative-flow-diagram.md`, Building it), and a burndown from one snapshot is
-   one point. Age without history runs from creation: no aging view is drawn on it, and the reading
-   may list those ages labelled "since created" (this method's own rule). Few finished items: the
+   one point. Null `work_item_age_days`: no aging view is drawn, and the reading may list `days`
+   labelled by its `basis` (this method's own rule). Few finished items: the
    scatterplot over the histogram, read dot by dot (which-chart page, Which holds under which setup).
    *Wrong if:* a chart is drawn whose series the metrics do not hold.
 
@@ -97,5 +97,3 @@ page's "Cannot ask" column. The "Needs" column is this method's reading of how e
 
 - The chart shows the board at `taken_at`; it is not kept in version control, because the state
   lives on the board (the plugin's design).
-- Like `review-period`, this method has not been run on a real board's history; on invented data it
-  checks only that the steps execute.

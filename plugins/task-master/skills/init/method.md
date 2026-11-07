@@ -35,14 +35,20 @@ answered carelessly). *Wrong if:* the file is overwritten before the person saw 
      links, which stay with the adapter where there is one (the design's "Запись").
    Also record the exit codes the help documents, especially a partial write and an unsupported
    operation, and, in `[board.notes]`, anything a command does besides what it is named for (a link
-   that closes a task, a move that closes it). Note how a task with no status comes back: if the tool
-   fills one in, say so in `[board.notes]`, because the snapshot cannot name what the tool hid.
+   that closes a task, a move that closes it), where a list's reply reports its total or
+   completeness, and a list that leaves finished work out. Note how a task with no status comes
+   back: if the tool fills one in, say so in `[board.notes]`, because the snapshot cannot name what
+   the tool hid. From the help, record the tool's names for link types in `[links]`, its close
+   reasons in `[board.close_reasons]` and, if it groups statuses, its categories in
+   `[board.categories]`: the skills name only these keys, never the tool's words.
    Never run a command to see what it does, and never ask for the help of one that changes the tool
    itself: if it ignored the help flag it would run.
    *Wrong if:* an entry was written from memory of a tool rather than from its help.
 
 3. **Decide each capability.** `native` only when a recorded command delivers it as the help
-   documents; otherwise the fallback from the design's table, and tell the person its cost:
+   documents (`history`: the list's reply carries status_since, started_at, finished_at and
+   transitions, or a `history` command returns them for one task); otherwise the fallback from the
+   design's table, and tell the person its cost:
    snapshot composed from reads, not atomic; no history, so age counts from creation and the analyses
    that need history are unavailable; read-then-move leaves a window between the read and the move,
    and the move is not allowed in advance; sequential batch asks once per operation and cannot be
@@ -50,7 +56,8 @@ answered carelessly). *Wrong if:* the file is overwritten before the person saw 
    *Output:* `[board.capabilities]`. *Wrong if:* a row says `native` for a command that exists but
    lacks the obligation, such as a move with no expected-state check.
 
-4. **Check the reads work.** Run `version`, `statuses`, and `list` once. A failure, a sign of
+4. **Check the reads work.** Run `version`, `statuses`, and `list` once, and `history` on one task
+   if recorded: its reply must be one object of those four fields. A failure, a sign of
    truncation, or a version different from the help's goes to the person before going on. Write
    nothing to the board. *Wrong if:* a read command is recorded that was never run.
 
@@ -103,7 +110,10 @@ answered carelessly). *Wrong if:* the file is overwritten before the person saw 
      no setup the base supports, so ask again (`wiki/moving-work/board-rules-by-setup.md`). The
      bound is a team agreement: copy into `[limits]` only the numbers the process document states,
      keyed by status or kind, and propose adding them there if it has none; never invent one
-     (`wiki/moving-work/wip-control.md`).
+     (`wiki/moving-work/wip-control.md`). `[limits]` present means `wip_control = true`.
+   - `executor`: agent, people or mixed; several rules differ when an agent does the work.
+   - `timezone`: where the team's days begin and end, for dated figures; a UTC offset works on
+     every machine, an IANA name may need the tzdata package.
    - `period_days` under iterations: one month or less, held, not fitted to the work
      (`wiki/periods/period-length.md`).
    - `commitment` under iterations: the goal or the selected tasks
