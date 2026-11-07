@@ -38,8 +38,9 @@ Findings here are per status or kind and per board, not per task.
 - A count at or under the limit, or no limit on a state the bound does not cover when a
   workflow-wide bound exists (`wiki/moving-work/wip-control.md`: one number for the span is an
   allowed form).
-- Tasks in `before_start`, `queued` or `finished` against the workflow total: WIP is between the
-  started and finished points only (`wiki/moving-work/wip-control.md`). A limit the project set on
+- Tasks of a kind outside `[project].started_kinds` against the workflow total: WIP is between
+  the started and finished points only (`wiki/moving-work/wip-control.md`); `wip` counts by that
+  key. A limit the project set on
   a queued status is still checked, through step 2.
 - Running under the bound: its sign needs history over time, which a snapshot does not show.
 - Which tasks are old or stopped: that is `stuck`.

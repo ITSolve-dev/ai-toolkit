@@ -28,9 +28,9 @@ is not found, and the result says so.
    last item). Without a `duplicates` link, a closing reason or a note naming it in the text, you
    cannot tell a task was closed as a duplicate; then there is no finding.
 5. **Propose** in the page's order: carry what is new, link to the original, close the duplicate
-   (`wiki/intake/duplicate-reports.md`, The rule). Closing is the person's decision. Note in the
-   changeset that on some boards a duplicate link moves or closes the task by itself, so the
-   `board` skill must show it before applying.
+   (`wiki/intake/duplicate-reports.md`, The rule): `comment`, `link` of type `duplicates`, `close`
+   with `decide`. On some boards a duplicate link moves or closes the task by itself: say so in
+   the link's `why`, so the `board` skill's notes are not the first warning.
 
 ## Not a finding
 

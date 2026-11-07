@@ -17,7 +17,8 @@ unless a page is named. `{cmd:<name>}` below means the entry `<name>` of `[board
 A single read (one task, the statuses) is its command, run once, its output returned. A view of a
 task in a status not in `[states]` names that status.
 
-A **snapshot** of a scope, taken for another skill, goes to `.task-master/snapshot-<scope>.json`.
+A **snapshot** of a scope, taken for another skill, goes to the path that skill names, else
+`.task-master/snapshot-<scope>.json`.
 The scope picks the list: the whole board `{cmd:list}`, a sprint `{cmd:list_sprint}`, a parent's
 children `{cmd:list_parent}`. A scope with no recorded command: say so and offer the whole board.
 
@@ -43,27 +44,34 @@ must come from the caller or the person.
 
 ## Applying a changeset
 
-The input is a changeset from another skill's result. Write it as
-`.task-master/changeset-<slug>.json`:
+The input is the changeset file another skill's result names, `.task-master/changeset-<slug>.json`
+(one given only as text is first written to this form):
 
 ```json
-{"source": "decompose", "snapshot": ".task-master/snapshot-sprint-12.json", "ops": [
+{"source": "triage", "snapshot": ".task-master/triage-snapshot.json", "ops": [
   {"ref": "n1", "op": "create", "title": "…", "body_file": ".task-master/body-n1.md", "done": null},
   {"ref": "n2", "op": "create_child", "parent": "n1", "title": "…", "body_file": "…", "done": null},
-  {"ref": "l1", "op": "link", "id": "n2", "other": "n1", "type": "blocks", "done": null},
+  {"ref": "l1", "op": "link", "id": "T-7", "other": "T-3", "type": "duplicates",
+   "why": "one change closes both", "page": "wiki/intake/duplicate-reports.md", "done": null},
+  {"ref": "c1", "op": "close", "id": "T-7", "reason": "canceled", "updated_at": "…",
+   "why": "…", "page": "…", "decide": "Close T-7 as a duplicate of T-3?", "done": null},
   {"ref": "m1", "op": "move", "id": "T-4", "status": "In Review", "expected": "In Progress", "done": null}]}
 ```
 
 `op` is a `[board.commands]` key, the other keys fill its placeholders, and a value equal to a
-`ref` stands for that op's created id. Task text goes into body files, never into an argument.
-Edits to an existing task carry its `updated_at` from the snapshot.
+`ref` stands for that op's created id. Three keys are not placeholders: `why` and `page` (the
+reason and the base page behind a proposal) and `decide` (the question that makes the op the
+person's decision). Task text goes into body files, never into an argument; an `edit` body file
+holds the whole new text. Edits, closes and label changes to an existing task carry its
+`updated_at` from the snapshot.
 
 1. **Check before the first write.** Every op has a recorded command; every ref resolves to an
    earlier op. A delete, or any op the tool says cannot be undone, stays only if the person asked
    for it: dropped work is closed, not deleted (`wiki/reading-history/non-standard-departure.md`,
    Abandoned work). Anything failing these: say which ops, and write nothing until the person
    decides. Show a short summary (counts per op, the file path), plus each `[board.notes]` entry
-   for a command used, so a side effect is not a surprise.
+   for a command used, so a side effect is not a surprise. Put each op with `decide` to the person
+   by its question, with its `why`; drop from the file every one they decline, before any write.
 2. **`batch = "native"`:** translate the file into the tool's batch input as its help describes,
    run `{cmd:preview}` on it, and show its output verbatim, not retold. An error or unsupported op
    in the preview: stop. Otherwise run `{cmd:apply}`; its prompt is the person's approval.

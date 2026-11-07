@@ -225,3 +225,52 @@ def test_status_marker_recognised(tmp_path):
     s = compose(snapshot.load_config(p), [issue(status="Canceled"), issue(id="2", status="Done")])
     assert s["issues"][0]["markers"]["abandoned"] is True
     assert s["issues"][1]["markers"]["abandoned"] is False
+
+
+def test_cli_out_prints_summary_to_stderr(tmp_path):
+    (tmp_path / "c.toml").write_text(CONFIG.replace('"Done" = "finished"', '"Done" = "finished"\n"Gone" = "queued"'),
+                                     encoding="utf-8")
+    (tmp_path / "i.json").write_text(json.dumps([issue(), issue(id="2", status="Triage"),
+                                                 issue(id="3", status=None)]), encoding="utf-8")
+    (tmp_path / "s.json").write_text(json.dumps(STATUSES), encoding="utf-8")
+    out = tmp_path / "snap.json"
+    r = run("--issues", tmp_path / "i.json", "--statuses", tmp_path / "s.json",
+            "--config", tmp_path / "c.toml", "--out", out)
+    assert r.returncode == 0, r.stderr
+    lines = r.stderr.strip().splitlines()
+    assert len(lines) == 1
+    summary = json.loads(lines[0])
+    assert summary["out"] == str(out)
+    assert summary["issues"] == 3
+    assert summary["by_kind"] == {"active": 1}
+    assert summary["unmapped"] == 2
+    assert summary["unmapped_statuses"] == ["QA", "Triage"]
+    assert summary["issues_without_status"] == ["3"]
+    assert summary["mapping_unknown_statuses"] == ["Gone"]
+    assert r.stdout == ""
+
+
+def test_cli_stdout_prints_no_summary(tmp_path):
+    (tmp_path / "c.toml").write_text(CONFIG, encoding="utf-8")
+    (tmp_path / "n.json").write_text(json.dumps(
+        {"taken_at": "2026-02-01T00:00:00Z", "issues": [issue()]}), encoding="utf-8")
+    r = run("--native", tmp_path / "n.json", "--config", tmp_path / "c.toml")
+    assert r.returncode == 0 and r.stderr == ""
+
+
+def test_history_fields_validated_and_kept(cfg):
+    s = compose(cfg, [issue(started_at="2026-01-02T00:00:00Z",
+                            transitions=[{"status": "In Progress", "at": "2026-01-02T00:00:00Z"}])])
+    assert s["issues"][0]["started_at"] == "2026-01-02T00:00:00Z"
+    assert s["issues"][0]["transitions"][0]["status"] == "In Progress"
+
+
+@pytest.mark.parametrize("bad", [
+    issue(started_at="soon"),
+    issue(transitions="In Progress"),
+    issue(transitions=[{"status": "In Progress"}]),
+    issue(transitions=[{"status": 3, "at": "2026-01-02T00:00:00Z"}]),
+])
+def test_malformed_history_fails(cfg, bad):
+    with pytest.raises(snapshot.InputError):
+        compose(cfg, [bad])

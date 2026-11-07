@@ -16,10 +16,17 @@ Normalized issue: the shape the plugin expects from any tool, whichever tool pro
   Required keys: REQUIRED_ISSUE_KEYS. A key the board has no value for is present and null; null
   stays null here. `labels` items are strings or objects with `name`. Timestamps are ISO 8601;
   one without a zone is read as UTC.
-  Optional native history, used only when the tool reports it:
+  Optional native history, used only when the tool reports it (a tool with native history
+  supplies these; without them the history-dependent figures are null with the reason):
     status_since  - when the issue entered its current status
+    started_at    - when it first entered a started state; cycle time runs from it when the
+                    issue has no transitions (then from the first transition into a kind listed
+                    in [project].started_kinds). status_since of a finished issue is when it
+                    finished, so it cannot stand in
     finished_at   - when it reached a finished status
-  `updated_at` is never a substitute for either.
+    transitions   - [{status, at}], every status the issue entered and when, its first status
+                    included; a cumulative flow chart needs it on every issue
+  `updated_at` is never a substitute for any of them.
   The tool's own `kind` (if any) is kept as `tool_kind`; `kind` becomes the plugin's kind.
 
 Statuses: array of {name, ...}. Sprints: array of {id, name, state, start_date, end_date}.
@@ -30,6 +37,9 @@ Snapshot written:
   Each issue gains `kind` (from [states]; null when unmapped, never guessed) and `markers`
   (true/false for a marker declared as `label:<name>` or `status:<name>`; null when the board
   cannot show it or shows it some other way, which these files do not carry).
+
+With --out, a one-line JSON summary goes to stderr: issue counts by kind, unmapped issues,
+unmapped statuses, issues without a status, and mapping entries the board lacks.
 
 Malformed input or a missing required key: exit 2, message on stderr, nothing on stdout.
 """
@@ -47,7 +57,7 @@ SCHEMA = 1
 KINDS = ("before_start", "queued", "active", "handed_off", "finished")
 KNOWN_MARKERS = ("blocked", "waiting", "untriaged", "abandoned")
 REQUIRED_ISSUE_KEYS = ("id", "title", "description", "status", "labels", "created_at", "updated_at")
-HISTORY_KEYS = ("status_since", "finished_at")
+HISTORY_KEYS = ("status_since", "started_at", "finished_at")
 
 
 class InputError(Exception):
@@ -126,6 +136,14 @@ def validate_issue(obj, where):
     for key in ("created_at", "updated_at") + HISTORY_KEYS:
         if key in obj:
             parse_time(obj[key], f"{where}: {key}")
+    trans = obj.get("transitions")
+    if trans is not None:
+        if not isinstance(trans, list):
+            raise InputError(f"{where}: transitions must be a list or null")
+        for j, t in enumerate(trans):
+            if (not isinstance(t, dict) or not isinstance(t.get("status"), str)
+                    or parse_time(t.get("at"), f"{where}: transitions[{j}].at") is None):
+                raise InputError(f"{where}: transitions[{j}] must be {{status: string, at: ISO 8601}}")
 
 
 def enrich_issue(obj, states, markers_cfg):
@@ -204,6 +222,18 @@ def enrich_native(native, cfg):
                   native["taken_at"], "native", native.get("tool"), native.get("tool_version"))
 
 
+def summary(snap, out):
+    by_kind = {}
+    for o in snap["issues"]:
+        if o["kind"] is not None:
+            by_kind[o["kind"]] = by_kind.get(o["kind"], 0) + 1
+    return {"out": out, "issues": len(snap["issues"]), "by_kind": by_kind,
+            "unmapped": sum(1 for o in snap["issues"] if o["kind"] is None),
+            "unmapped_statuses": snap["unmapped_statuses"],
+            "issues_without_status": snap["issues_without_status"],
+            "mapping_unknown_statuses": snap["mapping_unknown_statuses"]}
+
+
 def main(argv=None):
     p = argparse.ArgumentParser(description=__doc__.split("\n\n")[0])
     p.add_argument("--config", required=True)
@@ -232,6 +262,8 @@ def main(argv=None):
     text = json.dumps(snap, ensure_ascii=False, indent=2)
     if a.out:
         Path(a.out).write_text(text + "\n", encoding="utf-8")
+        sys.stderr.reconfigure(encoding="utf-8")
+        print(json.dumps(summary(snap, a.out), ensure_ascii=False), file=sys.stderr)
     else:
         sys.stdout.reconfigure(encoding="utf-8")
         print(text)

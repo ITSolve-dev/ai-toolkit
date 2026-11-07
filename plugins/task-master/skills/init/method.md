@@ -70,18 +70,26 @@ answered carelessly). *Wrong if:* the file is overwritten before the person saw 
      and then every read names it.
    - A status for dropped work is `finished` with the `abandoned` marker, so counts of finished work
      can filter it (`wiki/reading-history/non-standard-departure.md`, Abandoned work).
-   *Output:* `[states]`. *Wrong if:* a status is in `[states]` without the person's word.
+   - Then record the kinds past the started point, `started_kinds`: `active` and `handed_off`, plus
+     `queued` where the queued status is a WIP-limited arrivals column or a queue between working
+     stages. An unlimited first column is a backlog under another name: propose `before_start` for
+     it (`wiki/work-states/started-and-finished-points.md`, The decision; Where the clock starts on
+     such a board). A board with both kinds of queue cannot be told apart by kind: say so.
+   *Output:* `[states]`, `[project].started_kinds`. *Wrong if:* a status is in `[states]` without
+   the person's word, or `queued` is counted as started on a column with no limit.
 
 6. **Markers, fields, labels.** Ask how the board shows each marker: `blocked` and `waiting`
    (`wiki/work-states/waiting-versus-blocked.md`, The test), `untriaged`
    (`wiki/intake/triage-procedure.md`, step 1), `abandoned`; absent means it cannot. Record a marker
    as `label:<name>` or `status:<name>` where the board allows: the scripts read no other form, and
    say so when it is another. Ask where the board keeps a task's estimate, type and priority, and
-   which headings in a task's text mark its acceptance criteria (read a few tasks' text). Run
+   which headings in a task's text mark its acceptance criteria (read a few tasks' text), and
+   whether something groups tasks into themes (`[fields].theme`, optional: only the parking-lot
+   chart reads it). Run
    `labels`, and give each label the plugin may set a one-line meaning, reusing an existing label of
    that meaning: a list of names alone breeds a second label for the same thing (the design's
    "Объявление несёт значение").
-   *Output:* `[markers]`, `[fields]`, `[checks]`, `[labels.meaning]`.
+   *Output:* `[markers]`, `[fields]`, `[checks].acceptance_headings`, `[labels.meaning]`.
 
 7. **Find the process document.** Look for it in agent instructions, the docs folder and contributor
    guides; show what you found; the person confirms, or names it, or says there is none. Read it and
@@ -98,6 +106,9 @@ answered carelessly). *Wrong if:* the file is overwritten before the person saw 
      (`wiki/moving-work/wip-control.md`).
    - `period_days` under iterations: one month or less, held, not fitted to the work
      (`wiki/periods/period-length.md`).
+   - `commitment` under iterations: the goal or the selected tasks
+     (`wiki/periods/commitment-over-a-period.md`, The decision); not stated: absent, and a review
+     asks it per period.
    - `sle`: a time and a probability, or absent (`wiki/periods/service-level-expectation.md`).
    - `scale`, `scale_far` and a one-line meaning per step, fixed before estimating, one per project
      (`wiki/sizing/estimation-scale.md`); no estimates kept: absent.

@@ -53,7 +53,7 @@ charter, continue on a marked general-knowledge assumption, and outside the char
 ## What holds for every run
 
 - **You read files and nothing else.** You never touch the board and never name a tool for it. What
-  should change on the board is proposed as text for the caller.
+  should change on the board is proposed as a changeset file for the caller (Writing, below).
 - **Arithmetic comes from the metrics file**: ages, counts, work in progress, throughput, each with
   its basis, `exact` or the approximation it is. Do not count rows or compute an age yourself. A
   figure the method needs and the file lacks: name it and the rule that produces it; never
@@ -70,18 +70,28 @@ charter, continue on a marked general-knowledge assumption, and outside the char
 
 ## Writing
 
-Return the result. Only one over about 150 lines goes to `.task-master/<skill>-<slug>.md` in the
-caller's project; then return the path and a five-line summary. Nothing else is written. Changes
-to the board are a changeset the `board` skill applies later; you apply none.
+You write only under `.task-master/` in the caller's project, and only these:
+
+- **A changeset**, when the method proposes board changes: at the path the question or method
+  names, else `.task-master/changeset-<skill>-<slug>.json`, in the form of
+  `${CLAUDE_PLUGIN_ROOT}/skills/board/method.md`, *Applying a changeset* (read it there), each op with its `why` and `page`, and a `decide` question on every close and on whatever
+  the method calls the person's decision. Task text goes to `.task-master/body-<ref>.md`. The
+  `board` skill applies it later; you apply nothing.
+- **A chart**, when the method draws one, at the path the method names.
+- **A long result**: over about 150 lines, to `.task-master/<skill>-<slug>.md`; then return the path
+  and a five-line summary.
 
 ## The result
 
-One envelope for every skill. Omit empty parts.
+One envelope for every skill. Omit empty parts except `findings`.
 
 - `status`: done, partial or blocked
+- `findings`: the answer to the question, in the form the method gives (a finding per task, an
+  outcome per item, the review, the chart's path and reading); `no findings`, with how many tasks
+  were examined, when there are none
 - `assumptions`: what you continued on
 - `questions`: what the caller must put to a person
-- `changeset`: proposed board changes, as text
+- `changeset`: the changeset file's path and its ops counted by `op`
 - `needs_caller`: what only the caller can do other than asking: edit a process document, publish
 - `not_covered`: what the base, the snapshot or the metrics did not cover
 

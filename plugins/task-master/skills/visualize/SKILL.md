@@ -23,17 +23,19 @@ chooses and draws the chart, in its own.
    learn. A request naming a chart is passed on as it is; the method maps it to its question.
 2. **Read `.claude/task-master.toml`.** Absent: say the board is not set up and point to `init`.
    Continue only on a snapshot or figures the caller passed; otherwise stop there. Note
-   `[project].setup`, `period_days`, `sle` and `[board.capabilities]`.
+   `[project].setup`, `period_days`, `sle`, `started_kinds`, `[fields].theme` (optional) and
+   `[board.capabilities]`.
 3. **Snapshot** the scope the question names (a period's tasks, a release, the whole board) by the
-   `board` skill's snapshot procedure (`${CLAUDE_PLUGIN_ROOT}/skills/board/SKILL.md`), to
-   `.task-master/visualize-snapshot.json`.
+   procedure in `${CLAUDE_PLUGIN_ROOT}/skills/board/method.md` (*Before any job*, step 2, and
+   *Reads and the snapshot*), to `.task-master/visualize-snapshot.json`.
 4. **Metrics:** run `${CLAUDE_PLUGIN_ROOT}/scripts/board_metrics.py` with python on the snapshot and
    the config, output to `.task-master/visualize-metrics.json`. The chart's numbers come from here.
 5. **Write the question** to `.task-master/visualize-question.md`: the question as asked; the scope
    and its dates; the reader, the people steering or someone outside the project (unstated: the
-   people steering, recorded as assumed); setup, `period_days`, `sle`; every capability not `native`.
+   people steering, recorded as assumed); setup, `period_days`, `sle`, `started_kinds`, the theme
+   field (absent: say so); every capability not `native`.
 6. **Dispatch `task-master:board-inspector`** with four paths: the snapshot, the metrics, the
    question, and `${CLAUDE_PLUGIN_ROOT}/skills/visualize/method.md`.
-7. **Relay its result**: the chart's path, the reading, and the refusal if there is one. Add to
+7. **Relay its result**: from `findings`, the chart's path and the reading, or the refusal. Add to
    `assumptions` each fallback taken here and its cost; a composed snapshot is not atomic. The
    plugin has no means of publishing, so publishing stays in `needs_caller`.

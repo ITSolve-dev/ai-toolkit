@@ -27,26 +27,30 @@ merge and relay what they return. The dimensions and what each needs are listed 
 2. **Pick the dimensions**: those named, else every row of the README. An unknown name goes to
    `not_covered`. A dimension whose README row needs data the config records as unavailable is
    skipped with that reason, and not dispatched.
-3. **Take one snapshot** of the scope, open and finished tasks, by the `board` skill's snapshot
-   procedure, to `.task-master/tend-board-snapshot.json`. Where `[board.capabilities].snapshot`
+3. **Take one snapshot** of the scope, open and finished tasks, by
+   `${CLAUDE_PLUGIN_ROOT}/skills/board/method.md` (*Before any job*, step 2, and *Reads and the
+   snapshot*), to `.task-master/tend-board-snapshot.json`. Where `[board.capabilities].snapshot`
    is not `native`, it is composed from reads: record that it is not atomic.
 4. **Compute the arithmetic once**: run `${CLAUDE_PLUGIN_ROOT}/scripts/board_metrics.py` over the
    snapshot with `--config .claude/task-master.toml`, output to `.task-master/tend-board-metrics.json`.
    Where `[board.capabilities].history` is `none`, ages run from creation: record that a task
    stuck in a state cannot be told from one long open.
 5. **Write one question per dimension** to `.task-master/tend-board-q-<dimension>.md`: the
-   dimension, the scope, the config path, and `[project].process_doc` (absent: say none was found,
-   so nothing counts as declared intended).
+   dimension, the scope, the config path, `[project].process_doc` (absent: say none was found,
+   so nothing counts as declared intended), and the changeset path
+   `.task-master/changeset-tend-board-<dimension>.json`, refs prefixed with the dimension.
 6. **Dispatch the inspectors in parallel**, in one message, one per dimension, each with four paths:
    the snapshot, the metrics, its question, and
    `${CLAUDE_PLUGIN_ROOT}/skills/tend-board/dimensions/<dimension>.md`.
-7. **Merge the envelopes.** `status` is the worst of theirs. In `changeset`, findings grouped by
-   dimension, one per task per dimension. Where two dimensions report one task on the same sign or
-   propose the same change, keep it under the dimension the README says owns it and note the
-   other. List every dimension that ran with no findings as such, with how many tasks it examined,
+7. **Merge the envelopes.** `status` is the worst of theirs. In `findings`, grouped by dimension,
+   one per task per dimension. Where two dimensions report one task on the same sign, keep it under
+   the dimension the README says owns it and note the other. Merge their changeset files into
+   `.task-master/changeset-tend-board-<scope>.json`, dropping an op identical (same `op`, task and
+   values) to one from the owning dimension; `changeset` gives that path and its ops by `op`.
+   List every dimension that ran with no findings as such, with how many tasks it examined,
    and every skipped one with its reason. Union the other parts; add steps 1-4's fallbacks to
    `assumptions`. Over about 150 lines: write it to `.task-master/tend-board-result.md` and return
    the path and a short summary per dimension.
-8. **Relay it.** The `changeset` is a proposal, applied through the `board` skill, one by one where
+8. **Relay it.** The changeset is a proposal, applied through the `board` skill, one by one where
    `[board.capabilities].batch` is not `native`. Closing a duplicate or a stale task is the person's
    decision at that point; a re-cut goes to `decompose`.

@@ -11,6 +11,8 @@ version = 1                      # format of this file
 process_doc = "docs/process.md"  # the team's process document; absent: none found, and say so
 setup = "iterations"             # iterations | flow
 wip_control = false              # a stated bound on started work; the bound itself is in process_doc
+started_kinds = ["active", "handed_off"]  # kinds past the started point: what counts as WIP
+commitment = "goal"              # iterations only: goal | selection; absent: not stated, asked per review
 period_days = 14                 # iterations only
 sle = "9 days at 85%"            # flow, or iterations that keep one; absent: none
 scale = [1, 2, 3, 5, 8]          # absent: the project keeps no estimates
@@ -91,6 +93,7 @@ abandoned = "status:Canceled"
 estimate = "label:size-{value}"
 type = "field:type"
 priority = "field:priority"
+theme = "label:theme-{value}"     # optional: what groups tasks into themes, for a parking-lot chart
 
 [labels.meaning]                 # each label the plugin may set, with what it means
 "needs-triage" = "nobody has read this yet"
@@ -106,6 +109,12 @@ handed_off = 4
 acceptance_headings = ["Acceptance criteria"]  # headings that mark acceptance criteria; the default
 ```
 
+`started_kinds` places the started point (`wiki/work-states/started-and-finished-points.md`, The
+decision): `queued` belongs in it only where the board's queued status is a WIP-limited arrivals
+column or a queue between working stages. `scripts/board_metrics.py` should read it for every WIP
+count and Work Item Age; absent, it is `["active", "handed_off"]`. A skill that reads it treats
+absence the same way.
+
 The scripts read a marker given as `label:<name>` or `status:<name>`; any other form stays `null` in
 the snapshot, because the board reads it is built from do not carry it.
 
@@ -115,3 +124,7 @@ absence is covered. Under `access = "mcp"` an entry names the server's tool and 
 with the same placeholders. Text such as a task body always goes through `{body_file}`, never an
 argument. Moves, types and links go only through the adapter where the project has one; another
 operation the adapter lacks may be recorded from the tracker's own CLI or MCP.
+
+A changeset's `op` is a key of `[board.commands]` (`skills/board/method.md`, Applying a changeset).
+A value in `[fields]` given as `label:` is set with `add_label`; one given as `field:` needs an entry
+of its own, such as `set_estimate = "... {id} {value}"`, and without one it cannot be proposed.

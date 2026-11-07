@@ -10,8 +10,8 @@ borderline. "This wiki's reading" means the base marks the rule as its own, not 
 - **Passed:** the snapshot, its metrics file, the question file.
 - **Every value in the chart is copied from the metrics file**, with its basis. A series the chart
   needs and the metrics lack: refuse and name the series and what produces it.
-- **Output:** the chart at `.task-master/visualize-<slug>.mmd`, and after `status` the reading
-  (step 6). A refusal writes no file and says why. Publishing goes to `needs_caller`: the plugin
+- **Output:** you write the chart to `.task-master/visualize-<slug>.mmd`; `findings` holds its
+  path and the reading (step 6). A refusal writes no file and says why in `findings`. Publishing goes to `needs_caller`: the plugin
   has no means of publishing. `changeset` stays empty.
 
 ## The charts
@@ -25,12 +25,12 @@ is one moment and cannot stand in for it.
 | Release burndown, line | How far along is the release? | History, or one snapshot per period start; estimates |
 | Release burndown, bars | Why did remaining work move? | History, to separate scope change from completion and re-estimation |
 | Velocity | How much fits by a date, at what rate? | Estimates and finish times per closed period; by count without estimates |
-| Parking lot | Which themes are behind? | The snapshot; the field that names a theme, from the caller or process document |
+| Parking lot | Which themes are behind? | The snapshot; the field naming a theme: `[fields].theme`, else the caller or process document |
 | Feature Gantt | What is planned for which period? | The snapshot's sprint on each task; sprint dates |
-| Cumulative flow | How long do items take on average? Is more starting than finishing? | History: each item's entry date into each state |
+| Cumulative flow | How long do items take on average? Is more starting than finishing? | History: each item's transitions, with the date it entered each state |
 | Cycle time scatterplot | How long may one item take? Did it change over time? | History: start and finish per finished item |
 | Cycle time histogram | What shape is the data, how long the tail? | As the scatterplot |
-| Aging view | What is open now, and how old? | Age per open item, and percentile lines from finished items |
+| Aging view | What is open now, and how old? | Age from `started_at` per started open item (kinds in `started_kinds`), and percentile lines from finished items |
 
 Rows and questions follow `wiki/showing-work/which-chart-for-which-plan-question.md`; the aging view
 is `wiki/reading-history/work-item-age.md`, How to read it. What each chart cannot answer is that

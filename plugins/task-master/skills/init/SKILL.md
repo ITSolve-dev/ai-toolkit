@@ -3,8 +3,8 @@ name: init
 description: >-
   Set task-master up in a project: find how the project reaches its board, record the tool's
   commands and what it can and cannot do, map every board status to the plugin's kinds, and record
-  the setup, period, SLE, estimation scale with its ceiling, and where the team's process document
-  is. Writes `.claude/task-master.toml` and proposes permission rules. Use on first use of a board
+  the started point, setup, period and its commitment, SLE, estimation scale with its ceiling, and
+  where the team's process document is. Writes `.claude/task-master.toml` and proposes permission rules. Use on first use of a board
   skill in a project, when a skill reports the board is not set up, an unmapped status or a changed
   tool version, or when the board or its tool has changed. Questions about how to set a board up go
   to ask; applying changes to the board is board.

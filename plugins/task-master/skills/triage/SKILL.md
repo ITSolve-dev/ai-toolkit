@@ -23,13 +23,15 @@ Runs in your context and writes nothing to the board. The judgement happens in
    on what needs no board: write them to `.task-master/triage-items.md`, pass that file in place of
    the snapshot and `none` for the metrics, and state in the result that duplicates on the board,
    staleness and every write were not checked. No config and no items: stop there.
-2. **Take a snapshot** of the whole board, open and closed items, by the `board` skill's snapshot
-   procedure, to `.task-master/triage-snapshot.json`. The whole board, because a duplicate is
+2. **Take a snapshot** of the whole board, open and closed items, by
+   `${CLAUDE_PLUGIN_ROOT}/skills/board/method.md` (*Before any job*, step 2, and *Reads and the
+   snapshot*), to `.task-master/triage-snapshot.json`. The whole board, because a duplicate is
    searched for among closed items too (`wiki/intake/duplicate-reports.md`). Where
    `[board.capabilities].snapshot` is not `native`, the procedure composes it from reads: record in
    the result that it is not atomic.
 3. **Compute the arithmetic**: run `${CLAUDE_PLUGIN_ROOT}/scripts/board_metrics.py` over the snapshot
-   (its `--help` gives the arguments), output to `.task-master/triage-metrics.json`. Where
+   with `--config .claude/task-master.toml` (its `--help` gives the rest), output to
+   `.task-master/triage-metrics.json`. Where
    `[board.capabilities].history` is `none`, ages run from creation: record in the result that a
    long-stalled item cannot be told from a long-open one.
 4. **Write the question** to `.task-master/triage-question.md`: which items to triage (the text
@@ -37,7 +39,8 @@ Runs in your context and writes nothing to the board. The judgement happens in
    requests come from if you know (the person steering, or others).
 5. **Dispatch `task-master:board-inspector`** with four paths: snapshot, metrics, question, and
    `${CLAUDE_PLUGIN_ROOT}/skills/triage/method.md`.
-6. **Relay its envelope** with the fallbacks from steps 1-3 added to `assumptions`. The `changeset`
-   is a proposal: say it is applied through the `board` skill, item by item where
+6. **Relay its envelope** with the fallbacks from steps 1-3 added to `assumptions`: the `findings`
+   per item, and the changeset file's path. It is a proposal: say it is applied through the `board`
+   skill, item by item where
    `[board.capabilities].batch` is not `native`, and that every closing is the person's decision at
    that point. Items sized as needing cutting go to `decompose`.

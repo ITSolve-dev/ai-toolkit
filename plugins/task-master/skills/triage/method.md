@@ -9,12 +9,17 @@ own, not a source's.
 
 - **Passed by the skill:** the snapshot (or a file of items passed as text), the metrics file (or
   `none`), the question, and the path of `.claude/task-master.toml`. No config means no board: skip
-  the steps that need one, and record each one skipped in `not_covered`.
-- **`changeset`:** one block per item, oldest first, giving item id (or `new-N` for a text item not
-  on the board), outcome, and entries. Each entry is one of `set field`, `add label`,
-  `remove label`, `edit text`, `comment`, `link`, `close` or `create`, and gives the value, a one-line reason and
-  the page it rests on. A `comment` gives its full text. A text item that is accepted becomes one
-  `create`.
+  the steps that need one, and record each one skipped in `not_covered`; with no commands to name,
+  no changeset file is written and the proposals stay in `findings`.
+- **`findings`:** one block per item, oldest first: item id (or `new-N` for a text item not on the
+  board), outcome, kind, bands, size class, and the ops proposed for it by `ref`.
+- **The changeset** goes to `.task-master/changeset-triage-<slug>.json` in the `board` method's form,
+  each op with `why` (one line) and `page`. Ops by what they do: type or priority, `set_type` or
+  `set_priority`; a size, `add_label` where `[fields].estimate` is a `label:` form, else its own
+  recorded command, else `needs_caller`; a marker, `add_label` or `remove_label` (`move` where the
+  marker is a `status:` form); a text edit, `edit` with the whole new text; a question to a
+  reporter, `comment`; `link`; `close`, with `decide`; an accepted text item, `create`. An op whose
+  key `[board.commands]` lacks goes to `needs_caller`, not into the file.
 - **Questions instead of assumptions:** a closing that rests on a fact only the requester holds,
   and a rating with no sentence behind it. Comments to reporters go in the changeset, not in
   `questions`.
@@ -22,9 +27,9 @@ own, not a source's.
 ## Steps
 
 1. **Read the setup.** From the config: `[project].setup`, `process_doc`, `scale`, `scale_far`,
-   `ceiling`, `sle`, `[markers]`, `[labels.meaning]`, `[states]`. Read the process document if one
-   is named. It may hold an assignment rule (step 10), a review interval (step 9) or the release
-   rhythm (step 7). An item whose status is not in `[states]` is reported as unmapped and is not
+   `ceiling`, `sle`, `[markers]`, `[fields]`, `[labels.meaning]`, `[states]`, and which keys
+   `[board.commands]` has. Read the process document if one is named. It may hold an assignment
+   rule (step 10), a review interval (step 9) or the release rhythm (step 7). An item whose status is not in `[states]` is reported as unmapped and is not
    triaged as any kind.
    *Wrong if:* a later step uses a scale, ceiling or interval that this step found absent.
 
@@ -115,9 +120,11 @@ own, not a source's.
 10. **Assign only by a written rule.** By default an item is not assigned until it starts
     (`wiki/moving-work/tasks-are-not-assigned-at-planning.md`). If the process document states an
     assignment rule, apply it, cite the passage, and say once where the base disagrees.
+    An assignment is an op only where `[board.commands]` records `assign`; otherwise it goes to
+    `needs_caller`.
     *Wrong if:* an assignee appears in the changeset with no process-document passage behind it.
 
-11. **Close each item's block.** An item whose outcome is decided gets `remove label` for the
-    untriaged marker. Every closing in the changeset is marked as the person's decision
+11. **Close each item's block.** An item whose outcome is decided gets `remove_label` for the
+    untriaged marker. Every `close` in the changeset carries `decide`: it is the person's decision
     (`wiki/intake/triage-procedure.md`, Who decides).
     *Wrong if:* an item from step 2 has no outcome and no question.

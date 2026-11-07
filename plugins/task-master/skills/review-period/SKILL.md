@@ -19,7 +19,7 @@ does the judging, in its own.
 
 1. **Read `.claude/task-master.toml`.** Absent: say the board is not set up and point to `init`.
    Continue only on a snapshot the caller passed; otherwise stop there. Note `[project].setup`,
-   `period_days`, `sle`, `process_doc` and `[board.capabilities]`.
+   `period_days`, `commitment`, `sle`, `started_kinds`, `process_doc` and `[board.capabilities]`.
 2. **Name the period.** Iterations: the sprint the input names; none named, the latest closed one
    from the recorded `sprints` command, or a question when `sprints = "caller"`. Flow: a window with
    both dates from the input; none, return a question, because the window decides every figure.
@@ -29,17 +29,20 @@ does the judging, in its own.
    delay-or-slip test are not made. Today's membership of the period is never offered as its plan:
    work added since the start would read as planned, and work removed would vanish.
 4. **Snapshot** the period's tasks (flow: the whole board, since finishing in a window is not a
-   filter the board offers) by the `board` skill's snapshot procedure
-   (`${CLAUDE_PLUGIN_ROOT}/skills/board/SKILL.md`), to `.task-master/review-period-snapshot.json`.
+   filter the board offers) by `${CLAUDE_PLUGIN_ROOT}/skills/board/method.md` (*Before any job*,
+   step 2, and *Reads and the snapshot*), to `.task-master/review-period-snapshot.json`.
 5. **Metrics:** run `${CLAUDE_PLUGIN_ROOT}/scripts/board_metrics.py` with python on the snapshot and
-   the config, output to `.task-master/review-period-metrics.json`; likewise on an earlier snapshot,
-   to `review-period-metrics-start.json`.
+   the config, output to `.task-master/review-period-metrics.json`; with an earlier snapshot, also
+   its comparison of the two where its `--help` offers one, else a run on that snapshot to
+   `review-period-metrics-start.json`.
 6. **Write the question** to `.task-master/review-period-question.md`: what the caller asked; the
-   period and its dates; setup, `period_days`, `sle`, `process_doc`; every capability not `native`;
+   period and its dates; setup, `period_days`, `commitment`, `sle`, `process_doc`; every
+   capability not `native`;
    the earlier snapshot and its metrics, if any; any goal, communicated date or forecast passed; and
    what step 3 ruled out.
 7. **Dispatch `task-master:board-inspector`** with four paths: the snapshot, the metrics, the
    question, and `${CLAUDE_PLUGIN_ROOT}/skills/review-period/method.md`.
 8. **Relay its result.** Add to `assumptions` each fallback taken here and its cost: a composed
    snapshot is not atomic; age without history runs from creation and cannot tell a task stuck in a
-   state from one long open. A `changeset` goes to `board`; nothing is written to the board here.
+   state from one long open. The review is in `findings`; a changeset file, if any, goes to `board`;
+   nothing is written to the board here.

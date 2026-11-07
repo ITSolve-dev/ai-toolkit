@@ -13,10 +13,11 @@ marks the rule as its own, not a source's.
   percentiles, ages, the share within the SLE. Per-task rows are read from the snapshot. The one sum
   made here is the total of a per-task table whose rows are shown beside it (this method's own rule,
   so the caller can redo it). A figure missing from the metrics: name it and what produces it.
-- **Output:** the review, after `status` and before the other parts, conclusion in its first lines
+- **Output:** the review in `findings`, conclusion in its first lines
   (`wiki/showing-work/which-chart-for-which-plan-question.md`, Failure modes). Each comparison not
-  made goes to `not_covered` as "not made: <comparison>, because <missing input>". `changeset`:
-  proposals only, such as a re-cut or a decision to record.
+  made goes to `not_covered` as "not made: <comparison>, because <missing input>". The only ops are
+  a `comment` recording on a task a decision the board lacks, in
+  `.task-master/changeset-review-period-<slug>.json`; a re-cut is named for `decompose` in `findings`.
 
 ## Steps (both setups)
 
@@ -37,8 +38,9 @@ marks the rule as its own, not a source's.
    `wiki/reading-history/iteration-summary-plan-versus-fact.md`, Limits). *Output:* one line per
    comparison, made or not and why. *Wrong if:* a planned column is filled from the snapshot taken now.
 
-2. **Name the promise.** Iterations: the goal or the selection, per the process document or the
-   caller (`wiki/periods/commitment-over-a-period.md`, The decision); neither says, report per task,
+2. **Name the promise.** Iterations: the goal or the selection, per `[project].commitment`, else
+   the process document or the caller (`wiki/periods/commitment-over-a-period.md`, The decision);
+   none says, report per task,
    the goal beside it if given, and record which was assumed. A list of sub-steps is never the
    promise. Flow: no period promise exists; each item carries the SLE, and a set carries only a
    forecast the caller passes (same page). No SLE in the config: say there is no per-item promise.
@@ -100,7 +102,8 @@ marks the rule as its own, not a source's.
     about a dozen finished: say the share rests on too few to judge. *Wrong if:* a miss is reported
     as a failure of the team.
 
-11. **Age of work open at the window's end,** against the same percentile lines
+11. **Age of started work open at the window's end** (kinds in `started_kinds`), against the same
+    percentile lines
     (`wiki/reading-history/work-item-age.md`; questions by line,
     `wiki/moving-work/percentile-intervention-triggers.md`). Age from creation is labelled so.
     *Wrong if:* age is read as time to finish, or as naming a cause.
