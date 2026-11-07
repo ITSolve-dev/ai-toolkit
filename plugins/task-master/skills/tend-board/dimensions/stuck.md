@@ -14,19 +14,22 @@ Which started task has stopped or outlived its expectation, and nobody has acted
    says why; then `days` stands in, named by its `basis`: `exact` is time in the current status, not
    Work Item Age, so an age under the line does not clear a task that changed status recently;
    `since_created` overstates age, so an age over the line does not show a stop, and the finding
-   says so (design table "Чего инструмент не умеет"). `unknown`: the task cannot be aged; list it
+   says so (`${CLAUDE_PLUGIN_ROOT}/skills/init/config-format.md`, `[board.capabilities]`). `unknown`: the task cannot be aged; list it
    under `not_covered` (`wiki/reading-history/work-item-age.md`, What an audit needs).
    *Output:* one line naming the basis. *Wrong if:* an approximate age is called Work Item Age.
 2. **Fix the line by setup** (`wiki/moving-work/board-rules-by-setup.md`, the expectation for a
-   task's life). Flow, or iterations keeping one: the days of `[project].sle`. Iterations without
-   one: `[project].period_days`. Neither: no age line; run steps 4-5 only and name the missing
-   inputs under `not_covered`. The 50th and 70th percentile checkpoints need cycle-time
-   percentiles of finished work: take them from `cycle_time.percentiles`, with its `n` and
-   `start_source`; null there, name them as missing with `percentile_reasons`, never estimate them (`wiki/moving-work/percentile-intervention-triggers.md`).
-   *Output:* the line, in days, with its source.
+   task's life). `[project].sle` set (flow, or iterations keeping one): it wins over `period_days`;
+   its days are the metrics' `sle.days`, never parsed from the config string. No SLE, under
+   iterations: `[project].period_days`. Neither: no age line; run steps 4-5 only and name the
+   missing inputs under `not_covered`. The checkpoint is the 70th percentile of finished work's
+   cycle time, `cycle_time.percentiles."70"`, with its `n` and `start_source`; null, name it missing
+   with `percentile_reasons`, never estimate it (`wiki/moving-work/percentile-intervention-triggers.md`).
+   *Output:* the line and the checkpoint, in days, with their sources.
 3. **Age over the line.** A task whose age (step 1) exceeds the line, with no blocked or waiting
-   marker and no subtasks: finding. Comments are not in the snapshot, so whether anyone acted in
-   them is the question, not the finding. Past an 85th-percentile SLE the question is why
+   marker and no subtasks: finding. Under the line but past the checkpoint: a question, not a
+   finding, so it is asked before the line is reached
+   (`wiki/moving-work/percentile-intervention-triggers.md`, The procedure). Comments are not in the
+   snapshot, so whether anyone acted in them is the question, not the finding. Past an 85th-percentile SLE the question is why
    nobody intervened earlier (`wiki/moving-work/percentile-intervention-triggers.md`, Signs).
 4. **Read state before size** for each task from step 3, and for each task marked blocked or
    waiting (`wiki/moving-work/percentile-intervention-triggers.md`, Which question comes first):
@@ -45,9 +48,11 @@ Which started task has stopped or outlived its expectation, and nobody has acted
      `decompose` (`wiki/sizing/hidden-wip-in-large-items.md`).
    Where `[project].executor` is `agent` or `mixed`, ask the blocker question first: a stop for a person's decision is
    blocked, not waiting (`wiki/work-states/waiting-versus-blocked.md`, Agent executor note).
-5. **Propose.** A `label:` marker where a stopped task carries none (a `status:` marker is asked,
-   not proposed); a comment asking the question of step 4.
-   Never a move out of the state: a blocked task stays and counts
+5. **Propose** a comment asking the question of step 4. Blocked or waiting cannot be told from the
+   snapshot, so no `add_label` for either: on a stopped task with no marker the comment asks what
+   it waits on and who acts, and names the marker each answer sets: `[markers].waiting` for an
+   outside party with an expected end, `[markers].blocked` otherwise (`wiki/work-states/waiting-versus-blocked.md`,
+   The test). Never a move out of the state: a blocked task stays and counts
    (`wiki/moving-work/blocked-work-counts-against-wip.md`, The rule).
 
 ## Not a finding

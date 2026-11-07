@@ -40,7 +40,8 @@ chooses and draws the chart, in its own.
    people steering, recorded as assumed); setup, `period_days`, `sle`, `started_kinds`, the theme
    field (absent: say so); every capability not `native`.
 6. **Dispatch `task-master:board-inspector`** with the snapshot, every metrics file of step 4, the
-   question, and `${CLAUDE_PLUGIN_ROOT}/skills/visualize/method.md`.
+   question, and `${CLAUDE_PLUGIN_ROOT}/skills/visualize/method.md`, as absolute paths
+   (`${CLAUDE_PLUGIN_ROOT}` expanded, `.task-master/` resolved in the project).
 7. **Relay its result** in the shape of the `board` method, *The reply*: from `findings`, the
-   chart's path and the reading, or the refusal, with the snapshot reply's caveats added to
-   `assumptions`. The plugin has no means of publishing, so publishing stays in `needs_caller`.
+   chart's path and the reading, or the refusal, with the caveat lines
+   *Reads and the snapshot* produced added to `assumptions`. The plugin has no means of publishing, so publishing stays in `needs_caller`.

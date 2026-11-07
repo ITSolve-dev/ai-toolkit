@@ -32,8 +32,9 @@ Runs in your context and writes nothing to the board. The judgement happens in
 4. **Write the question** to `.task-master/triage-question.md`: which items to triage (the text
    items, or "the board's untriaged items"), the path of `.claude/task-master.toml`, and who the
    requests come from if you know (the person steering, or others).
-5. **Dispatch `task-master:board-inspector`** with four paths: snapshot, metrics, question, and
+5. **Dispatch `task-master:board-inspector`** with four absolute paths (`${CLAUDE_PLUGIN_ROOT}`
+   expanded, `.task-master/` resolved in the project): snapshot, metrics, question, and
    `${CLAUDE_PLUGIN_ROOT}/skills/triage/method.md`.
 6. **Relay its envelope** in the shape of the `board` method, *The reply*, with step 1's fallback
-   and the snapshot reply's caveats added to `assumptions`: the `findings` per item, then the
+   and the caveat lines *Reads and the snapshot* produced added to `assumptions`: the `findings` per item, then the
    changeset. Items sized as needing cutting go to `decompose`.

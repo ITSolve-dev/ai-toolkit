@@ -26,7 +26,7 @@ One file per dimension; `board-inspector` follows one of them per run. Read this
    workflow, intended by it, or limited to a stage, kind or property the task is outside? A pattern
    the process document declares intended is not reported. A survivor is a question to the people
    steering, carrying what the sign does not establish.
-3. **One finding per task** in `findings` (or per status, for state-level dimensions): the task id
+3. **One finding per task, or per status for state-level dimensions**, in `findings`: the task id
    and title, the sign seen, the page it rests on, what it does not establish, and the question or
    the `ref` of the proposed op. Several signs on one task make one finding listing them.
 4. **Stay inside the dimension.** A sign another dimension owns (table above) is left to it.

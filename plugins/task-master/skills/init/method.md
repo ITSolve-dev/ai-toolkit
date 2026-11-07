@@ -35,8 +35,9 @@ answered carelessly). *Wrong if:* the file is overwritten before the person saw 
      links, which stay with the adapter where there is one (the design's "Запись").
    Also record the exit codes the help documents, especially a partial write and an unsupported
    operation, and, in `[board.notes]`, anything a command does besides what it is named for (a link
-   that closes a task, a move that closes it), where a list's reply reports its total or
-   completeness, and a list that leaves finished work out. Note how a task with no status comes
+   that closes a task, a move that closes it), the fields of a list's reply that report its total
+   and completeness as `list_total` and `list_complete`, and a list that leaves finished work out.
+   Each command holds the real executable, never `<tool>`. Note how a task with no status comes
    back: if the tool fills one in, say so in `[board.notes]`, because the snapshot cannot name what
    the tool hid. From the help, record the tool's names for link types in `[links]`, its close
    reasons in `[board.close_reasons]` and, if it groups statuses, its categories in
@@ -47,8 +48,8 @@ answered carelessly). *Wrong if:* the file is overwritten before the person saw 
 
 3. **Decide each capability.** `native` only when a recorded command delivers it as the help
    documents (`history`: the list's reply carries status_since, started_at, finished_at and
-   transitions, or a `history` command returns them for one task); otherwise the fallback from the
-   design's table, and tell the person its cost:
+   transitions, or a `history` command returns them for one task); otherwise the fallback its row
+   in `config-format.md` names, and tell the person its cost:
    snapshot composed from reads, not atomic; no history, so age counts from creation and the analyses
    that need history are unavailable; read-then-move leaves a window between the read and the move,
    and the move is not allowed in advance; sequential batch asks once per operation and cannot be

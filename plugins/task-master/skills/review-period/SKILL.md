@@ -41,7 +41,8 @@ does the judging, in its own.
    capability not `native`;
    the earlier snapshot and its metrics, if any; any goal, communicated date or forecast passed; and
    what step 3 ruled out.
-7. **Dispatch `task-master:board-inspector`** with four paths: the snapshot, the metrics, the
+7. **Dispatch `task-master:board-inspector`** with four absolute paths (`${CLAUDE_PLUGIN_ROOT}`
+   expanded, `.task-master/` resolved in the project): the snapshot, the metrics, the
    question, and `${CLAUDE_PLUGIN_ROOT}/skills/review-period/method.md`.
-8. **Relay its result** in the shape of the `board` method, *The reply*, with the snapshot reply's
-   caveats added to `assumptions`. Nothing is written to the board here.
+8. **Relay its result** in the shape of the `board` method, *The reply*, with the caveat
+   lines *Reads and the snapshot* produced added to `assumptions`. Nothing is written to the board here.

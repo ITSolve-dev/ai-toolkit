@@ -30,8 +30,8 @@ access = "adapter"               # adapter | tracker-cli | mcp | none
 tool_version = "0.1.0"           # as found at init; checked on every run
 found_from = "workflow.toml"     # where init learned it: a config file, CLAUDE.md, the environment
 
-# How each obligation is met: "native" when the tool does it, otherwise the fallback named in the
-# design's table "Чего инструмент не умеет". A skill reads this and never probes again.
+# How each obligation is met: "native" when the tool does it, otherwise the fallback this row
+# names. A skill reads this and never probes again.
 [board.capabilities]
 snapshot = "composed"            # native | composed
 history = "native"               # native: the list carries status_since, started_at, finished_at,
@@ -76,7 +76,8 @@ unsupported = 3                  # the board cannot do it; not retried
 
 [board.notes]                    # what the help says a command also does, keyed by command
 link = "type duplicates also closes {other} on some boards"
-list = "the reply's `total` is the count the query matches"   # where the read reports its total
+list_total = "total"             # the list reply's field holding the count the query matches
+list_complete = "complete"       # the field saying the read was not cut; either absent: not reported
 
 [board.close_reasons]            # the tool's value for each reason the plugin closes with; absent: none
 duplicate = "duplicate"
@@ -148,7 +149,8 @@ the snapshot and is listed in its `markers_unreadable`. An op takes the name wit
 move: a skill asks instead.
 
 The `<tool>` and command shapes above are an example of one adapter; `init` writes whatever the
-project's tool takes. A command the tool lacks is left out, and the capability row says how its
+project's tool takes, with the real executable in place of `<tool>` in each command, so a skill
+runs a command as recorded, filling only its `{placeholders}`. A command the tool lacks is left out, and the capability row says how its
 absence is covered. Under `access = "mcp"` an entry names the server's tool and its arguments as JSON
 with the same placeholders. Text such as a task body always goes through `{body_file}`, never an
 argument. Moves, types and links go only through the adapter where the project has one; another

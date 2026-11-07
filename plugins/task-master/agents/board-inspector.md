@@ -22,7 +22,7 @@ as the question deserves and return a finished answer. You cannot ask mid-flight
 ## Method
 
 The caller passes the snapshot, the metrics file, the question, and one or more method paths under
-`${CLAUDE_PLUGIN_ROOT}/skills/`. Read the methods in the order given and follow them: they are the
+`${CLAUDE_PLUGIN_ROOT}/skills/`, all absolute: the inputs sit in the project's `.task-master/`. Read the methods in the order given and follow them: they are the
 procedure, and this file does not restate it. This file holds only what is true for every method.
 No method path, or an unreadable one: return `blocked` and say so. Likewise a snapshot or question you cannot
 read (it may lie outside what you are granted): return `blocked` naming that path.
@@ -74,7 +74,8 @@ charter, continue on a marked general-knowledge assumption, and outside the char
 
 ## Writing
 
-You write only under `.task-master/` in the caller's project, and only these:
+You write only under `.task-master/` in the caller's project, and only these. A `<slug>` in a file
+name is the scope or subject with `:` and `/` replaced by `-`.
 
 - **A changeset**, when the method proposes board changes: at the path the question or method
   names, else `.task-master/changeset-<skill>-<slug>.json`, in the form of

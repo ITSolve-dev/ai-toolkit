@@ -30,7 +30,8 @@ merge and relay what they return. The dimensions and what each needs are listed 
    config records as unavailable is skipped with that reason, and not dispatched.
 3. **Take one snapshot** of the scope, open and finished tasks, by
    `${CLAUDE_PLUGIN_ROOT}/skills/board/method.md`, *Before any job* and *Reads and the snapshot*,
-   to `.task-master/tend-board-snapshot.json`.
+   to `.task-master/tend-board-snapshot.json`; history, where read per issue, for the started
+   tasks (age) and the finished ones (cycle time) only.
 4. **Compute the arithmetic once**:
    `python ${CLAUDE_PLUGIN_ROOT}/scripts/board_metrics.py .task-master/tend-board-snapshot.json --config .claude/task-master.toml --out .task-master/tend-board-metrics.json`.
 5. **Write one question per dimension** to `.task-master/tend-board-q-<dimension>.md`: the
@@ -38,17 +39,18 @@ merge and relay what they return. The dimensions and what each needs are listed 
    say which, and that nothing counts as declared intended), and the changeset path
    `.task-master/changeset-tend-board-<dimension>.json`, refs `<dimension>-<n>`.
 6. **Dispatch the inspectors in parallel**, in one message, one per dimension, each with the
-   snapshot, the metrics, its question, and two method paths in this order:
+   snapshot, the metrics, its question, and two method paths in this order, every path absolute
+   (`${CLAUDE_PLUGIN_ROOT}` expanded, `.task-master/` resolved in the project):
    `${CLAUDE_PLUGIN_ROOT}/skills/tend-board/dimensions/README.md` and
    `${CLAUDE_PLUGIN_ROOT}/skills/tend-board/dimensions/<dimension>.md`.
 7. **Merge the envelopes.** `status` is the worst of theirs: blocked, then partial, then done. In
-   `findings`, grouped by dimension, one per task per dimension. Where two dimensions report one
+   `findings`, grouped by dimension, one per task, or per status for state-level dimensions. Where two dimensions report one
    task on the same sign, keep it under the dimension the README says owns it and note the other.
    Merge the changeset files that exist (a dimension with no ops writes none) into
-   `.task-master/changeset-tend-board-<scope>.json`, dropping an op identical (same `op`, task and
+   `.task-master/changeset-tend-board-<scope>.json` (`<scope>` slugged as the `board` method says), dropping an op identical (same `op`, task and
    values) to one from the owning dimension. List every dimension that ran with no findings, with
    how many tasks it examined, and every skipped one with its reason. Union the other parts, and
-   add the snapshot reply's caveats to `assumptions`. Over about 150 lines: write it to
+   add the caveat lines *Reads and the snapshot* produced to `assumptions`. Over about 150 lines: write it to
    `.task-master/tend-board-result.md` and return the path and a short summary per dimension.
 8. **Relay it** in the shape of the `board` method, *The reply*. Closing a duplicate or a stale
    task is the person's decision at the apply; a re-cut goes to `decompose`.
