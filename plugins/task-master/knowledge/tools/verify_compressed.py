@@ -10,9 +10,15 @@ Usage:
     verify_compressed.py --pair READABLE.md COMPRESSED.md
     verify_compressed.py --root KNOWLEDGE_DIR --ref GIT_REF [PAGE ...]
 
-With --ref, every page under wiki/ (or each PAGE given) is compared with its text at GIT_REF,
-normally the tag of the readable base. log.md and wiki/index.md are never compressed and are
-skipped. Exit status is 1 if any page fails, 2 on a usage or git error.
+With --ref, every page under wiki/ at GIT_REF or in the working tree, and SCHEMA.md (or each PAGE
+given), is compared with its text at GIT_REF, normally the tag of the readable base. A page at
+GIT_REF that is gone from the working tree fails. log.md and wiki/index.md (by path under the
+root; a nested index.md is checked) are never compressed and are skipped.
+Exit status: 0 every page passes; 1 any page fails; 2 a usage, git or read error, or no pages.
+
+Limit: negations, hedges, numbers, quotations, wikilinks and citations are compared as counts per
+page, not per sentence. A "not" moved from one sentence to another ("X is not Y. Z is W." against
+"X is Y. Z is not W.") passes though it reverses two claims. Every run prints this limit.
 """
 
 from __future__ import annotations
@@ -34,7 +40,7 @@ NUMBER = re.compile(r"(?<![\w.])\d+(?:[.,]\d+)*%?")
 # two words or more are compared, so a scare-quoted term is skipped but cannot misalign the rest.
 QUOTATION = re.compile(r'"([^"\n]*)"|“([^”\n]*)”')
 NEGATION = re.compile(
-    r"\b(?:not|no|never|none|nothing|nor|neither|without|cannot)\b|n't\b", re.IGNORECASE
+    r"\b(?:not|no|never|none|nothing|nor|neither|without|cannot)\b|n['’]t\b", re.IGNORECASE
 )
 # Words that carry who is speaking, how sure a claim is and where it applies. Compression reads
 # them as filler; dropping one turns a hedged, scoped or attributed claim into a flat fact, which
@@ -45,7 +51,9 @@ GUARD = re.compile(
     r"this wiki|the author|the authors|the book|the source)\b",
     re.IGNORECASE,
 )
-SKIPPED = {"log.md", "index.md"}
+SKIPPED = {"log.md", "wiki/index.md"}  # paths relative to the root
+LIMIT = ("note: negations, hedges, numbers and quotations are compared as counts per page, not per "
+         "sentence; one moved between sentences passes")
 
 
 def _split(text: str) -> tuple[str, str]:
@@ -102,6 +110,7 @@ def features(text: str) -> dict:
     """Everything that must survive compression, extracted from one page."""
     frontmatter, body = _split(text.replace("\r\n", "\n"))
     code, prose = _code_blocks(body)
+    prose = prose.replace("’", "'")  # "isn’t" is the same negation as "isn't"
     quotes, followers = _blockquotes(prose)
     unquoted = "\n".join(l for l in prose.splitlines() if not l.lstrip().startswith(">"))
     # A quotation may wrap across lines, and compression reflows text: compare it with each
@@ -173,6 +182,46 @@ def _git_show(root: Path, ref: str, path: Path) -> str:
     return out.stdout.decode("utf-8")
 
 
+def _toplevel(root: Path) -> Path:
+    return Path(subprocess.run(["git", "-C", str(root), "rev-parse", "--show-toplevel"],
+                               capture_output=True, text=True, check=True).stdout.strip()).resolve()
+
+
+def _ref_pages(root: Path, ref: str) -> list[Path]:
+    """The pages under wiki/ as they were at REF."""
+    top = _toplevel(root)
+    rel = root.resolve().relative_to(top).as_posix()
+    prefix = "wiki/" if rel == "." else f"{rel}/wiki/"
+    out = subprocess.run(["git", "-C", str(top), "ls-tree", "-r", "--name-only", ref, "--", prefix],
+                         capture_output=True, check=True).stdout.decode("utf-8")
+    return [top / line for line in out.splitlines() if line.endswith(".md")]
+
+
+def _rel(root: Path, page: Path) -> str:
+    return page.resolve().relative_to(root.resolve()).as_posix()
+
+
+def _collect(args) -> tuple[list[tuple[Path, str]], list[Path]]:
+    """-> (pairs of page and readable text, pages at the ref missing from the working tree)."""
+    if args.pages:
+        pages = list(args.pages)
+    else:
+        found = {p.resolve(): p for p in (args.root / "wiki").rglob("*.md")}
+        for p in _ref_pages(args.root, args.ref):
+            found.setdefault(p.resolve(), p)
+        pages = [found[k] for k in sorted(found)] + [args.root / "SCHEMA.md"]
+    pairs, missing = [], []
+    for page in pages:
+        if _rel(args.root, page) in SKIPPED:
+            continue
+        readable = _git_show(args.root, args.ref, page)
+        if page.exists():
+            pairs.append((page, readable))
+        else:
+            missing.append(page)
+    return pairs, missing
+
+
 def main(argv: list[str] | None = None) -> int:
     sys.stdout.reconfigure(encoding="utf-8")
     ap = argparse.ArgumentParser(description=__doc__.split("\n\n")[0])
@@ -181,32 +230,40 @@ def main(argv: list[str] | None = None) -> int:
     ap.add_argument("--ref", help="git ref of the readable base, e.g. its tag")
     ap.add_argument("pages", nargs="*", type=Path)
     args = ap.parse_args(argv)
-
-    if args.pair:
-        pairs = [(args.pair[1], args.pair[0].read_text(encoding="utf-8"))]
-    elif args.root and args.ref:
-        pages = args.pages or sorted((args.root / "wiki").rglob("*.md")) + [args.root / "SCHEMA.md"]
-        pairs = []
-        for page in pages:
-            if page.name in SKIPPED:
-                continue
-            try:
-                pairs.append((page, _git_show(args.root, args.ref, page)))
-            except subprocess.CalledProcessError as e:
-                print(f"{page}: cannot read it at {args.ref}: {e.stderr.decode().strip()}", file=sys.stderr)
-                return 2
-    else:
+    if not args.pair and not (args.root and args.ref):
         ap.error("give --pair, or --root with --ref")
 
+    try:
+        if args.pair:
+            pairs, missing = [(args.pair[1], args.pair[0].read_text(encoding="utf-8"))], []
+        else:
+            pairs, missing = _collect(args)
+        if not pairs and not missing:
+            print("error: no pages to check", file=sys.stderr)
+            return 2
+        results = [(page, compare(readable, page.read_text(encoding="utf-8"))) for page, readable in pairs]
+    except subprocess.CalledProcessError as e:
+        err = e.stderr.decode("utf-8", "replace") if isinstance(e.stderr, bytes) else (e.stderr or "")
+        print(f"error: git {' '.join(map(str, e.cmd[3:]))}: {err.strip()}", file=sys.stderr)
+        return 2
+    except (OSError, UnicodeDecodeError, ValueError) as e:
+        print(f"error: {e}", file=sys.stderr)
+        return 2
+
     failed = 0
-    for page, readable in pairs:
-        problems = compare(readable, page.read_text(encoding="utf-8"))
+    for page in missing:
+        failed += 1
+        print(f"FAIL {page}")
+        print(f"  missing: the page is at {args.ref} but not in the working tree")
+    for page, problems in results:
         if problems:
             failed += 1
             print(f"FAIL {page}")
             for p in problems:
                 print(f"  {p}")
-    print(f"{len(pairs) - failed} of {len(pairs)} pages pass")
+    total = len(results) + len(missing)
+    print(f"{total - failed} of {total} pages pass")
+    print(LIMIT)
     return 1 if failed else 0
 
 

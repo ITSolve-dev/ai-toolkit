@@ -274,3 +274,186 @@ def test_history_fields_validated_and_kept(cfg):
 def test_malformed_history_fails(cfg, bad):
     with pytest.raises(snapshot.InputError):
         compose(cfg, [bad])
+
+
+# --- silent-failure fixes ---------------------------------------------------------------------
+
+def test_scope_record_is_stored(cfg):
+    s = snapshot.compose([issue(), issue(id="2")], STATUSES, None, cfg, "2026-02-01T00:00:00Z",
+                         scope={"query": "project = X", "complete": True, "reported_total": 2})
+    assert s["scope"] == {"query": "project = X", "fetched": 2, "reported_total": 2, "complete": True,
+                          "includes_finished": None, "empty_ok": False}
+
+
+def test_scope_complete_derived_from_reported_total(cfg):
+    s = snapshot.compose([issue()], STATUSES, None, cfg, "2026-02-01T00:00:00Z",
+                         scope={"reported_total": 250})
+    assert s["scope"]["complete"] is False and s["scope"]["fetched"] == 1
+
+
+def test_scope_without_flags_is_unknown(cfg):
+    assert compose(cfg, [issue()])["scope"]["complete"] is None
+
+
+def test_scope_claimed_complete_but_short_fails(cfg):
+    with pytest.raises(snapshot.InputError):
+        snapshot.compose([issue()], STATUSES, None, cfg, "2026-02-01T00:00:00Z",
+                         scope={"complete": True, "reported_total": 5})
+
+
+def test_empty_issue_list_needs_empty_ok(cfg):
+    with pytest.raises(snapshot.InputError, match="empty"):
+        compose(cfg, [])
+    s = snapshot.compose([], STATUSES, None, cfg, "2026-02-01T00:00:00Z", empty_ok=True)
+    assert s["issues"] == [] and s["scope"]["empty_ok"] is True
+
+
+def test_duplicate_ids_fail(cfg):
+    with pytest.raises(snapshot.InputError, match="1"):
+        compose(cfg, [issue(id="1"), issue(id=1)])
+
+
+@pytest.mark.parametrize("sprint", [["S1", "S2"], {"state": "active"}, True, {"id": ["1"]}])
+def test_bad_sprint_field_fails(cfg, sprint):
+    with pytest.raises(snapshot.InputError, match="sprint"):
+        compose(cfg, [issue(sprint=sprint)])
+
+
+@pytest.mark.parametrize("sprint", [None, "S1", 7, {"id": "1", "name": "S1"}, {"name": "S1"}])
+def test_good_sprint_field_passes(cfg, sprint):
+    compose(cfg, [issue(sprint=sprint)])
+
+
+@pytest.mark.parametrize("labels", [[3], [{"color": "red"}], [None]])
+def test_malformed_label_fails(cfg, labels):
+    with pytest.raises(snapshot.InputError, match="label"):
+        compose(cfg, [issue(labels=labels)])
+
+
+def test_assignees_must_be_list_or_null(cfg):
+    with pytest.raises(snapshot.InputError, match="assignees"):
+        compose(cfg, [issue(assignees="ann")])
+
+
+@pytest.mark.parametrize("spec", ["Label:Abandoned", "STATUS:Canceled", "abandoned", "label:"])
+def test_marker_spec_typo_fails(tmp_path, spec):
+    p = tmp_path / "c.toml"
+    p.write_text(CONFIG.replace('[markers]', f'[markers]\nabandoned = "{spec}"'), encoding="utf-8")
+    with pytest.raises(snapshot.InputError, match="markers"):
+        snapshot.load_config(p)
+
+
+def test_marker_shown_another_way_is_listed(cfg):
+    assert compose(cfg, [issue()])["markers_unreadable"] == {"waiting": "field:flagged"}
+
+
+def test_mapping_unknown_is_null_when_statuses_not_read(cfg):
+    s = snapshot.enrich_native({"taken_at": "2026-02-01T00:00:00Z", "issues": [issue()]}, cfg)
+    assert s["mapping_unknown_statuses"] is None
+    assert "not read" in s["mapping_unknown_statuses_reason"]
+    assert compose(cfg, [issue()])["mapping_unknown_statuses_reason"] is None
+
+
+def test_taken_at_basis_recorded(cfg):
+    assert compose(cfg, [issue()])["taken_at_basis"] == "given"
+    s = snapshot.compose([issue()], STATUSES, None, cfg, "2026-02-01T00:00:00Z",
+                         taken_at_basis="script_run_time")
+    assert s["taken_at_basis"] == "script_run_time"
+    n = snapshot.enrich_native({"taken_at": "2026-02-01T00:00:00Z", "issues": [issue()]}, cfg)
+    assert n["taken_at_basis"] == "tool"
+
+
+def test_atomic_is_the_tools_claim(cfg):
+    assert compose(cfg, [issue()])["atomic"] is False
+    n = {"taken_at": "2026-02-01T00:00:00Z", "issues": [issue()]}
+    assert snapshot.enrich_native(n, cfg)["atomic"] is None
+    assert snapshot.enrich_native({**n, "atomic": True}, cfg)["atomic"] is True
+
+
+def test_naive_timestamps_counted(cfg):
+    s = compose(cfg, [issue(created_at="2026-01-01T00:00:00", finished_at="2026-01-02T00:00:00")])
+    assert s["naive_timestamps"] == 2
+
+
+def test_native_scope_merged_and_conflict_fails(cfg):
+    n = {"taken_at": "2026-02-01T00:00:00Z", "issues": [issue()], "scope": {"query": "all", "complete": True}}
+    assert snapshot.enrich_native(n, cfg)["scope"]["complete"] is True
+    with pytest.raises(snapshot.InputError):
+        snapshot.enrich_native(n, cfg, scope={"query": "open only"})
+
+
+def write_cli_inputs(tmp_path, issues):
+    (tmp_path / "c.toml").write_text(CONFIG, encoding="utf-8")
+    (tmp_path / "i.json").write_text(json.dumps(issues), encoding="utf-8")
+    (tmp_path / "s.json").write_text(json.dumps(STATUSES), encoding="utf-8")
+    return ["--issues", tmp_path / "i.json", "--statuses", tmp_path / "s.json", "--config", tmp_path / "c.toml"]
+
+
+def test_cli_scope_flags(tmp_path):
+    r = run(*write_cli_inputs(tmp_path, [issue()]), "--scope", "project = X", "--complete", "false",
+            "--reported-total", "40", "--includes-finished", "true", "--taken-at", "2026-02-01T00:00:00Z")
+    assert r.returncode == 0, r.stderr
+    sc = json.loads(r.stdout)["scope"]
+    assert sc == {"query": "project = X", "fetched": 1, "reported_total": 40, "complete": False,
+                  "includes_finished": True, "empty_ok": False}
+
+
+def test_cli_default_taken_at_is_labelled(tmp_path):
+    r = run(*write_cli_inputs(tmp_path, [issue()]))
+    assert json.loads(r.stdout)["taken_at_basis"] == "script_run_time"
+
+
+def test_cli_empty_list_refused_unless_empty_ok(tmp_path):
+    args = write_cli_inputs(tmp_path, [])
+    r = run(*args)
+    assert r.returncode == 2 and "--empty-ok" in r.stderr and r.stdout == ""
+    assert run(*args, "--empty-ok").returncode == 0
+
+
+def test_cli_bad_complete_value_fails(tmp_path):
+    assert run(*write_cli_inputs(tmp_path, [issue()]), "--complete", "yes").returncode == 2
+
+
+# --- per-task history files -------------------------------------------------------------------
+
+def test_history_dir_merged(cfg, tmp_path):
+    (tmp_path / "1.json").write_text(json.dumps(
+        {"started_at": "2026-01-02T00:00:00Z",
+         "transitions": [{"status": "In Progress", "at": "2026-01-02T00:00:00Z"}]}), encoding="utf-8")
+    issues = [issue(), issue(id="2")]
+    s = snapshot.compose(issues, STATUSES, None, cfg, "2026-02-01T00:00:00Z",
+                         history=snapshot.load_history(tmp_path, issues))
+    one, two = s["issues"]
+    assert one["started_at"] == "2026-01-02T00:00:00Z" and one["transitions"][0]["status"] == "In Progress"
+    assert "started_at" not in two
+    assert s["history"] == {"merged": 1, "missing": {"count": 1, "ids": ["2"]}}
+
+
+def test_history_file_validated(cfg, tmp_path):
+    (tmp_path / "1.json").write_text(json.dumps({"finished_at": "soon"}), encoding="utf-8")
+    with pytest.raises(snapshot.InputError, match="finished_at"):
+        snapshot.compose([issue()], STATUSES, None, cfg, "2026-02-01T00:00:00Z",
+                         history=snapshot.load_history(tmp_path, [issue()]))
+
+
+def test_history_file_unknown_key_fails(tmp_path):
+    (tmp_path / "1.json").write_text(json.dumps({"finished": "2026-01-02T00:00:00Z"}), encoding="utf-8")
+    with pytest.raises(snapshot.InputError, match="finished"):
+        snapshot.load_history(tmp_path, [issue()])
+
+
+def test_history_conflicting_with_issue_fails(cfg, tmp_path):
+    (tmp_path / "1.json").write_text(json.dumps({"finished_at": "2026-01-03T00:00:00Z"}), encoding="utf-8")
+    i = issue(finished_at="2026-01-02T00:00:00Z")
+    with pytest.raises(snapshot.InputError, match="finished_at"):
+        snapshot.compose([i], STATUSES, None, cfg, "2026-02-01T00:00:00Z",
+                         history=snapshot.load_history(tmp_path, [i]))
+
+
+def test_cli_history_dir(tmp_path):
+    hist = tmp_path / "hist"
+    hist.mkdir()
+    (hist / "PROJ-1.json").write_text(json.dumps({"finished_at": "2026-01-03T00:00:00Z"}), encoding="utf-8")
+    r = run(*write_cli_inputs(tmp_path, [issue(id="PROJ-1", status="Done")]), "--history", hist)
+    assert r.returncode == 0, r.stderr
+    assert json.loads(r.stdout)["issues"][0]["finished_at"] == "2026-01-03T00:00:00Z"

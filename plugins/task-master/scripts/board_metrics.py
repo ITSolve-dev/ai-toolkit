@@ -2,12 +2,16 @@
 
     board_metrics.py snapshot.json [--config .claude/task-master.toml] [--out metrics.json]
                      [--compare earlier-snapshot.json] [--window-start D --window-end D]
-                     [--sprint NAME]
+                     [--sprint NAME] [--age-at D]
 
 Reads a snapshot written by snapshot.py (schema 1). From the config it uses [limits],
-[checks].acceptance_headings, [project].sle ("<n> days at <p>%") and [fields].estimate
-("field:<name>" or "label:<prefix>{value}"); each absent means: no limits, the heading
-"Acceptance criteria", no SLE, no estimates.
+[checks].acceptance_headings, [project].sle ("<n> days at <p>%"), [project].started_kinds,
+[project].timezone, [fields].estimate and [fields].theme ("field:<name>" or
+"label:<prefix>{value}"). Each absent from a config that was given means: no limits, the heading
+"Acceptance criteria", no SLE, the default started kinds, UTC days, no estimates, no themes.
+Without --config nothing is known about what the team declared: the output says
+`config.given: false` and every figure that needs the config says "no config given (--config)",
+never "none declared".
 
 Every figure carries `basis`, saying what it was computed from:
   exact            - from history the tool reported (status_since, started_at, finished_at,
@@ -20,25 +24,52 @@ Every figure carries `basis`, saying what it was computed from:
   not_computed     - the data does not support the figure; `reason` says what is missing
 `updated_at` is never read as a start, finish or state change.
 
+Scope: counts, wip, limits, throughput, arrivals, cycle_time, estimates, velocity and comparison
+carry `scope_complete` (the snapshot's scope.complete: true, false or null) and `scope_reason`
+(null only when the read was complete). A snapshot without a scope record is labelled unknown.
+When the scope excludes finished work (scope.includes_finished false), throughput, cycle time (and
+so sle, scatterplot, histogram), velocity and burndown refuse. comparison refuses when the two
+snapshots were read with different queries or finished-work inclusion.
+
+Abandoned: "delivered" is finished and not marked abandoned. A finished issue whose abandoned
+marker cannot be read (null, or no markers) counts as delivered and is listed in
+`abandoned_unknown` beside every figure that uses delivered work.
+
 History-dependent figures need native history on the issues (see snapshot.py):
   cycle_time, sle, series.scatterplot, series.histogram - finished_at and a start on every
       finished item in scope. The start is the first transition into a started kind; without
       transitions, started_at is the field a tool with native history must supply.
       status_since of a finished item is when it finished, not when it started.
-Started kinds: [project].started_kinds (default active, handed_off) decide what counts as WIP,
-which open items age marks `started`, and where cycle time starts.
   throughput, series.burndown - finished_at.
   series.cfd - transitions on every issue.
+Transitions are trusted only when whole: the last one must be into the issue's current status,
+and the first within 5 minutes after created_at (HISTORY_TOLERANCE); otherwise the history is cut
+and the figures using it refuse. A transition into a status not in the mapping before the start
+refuses cycle time too: a renamed or retired status may be where the work started.
 Any item in scope lacking them makes the figure null with the reason; it is not computed from
 the items that happen to have them.
+Started kinds: [project].started_kinds (default active, handed_off) decide what counts as WIP,
+which open items age marks `started`, where cycle time starts, and Work Item Age.
+Percentiles are nearest rank; one whose rank n cannot resolve (n < 100/(100-p): p50 needs 2,
+p70 4, p85 7, p95 20) is null, with `percentile_reasons`. sle.small_sample is true below the
+same bound for the SLE's probability.
+Point sums (estimates.total, velocity points, burndown remaining) never count a missing estimate
+as zero: velocity points are null when any finished item of the sprint lacks a readable one;
+estimates and burndown carry `complete: false` beside the sum and list the items.
 
 Window (--window-start/--window-end, ISO dates or times; a date-only end includes that day):
 scopes throughput.window, arrivals.window and cycle time (items finished in the window).
+--age-at: the reference time for age (a date-only value means the end of that day; at most
+taken_at); the open items are still those open at taken_at.
 --compare: net differences against an earlier snapshot (added, removed, status, kind, estimate,
-sprint), the plan record where there is no history. --sprint names the burndown's sprint;
-without it the one sprint whose state is "active".
+sprint, mapping, and the forces in estimate units), the plan record where there is no history.
+--sprint names the burndown's sprint; without it the one sprint whose state is "active".
 
-Reference time for ages is the snapshot's taken_at, not the moment this runs. Days are UTC.
+Days: date-only bounds and per-day series use [project].timezone (a UTC offset such as "+03:00",
+or an IANA name this Python knows), default UTC; the zone is named in each method. A timestamp
+without a zone is read as UTC and counted in snapshot.naive_timestamps. Timestamps out of order
+(after taken_at, a finish or start before creation) are listed in timestamp_problems.
+Reference time for ages is the snapshot's taken_at (or --age-at), not the moment this runs.
 Malformed input: exit 2, message on stderr, nothing on stdout.
 """
 
@@ -50,27 +81,35 @@ import math
 import re
 import sys
 import tomllib
-from datetime import datetime, time, timedelta, timezone
+from datetime import date, datetime, time, timedelta, timezone
 from pathlib import Path
+from zoneinfo import ZoneInfo, ZoneInfoNotFoundError
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-from snapshot import (KINDS, SCHEMA, InputError, label_names, load_json, parse_time,  # noqa: E402
-                      validate_issue)
+from snapshot import (KINDS, SCHEMA, InputError, check_unique_ids, count_naive,  # noqa: E402
+                      label_names, load_json, parse_time, validate_issue)
 
 WIP_KINDS = ("active", "handed_off")
 DEFAULT_HEADINGS = ["Acceptance criteria"]
 UNMAPPED = "(unmapped)"
 NO_STATUS = "(no status)"
+NO_CONFIG = "no config given (--config)"
+HISTORY_TOLERANCE = timedelta(minutes=5)
+CLOSED_STATES = {"closed", "complete", "completed"}
+EXCLUDED = ("the read excluded finished work (scope.includes_finished is false): finished counts "
+            "would read as zero")
 
 ATX = re.compile(r"^\s{0,3}#{1,6}\s*(.*?)\s*#*\s*$")
 WIKI = re.compile(r"^\s*h[1-6]\.\s*(.*?)\s*$")
 BOLD = re.compile(r"^\s*(\*\*|__)(.+?)\1\s*:?\s*$")
 SETEXT_RULE = re.compile(r"^\s*(=+|-+)\s*$")
+OFFSET = re.compile(r"^([+-])(\d{2}):?(\d{2})$")
 
 
 def load_metrics_config(path):
+    """None when no config was given, which is not the same as an empty one."""
     if path is None:
-        return {}
+        return None
     try:
         return tomllib.loads(Path(path).read_text(encoding="utf-8"))
     except OSError as e:
@@ -84,13 +123,18 @@ def validate_snapshot(snap):
         raise InputError("snapshot: expected a JSON object")
     if snap.get("schema") != SCHEMA:
         raise InputError(f"snapshot: schema must be {SCHEMA}, got {snap.get('schema')!r}")
-    for key in ("taken_at", "source", "issues"):
+    for key in ("taken_at", "source", "issues", "mapping"):
         if key not in snap:
             raise InputError(f"snapshot: missing required field: {key}")
     if snap["source"] not in ("composed", "native"):
         raise InputError(f"snapshot: source must be composed or native, got {snap['source']!r}")
     if parse_time(snap["taken_at"], "snapshot: taken_at") is None:
         raise InputError("snapshot: taken_at may not be null")
+    mapping = snap["mapping"]
+    if not isinstance(mapping, dict) or not all(k in KINDS for k in mapping.values()):
+        raise InputError(f"snapshot: mapping must map status names to {', '.join(KINDS)}")
+    if snap.get("scope") is not None and not isinstance(snap["scope"], dict):
+        raise InputError("snapshot: scope must be an object or null")
     if not isinstance(snap["issues"], list):
         raise InputError("snapshot: issues must be an array")
     for i, obj in enumerate(snap["issues"]):
@@ -98,11 +142,84 @@ def validate_snapshot(snap):
         if "kind" not in obj or (obj["kind"] is not None and obj["kind"] not in KINDS):
             raise InputError(f"issues[{i}]: kind must be one of {', '.join(KINDS)} or null; "
                              "was the snapshot made by snapshot.py?")
+    check_unique_ids(snap["issues"], "snapshot: issues")
     sprints = snap.get("sprints")
     if sprints is not None and not isinstance(sprints, list):
         raise InputError("snapshot: sprints must be an array or null")
     if sprints and not all(isinstance(sp, dict) for sp in sprints):
         raise InputError("snapshot: each sprint must be an object")
+
+
+# --- scope, days, config ---------------------------------------------------------------------
+
+def scope_of(snap):
+    sc = snap.get("scope")
+    if sc is None:
+        return {"recorded": False, "query": None, "complete": None, "includes_finished": None,
+                "fetched": None, "reported_total": None}
+    return {"recorded": True, "query": sc.get("query"), "complete": sc.get("complete"),
+            "includes_finished": sc.get("includes_finished"), "fetched": sc.get("fetched"),
+            "reported_total": sc.get("reported_total")}
+
+
+def scope_reason(sc):
+    if not sc["recorded"]:
+        return ("the snapshot records no scope: whether the read was the whole board cannot be told; "
+                "figures count only what was fetched")
+    if sc["complete"] is True:
+        return None
+    if sc["complete"] is False:
+        of = f" of {sc['reported_total']} reported" if sc["reported_total"] is not None else ""
+        return (f"the read was not complete ({sc['fetched']} fetched{of}); figures count only what "
+                "was fetched")
+    return "the tool did not say whether the read was complete; figures count only what was fetched"
+
+
+def label(fig, sc):
+    fig["scope_complete"] = sc["complete"]
+    fig["scope_reason"] = scope_reason(sc)
+    return fig
+
+
+def excluded(sc):
+    return sc["includes_finished"] is False
+
+
+def day_zone(cfg):
+    """[project].timezone -> (tzinfo, label). Default UTC."""
+    raw = (cfg.get("project") or {}).get("timezone")
+    if raw is None:
+        return timezone.utc, "UTC"
+    if not isinstance(raw, str):
+        raise InputError(f"[project].timezone = {raw!r}: expected a string")
+    if raw.upper() in ("UTC", "Z"):
+        return timezone.utc, "UTC"
+    m = OFFSET.match(raw)
+    if m:
+        delta = timedelta(hours=int(m.group(2)), minutes=int(m.group(3)))
+        return timezone(-delta if m.group(1) == "-" else delta), f"UTC{raw}"
+    try:
+        return ZoneInfo(raw), raw
+    except (ZoneInfoNotFoundError, ValueError):
+        raise InputError(f"[project].timezone = {raw!r}: not a UTC offset (\"+03:00\") or a time zone "
+                         "this Python knows (IANA names on Windows need the tzdata package; give an "
+                         "offset)") from None
+
+
+def parse_bound(raw, where, tz):
+    """-> (aware datetime, date_only). A date-only value is midnight in the day zone."""
+    if isinstance(raw, str):
+        try:
+            d = date.fromisoformat(raw)
+        except ValueError:
+            d = None
+        if d is not None:
+            return datetime.combine(d, time(), tzinfo=tz), True
+    return parse_time(raw, where), False
+
+
+def _next_midnight(t, tz):
+    return datetime.combine(t.astimezone(tz).date() + timedelta(days=1), time(), tzinfo=tz)
 
 
 def status_name(obj):
@@ -117,17 +234,6 @@ def tally(items, key):
     return out
 
 
-def counts(issues):
-    mapped = [o for o in issues if o["kind"] is not None]
-    return {
-        "total": len(issues),
-        "by_kind": tally(mapped, lambda o: o["kind"]),
-        "unmapped": len(issues) - len(mapped),
-        "by_status": tally(issues, status_name),
-        "basis": "count of issues in the snapshot",
-    }
-
-
 def idlist(ids):
     return {"count": len(ids), "ids": ids}
 
@@ -136,18 +242,31 @@ def shown(ids):
     return ", ".join(map(str, ids[:20])) + (" ..." if len(ids) > 20 else "")
 
 
+# --- counts ----------------------------------------------------------------------------------
+
+def counts(issues):
+    mapped = [o for o in issues if o["kind"] is not None]
+    return {
+        "total": len(issues),
+        "by_kind": tally(mapped, lambda o: o["kind"]),
+        "unmapped": len(issues) - len(mapped),
+        "by_status": tally(issues, status_name),
+        "basis": "count of issues in the snapshot (see scope_complete)",
+    }
+
+
 def started_kinds(cfg):
-    """[project].started_kinds: the kinds that count as started work. Default WIP_KINDS."""
+    """[project].started_kinds -> (kinds, source). Default WIP_KINDS."""
     raw = (cfg.get("project") or {}).get("started_kinds")
     if raw is None:
-        return list(WIP_KINDS)
+        return list(WIP_KINDS), "default"
     ok = [k for k in KINDS if k != "finished"]
     if not isinstance(raw, list) or not raw or not all(isinstance(k, str) and k in ok for k in raw):
         raise InputError(f"[project].started_kinds = {raw!r}: expected a non-empty list of {', '.join(ok)}")
-    return list(dict.fromkeys(raw))
+    return list(dict.fromkeys(raw)), "config"
 
 
-def wip(issues, kinds):
+def wip(issues, kinds, source):
     started = [o for o in issues if o["kind"] in kinds]
     by_assignee, unassigned, not_read = {}, [], []
     for o in started:
@@ -155,8 +274,6 @@ def wip(issues, kinds):
             not_read.append(o["id"])
             continue
         people = o["assignees"] or []
-        if not isinstance(people, list):
-            raise InputError(f"issue {o['id']}: assignees must be a list or null")
         if not people:
             unassigned.append(o["id"])
         for p in people:
@@ -171,14 +288,19 @@ def wip(issues, kinds):
         "unassigned": idlist(unassigned),
         "assignees_not_read": idlist(not_read),
         "started_kinds": kinds,
-        "basis": f"issues of a started kind ({', '.join(kinds)}, from [project].started_kinds or the "
-                 "default); unmapped issues are not counted. by_assignee: "
-                 "an item with several assignees counts once for each, so it may sum above total; "
-                 "assignees_not_read: the read carried no assignees key, so who holds it is unknown",
+        "started_kinds_source": source,
+        "basis": f"issues of a started kind ({', '.join(kinds)}, from {source}); unmapped issues are "
+                 "not counted. by_assignee: an item with several assignees counts once for each, so it "
+                 "may sum above total; unassigned: assignees [] or null (null is the board holding no "
+                 "value, per the normalized issue); assignees_not_read: the read carried no assignees "
+                 "key, so who holds it is unknown",
     }
 
 
-def limits(issues, snap, cfg):
+def limits(issues, snap, cfg, given):
+    if not given:
+        return {"declared": None, "breaches": None, "unknown_keys": None,
+                "basis": f"{NO_CONFIG}: whether the team keeps limits cannot be told"}
     table = cfg.get("limits")
     if table is None:
         return {"declared": False, "breaches": [], "unknown_keys": [],
@@ -207,7 +329,86 @@ def limits(issues, snap, cfg):
                      "a key that is a kind name is read as a kind"}
 
 
-def age(issues, taken, kinds):
+# --- history ---------------------------------------------------------------------------------
+
+def _trail(o):
+    return sorted(((parse_time(t["at"], f"issue {o['id']}: transitions"), t["at"], t["status"])
+                   for t in o["transitions"]), key=lambda x: x[0])
+
+
+def history_gap(o):
+    """Why the issue's transitions are not a whole history, or None."""
+    if not o.get("transitions"):
+        return None
+    tr = _trail(o)
+    if tr[-1][2] != o["status"]["name"]:
+        return (f"transitions end in {tr[-1][2]!r} but the issue is in {o['status']['name']!r}: the "
+                "history is cut at the end")
+    created = parse_time(o["created_at"], f"issue {o['id']}: created_at")
+    if created is None:
+        return "created_at is null: whether the transitions start at creation cannot be told"
+    if tr[0][0] > created + HISTORY_TOLERANCE:
+        return (f"the first transition ({tr[0][1]}) is more than 5 minutes after created_at "
+                f"({o['created_at']}): the history is cut at the front")
+    return None
+
+
+def start_of(o, kinds, mapping):
+    """-> (raw ISO start, source, problem). From transitions when the tool gave them: the first
+    entry into a status whose kind is started; otherwise the tool's own started_at. `problem` says
+    why transitions present cannot give a start that can be trusted."""
+    if o.get("transitions"):
+        gap = history_gap(o)
+        if gap:
+            return None, None, gap
+        unmapped = []
+        for _, raw, st in _trail(o):
+            kind = mapping.get(st)
+            if kind is None:
+                unmapped.append(st)
+            elif kind in kinds:
+                if unmapped:
+                    return None, None, (f"transition(s) into {', '.join(map(repr, dict.fromkeys(unmapped)))} "
+                                        "before its start are not in the mapping; a renamed or retired "
+                                        "status may be where the work started")
+                return raw, "transitions", None
+        if unmapped:
+            return None, None, (f"no transition into a started kind, and {', '.join(map(repr, dict.fromkeys(unmapped)))} "
+                                "is not in the mapping")
+        return None, None, None
+    if o.get("started_at") is not None:
+        return o["started_at"], "started_at", None
+    return None, None, None
+
+
+def timestamp_problems(issues, taken):
+    items = []
+    for o in issues:
+        oid = o["id"]
+        created = parse_time(o["created_at"], f"issue {oid}: created_at")
+        for key in ("created_at", "status_since", "started_at", "finished_at"):
+            t = parse_time(o.get(key), f"issue {oid}: {key}")
+            if t is not None and t > taken:
+                items.append({"id": oid, "field": key, "problem": "after taken_at"})
+        trans = o.get("transitions") or []
+        if any(parse_time(t["at"], f"issue {oid}: transitions") > taken for t in trans):
+            items.append({"id": oid, "field": "transitions", "problem": "after taken_at"})
+        if created is None:
+            continue
+        for key in ("started_at", "finished_at"):
+            t = parse_time(o.get(key), f"issue {oid}: {key}")
+            if t is not None and t < created - HISTORY_TOLERANCE:
+                items.append({"id": oid, "field": key, "problem": "before created_at"})
+        if trans and _trail(o)[0][0] < created - HISTORY_TOLERANCE:
+            items.append({"id": oid, "field": "transitions", "problem": "before created_at"})
+    return {"count": len(items), "items": items,
+            "basis": "timestamps out of order, used as given; an age or period involving them may be "
+                     "wrong. After taken_at often means --taken-at was earlier than the reads"}
+
+
+# --- age -------------------------------------------------------------------------------------
+
+def age(issues, ref, kinds, source, mapping):
     items, skipped = [], []
     for o in issues:
         if o["kind"] is None:
@@ -223,15 +424,41 @@ def age(issues, taken, kinds):
             start, basis = created, "since_created"
         else:
             start, basis = None, "unknown"
-        days = round((taken - start).total_seconds() / 86400, 2) if start else None
-        items.append({"id": o["id"], "status": o["status"]["name"], "kind": o["kind"],
-                      "started": o["kind"] in kinds, "days": days, "basis": basis})
+        item = {"id": o["id"], "status": o["status"]["name"], "kind": o["kind"],
+                "started": o["kind"] in kinds, "days": None, "basis": basis}
+        if start is not None and start > ref:
+            item.update(basis="unknown", reason=f"its {'status_since' if since else 'created_at'} is after "
+                                                "the reference time")
+        elif start is not None:
+            item["days"] = round((ref - start).total_seconds() / 86400, 2)
+        wia, wbasis, why = None, None, None
+        if not item["started"]:
+            why = "not started: its kind is not in started_kinds"
+        else:
+            raw, src, problem = start_of(o, kinds, mapping)
+            if raw is None:
+                why = problem or ("no start time: neither transitions into a started kind nor started_at "
+                                  "from the tool")
+            else:
+                s = parse_time(raw, f"issue {o['id']}: start")
+                if s > ref:
+                    why = "started after the reference time"
+                else:
+                    wia, wbasis = round((ref - s).total_seconds() / 86400, 2), src
+        item.update(work_item_age_days=wia, work_item_age_basis=wbasis, work_item_age_reason=why)
+        items.append(item)
     return {"reference_time": None, "items": items, "skipped_unmapped": skipped, "started_kinds": kinds,
+            "started_kinds_source": source,
             "basis": "every open mapped item; `started` marks those of a started kind (started_kinds). "
-                     "per item: exact = time in current state from the tool's history; "
+                     "days: exact = time in current state from the tool's history; "
                      "since_created = days since created_at, not time in state; "
-                     "unknown = no timestamp. Unmapped issues are skipped: open or not cannot be told"}
+                     "unknown = no timestamp. work_item_age_days: days since the started point "
+                     "(first transition into a started kind, else the tool's started_at), null with "
+                     "work_item_age_reason otherwise. Unmapped issues are skipped: open or not cannot "
+                     "be told. With --age-at the open items are still those open at taken_at"}
 
+
+# --- acceptance ------------------------------------------------------------------------------
 
 def _norm(text):
     return text.strip().rstrip(":").strip().casefold()
@@ -255,35 +482,64 @@ def has_heading(description, headings):
 
 def acceptance(issues, cfg):
     checks = cfg.get("checks", {})
+    source = "config" if "acceptance_headings" in checks else "default"
     headings = checks.get("acceptance_headings", DEFAULT_HEADINGS)
     if not isinstance(headings, list) or not headings or not all(isinstance(h, str) for h in headings):
         raise InputError("[checks].acceptance_headings must be a non-empty list of strings")
+    judged = [o for o in issues if o["kind"] not in (None, "finished")]
+    skipped = [o["id"] for o in issues if o["kind"] is None]
+    base = {"headings": headings, "headings_source": source, "skipped_unmapped": skipped}
+    if judged and all(o["description"] is None for o in judged):
+        return {**base, "items": None, "basis": "not_computed",
+                "reason": "descriptions not read: every unfinished issue has a null description, which "
+                          "a list read often leaves out; read the issues themselves"}
     items = []
-    for o in issues:
-        if o["kind"] == "finished":
-            continue
+    for o in judged:
         if not o["description"]:
             items.append({"id": o["id"], "status": o["status"]["name"], "reason": "no_description"})
         elif not has_heading(o["description"], headings):
             items.append({"id": o["id"], "status": o["status"]["name"], "reason": "no_heading"})
-    return {"headings": headings, "items": items,
-            "basis": "unfinished issues whose description has no heading (Markdown #, underlined, "
-                     "hN., or a bold line) named as one of `headings`; content under it is not judged"}
+    return {**base, "items": items, "reason": None,
+            "basis": "unfinished mapped issues whose description has no heading (Markdown #, underlined, "
+                     "hN., or a bold line) named as one of `headings`; content under it is not judged. "
+                     "Unmapped issues are skipped: finished or not cannot be told"}
 
 
-def _period_bounds(sprint, taken):
-    start_raw, end_raw = sprint.get("start_date"), sprint.get("end_date")
-    start = parse_time(start_raw, f"sprint {sprint.get('name')!r}: start_date")
-    end = parse_time(end_raw, f"sprint {sprint.get('name')!r}: end_date")
-    if end is not None and isinstance(end_raw, str) and len(end_raw) == 10:
+# --- periods ---------------------------------------------------------------------------------
+
+def period_bounds(sprint, taken, tz):
+    """-> (start, end, open_period, skip_reason)."""
+    name = sprint.get("name")
+    start, _ = parse_bound(sprint.get("start_date"), f"sprint {name!r}: start_date", tz)
+    end, end_date_only = parse_bound(sprint.get("end_date"), f"sprint {name!r}: end_date", tz)
+    if end is not None and end_date_only:
         end += timedelta(days=1)  # a date-only end includes that whole day
-    return start, end if end is not None else taken, end is None
+        end = datetime.combine(end.date(), time(), tzinfo=tz)
+    closed = str(sprint.get("state") or "").lower() in CLOSED_STATES
+    if start is None:
+        return None, None, None, "no start date"
+    if end is None and closed:
+        return None, None, None, "closed, but no end date: where it ended cannot be told"
+    if start > taken:
+        return start, None, None, "starts after taken_at: not started"
+    open_period = end is None or end > taken
+    return start, end if end is not None else taken, open_period, None
+
+
+def no_sprints_reason(sprints):
+    return "sprints not read: the snapshot has no sprints" if sprints is None else "the board has no sprints"
 
 
 def delivered(issues):
-    """Finished and not marked abandoned: abandoned work finished but was not delivered."""
-    return [o for o in issues if o["kind"] == "finished"
-            and (o.get("markers") or {}).get("abandoned") is not True]
+    """-> (finished and not marked abandoned, ids among them whose abandoned marker is unreadable)."""
+    out = [o for o in issues if o["kind"] == "finished"
+           and (o.get("markers") or {}).get("abandoned") is not True]
+    unknown = [o["id"] for o in out if (o.get("markers") or {}).get("abandoned") is None]
+    return out, unknown
+
+
+DELIVERED = ("finished issues not marked abandoned (a finished issue whose abandoned marker cannot be "
+             "read counts as delivered and is listed in abandoned_unknown)")
 
 
 def finish_gap(finished):
@@ -298,51 +554,55 @@ def finished_time(o):
     return parse_time(o["finished_at"], f"issue {o['id']}: finished_at")
 
 
-def throughput(issues, sprints, taken):
+def throughput(issues, sprints, taken, tz, zone, sc):
     refuse = lambda reason: {"periods": None, "reason": reason, "basis": "not_computed"}
-    finished = delivered(issues)
+    if excluded(sc):
+        return refuse(EXCLUDED)
+    finished, unknown = delivered(issues)
     gap = finish_gap(finished)
     if gap:
         return refuse(gap)
     if not sprints:
-        return refuse("no sprint dates in the snapshot")
+        return refuse(no_sprints_reason(sprints))
     periods, skipped = [], []
     placed = set()
     for sp in sprints:
-        if not isinstance(sp, dict):
-            raise InputError("sprints: each sprint must be an object")
-        start, end, open_period = _period_bounds(sp, taken)
-        if start is None:
-            skipped.append(sp.get("name"))
+        start, end, open_period, skip = period_bounds(sp, taken, tz)
+        if skip:
+            skipped.append({"sprint": sp.get("name"), "reason": skip})
             continue
-        ids = [o["id"] for o in finished if start <= parse_time(o["finished_at"], "finished_at") < end]
+        ids = [o["id"] for o in finished if start <= finished_time(o) < end]
         placed.update(ids)
         periods.append({"sprint": sp.get("name"), "start": sp.get("start_date"),
                         "end": sp.get("end_date"), "finished": len(ids), "open_period": open_period})
     if not periods:
-        return refuse("no sprint in the snapshot has a start date")
+        return refuse("no sprint in the snapshot can be placed in time: "
+                      + "; ".join(f"{s['sprint']}: {s['reason']}" for s in skipped))
     return {"periods": periods, "skipped_sprints": skipped,
             "finished_outside_periods": len([o for o in finished if o["id"] not in placed]),
+            "abandoned_unknown": idlist(unknown),
             "reason": None,
             "basis": "exact",
-            "method": "finished issues not marked abandoned, counted by the tool's finished_at within each sprint's dates "
-                      "(a date-only end includes that day); an open period runs to taken_at"}
+            "method": f"{DELIVERED}, counted by the tool's finished_at within each sprint's dates "
+                      f"(days in {zone}; a date-only end includes that day); an open period runs to "
+                      "taken_at; a closed sprint without an end date, or one not yet started, is skipped"}
 
 
 PERCENTILES = (50, 70, 85, 95)
 NO_WINDOW = "no window given (--window-start/--window-end)"
 
 
-def parse_window(window):
+def parse_window(window, tz):
     """(start, end) strings -> {start, end, from, to}; a date-only end includes that day."""
     if window is None:
         return None
     s_raw, e_raw = window
-    start, end = parse_time(s_raw, "window start"), parse_time(e_raw, "window end")
+    start, _ = parse_bound(s_raw, "window start", tz)
+    end, end_date_only = parse_bound(e_raw, "window end", tz)
     if start is None or end is None:
         raise InputError("a window needs both --window-start and --window-end")
-    if len(e_raw) == 10:
-        end += timedelta(days=1)
+    if end_date_only:
+        end = datetime.combine(end.date() + timedelta(days=1), time(), tzinfo=tz)
     if end <= start:
         raise InputError(f"window: end {e_raw!r} is not after start {s_raw!r}")
     return {"start": s_raw, "end": e_raw, "from": start, "to": end}
@@ -356,16 +616,19 @@ def window_info(win):
     return {"start": win["start"], "end": win["end"]} if win else None
 
 
-def window_throughput(issues, win):
+def window_throughput(issues, win, sc):
     if win is None:
         return {"finished": None, "ids": None, "reason": NO_WINDOW, "basis": "not_computed"}
-    finished = delivered(issues)
+    if excluded(sc):
+        return {**window_info(win), "finished": None, "ids": None, "reason": EXCLUDED, "basis": "not_computed"}
+    finished, unknown = delivered(issues)
     gap = finish_gap(finished)
     if gap:
         return {**window_info(win), "finished": None, "ids": None, "reason": gap, "basis": "not_computed"}
     ids = [o["id"] for o in finished if in_window(finished_time(o), win)]
     return {**window_info(win), "finished": len(ids), "ids": ids, "reason": None, "basis": "exact",
-            "method": "finished issues not marked abandoned whose finished_at falls in the window"}
+            "abandoned_unknown": idlist([i for i in unknown if i in ids]),
+            "method": f"{DELIVERED} whose finished_at falls in the window"}
 
 
 def num(text):
@@ -373,24 +636,29 @@ def num(text):
     return int(x) if x == int(x) else x
 
 
-def start_of(o, kinds, mapping):
-    """-> (raw ISO start, source) or (None, None). From transitions when the tool gave them: the
-    first entry into a status whose kind is started; otherwise the tool's own started_at."""
-    trans = o.get("transitions")
-    if trans:
-        entries = sorted(((parse_time(t["at"], f"issue {o['id']}: transitions"), t["at"]) for t in trans
-                          if mapping.get(t["status"]) in kinds), key=lambda x: x[0])
-        return (entries[0][1], "transitions") if entries else (None, None)
-    if o.get("started_at") is not None:
-        return o["started_at"], "started_at"
-    return None, None
+def rank_needed(p):
+    return math.ceil(100 / (100 - p) - 1e-9) if p < 100 else math.inf
 
 
-def cycle_time(issues, win, kinds, mapping):
+def percentiles(vals):
+    n, pct, why = len(vals), {}, {}
+    for p in PERCENTILES:
+        need = rank_needed(p)
+        if n < need:
+            pct[str(p)] = None
+            why[str(p)] = f"n={n} too small for p{p} (needs {need})"
+        else:
+            pct[str(p)] = vals[-(-p * n // 100) - 1]
+    return pct, why
+
+
+def cycle_time(issues, win, kinds, source, mapping, sc):
     def refuse(reason):
         return {"n": None, "percentiles": None, "items": None, "window": window_info(win),
                 "reason": reason, "basis": "not_computed"}
-    finished = delivered(issues)
+    if excluded(sc):
+        return refuse(EXCLUDED)
+    finished, unknown = delivered(issues)
     gap = finish_gap(finished)
     if gap:
         return refuse(gap)
@@ -399,6 +667,10 @@ def cycle_time(issues, win, kinds, mapping):
     if not finished:
         return refuse("no finished issues" + (" in the window" if win else ""))
     starts = {id(o): start_of(o, kinds, mapping) for o in finished}
+    problems = [(o["id"], starts[id(o)][2]) for o in finished if starts[id(o)][2]]
+    if problems:
+        return refuse(f"{len(problems)} finished issue(s) have a history that cannot give a start: "
+                      + "; ".join(f"{i}: {p}" for i, p in problems[:5]) + (" ..." if len(problems) > 5 else ""))
     lacking = [o["id"] for o in finished if starts[id(o)][0] is None]
     if lacking:
         return refuse(f"{len(lacking)} finished issue(s) have no start time: neither transitions into a "
@@ -406,38 +678,41 @@ def cycle_time(issues, win, kinds, mapping):
                       "status_since of a finished issue is when it finished, and updated_at is not a start")
     items = []
     for o in finished:
-        raw, source = starts[id(o)]
+        raw, src, _ = starts[id(o)]
         s, f = parse_time(raw, f"issue {o['id']}: start"), finished_time(o)
         if f < s:
             raise InputError(f"issue {o['id']}: finished_at is before its start")
-        items.append({"id": o["id"], "started_at": raw, "start_source": source,
+        items.append({"id": o["id"], "started_at": raw, "start_source": src,
                       "finished_at": o["finished_at"],
                       "days": round((f - s).total_seconds() / 86400, 2), "_f": f})
     items.sort(key=lambda x: x["_f"])
     for x in items:
         del x["_f"]
     vals = sorted(x["days"] for x in items)
-    n = len(vals)
-    pct = {str(p): vals[-(-p * n // 100) - 1] for p in PERCENTILES}
-    return {"n": n, "percentiles": pct, "items": items, "window": window_info(win), "reason": None,
-            "basis": "exact",
-            "started_kinds": kinds,
-            "method": "finished_at minus the start, in days, for finished issues not marked abandoned "
-                      "(in the window, when one is given); percentiles by nearest rank over n items. "
-                      "start_source transitions = first entry into a started kind (started_kinds); "
-                      "started_at = the tool's own start, used only without transitions, which may "
-                      "not follow started_kinds"}
+    pct, why = percentiles(vals)
+    ids = {x["id"] for x in items}
+    return {"n": len(vals), "percentiles": pct, "percentile_reasons": why, "items": items,
+            "window": window_info(win), "reason": None, "basis": "exact",
+            "started_kinds": kinds, "started_kinds_source": source,
+            "abandoned_unknown": idlist([i for i in unknown if i in ids]),
+            "method": f"finished_at minus the start, in days, for {DELIVERED} (in the window, when one "
+                      "is given); percentiles by nearest rank over n items, null where n cannot resolve "
+                      "the rank. start_source transitions = first entry into a started kind "
+                      "(started_kinds); started_at = the tool's own start, used only without "
+                      "transitions, which may not follow started_kinds"}
 
 
 SLE_RX = re.compile(r"^\s*(\d+(?:\.\d+)?)\s*days?\s+at\s+(\d+(?:\.\d+)?)\s*%\s*$", re.IGNORECASE)
 
 
-def sle(cfg, ct):
+def sle(cfg, ct, given):
     raw = (cfg.get("project") or {}).get("sle")
-    base = {"declared": raw is not None, "sle": raw, "days": None, "probability": None,
-            "n": None, "within": None, "share": None, "misses": None}
+    base = {"declared": (raw is not None) if given else None, "sle": raw, "days": None,
+            "probability": None, "n": None, "within": None, "share": None, "misses": None,
+            "small_sample": None, "small_sample_reason": None}
     if raw is None:
-        return {**base, "reason": "no [project].sle in config", "basis": "not_computed"}
+        return {**base, "reason": NO_CONFIG if not given else "no [project].sle in config",
+                "basis": "not_computed"}
     m = SLE_RX.match(raw) if isinstance(raw, str) else None
     if not m or not 0 < float(m.group(2)) <= 100:
         raise InputError(f"[project].sle = {raw!r}: expected \"<n> days at <p>%\"")
@@ -447,13 +722,18 @@ def sle(cfg, ct):
         return {**base, "reason": f"no cycle times: {ct['reason']}", "basis": "not_computed"}
     misses = [x["id"] for x in ct["items"] if x["days"] > days]
     within = ct["n"] - len(misses)
+    need = rank_needed(prob)
+    small = ct["n"] < need
     return {**base, "n": ct["n"], "within": within, "share": round(within / ct["n"], 4),
-            "misses": misses, "reason": None, "basis": "exact",
+            "misses": misses, "small_sample": small,
+            "small_sample_reason": f"n={ct['n']} is below {need} items, too few to test a {prob}% SLE"
+                                   if small else None,
+            "reason": None, "basis": "exact",
             "method": "share of the cycle_time items whose cycle time is at most the SLE's days; "
                       "compare it with the SLE's probability"}
 
 
-def arrivals(issues, sprints, taken, win):
+def arrivals(issues, sprints, taken, win, tz, zone):
     lacking = [o["id"] for o in issues if o["created_at"] is None]
     if lacking:
         reason = (f"{len(lacking)} issue(s) have no created_at ({shown(lacking)}); "
@@ -461,33 +741,38 @@ def arrivals(issues, sprints, taken, win):
         return {"periods": None, "reason": reason,
                 "window": {"arrived": None, "ids": None, "reason": reason}, "basis": "not_computed"}
     created = {o["id"]: parse_time(o["created_at"], f"issue {o['id']}: created_at") for o in issues}
-    periods, reason = None, "no sprint dates in the snapshot"
+    periods, skipped = [], []
     for sp in sprints or []:
-        start, end, open_period = _period_bounds(sp, taken)
-        if start is None:
+        start, end, open_period, skip = period_bounds(sp, taken, tz)
+        if skip:
+            skipped.append({"sprint": sp.get("name"), "reason": skip})
             continue
         ids = [i for i, t in created.items() if start <= t < end]
-        periods = (periods or []) + [{"sprint": sp.get("name"), "start": sp.get("start_date"),
-                                      "end": sp.get("end_date"), "arrived": len(ids), "ids": ids,
-                                      "open_period": open_period}]
-    if periods is not None:
+        periods.append({"sprint": sp.get("name"), "start": sp.get("start_date"),
+                        "end": sp.get("end_date"), "arrived": len(ids), "ids": ids,
+                        "open_period": open_period})
+    if periods:
         reason = None
-    elif sprints:
-        reason = "no sprint in the snapshot has a start date"
+    elif not sprints:
+        reason = no_sprints_reason(sprints)
+    else:
+        reason = "no sprint in the snapshot can be placed in time: " + "; ".join(
+            f"{s['sprint']}: {s['reason']}" for s in skipped)
     if win is None:
         wd = {"arrived": None, "ids": None, "reason": NO_WINDOW}
     else:
         ids = [i for i, t in created.items() if in_window(t, win)]
         wd = {**window_info(win), "arrived": len(ids), "ids": ids, "reason": None}
-    return {"periods": periods, "reason": reason, "window": wd, "basis": "created_at",
-            "method": "issues whose created_at falls in each sprint's dates or the window; an issue "
-                      "that left the scope before this snapshot is not seen"}
+    return {"periods": periods or None, "skipped_sprints": skipped, "reason": reason, "window": wd,
+            "basis": "created_at",
+            "method": f"issues whose created_at falls in each sprint's dates or the window (days in "
+                      f"{zone}); an issue that left the scope before this snapshot is not seen"}
 
 
-# --- estimates -------------------------------------------------------------------------------
+# --- fields: estimates and themes ------------------------------------------------------------
 
-def estimate_reader(cfg):
-    spec = (cfg.get("fields") or {}).get("estimate")
+def field_reader(cfg, key):
+    spec = (cfg.get("fields") or {}).get(key)
     if spec is None:
         return None
     if isinstance(spec, str) and spec.startswith("field:") and len(spec) > 6:
@@ -495,7 +780,30 @@ def estimate_reader(cfg):
     if isinstance(spec, str) and spec.startswith("label:") and spec.count("{value}") == 1:
         pre, post = spec[6:].split("{value}")
         return {"spec": spec, "label": re.compile("^" + re.escape(pre) + "(.+?)" + re.escape(post) + "$")}
-    raise InputError(f"[fields].estimate = {spec!r}: expected \"field:<name>\" or \"label:<prefix>{{value}}\"")
+    raise InputError(f"[fields].{key} = {spec!r}: expected \"field:<name>\" or \"label:<prefix>{{value}}\"")
+
+
+def estimate_reader(cfg):
+    return field_reader(cfg, "estimate")
+
+
+def read_field(o, reader):
+    """-> (raw value, state), state one of ok, missing (no value), not_read (the read carried no
+    such key), unreadable (several labels)."""
+    if "field" in reader:
+        name = reader["field"]
+        fields = o.get("fields") if isinstance(o.get("fields"), dict) else None
+        if name in o:
+            raw = o[name]
+        elif fields is not None and name in fields:
+            raw = fields[name]
+        else:
+            return None, "not_read"
+        return (None, "missing") if raw is None else (raw, "ok")
+    found = {m.group(1) for n in label_names(o["labels"]) if (m := reader["label"].match(n))}
+    if not found:
+        return None, "missing"
+    return (found.pop(), "ok") if len(found) == 1 else (None, "unreadable")
 
 
 def _number(v):
@@ -511,45 +819,71 @@ def _number(v):
 
 
 def read_estimate(o, reader):
-    """-> (value, state), state one of ok, missing, unreadable. A missing estimate is not zero."""
-    if "field" in reader:
-        name = reader["field"]
-        fields = o.get("fields") if isinstance(o.get("fields"), dict) else {}
-        raw = o[name] if name in o else fields.get(name)
-        if raw is None:
-            return None, "missing"
-        v = _number(raw)
-        return (v, "ok") if v is not None else (None, "unreadable")
-    found = {m.group(1) for n in label_names(o["labels"]) if (m := reader["label"].match(n))}
-    if not found:
-        return None, "missing"
-    v = _number(found.pop()) if len(found) == 1 else None
+    """-> (value, state), state one of ok, missing, not_read, unreadable. Missing is not zero."""
+    raw, state = read_field(o, reader)
+    if state != "ok":
+        return None, state
+    v = _number(raw)
     return (v, "ok") if v is not None else (None, "unreadable")
 
 
-def estimates(issues, reader):
+def no_field_reason(given, key):
+    return NO_CONFIG if not given else f"no [fields].{key} in config"
+
+
+def estimates(issues, reader, given):
     if reader is None:
-        return {"declared": False, "field": None, "total": None, "by_kind": None, "with_estimate": None,
-                "without_estimate": None, "unreadable": None,
-                "reason": "no [fields].estimate in config", "basis": "not_computed"}
-    total, by_kind, ok, missing, bad = 0, {}, 0, [], []
+        return {"declared": False if given else None, "field": None, "total": None, "by_kind": None,
+                "with_estimate": None, "without_estimate": None, "unreadable": None,
+                "estimate_not_read": None, "complete": None,
+                "reason": no_field_reason(given, "estimate"), "basis": "not_computed"}
+    total, by_kind, ok, missing, bad, not_read = 0, {}, 0, [], [], []
     for o in issues:
         v, state = read_estimate(o, reader)
-        if state == "missing":
-            missing.append(o["id"])
-        elif state == "unreadable":
-            bad.append(o["id"])
-        else:
+        if state == "ok":
             ok += 1
             total += v
             if o["kind"] is not None:
                 by_kind[o["kind"]] = by_kind.get(o["kind"], 0) + v
-    return {"declared": True, "field": reader["spec"], "total": total, "by_kind": by_kind,
+        else:
+            {"missing": missing, "unreadable": bad, "not_read": not_read}[state].append(o["id"])
+    none = ok == 0
+    return {"declared": True, "field": reader["spec"], "total": None if none else total,
+            "by_kind": None if none else by_kind,
+            "total_reason": "no issue has a readable estimate" if none else None,
             "with_estimate": ok, "without_estimate": idlist(missing), "unreadable": idlist(bad),
+            "estimate_not_read": idlist(not_read), "complete": not (missing or bad or not_read),
             "reason": None, "basis": "estimate as the board holds it now",
             "method": "sum of estimates read through [fields].estimate; total includes unmapped issues, "
-                      "by_kind does not. Issues without one, or with one that is not a single "
-                      "non-negative number, are counted apart, never as zero"}
+                      "by_kind does not. Issues without one, with one that is not a single non-negative "
+                      "number, or whose read carried no such key (estimate_not_read), are counted apart, "
+                      "never as zero; complete is false when any exists"}
+
+
+def themes(issues, reader, given):
+    if reader is None:
+        return {"declared": False if given else None, "field": None, "by_theme": None,
+                "without_theme": None, "theme_unreadable": None, "theme_not_read": None,
+                "reason": no_field_reason(given, "theme"), "basis": "not_computed"}
+    by_theme, missing, bad, not_read = {}, [], [], []
+    for o in issues:
+        raw, state = read_field(o, reader)
+        if state == "ok":
+            if isinstance(raw, dict):
+                raw = raw.get("name")
+            if isinstance(raw, (str, int)) and not isinstance(raw, bool):
+                row = by_theme.setdefault(str(raw), {})
+                k = o["kind"] or UNMAPPED
+                row[k] = row.get(k, 0) + 1
+                row["total"] = row.get("total", 0) + 1
+                continue
+            state = "unreadable"
+        {"missing": missing, "unreadable": bad, "not_read": not_read}[state].append(o["id"])
+    return {"declared": True, "field": reader["spec"], "by_theme": by_theme,
+            "without_theme": idlist(missing), "theme_unreadable": idlist(bad),
+            "theme_not_read": idlist(not_read), "reason": None, "basis": "theme as the board holds it now",
+            "method": "issues per theme read through [fields].theme, by kind (unmapped as "
+                      f"{UNMAPPED!r}) and in total; an issue with several themes is theme_unreadable"}
 
 
 def in_sprint(o, sp):
@@ -566,40 +900,112 @@ def sprint_label(ref):
     return ref
 
 
-def velocity(issues, sprints, reader):
+def velocity(issues, sprints, reader, given, sc):
+    if excluded(sc):
+        return {"periods": None, "reason": EXCLUDED, "basis": "not_computed"}
     if not sprints:
-        return {"periods": None, "reason": "no sprints in the snapshot", "basis": "not_computed"}
-    finished = delivered(issues)
+        return {"periods": None, "reason": no_sprints_reason(sprints), "basis": "not_computed"}
+    finished, unknown = delivered(issues)
     periods, placed = [], set()
     for sp in sprints:
-        if not isinstance(sp, dict):
-            raise InputError("sprints: each sprint must be an object")
         mine = [o for o in finished if in_sprint(o, sp)]
         placed.update(id(o) for o in mine)
-        points, missing, bad = (0 if reader else None), [], []
+        points, missing, bad, not_read = (0 if reader else None), [], [], []
         for o in mine if reader else []:
             v, state = read_estimate(o, reader)
             if state == "ok":
                 points += v
             else:
-                (missing if state == "missing" else bad).append(o["id"])
+                {"missing": missing, "unreadable": bad, "not_read": not_read}[state].append(o["id"])
+        lacking = missing + bad + not_read
+        why = None
+        if reader and lacking:
+            points, why = None, (f"{len(lacking)} finished item(s) lack a readable estimate "
+                                 f"({shown(lacking)}): a sum without them would be too low")
         periods.append({"sprint": sp.get("name"), "state": sp.get("state"), "start": sp.get("start_date"),
                         "end": sp.get("end_date"), "finished": len(mine), "points": points,
+                        "points_reason": why,
                         "finished_without_estimate": idlist(missing) if reader else None,
-                        "finished_estimate_unreadable": idlist(bad) if reader else None})
+                        "finished_estimate_unreadable": idlist(bad) if reader else None,
+                        "finished_estimate_not_read": idlist(not_read) if reader else None})
     return {"periods": periods,
-            "points_reason": None if reader else "no [fields].estimate in config: velocity by count only",
+            "points_reason": None if reader else f"{no_field_reason(given, 'estimate')}: velocity by count only",
             "finished_outside_sprints": idlist([o["id"] for o in finished if id(o) not in placed]),
+            "abandoned_unknown": idlist(unknown),
             "reason": None, "basis": "by_sprint_field",
-            "method": "per sprint, finished issues not marked abandoned whose sprint field names it, and "
-                      "the sum of their whole estimates (all or nothing). It reads the sprint each item "
-                      "names now, not finish times: an item finished after its sprint closed and "
+            "method": f"per sprint, {DELIVERED} whose sprint field names it, and the sum of their "
+                      "estimates, null when any of them lacks a readable one. It reads the sprint each "
+                      "item names now, not finish times: an item finished after its sprint closed and "
                       "carried to the next is counted in the sprint it now names"}
 
 
 # --- comparison ------------------------------------------------------------------------------
 
-def comparison(snap, earlier, reader):
+def mapping_diff(old, new):
+    if old == new:
+        return None
+    return {"added": {k: v for k, v in new.items() if k not in old},
+            "removed": {k: v for k, v in old.items() if k not in new},
+            "changed": [{"status": k, "from": old[k], "to": new[k]} for k in new
+                        if k in old and old[k] != new[k]]}
+
+
+def _force(objs, reader):
+    ids, lacking, total = [], [], 0
+    for o in objs:
+        ids.append(o["id"])
+        v, state = read_estimate(o, reader)
+        if state == "ok":
+            total += v
+        else:
+            lacking.append(o["id"])
+    return {"points": None if lacking else total, "ids": ids, "without_estimate": lacking}
+
+
+def forces(before, now, reader, given):
+    names = ("completed", "abandoned", "added", "removed", "re_estimated", "residual")
+    if reader is None:
+        return {**dict.fromkeys(names), "kind_unknown": None,
+                "reason": f"{no_field_reason(given, 'estimate')}: forces are in estimate units"}
+    later = list(now.values())
+
+    def was_finished(o):
+        e = before.get(str(o["id"]))
+        return e is not None and e["kind"] == "finished"
+    abandoned = lambda o: (o.get("markers") or {}).get("abandoned") is True
+    re_items, re_unknown, delta = [], [], 0
+    for key, o in now.items():
+        e = before.get(key)
+        if e is None:
+            continue
+        (old, s1), (new, s2) = read_estimate(e, reader), read_estimate(o, reader)
+        if s1 == "ok" and s2 == "ok":
+            if old != new:
+                re_items.append({"id": o["id"], "from": old, "to": new})
+                delta += new - old
+        elif s1 == "ok" or s2 == "ok":
+            re_unknown.append(o["id"])
+    return {
+        "completed": _force([o for o in later if o["kind"] == "finished" and not abandoned(o)
+                             and not was_finished(o)], reader),
+        "abandoned": _force([o for o in later if o["kind"] == "finished" and abandoned(o)
+                             and not was_finished(o)], reader),
+        "added": _force([o for k, o in now.items() if k not in before], reader),
+        "removed": _force([o for k, o in before.items() if k not in now], reader),
+        "re_estimated": {"delta": delta, "ids": [x["id"] for x in re_items], "items": re_items,
+                         "estimate_appeared_or_lost": re_unknown},
+        "residual": _force([o for o in later if o["kind"] not in (None, "finished")], reader),
+        "kind_unknown": [o["id"] for o in later if o["kind"] is None],
+        "reason": None,
+        "method": "estimate units between the two snapshots: completed = finished now (not abandoned) "
+                  "and not finished before, valued now; abandoned likewise; added = in the later only, "
+                  "valued now; removed = in the earlier only, valued then; re_estimated.delta = later "
+                  "minus earlier over items with both readable; residual = unfinished now. An item may be "
+                  "both added and completed. points is null when any item of the set lacks a readable "
+                  "estimate (without_estimate); unmapped items are in kind_unknown only"}
+
+
+def comparison(snap, earlier, reader, given, sc):
     if earlier is None:
         return {"made": False, "reason": "no earlier snapshot given (--compare)", "basis": "not_computed"}
     try:
@@ -608,29 +1014,44 @@ def comparison(snap, earlier, reader):
         raise InputError(f"earlier {e}") from None
     if parse_time(earlier["taken_at"], "earlier taken_at") > parse_time(snap["taken_at"], "taken_at"):
         raise InputError("--compare: the earlier snapshot was taken after this one")
+    esc = scope_of(earlier)
+    for k in ("query", "includes_finished"):
+        if esc[k] != sc[k]:
+            return {"made": False, "basis": "not_computed",
+                    "reason": f"the two snapshots were read with different scopes ({k}: {esc[k]!r} then "
+                              f"{sc[k]!r}); their difference would mix scope with change"}
     before = {str(o["id"]): o for o in earlier["issues"]}
     now = {str(o["id"]): o for o in snap["issues"]}
-    changed = {"status_changed": [], "kind_changed": [], "estimate_changed": [] if reader else None,
-               "sprint_changed": []}
+    changed = {"status_changed": [], "kind_changed": [], "kind_changed_by_mapping": [],
+               "estimate_changed": [] if reader else None, "sprint_changed": []}
     for key, o in now.items():
         e = before.get(key)
         if e is None:
             continue
+        same_status = e["status"]["name"] == o["status"]["name"]
         pairs = [("status_changed", e["status"]["name"], o["status"]["name"]),
-                 ("kind_changed", e["kind"], o["kind"]),
+                 ("kind_changed_by_mapping" if same_status else "kind_changed", e["kind"], o["kind"]),
                  ("sprint_changed", sprint_label(e.get("sprint")), sprint_label(o.get("sprint")))]
         if reader:
             pairs.append(("estimate_changed", read_estimate(e, reader)[0], read_estimate(o, reader)[0]))
         for name, old, new in pairs:
             if old != new:
                 changed[name].append({"id": o["id"], "from": old, "to": new})
+    reasons = [r for r in (scope_reason(esc), scope_reason(sc)) if r]
     return {"made": True, "earlier_taken_at": earlier["taken_at"], "later_taken_at": snap["taken_at"],
             "added": [o["id"] for k, o in now.items() if k not in before],
             "removed": [o["id"] for k, o in before.items() if k not in now],
             **changed,
-            "estimate_reason": None if reader else "no [fields].estimate in config",
+            "mapping_changed": mapping_diff(earlier["mapping"], snap["mapping"]),
+            "forces": forces(before, now, reader, given),
+            "estimate_reason": None if reader else no_field_reason(given, "estimate"),
+            "scope_complete": (True if esc["complete"] is True and sc["complete"] is True
+                               else False if False in (esc["complete"], sc["complete"]) else None),
+            "scope_reason": "; ".join(reasons) or None,
             "basis": "net difference between two snapshots: what changed, not when or how often; "
-                     "an item added and removed between them does not show"}
+                     "an item added and removed between them does not show; an issue missing from an "
+                     "incomplete read shows as removed. kind_changed_by_mapping: the status is the same "
+                     "and the mapping changed"}
 
 
 # --- series ----------------------------------------------------------------------------------
@@ -646,15 +1067,15 @@ def _days(first, last):
         d += timedelta(days=1)
 
 
-def _day_end(d):
-    return datetime.combine(d + timedelta(days=1), time(), tzinfo=timezone.utc)
+def _day_end(d, tz):
+    return datetime.combine(d + timedelta(days=1), time(), tzinfo=tz)
 
 
-def _utc_date(t):
-    return t.astimezone(timezone.utc).date()
+def _local_date(t, tz):
+    return t.astimezone(tz).date()
 
 
-def cfd(issues, mapping, taken, win):
+def cfd(issues, mapping, taken, win, tz, zone):
     if not issues:
         return _refuse_series("no issues in the snapshot")
     lacking = [o["id"] for o in issues if not o.get("transitions")]
@@ -662,15 +1083,18 @@ def cfd(issues, mapping, taken, win):
         return _refuse_series(f"{len(lacking)} issue(s) have no transitions from the tool ({shown(lacking)}); "
                               "a cumulative flow chart needs each issue's entry into each state, and counts "
                               "of what sits in each column now are not that")
-    trails = [sorted(((parse_time(t["at"], f"issue {o['id']}: transitions"), t["status"])
-                      for t in o["transitions"]), key=lambda x: x[0]) for o in issues]
-    first = _utc_date(win["from"]) if win else min(_utc_date(tr[0][0]) for tr in trails)
-    last = _utc_date(taken)
+    gaps = [(o["id"], g) for o in issues if (g := history_gap(o))]
+    if gaps:
+        return _refuse_series(f"{len(gaps)} issue(s) have a history that is not whole: "
+                              + "; ".join(f"{i}: {g}" for i, g in gaps[:5]) + (" ..." if len(gaps) > 5 else ""))
+    trails = [[(at, st) for at, _, st in _trail(o)] for o in issues]
+    first = _local_date(win["from"], tz) if win else min(_local_date(tr[0][0], tz) for tr in trails)
+    last = _local_date(taken, tz)
     if win:
-        last = min(last, _utc_date(win["to"] - timedelta(microseconds=1)))
+        last = min(last, _local_date(win["to"] - timedelta(microseconds=1), tz))
     points = []
     for d in _days(first, last):
-        cut, row = _day_end(d), {}
+        cut, row = _day_end(d, tz), {}
         for tr in trails:
             entered = [st for at, st in tr if at < cut]
             if entered:
@@ -678,68 +1102,78 @@ def cfd(issues, mapping, taken, win):
                 row[kind] = row.get(kind, 0) + 1
         points.append({"date": d.isoformat(), "counts": row})
     return {"points": points, "reason": None, "basis": "exact",
-            "method": "per UTC day, issues by the kind of the last status entered by that day's end, from "
-                      "the tool's transitions and the snapshot's mapping; an issue that left the scope "
-                      "before this snapshot is not seen"}
+            "method": f"per day ({zone}), issues by the kind of the last status entered by that day's end, "
+                      "from the tool's transitions and the snapshot's mapping; an issue that left the "
+                      "scope before this snapshot is not seen"}
 
 
-def burndown(issues, sprints, taken, reader, name):
+def burndown(issues, sprints, taken, reader, name, tz, zone, given, sc):
+    if excluded(sc):
+        return _refuse_series(EXCLUDED, sprint=name)
     if reader is None:
-        return _refuse_series("no [fields].estimate in config: a burndown needs estimates", sprint=name)
+        return _refuse_series(f"{no_field_reason(given, 'estimate')}: a burndown needs estimates", sprint=name)
     if not sprints:
-        return _refuse_series("no sprints in the snapshot", sprint=name)
+        return _refuse_series(no_sprints_reason(sprints), sprint=name)
     if name is not None:
         chosen = [sp for sp in sprints if name in (sp.get("name"), str(sp.get("id")))]
         if not chosen:
             return _refuse_series(f"sprint {name!r} is not in the snapshot", sprint=name)
+        if len(chosen) > 1:
+            return _refuse_series(f"{len(chosen)} sprints match {name!r}; name one by id", sprint=name)
     else:
         chosen = [sp for sp in sprints if sp.get("state") == "active"]
         if len(chosen) != 1:
             return _refuse_series("no sprint named (--sprint) and not exactly one active sprint", sprint=None)
     sp = chosen[0]
-    label = sp.get("name")
-    start, end, _ = _period_bounds(sp, taken)
-    if start is None:
-        return _refuse_series(f"sprint {label!r} has no start date", sprint=label)
+    label_ = sp.get("name")
+    start, end, _, skip = period_bounds(sp, taken, tz)
+    if skip:
+        return _refuse_series(f"sprint {label_!r}: " + ("has not started" if start is not None else skip),
+                              sprint=label_)
     abandoned = [o for o in issues if (o.get("markers") or {}).get("abandoned") is True and in_sprint(o, sp)]
     gone = {id(o) for o in abandoned}
     mine = [o for o in issues if in_sprint(o, sp) and id(o) not in gone]
     if not mine:
-        return _refuse_series(f"no issue names sprint {label!r}", sprint=label)
+        return _refuse_series(f"no issue names sprint {label_!r}", sprint=label_)
     gap = finish_gap([o for o in mine if o["kind"] == "finished"])
     if gap:
-        return _refuse_series(gap, sprint=label)
-    sized, missing, bad = [], [], []
+        return _refuse_series(gap, sprint=label_)
+    sized, missing, bad, not_read = [], [], [], []
     for o in mine:
         v, state = read_estimate(o, reader)
         if state == "ok":
             done = finished_time(o) if o["kind"] == "finished" else None
             sized.append((v, done))
         else:
-            (missing if state == "missing" else bad).append(o["id"])
-    last = min(_utc_date(end - timedelta(microseconds=1)), _utc_date(taken))
+            {"missing": missing, "unreadable": bad, "not_read": not_read}[state].append(o["id"])
+    lacking = missing + bad + not_read
+    last = min(_local_date(end - timedelta(microseconds=1), tz), _local_date(taken, tz))
     points = []
-    for d in _days(_utc_date(start), last):
-        cut = _day_end(d)
+    for d in _days(_local_date(start, tz), last):
+        cut = _day_end(d, tz)
         points.append({"date": d.isoformat(),
                        "remaining": sum(v for v, done in sized if done is None or done >= cut)})
-    return {"sprint": label, "points": points, "without_estimate": idlist(missing),
-            "estimate_unreadable": idlist(bad), "abandoned_excluded": [o["id"] for o in abandoned],
+    return {"sprint": label_, "points": points, "without_estimate": idlist(missing),
+            "estimate_unreadable": idlist(bad), "estimate_not_read": idlist(not_read),
+            "complete": not lacking,
+            "complete_reason": (f"remaining leaves out {len(lacking)} issue(s) without a readable estimate "
+                                f"({shown(lacking)}), so it is too low") if lacking else None,
+            "abandoned_excluded": [o["id"] for o in abandoned],
             "reason": None, "basis": "exact finish times, current scope",
-            "method": "per UTC day of the sprint up to taken_at, the sum of estimates of the issues naming "
-                      "the sprint now that were not finished by that day's end (the tool's finished_at). "
-                      "Sprint membership and estimates are as of this snapshot: scope added or removed "
-                      "and re-estimates during the sprint are not seen; issues without an estimate are "
-                      "listed, not counted as zero"}
+            "method": f"per day ({zone}) of the sprint up to taken_at, the sum of estimates of the issues "
+                      "naming the sprint now that were not finished by that day's end (the tool's "
+                      "finished_at). Sprint membership and estimates are as of this snapshot: scope added "
+                      "or removed and re-estimates during the sprint are not seen; issues without an "
+                      "estimate are listed, not counted as zero"}
 
 
-def scatterplot(ct):
+def scatterplot(ct, tz, zone):
     if ct["n"] is None:
         return _refuse_series(f"no cycle times: {ct['reason']}")
-    pts = [{"id": x["id"], "finished": _utc_date(parse_time(x["finished_at"], "finished_at")).isoformat(),
+    pts = [{"id": x["id"], "finished": _local_date(parse_time(x["finished_at"], "finished_at"), tz).isoformat(),
             "days": x["days"]} for x in ct["items"]]
     return {"points": pts, "percentiles": ct["percentiles"], "reason": None, "basis": "exact",
-            "method": "one point per cycle_time item: its finish date (UTC) and cycle time in days"}
+            "method": f"one point per cycle_time item: its finish date ({zone}) and cycle time in days"}
 
 
 def histogram(ct):
@@ -751,39 +1185,58 @@ def histogram(ct):
             "method": "cycle_time items per whole-day band [from_days, to_days); empty bands included"}
 
 
-def compute(snap, cfg, earlier=None, window=None, sprint=None):
+def compute(snap, cfg, earlier=None, window=None, sprint=None, age_at=None):
+    given = cfg is not None
+    cfg = cfg or {}
     validate_snapshot(snap)
     taken = parse_time(snap["taken_at"], "taken_at")
     issues = snap["issues"]
-    win = parse_window(window)
+    mapping = snap["mapping"]
+    tz, zone = day_zone(cfg)
+    sc = scope_of(snap)
+    win = parse_window(window, tz)
     reader = estimate_reader(cfg)
-    kinds = started_kinds(cfg)
-    a = age(issues, taken, kinds)
-    a["reference_time"] = snap["taken_at"]
-    t = throughput(issues, snap.get("sprints"), taken)
-    t["window"] = window_throughput(issues, win)
-    ct = cycle_time(issues, win, kinds, snap.get("mapping") or {})
+    kinds, ks_source = started_kinds(cfg)
+    ref = taken
+    if age_at is not None:
+        ref, date_only = parse_bound(age_at, "--age-at", tz)
+        if date_only:
+            ref = _next_midnight(ref, tz)
+        if ref > taken:
+            raise InputError(f"--age-at {age_at!r} is after the snapshot's taken_at {snap['taken_at']!r}")
+    a = age(issues, ref, kinds, ks_source, mapping)
+    a["reference_time"] = age_at if age_at is not None else snap["taken_at"]
+    t = throughput(issues, snap.get("sprints"), taken, tz, zone, sc)
+    t["window"] = label(window_throughput(issues, win, sc), sc)
+    ct = cycle_time(issues, win, kinds, ks_source, mapping, sc)
+    atomic = snap["atomic"] if "atomic" in snap else (False if snap["source"] == "composed" else None)
     return {
         "schema": SCHEMA,
-        "snapshot": {"taken_at": snap["taken_at"], "source": snap["source"],
-                     "atomic": snap["source"] == "native",
-                     "unmapped_statuses": snap.get("unmapped_statuses", [])},
-        "counts": counts(issues),
-        "wip": wip(issues, kinds),
-        "limits": limits(issues, snap, cfg),
+        "config": {"given": given, "reason": None if given else NO_CONFIG},
+        "snapshot": {"taken_at": snap["taken_at"], "taken_at_basis": snap.get("taken_at_basis"),
+                     "source": snap["source"], "atomic": atomic,
+                     "scope": snap.get("scope"), "scope_complete": sc["complete"],
+                     "scope_reason": scope_reason(sc),
+                     "unmapped_statuses": snap.get("unmapped_statuses", []),
+                     "naive_timestamps": count_naive(issues), "day_boundaries": zone},
+        "timestamp_problems": timestamp_problems(issues, taken),
+        "counts": label(counts(issues), sc),
+        "wip": label(wip(issues, kinds, ks_source), sc),
+        "limits": label(limits(issues, snap, cfg, given), sc),
         "age": a,
         "missing_acceptance_criteria": acceptance(issues, cfg),
-        "throughput": t,
-        "arrivals": arrivals(issues, snap.get("sprints"), taken, win),
-        "cycle_time": ct,
-        "sle": sle(cfg, ct),
-        "estimates": estimates(issues, reader),
-        "velocity": velocity(issues, snap.get("sprints"), reader),
-        "comparison": comparison(snap, earlier, reader),
+        "throughput": label(t, sc),
+        "arrivals": label(arrivals(issues, snap.get("sprints"), taken, win, tz, zone), sc),
+        "cycle_time": label(ct, sc),
+        "sle": sle(cfg, ct, given),
+        "estimates": label(estimates(issues, reader, given), sc),
+        "themes": label(themes(issues, field_reader(cfg, "theme"), given), sc),
+        "velocity": label(velocity(issues, snap.get("sprints"), reader, given, sc), sc),
+        "comparison": comparison(snap, earlier, reader, given, sc),
         "series": {
-            "cfd": cfd(issues, snap.get("mapping") or {}, taken, win),
-            "burndown": burndown(issues, snap.get("sprints"), taken, reader, sprint),
-            "scatterplot": scatterplot(ct),
+            "cfd": cfd(issues, mapping, taken, win, tz, zone),
+            "burndown": burndown(issues, snap.get("sprints"), taken, reader, sprint, tz, zone, given, sc),
+            "scatterplot": scatterplot(ct, tz, zone),
             "histogram": histogram(ct),
         },
     }
@@ -798,6 +1251,8 @@ def main(argv=None):
     p.add_argument("--window-start")
     p.add_argument("--window-end")
     p.add_argument("--sprint", help="the sprint for the burndown; default the one active sprint")
+    p.add_argument("--age-at", help="reference time for age (ISO date or time, at most taken_at); "
+                                    "a date means the end of that day")
     a = p.parse_args(argv)
     try:
         if (a.window_start is None) != (a.window_end is None):
@@ -805,7 +1260,7 @@ def main(argv=None):
         window = (a.window_start, a.window_end) if a.window_start else None
         earlier = load_json(a.compare) if a.compare else None
         result = compute(load_json(a.snapshot), load_metrics_config(a.config),
-                         earlier=earlier, window=window, sprint=a.sprint)
+                         earlier=earlier, window=window, sprint=a.sprint, age_at=a.age_at)
     except InputError as e:
         print(f"board_metrics.py: error: {e}", file=sys.stderr)
         return 2

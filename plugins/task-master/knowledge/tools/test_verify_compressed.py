@@ -203,3 +203,71 @@ def test_dropped_scope_and_modal_fail():
 
 def test_added_hedge_is_not_a_failure():
     assert compare("It holds.\n", "It may hold.\n") == []
+
+
+# --- silent-failure fixes ---------------------------------------------------------------------
+
+def test_curly_apostrophe_negation_is_seen():
+    assert any("negations lost" in p for p in compare("This isn’t allowed.\n", "This is allowed.\n"))
+    assert compare("This isn’t allowed.\n", "This isn't allowed.\n") == []
+
+
+def test_moved_negation_passes_and_the_limit_is_printed(tmp_path, capsys):
+    # the documented limit: counts per page, not per sentence
+    assert compare("X is not Y. Z is W.\n", "X is Y. Z is not W.\n") == []
+    a, b = tmp_path / "a.md", tmp_path / "b.md"
+    a.write_text("X is not Y.\n", encoding="utf-8")
+    b.write_text("X is not Y.\n", encoding="utf-8")
+    assert main(["--pair", str(a), str(b)]) == 0
+    assert "not per sentence" in capsys.readouterr().out
+
+
+def git_base(tmp_path, pages):
+    root = tmp_path / "knowledge"
+    (root / "wiki").mkdir(parents=True)
+    (root / "SCHEMA.md").write_text("# Schema\n", encoding="utf-8")
+    for rel, text in pages.items():
+        (root / rel).parent.mkdir(parents=True, exist_ok=True)
+        (root / rel).write_text(text, encoding="utf-8")
+    git = ["git", "-C", str(tmp_path), "-c", "user.name=t", "-c", "user.email=t@t"]
+    subprocess.run(git[:3] + ["init", "-q"], check=True)
+    subprocess.run(git + ["add", "-A"], check=True)
+    subprocess.run(git + ["commit", "-qm", "readable"], check=True)
+    subprocess.run(git + ["tag", "readable"], check=True)
+    return root
+
+
+def test_page_deleted_since_the_ref_fails(tmp_path, capsys):
+    root = git_base(tmp_path, {"wiki/a.md": READABLE, "wiki/b.md": READABLE})
+    (root / "wiki" / "b.md").unlink()
+    assert main(["--root", str(root), "--ref", "readable"]) == 1
+    out = capsys.readouterr().out
+    assert "b.md" in out and "missing" in out and "2 of 3 pages pass" in out
+
+
+def test_nested_index_is_checked_root_index_skipped(tmp_path, capsys):
+    root = git_base(tmp_path, {"wiki/index.md": "x\n", "wiki/group/index.md": READABLE})
+    (root / "wiki" / "index.md").write_text("changed freely\n", encoding="utf-8")
+    (root / "wiki" / "group" / "index.md").write_text(FAIR.replace("should not copy", "should copy"),
+                                                      encoding="utf-8")
+    assert main(["--root", str(root), "--ref", "readable"]) == 1
+    out = capsys.readouterr().out
+    assert "group" in out and "1 of 2 pages pass" in out
+
+
+def test_zero_pages_is_an_error(tmp_path):
+    root = git_base(tmp_path, {"wiki/index.md": "x\n"})
+    assert main(["--root", str(root), "--ref", "readable", str(root / "wiki" / "index.md")]) == 2
+
+
+def test_unreadable_pair_is_exit_2(tmp_path):
+    b = tmp_path / "b.md"
+    b.write_text("x\n", encoding="utf-8")
+    assert main(["--pair", str(tmp_path / "nope.md"), str(b)]) == 2
+
+
+def test_page_outside_root_is_exit_2(tmp_path):
+    root = git_base(tmp_path, {"wiki/a.md": READABLE})
+    other = tmp_path / "elsewhere.md"
+    other.write_text("x\n", encoding="utf-8")
+    assert main(["--root", str(root), "--ref", "readable", str(other)]) == 2
