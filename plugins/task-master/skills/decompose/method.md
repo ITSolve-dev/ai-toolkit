@@ -46,15 +46,14 @@ means the base marks the rule as its own, not a source's.
    *Wrong if:* an entry passes to the tree unchanged from the input's wording.
 
 4. **Cut entries into vertical slices.** Each leaf changes something a reviewer can observe; it need
-   not be releasable alone (`wiki/cutting-work/vertical-slice.md`). An entry that is a layer, an
-   activity or an artifact is combined with its neighbours, not cut smaller
-   (`wiki/cutting-work/component-task-masquerading.md`). Cut with the patterns and their triggers
-   (`wiki/cutting-work/story-splitting-patterns.md`); never one task per step of a workflow. Where
-   several cuts fit, prefer the one that exposes a piece to drop, then the one with more equal
+   not be releasable alone (`wiki/cutting-work/vertical-slice.md`), which never licenses cutting
+   out a concern step 5 keeps in. A layer, activity or artifact is combined with its neighbours,
+   not cut smaller (`wiki/cutting-work/component-task-masquerading.md`). Cut with the patterns and
+   their triggers (`wiki/cutting-work/story-splitting-patterns.md`), never one task per workflow
+   step. Where several cuts fit, prefer the one exposing a piece to drop, then the one with more equal
    pieces (`wiki/cutting-work/choosing-between-splits.md`; the order is this wiki's). A spike only
    when the implementation is poorly understood and no pattern applies, its acceptance written as
-   questions, paired with a placeholder for the follow-on
-   (`wiki/cutting-work/spike-as-last-resort.md`).
+   questions, with a placeholder for the follow-on (`wiki/cutting-work/spike-as-last-resort.md`).
    *Wrong if:* leaves read as a list of layers or activities ("add table", "write endpoint").
 
 5. **Apply the two tests to every leaf** (`wiki/cutting-work/unit-of-work.md`; the tests are the
@@ -63,27 +62,35 @@ means the base marks the rule as its own, not a source's.
    tasks (`wiki/ordering/sequence-versus-wait.md`, this wiki's rule). A predecessor finished first,
    and review of the presented result, are not waits. If the piece before the wait has nothing to
    show, keep the task whole and mark it not to start until the outside party delivers. A
-   condition on releasing or enabling the result, not on building it, comes after the executor's
-   part, so it is no `wait` edge: write it into Boundaries and let the leaf start (this method's
-   reading of `wiki/ordering/sequence-versus-wait.md`, A handoff at the end). *Presented once:*
+   condition on releasing or enabling the result comes after the executor's part, so it is no
+   `wait` edge: write it into Boundaries and let the leaf start (this method's reading of the same
+   page, A handoff at the end). *Presented once:*
    read title, text and criteria for conjunctions, separators, unnamed plurals and criteria that
    could each ship alone; split only if each part can be delivered alone
-   (`wiki/cutting-work/compound-task-text-signs.md`). After a concern is cut out (step 7, Out of
-   scope), re-apply this test to the parent: if its acceptance needs the concern's behaviour, the
-   two are one leaf, because each half needs its own acceptance check
-   (`wiki/cutting-work/story-splitting-patterns.md`, Deferred Concern Slice).
+   (`wiki/cutting-work/compound-task-text-signs.md`). A concern (throttling, consent, audit, error
+   handling, a performance target) leaves the parent only if the person steering would accept the
+   parent's result without it (`wiki/cutting-work/story-splitting-patterns.md`, Mixed priority: the
+   test) and it is what puts the parent over the ceiling (same page, Deferred Concern Slice, When
+   it applies). Otherwise it stays: a result review would reject is not presented, whatever the
+   parent's acceptance omits or a "not released without" note says (this method's rule).
    *Wrong if:* a leaf's scope includes both obtaining something from outside and building on it,
-   or a `wait` edge names a condition on release.
+   a `wait` edge names a condition on release, or a leaf may not be released without another.
 
 6. **Mark dependencies.** Who holds the prerequisite: the project (`sequence`) or an outside party
-   (`wait`) (`wiki/ordering/sequence-versus-wait.md`). Remove hidden order where cheap, otherwise
-   state it: an estimate that holds only in one order names that order and what it assumes exists
-   (`wiki/ordering/independent-tasks.md`, `wiki/ordering/handling-a-sequence-dependency.md`). Read
-   each leaf's acceptance for what it needs to exist; that is an edge to the leaf building it, and
-   no such leaf is a missing entry (step 3). A stub that removes a dependency gets its follow-up
-   task, which may be sized 0 if the scale has a 0, and its criteria say it is a stub.
-   *Wrong if:* the edges form a cycle (a link is wrong, or the two are one task); acceptance needs
-   what a later leaf builds; two leaves change the same behaviour (name the one holding it).
+   (`wait`) (`wiki/ordering/sequence-versus-wait.md`). What a leaf's acceptance needs to exist and
+   no leaf builds is a missing entry (step 3). Before making a need a `sequence` edge, ask whether
+   a stand-in (stub, fixture, test double, data put in directly, a developer command) lets the leaf
+   start and be checked now with a presentable result; if so it goes into the leaf and the edge
+   goes (`wiki/ordering/independent-tasks.md`, scaffold it;
+   `wiki/ordering/handling-a-sequence-dependency.md`, The test, What leaving the order costs).
+   Keep an edge the wanted order already meets, stating what the estimate assumes exists (same
+   page). A chain whose head is not near work is a sign to break it (this method's reading of
+   that page's Which remedy, when, branch 3, and the chain sign on `independent-tasks.md`, Why).
+   The user's path order is no edge; a spike gates only leaves whose build needs its answer. A stub
+   gets a follow-up task, sized 0 if the scale has one, its criteria saying it is a stub (same
+   page, The zero-point task). *Wrong if:* the edges form a cycle (a link is wrong, or the two are
+   one task); acceptance needs what a later leaf builds; two leaves change the same behaviour (name
+   the one holding it); an edge stands where a stand-in would let the leaf start.
 
 7. **Fill the headings.** Every leaf carries, in its text, these five headings, because an agent
    fills a gap by guessing (`wiki/task-content/underspecified-task.md`):
@@ -94,14 +101,12 @@ means the base marks the rule as its own, not a source's.
      (`wiki/task-content/conversation-moves-into-the-task.md`, this wiki's conclusion). A decision
      is left to the executor only when either answer keeps the leaf's size and touches no other
      leaf; otherwise it is a question, or its own leaf or spike, sized as work (this method's own
-     rule: a delegated design decision is work the size never counted). Task-only facts are
-     required; facts the repository shows are included when known
+     rule). Task-only facts are required; facts the repository shows are included when known
      (`wiki/task-content/recoverable-versus-task-only-facts.md`, this wiki's extension).
    - **Out of scope:** nearby work that is not this task's, each item pointing at the leaf or
      placeholder that holds it, so the executor does not absorb it
-     (`wiki/cutting-work/related-changes-temptation.md`). A deferred
-     concern (security, error handling, a performance target) is named here and carried by a second
-     leaf (`wiki/cutting-work/story-splitting-patterns.md`, Deferred Concern Slice).
+     (`wiki/cutting-work/related-changes-temptation.md`); a concern step 5 let out is named here
+     with the leaf carrying it.
    - **Links:** the step 6 edges with their kind, plus siblings and passed-in neighbours this leaf
      touches (this method's own rule, so an overlap is visible to whoever reads one task alone).
    - **Acceptance:** observable checks a reader could pass or fail; a graded word in the title gets
@@ -114,10 +119,12 @@ means the base marks the rule as its own, not a source's.
    near work and 13, 20, 40, 100 for placeholders, and say so (`wiki/sizing/estimation-scale.md`,
    `wiki/sizing/estimating-by-horizon.md`). Size is relative, not days or hours
    (`wiki/sizing/ideal-days.md`). Place each leaf between a finished task one step smaller and one
-   a step larger (`wiki/sizing/triangulation.md`); with none, against the other leaves, marked
-   unanchored, the least trusted kind. A vague leaf still gets a size, with
-   its assumption stated (`wiki/sizing/estimating-underspecified-work.md`). Group nodes get no sum,
-   and pieces are not adjusted to total their parent (`wiki/sizing/estimation-scale.md`).
+   a step larger (`wiki/sizing/triangulation.md`); with none, against several other leaves, not
+   one, marked unanchored (same page, Failure signs). A reference leaf must itself pass the step 9
+   ceiling; one over is re-cut before anything is sized against it (this method's rule, from that
+   page's Limit). A vague leaf still gets a size, its assumption stated
+   (`wiki/sizing/estimating-underspecified-work.md`). Group nodes get no sum, and pieces are not
+   adjusted to total their parent (`wiki/sizing/estimation-scale.md`).
    *Output:* `Size: 5 — like T-12 (3) plus a second data source; smaller than T-7 (8)`.
    *Wrong if:* a value off the scale, or a size with no stated basis.
 
@@ -130,7 +137,7 @@ means the base marks the rule as its own, not a source's.
    results that could each be presented alone, or that would reach review as several unrelated
    changes, is over (`wiki/sizing/hidden-wip-in-large-items.md`). A leaf over returns to step 4;
    after two rounds, what still fails goes to `questions` with what blocks the cut (this method's
-   own rule: a third round more often means an unclear document than a bad cut). Stop cutting once
+   own rule). Stop cutting once
    a piece compares with known tasks (`wiki/sizing/over-disaggregation.md`). A leaf below the
    smallest step with a related sibling of equal priority is combined with it
    (`wiki/cutting-work/combining-small-tasks.md`). *Wrong if:* a near leaf sits above the ceiling
@@ -138,5 +145,6 @@ means the base marks the rule as its own, not a source's.
 
 10. **Check the whole.** All leaves done would deliver the input's request and nothing it did not
     ask for (`wiki/task-content/task-must-justify-itself.md`, across tasks). Every leaf passed step
-    5 after the last re-cut. *Wrong if:* part of the request, or a component it assumes, maps to no
-    leaf, placeholder or question.
+     5 after the last re-cut. A question about an assumed component also carries a placeholder sized
+    as work, so its cost stays in the totals (this method's rule). *Wrong if:* part of the request,
+    or a component it assumes, maps to no leaf or placeholder.
