@@ -14,7 +14,8 @@ none, the scale, iteration capacity, the SLE) and the decision the estimates are
 - `meaning`: the references just below and just above it, by name (not under flow);
 - `rests_on`: the feature of the text that set the step, the assumptions made, and the unknowns;
 - `ceiling`: `under`, or `over` with the reason, when it must be cut (`now` / `before start`) and
-  `recommend re-cut`; under flow, the scope test's result only. Never the cut itself: that is
+  `recommend re-cut`; under flow the same shape, with the scope test and the SLE check as the
+  reasons. Naming a remedy's kind (split, spike) is allowed; naming the pieces is not: that is
   `decompose`'s job, done with the source document;
 - `existing`: the estimate the task arrived with, if any, and whether you agree.
 
@@ -113,8 +114,12 @@ Put the setup you continued on and the absence of references in `assumptions`.
      the SLE; the check compares neither durations nor items (`wiki/sizing/right-sizing.md`, The
      test). Yes when its contents can be listed, none is an unknown the task must resolve, no
      compound sign fired, and executing plus reviewing them plausibly fits that time; otherwise
-     no, naming which failed (*this method's own rule*). Thin text: yes only if every plausible
-     reading fits.
+     no, naming which failed (*this method's own rule*). Thin text: judge the most likely
+     reading, name the others in `rests_on`, mark the answer provisional, and list the task in the
+     question asking for its text; a reading other than the likely one is not by itself an
+     unknown the task must resolve (*this method's own rule*). A task that is itself an
+     investigation is judged as a spike: yes when its time-box, set by you inside the SLE, is
+     stated.
    - **The remedy for a no:** split when a pattern or compound sign applies
      (`wiki/cutting-work/story-splitting-patterns.md`); a spike when the no comes from not knowing
      how it would be built and no pattern applies (`wiki/cutting-work/spike-as-last-resort.md`),

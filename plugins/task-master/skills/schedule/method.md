@@ -68,7 +68,7 @@ scales. A question for a person goes in `questions`, never in `needs_caller`.
    different estimators do not add up (`wiki/sizing/choosing-velocity-estimate-approach.md`, seventh
    question): scales differ, `blocked`. Every task is ordered in step 5, placed or not. Unestimated:
    tail as "needs estimate", and the total, so the date, understates the work by it
-   (`wiki/periods/velocity-range-forecast.md`). Over the ceiling (above the floor, or `ceiling:
+   (`wiki/periods/velocity-range-forecast.md`). Over the ceiling (above the velocity floor, or `ceiling:
    over`) or a coarse epic number: it counts in the running total at its place in the order, since
    cutting does not remove its work (this method's reading of the same page), and goes in no named
    period, because it cannot finish inside one (`wiki/sizing/size-ceiling.md`,
@@ -118,8 +118,10 @@ scales. A question for a person goes in `questions`, never in `needs_caller`.
      line is hard (`wiki/periods/fitting-stories-into-a-release.md`).
    - **Driver not stated:** the scope-fixed form, as an assumption, asking which gives way; the
      layout does not change, so the assumption is cheap to correct.
-   k × value counts every period as full: name beside the range the named periods' unused room
-   and any reduced period counted full, since each makes the range early (method's own rule).
+   k × value counts every period as full. Check the late end by packing the bucket at the floor
+   as in step 6; where whole tasks need more periods than k, the packed count is the late end,
+   since what may be promised cannot rest on periods no task fits (method's own rule). Name beside
+   the range the unused room and any reduced period counted full, since each makes it early.
    Then walk the tasks above the line for prerequisites below it. A needed one moves up, and enough
    drops to stay within the line. The owner's value order decides what drops; record the drop as a
    question (`wiki/ordering/value-order-versus-technical-necessity.md`).
