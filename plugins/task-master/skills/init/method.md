@@ -70,7 +70,9 @@ again (this method's own rule: a rerun that re-asks everything gets answered car
    states it or the person brings it up; otherwise it stays absent, and the report lists the
    defaults in one line. What each key means:
    - `setup`: a fixed period, a bound on started work, or both; neither is no setup the base
-     supports (`wiki/moving-work/board-rules-by-setup.md`).
+     supports (`wiki/moving-work/board-rules-by-setup.md`). Under iterations, check the board can
+     list its iterations; where it cannot, say every period-based skill will need them from the
+     caller, and let the person choose.
    - `period_days` under iterations: a month or less, held, not fitted to the work
      (`wiki/periods/period-length.md`); `commitment`: the goal or the selected tasks
      (`wiki/periods/commitment-over-a-period.md`).

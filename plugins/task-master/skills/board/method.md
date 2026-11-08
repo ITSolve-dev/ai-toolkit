@@ -60,6 +60,9 @@ completeness unknown); `--empty-ok` only when the person confirms the scope is e
   `_`), then `--history` that directory. Before running, give the count in the caveats; over about
   50, ask. An issue left out shows in `history.missing`: say it was scoped out, not lost.
 
+Where the help says the list leaves `parent` or `subtasks` empty unless filtered by a parent, the
+snapshot holds no hierarchy: say so, and every check on parents and children is `not_covered`.
+
 Redirect each read into its file, never into the conversation: the board does not pass through the
 caller's context. A read that warns it returned less than the scope is not a snapshot: say so, stop.
 
@@ -116,7 +119,8 @@ carry its `updated_at` from the snapshot; a move carries `expected`, its status 
    once, so a rerun skips it. Before an edit, close or label op, read the task; an `updated_at`
    later than the op's means someone changed it since: refuse that op.
 4. **Stop on the first failure.** Record the exit code and stderr in the op, write nothing more,
-   and report three lists: applied (with ids), failed (with the tool's message verbatim), not
+   and report three lists. One exception: an unsupported exit wrote nothing, so the ops of the same
+   op and relation are marked unsupported with it, and the rest go on. The lists: applied (with ids), failed (with the tool's message verbatim), not
    attempted. A partial or unsupported exit, or any failed write where the help gives no codes, is
    never retried: the write may have landed. A failed create stays failed until a read shows the
    task absent and the person confirms. Name tasks a failed link left unlinked.
@@ -126,11 +130,18 @@ carry its `updated_at` from the snapshot; a move carries `expected`, its status 
 
 `decompose` returns a tree as text; write it into a changeset before applying. A group node is a
 `create`; a leaf a `create_child` with `parent` its node's ref (a leaf with no node, a `create`); a
-placeholder a `create` whose text says it is one. The leaf's five headings, verbatim, are its
-`body_file`. A `sequence` edge is a `link` of relation `blocks` from the prerequisite to the leaf; a
-`wait` edge stays in the text only, since what it waits for is off the board. `Size` is an
-`add_label` of the `[board.size]` key it names; no `[board.size]`, the size is reported as not
-applied. decompose's questions are put to the person before the apply, not written as ops.
+placeholder a `create` whose text says it is one. A title carries no decompose ref. The leaf's five
+headings are its `body_file`, each as a `## <heading>` section with its text verbatim, except that a
+ref to another leaf becomes that leaf's title, and an assumption or open question the leaf cites is
+copied into it: the board does not hold decompose's reply. A `sequence` edge is a `link` of
+relation `blocks` from the prerequisite to the leaf; a `wait` edge stays in the text only, since
+what it waits for is off the board. `Size` is an `add_label` of the `[board.size]` key it names; no
+`[board.size]`, or a size not in it, is reported as not applied. decompose's questions are put to
+the person before the apply, not written as ops.
+
+Where the help says `blocks` is unavailable on this board (a plan or tier note), ask before the
+first write: leave the order in the bodies' Links sections only, or link as `relates`, which keeps
+the pair but loses the direction. Never choose for the person.
 
 ## Moves
 

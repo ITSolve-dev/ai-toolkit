@@ -109,7 +109,8 @@ means the base marks the rule as its own, not a source's.
      with the leaf carrying it.
    - **Links:** the step 6 edges with their kind, plus siblings and passed-in neighbours this leaf
      touches (this method's own rule, so an overlap is visible to whoever reads one task alone).
-   - **Acceptance:** observable checks a reader could pass or fail; a graded word in the title gets
+   - **Acceptance criteria:** (the first of `[process].acceptance_headings` where the caller
+     names the project's) observable checks a reader could pass or fail; a graded word in the title gets
      a condition pinning it; a threshold covers its edges; testing and documentation the project's
      done asks for are included (`wiki/task-content/testable-acceptance.md`,
      `wiki/task-content/conditions-of-satisfaction.md`).
