@@ -1,0 +1,50 @@
+{
+  "description": "Approve reads of the bundled knowledge base so background agents do not stop on a prompt, and deny writes to it so an agent cannot change the installed base. The `if` filters spare file calls elsewhere from starting a process. Grep, Glob and the shells stay unfiltered: `if` rules never matched Grep or Glob, and a shell rule cannot see a redirection target. `|| exit 0` keeps a uv failure from blocking unrelated work, since uv exits 2 and PreToolUse treats 2 as a block.",
+  "hooks": {
+    "PreToolUse": [
+      {
+        "matcher": "Read",
+        "hooks": [
+          {
+            "type": "command",
+            "if": "Read(//**/knowledge/**)",
+            "command": "uv run --no-project \"${CLAUDE_PLUGIN_ROOT}/hooks/guard_knowledge.py\" || exit 0",
+            "timeout": 10
+          }
+        ]
+      },
+      {
+        "matcher": "Write",
+        "hooks": [
+          {
+            "type": "command",
+            "if": "Write(//**/knowledge/**)",
+            "command": "uv run --no-project \"${CLAUDE_PLUGIN_ROOT}/hooks/guard_knowledge.py\" || exit 0",
+            "timeout": 10
+          }
+        ]
+      },
+      {
+        "matcher": "Edit",
+        "hooks": [
+          {
+            "type": "command",
+            "if": "Edit(//**/knowledge/**)",
+            "command": "uv run --no-project \"${CLAUDE_PLUGIN_ROOT}/hooks/guard_knowledge.py\" || exit 0",
+            "timeout": 10
+          }
+        ]
+      },
+      {
+        "matcher": "Grep|Glob|NotebookEdit|Bash|PowerShell",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "uv run --no-project \"${CLAUDE_PLUGIN_ROOT}/hooks/guard_knowledge.py\" || exit 0",
+            "timeout": 10
+          }
+        ]
+      }
+    ]
+  }
+}

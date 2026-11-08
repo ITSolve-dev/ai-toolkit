@@ -1,0 +1,20 @@
+{
+  "name": "pragmatic-programmer",
+  "version": "0.1.0",
+  "description": "A code expert the working agent delegates to. It writes, improves, debugs, designs and reviews code in a clean context, grounded in a curated knowledge base of language-agnostic rules bundled with the plugin, and cites the rule behind each decision.",
+  "author": {
+    "name": "ITSolve-dev"
+  },
+  "dependencies": [
+    "llm-wiki",
+    "spec-driven-guide"
+  ],
+  "keywords": [
+    "code-quality",
+    "refactoring",
+    "debugging",
+    "code-review",
+    "clean-code",
+    "delegation"
+  ]
+}
