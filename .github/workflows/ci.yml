@@ -23,6 +23,24 @@ jobs:
             claude plugin validate "$dir" --strict
           done
 
+  pragmatic-programmer:
+    strategy:
+      fail-fast: false
+      matrix:
+        # The hook's path handling differs by platform, and a Windows defect passes on Linux.
+        os: [ubuntu-latest, windows-latest, macos-latest]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v7
+      - uses: astral-sh/setup-uv@v9.0.0
+
+      - name: Check pages against the charter
+        run: uv run --no-project plugins/pragmatic-programmer/scripts/check_pages.py plugins/pragmatic-programmer/knowledge
+
+      - name: Test the hook, the page checks and the pilot runner
+        working-directory: plugins/pragmatic-programmer
+        run: uv run --no-project --python 3.13 -m unittest discover -s tests
+
   wiki-index:
     runs-on: ubuntu-latest
     steps:
