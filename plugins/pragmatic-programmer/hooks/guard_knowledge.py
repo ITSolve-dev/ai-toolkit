@@ -71,7 +71,9 @@ def is_absolute_pattern(pattern: str) -> bool:
 def glob_target(tool_input: dict, cwd: str) -> Path | None:
     """Where a Glob can look, or None if that cannot be told from the call."""
     pattern = tool_input.get("pattern")
-    if not isinstance(pattern, str) or ".." in re.split(r"[\\/]", pattern):
+    # Braces expand to alternatives, and an alternative may hold `..` (`{../../x,y}`), so the
+    # fixed prefix no longer bounds where the pattern reaches. Refuse both outright.
+    if not isinstance(pattern, str) or ".." in pattern or "{" in pattern or "}" in pattern:
         return None
     if is_absolute_pattern(pattern):
         if tool_input.get("path"):

@@ -141,6 +141,13 @@ class Guard(unittest.TestCase):
         pattern = self.knowledge.as_posix() + "/wiki/*.md"
         self.assertEqual(self.run_hook("Glob", {"pattern": pattern}), "allow")
 
+    def test_glob_with_braces_or_dots_gets_no_decision(self):
+        base = self.knowledge.as_posix()
+        for pattern in (base + "/{../../x,wiki}/*", base + "/wiki/{a,b}.md", base + "/wiki/x..y/*"):
+            self.assertIsNone(self.run_hook("Glob", {"pattern": pattern}), pattern)
+        relative = {"pattern": "{../../**,x}", "path": str(self.knowledge)}
+        self.assertIsNone(self.run_hook("Glob", relative))
+
     def test_glob_with_a_pattern_outside_the_base_gets_no_decision(self):
         pattern = self.project.as_posix() + "/*.md"
         self.assertIsNone(self.run_hook("Glob", {"pattern": pattern}))
