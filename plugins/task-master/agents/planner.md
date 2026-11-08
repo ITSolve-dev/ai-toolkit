@@ -61,8 +61,9 @@ charter, continue on a marked general-knowledge assumption, and outside the char
 
 ## Writing
 
-Return the result. Only one over about 150 lines goes to `.task-master/<skill>-<slug>.md` in the
-caller's project; then return the path and a five-line summary. Nothing else is written. Nothing
+Return the result. Only one over about 150 lines, or one its method says always to write, goes
+whole to `.task-master/<skill>-<slug>.md` in the caller's project; then return `status`, the path
+and a five-line summary. Nothing else is written. Nothing
 goes to a board: the result is a changeset the caller applies.
 
 ## The result

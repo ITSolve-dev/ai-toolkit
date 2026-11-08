@@ -48,12 +48,15 @@ completeness unknown); `--empty-ok` only when the person confirms the scope is e
 
 - **Native snapshot:** run it into `.task-master/raw-<scope>.json`, then
   `python ${CLAUDE_PLUGIN_ROOT}/scripts/snapshot.py --native <raw> --settings <settings> <scope flags> [--history <dir>] --out <snapshot>`.
-- **Composed:** note the time of the first read (ISO 8601 with its zone), then write the list into
+- **Composed:** write the list into
   `.task-master/raw-<scope>-issues.json`, the statuses into `raw-statuses.json` and, under
   iterations, the sprints into `raw-sprints.json` (from the caller where the tool has none, written
-  as `[{"id", "name", "state", "start_date", "end_date"}]`). Then
-  `python ${CLAUDE_PLUGIN_ROOT}/scripts/snapshot.py --issues <..> --statuses <..> [--sprints <..>] --taken-at <time> --settings <settings> <scope flags> [--history <dir>] --out <snapshot>`.
-  Say the snapshot is not atomic: an edit between the reads lands in it partly.
+  as `[{"id", "name", "state", "start_date", "end_date"}]`; sprints from neither: omit `--sprints`
+  and say every sprint-based check is not covered). Then
+  `python ${CLAUDE_PLUGIN_ROOT}/scripts/snapshot.py --issues <..> --statuses <..> [--sprints <..>] --settings <settings> <scope flags> [--history <dir>] --out <snapshot>`.
+  Pass no `--taken-at`: the script stamps its own run time (basis `script_run_time`), and a typed
+  time is a guess every age runs from. Say the snapshot is not atomic: an edit between the reads
+  lands in it partly.
 - **History**, where a command returns it per task: one read per issue the calling skill names
   (started tasks for age, finished ones for cycle time; none named, every issue of the raw list),
   each into `.task-master/history-<scope>/<id>.json` (a character outside `A-Za-z0-9._-` becomes
@@ -82,24 +85,31 @@ The input is the changeset file another skill's result names, `.task-master/chan
 
 ```json
 {"source": "triage", "snapshot": ".task-master/triage-snapshot.json", "ops": [
-  {"ref": "n1", "op": "create", "title": "…", "body_file": ".task-master/body-n1.md", "done": null},
+  {"ref": "n1", "op": "create", "title": "…", "body_file": ".task-master/body-n1.md", "labels": ["M"], "done": null},
   {"ref": "n2", "op": "create_child", "parent": "n1", "title": "…", "body_file": "…", "done": null},
   {"ref": "l1", "op": "link", "id": "T-7", "other": "T-3", "relation": "duplicates",
    "why": "one change closes both", "page": "wiki/intake/duplicate-reports.md", "done": null},
   {"ref": "c1", "op": "close", "id": "T-7", "reason": "duplicate",
    "updated_at": "…", "why": "…", "page": "…", "decide": "Close T-7 as a duplicate of T-3?", "done": null},
-  {"ref": "m1", "op": "move", "id": "T-4", "status": "Review", "expected": "In Progress", "done": null}]}
+  {"ref": "m1", "op": "move", "id": "T-4", "status": "Review", "expected": "In Progress", "done": null},
+  {"ref": "a1", "op": "add_label", "id": "T-4", "label": "M", "updated_at": "…", "done": null},
+  {"ref": "k1", "op": "comment", "id": "T-4", "body_file": ".task-master/body-k1.md", "done": null},
+  {"ref": "e1", "op": "edit", "id": "T-4", "body_file": ".task-master/body-e1.md", "updated_at": "…", "done": null}]}
 ```
 
 The ops are the plugin's: `create`, `create_child`, `edit`, `comment`, `add_label`,
 `remove_label`, `set_type`, `set_priority`, `assign`, `link` (relation `blocks`, `duplicates` or
-`relates`), `close` (reason `done`, `duplicate` or `abandoned`), `move`. Each is turned into the
+`relates`; it reads `id` <relation> `other`: for `blocks` the prerequisite is `id`, for
+`duplicates` the duplicate), `close` (reason `done`, `duplicate` or `abandoned`), `move`. Each is
+turned into the
 tool's command from its help when applied; an op, relation or reason the tool lacks is reported
 unsupported, never approximated. A value equal to a `ref` stands for that op's created id. `why`
 and `page` carry the reason and the base page behind a proposal, and `decide` the question that
 makes the op the person's decision. Task text goes into body files, never into an argument; an
 `edit` body file holds the whole new text. Edits, closes and label changes to an existing task
-carry its `updated_at` from the snapshot; a move carries `expected`, its status there.
+carry its `updated_at` from the snapshot; a move carries `expected`, its status there. An op whose
+`id` is a ref created in this changeset carries no `updated_at` and skips the freshness read: the
+task did not exist when the snapshot was taken.
 
 1. **Check before the first write.** Every op maps to a command the help documents; every ref
    resolves to an earlier op; every guarded op carries its `updated_at` or `expected`. A delete, or
@@ -121,23 +131,32 @@ carry its `updated_at` from the snapshot; a move carries `expected`, its status 
 4. **Stop on the first failure.** Record the exit code and stderr in the op, write nothing more,
    and report three lists. One exception: an unsupported exit wrote nothing, so the ops of the same
    op and relation are marked unsupported with it, and the rest go on. The lists: applied (with ids), failed (with the tool's message verbatim), not
-   attempted. A partial or unsupported exit, or any failed write where the help gives no codes, is
+   attempted. A partial exit, or any failed write where the help gives no codes, is
    never retried: the write may have landed. A failed create stays failed until a read shows the
    task absent and the person confirms. Name tasks a failed link left unlinked.
    *Wrong if:* a rerun creates a task the file already shows `done`, or one marked partial.
 
 ## From decompose
 
-`decompose` returns a tree as text; write it into a changeset before applying. A group node is a
-`create`; a leaf a `create_child` with `parent` its node's ref (a leaf with no node, a `create`); a
-placeholder a `create` whose text says it is one. A title carries no decompose ref. The leaf's five
-headings are its `body_file`, each as a `## <heading>` section with its text verbatim, except that a
-ref to another leaf becomes that leaf's title, and an assumption or open question the leaf cites is
-copied into it: the board does not hold decompose's reply. A `sequence` edge is a `link` of
-relation `blocks` from the prerequisite to the leaf; a `wait` edge stays in the text only, since
-what it waits for is off the board. `Size` is an `add_label` of the `[board.size]` key it names; no
-`[board.size]`, or a size not in it, is reported as not applied. decompose's questions are put to
-the person before the apply, not written as ops.
+`decompose` returns the path of its result, `.task-master/decompose-<slug>.md`; write its tree
+into a changeset before applying, with `snapshot` null, since no board read preceded it. A group
+node is a `create` (under another node, a `create_child` of it) whose body is its purpose and the
+list of its leaves' titles, with no size. A leaf is a `create_child` with `parent` its node's ref
+(a leaf with no node, a `create`). A placeholder is a `create_child` under its group node (no
+node, a `create`) whose text says it is one and keeps its coarse size, with no size label: it is
+not sized as near work. A title carries no decompose ref. A leaf's `body_file` holds its five
+headings, under the names decompose used, each as a `## <heading>` section with its text
+verbatim, except: a ref to another leaf becomes that leaf's title; every id from decompose's reply
+is replaced by its text, since the board does not hold the reply; a `sequence` edge in Links reads
+"after <title>". A `sequence` edge is a `link` of relation `blocks` with the prerequisite as `id`;
+a `wait` edge stays in the text only, since what it waits for is off the board. A leaf's `Size`
+goes only to the size label, never the body: the `[board.size]` key whose number equals it, in the
+create where the help's create command takes a label, else an `add_label`; no `[board.size]`, or
+no key with that number, is reported as not applied. decompose's questions are put to the person
+before the apply, not written as ops. The leaves a question names (`all`: every leaf) are held
+back while it is unanswered, unless the person says to apply on the stated assumptions, which are
+then copied into those bodies. A held-back group node holds back its leaves; a link to a held-back
+leaf is dropped and named.
 
 Where the help says `blocks` is unavailable on this board (a plan or tier note), ask before the
 first write: leave the order in the bodies' Links sections only, or link as `relates`, which keeps

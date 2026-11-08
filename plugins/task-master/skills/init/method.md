@@ -57,32 +57,37 @@ again (this method's own rule: a rerun that re-asks everything gets answered car
 
 5. **Labels and sizes.** The markers `blocked`, `waiting`, `untriaged`
    (`wiki/work-states/waiting-versus-blocked.md`, The test; `wiki/intake/triage-procedure.md`,
-   step 1): reuse an existing label of that meaning, else propose the default name; each goes into
+   step 1): reuse an existing label of that meaning, else propose the default name; a default name
+   stays absent from `[process.markers]`, since absent means the default. A marker step 4 declared
+   as a status gets no label. Each label goes into
    `[board.labels]` with a one-line meaning, since a list of names alone breeds a second label for
    the same thing (the design's "Объявление несёт значение"). Then whether the team estimates: if
    so, `[board.size]`, one label per step with its number, and the same labels in `[board.labels]`
-   with what each step means, fixed before estimating (`wiki/sizing/estimation-scale.md`).
+   with what each step means, fixed before estimating (`wiki/sizing/estimation-scale.md`). Draft
+   each meaning from the cited page and show them for the person to confirm or edit.
 
 6. **`[process]`.** Find the process document (agent instructions, the docs folder, contributor
    guides) and take what it states, citing where; never create or edit it, and where the person
-   contradicts it, say so and propose the edit. Ask only `setup`, plus `period_days` under
-   iterations and `[process.wip]` under flow. Every other key is written only when the document
+   contradicts it, say so and propose the edit. Ask, where the document is silent, only `setup`
+   and, with it, `executor` (agent,
+   people or mixed: tend-board's dimensions branch on it), plus `period_days` under iterations and
+   `[process.wip]` under flow. Every other key is written only when the document
    states it or the person brings it up; otherwise it stays absent, and the report lists the
    defaults in one line. What each key means:
    - `setup`: a fixed period, a bound on started work, or both; neither is no setup the base
      supports (`wiki/moving-work/board-rules-by-setup.md`). Under iterations, check the board can
-     list its iterations; where it cannot, say every period-based skill will need them from the
-     caller, and let the person choose.
+     list its iterations; where it cannot, name the choices: enable iterations on the board as the
+     tool's help says, give the sprints on each run, or switch setup to flow. Nothing is recorded
+     unless setup changes.
    - `period_days` under iterations: a month or less, held, not fitted to the work
      (`wiki/periods/period-length.md`); `commitment`: the goal or the selected tasks
      (`wiki/periods/commitment-over-a-period.md`).
    - `[process.wip]`: only numbers the team states; never invent one
-     (`wiki/moving-work/wip-control.md`). Under flow, ask for them.
+     (`wiki/moving-work/wip-control.md`).
    - `sle`: a time and a probability, or absent (`wiki/periods/service-level-expectation.md`).
    - `ceiling`: a `[board.size]` step (`wiki/sizing/size-ceiling.md`).
-   - `review_statuses`: asked in step 4.
    - `doc`: the process document found, if any.
-   - `executor`, `timezone`, `acceptance_headings` (search the raw list for the headings task
+   - `timezone`, `acceptance_headings` (search the raw list for the headings task
      bodies use).
    Velocity and throughput are never asked: the scripts compute them from history.
    *Wrong if:* a value was written without the person's word. An absent key is not a value.
@@ -92,17 +97,21 @@ again (this method's own rule: a rerun that re-asks everything gets answered car
 
 8. **Bring the board to the file.** init does this itself; a changeset has no op for it. Create
    each label of `[board.labels]` and `[board.size]`, and each status the person added, that the
-   board lacks, with the tool's commands, one prompt each. Only add: never
-   rename or delete, which the person does. What the tool cannot do (statuses that need an
+   board lacks, with the tool's commands, one prompt each; an add-only bulk command the help
+   documents (a sync that creates declared labels and never deletes) may replace them, shown before
+   it runs. Where the help says labels come into existence on first use, report that and create
+   none. Only add: never rename or delete, which the person does. What the tool cannot do (statuses that need an
    administrator, say) goes to the person as steps to take by hand.
 
 9. **Check.** Read again as in step 3 and run `snapshot.py`: no unmapped status, no undeclared
    marker. What remains goes to the person.
 
 10. **Propose permission rules** for `.claude/settings.json`, as a fragment the person edits in:
-    allow each read the skills run by its fixed prefix; leave every write to a prompt; allow a move
-    only if the tool guards it, because a move allowed in advance must refuse on the wrong state
-    (the design's "Перевод состояния стоит один вызов"). Never allow a read whose arguments reach
-    beyond reading, such as an expression evaluator or a pass-through to the raw API. If the tool
-    accepts flags before the subcommand, say that ask or deny rules can be passed around and only
-    the prompt on writes protects the board.
+    allow each read the skills run by its exact prefix, up to its first variable argument, and say
+    what may follow it, since a prefix rule admits whatever does; leave every write to a prompt;
+    allow a move only if the tool guards it, because a move allowed in advance must refuse on the
+    wrong state (the design's "Перевод состояния стоит один вызов"). Never propose, unsaid, a rule
+    that admits a read whose arguments reach beyond reading, such as an expression evaluator or a
+    pass-through to the raw API: where the help shows a global flag that evaluates expressions (a
+    jq-like filter), or the tool accepts flags before the subcommand, any prefix admits one. Flags before the subcommand also let ask or deny rules be passed around: say so,
+    and that only the prompt on writes protects the board.

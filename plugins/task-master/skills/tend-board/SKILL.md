@@ -38,8 +38,8 @@ merge and relay what they return. The dimensions and what each needs are listed 
 5. **Write one question per dimension** to `.task-master/tend-board-q-<dimension>.md`: the
    dimension, the scope, the settings path, `[process].doc` (absent, or named but not found:
    say which, and that nothing counts as declared intended), the tool's link type for each of the
-   relations `blocks`, `duplicates`, `relates` its help shows, one per direction where it names two
-   (none: say so), and the changeset path
+   relations `blocks`, `duplicates`, `relates` its help shows, one per direction where it names two,
+   once where it expresses the relation in one direction only (none: say so), and the changeset path
    `.task-master/changeset-tend-board-<dimension>.json`, refs `<dimension>-<n>`.
 6. **Dispatch the inspectors in parallel**, in one message, one per dimension, each with the
    snapshot, the metrics, its question, and two method paths in this order, every path absolute

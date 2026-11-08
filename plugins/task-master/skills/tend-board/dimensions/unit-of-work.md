@@ -25,7 +25,9 @@ working tests).
    title or text are signals to look, not the sign. The sign is parts that could each be delivered
    alone, including acceptance criteria that could each ship alone
    (`wiki/cutting-work/compound-task-text-signs.md`, Sign of violation). A title whose substance is
-   one broad adjective for the whole product is a catch-all (same page, Catch-All Task).
+   one broad adjective for the whole product is a catch-all (same page, Catch-All Task). A
+   "can ship alone" or "presented once" verdict in Boundaries stands unless a marker, the history
+   or a later comment shows the parts delivered separately.
 5. **Propose** a re-cut through `decompose`, naming the wait or the separable parts; tend-board does
    not cut (`wiki/cutting-work/unit-of-work.md`, A task that fails). For a known wait, the part
    after it becomes a task that starts once the outside party delivers
@@ -41,6 +43,9 @@ working tests).
 - A condition on releasing or enabling the result, not on building it (this method's reading,
   as in `decompose`, of the handoff-at-the-end section).
 - A quality with a threshold: a legitimate task, not a catch-all.
+- A task whose Boundaries read "Not to start until <party> delivers…": `decompose`'s hold, kept
+  whole because nothing before the wait has anything to show (its step 5). If it is `active`, ask
+  whether it started before the delivery.
 - A thin `before_start` task: detail closes as the task nears its start
   (`wiki/task-content/conversation-moves-into-the-task.md`, When to do it). Its cut is still
   checked; its missing detail is not.

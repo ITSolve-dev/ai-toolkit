@@ -11,9 +11,14 @@ means the base marks the rule as its own, not a source's.
 - **Missing inputs do not stop the run**; each absence goes to `assumptions` with what replaced it.
   Questions instead: an unresolved wait, a decision only a person can make, a choice between
   enumerating and first slices, where the work lands.
-- **`changeset`:** the tree. Per leaf: id, title, the five headings of step 7, `Depends on` (each
-  edge marked `sequence` or `wait`), `Size` (a step and what it rests on). Placeholders (step 2)
-  are marked as such and carry only purpose and a coarse size. `board` maps it to ops (*From decompose*).
+- **`changeset`:** the tree. Per group node: id, title, purpose. Per leaf: id, title, the five
+  headings of step 7 (Links carries the edges, each marked `sequence` or `wait`), `Size` (a step
+  and what it rests on). Placeholders (step 2) are marked as such and carry a title, purpose and a
+  coarse size. Each question names the leaf ids it touches, or `all`, so `board` holds back only
+  those. `board` maps the tree to ops (*From decompose*).
+- **Written whole:** the result (tree, questions, assumptions) always goes to
+  `.task-master/decompose-<slug>.md`, the slug from the input's file name or title, and the path
+  is returned: `board` reads it there, not a retelling.
 
 ## Steps
 
@@ -61,7 +66,8 @@ means the base marks the rule as its own, not a source's.
    another person can make, or anything an outside party holds, is cut out so it falls between
    tasks (`wiki/ordering/sequence-versus-wait.md`, this wiki's rule). A predecessor finished first,
    and review of the presented result, are not waits. If the piece before the wait has nothing to
-   show, keep the task whole and mark it not to start until the outside party delivers. A
+   show, keep the task whole: its Boundaries read "Not to start until <party> delivers <what>", and
+   its Links carry the `wait` edge. A
    condition on releasing or enabling the result comes after the executor's part, so it is no
    `wait` edge: write it into Boundaries and let the leaf start (this method's reading of the same
    page, A handoff at the end). *Presented once:*
@@ -72,7 +78,9 @@ means the base marks the rule as its own, not a source's.
    parent's result without it (`wiki/cutting-work/story-splitting-patterns.md`, Mixed priority: the
    test) and it is what puts the parent over the ceiling (same page, Deferred Concern Slice, When
    it applies). Otherwise it stays: a result review would reject is not presented, whatever the
-   parent's acceptance omits or a "not released without" note says (this method's rule).
+   parent's acceptance omits or a "not released without" note says (this method's rule). Write the
+   verdict ("can ship alone" or "presented once", and why) into the leaf's Boundaries, so a later
+   check sees it was considered.
    *Wrong if:* a leaf's scope includes both obtaining something from outside and building on it,
    a `wait` edge names a condition on release, or a leaf may not be released without another.
 
@@ -86,9 +94,10 @@ means the base marks the rule as its own, not a source's.
    Keep an edge the wanted order already meets, stating what the estimate assumes exists (same
    page). A chain whose head is not near work is a sign to break it (this method's reading of
    that page's Which remedy, when, branch 3, and the chain sign on `independent-tasks.md`, Why).
-   The user's path order is no edge; a spike gates only leaves whose build needs its answer. A stub
-   gets a follow-up task, sized 0 if the scale has one, its criteria saying it is a stub (same
-   page, The zero-point task). *Wrong if:* the edges form a cycle (a link is wrong, or the two are
+   The user's path order is no edge; a spike gates only leaves whose build needs its answer. Keep
+   only direct `sequence` edges: one another path already implies is dropped, since it adds a link
+   to keep true and no order. A stub gets a follow-up task, sized 0 if the scale has one, its
+   criteria saying it is a stub (same page, The zero-point task). *Wrong if:* the edges form a cycle (a link is wrong, or the two are
    one task); acceptance needs what a later leaf builds; two leaves change the same behaviour (name
    the one holding it); an edge stands where a stand-in would let the leaf start.
 
@@ -113,7 +122,8 @@ means the base marks the rule as its own, not a source's.
      names the project's) observable checks a reader could pass or fail; a graded word in the title gets
      a condition pinning it; a threshold covers its edges; testing and documentation the project's
      done asks for are included (`wiki/task-content/testable-acceptance.md`,
-     `wiki/task-content/conditions-of-satisfaction.md`).
+     `wiki/task-content/conditions-of-satisfaction.md`). A condition several leaves share is
+     written into each one's criteria, never cited by id: each leaf is read alone on the board.
    *Wrong if:* a heading is filled with words no reader could disagree with ("robust", "as needed").
 
 8. **Size every leaf relatively.** Use the project's scale; with none, assume 1, 2, 3, 5, 8 for

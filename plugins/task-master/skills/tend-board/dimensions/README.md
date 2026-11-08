@@ -17,8 +17,8 @@ One file per dimension; `board-inspector` follows one of them per run. Read this
 ## Every dimension
 
 1. **Read the inputs.** The question file names the dimension, the scope, the settings path, the
-   process document and the tool's link type for each relation. Read `[process].setup` and
-   `executor` from the settings: dimension steps branch on them. Tasks whose `kind` is null belong to `state-mapping`; every other dimension leaves them
+   process document and the tool's link type for each relation. Read the whole `[process]` section
+   of the settings. Tasks whose `kind` is null belong to `state-mapping`; every other dimension leaves them
    out and says how many it left (`counts.unmapped`). Tasks examined: `counts.by_kind` summed over
    the kinds the dimension reads, `counts.total` where it reads every kind.
 2. **Pass each sign through the smell check** before it becomes a finding
@@ -32,7 +32,7 @@ One file per dimension; `board-inspector` follows one of them per run. Read this
 4. **Stay inside the dimension.** A sign another dimension owns (table above) is left to it.
 5. **Propose only what the `board` skill can apply**, as ops of the changeset file the question
    names: `comment`, `add_label` for a `label:` marker in `marker_specs` (its name without the
-   prefix), `link` with relation `blocks`, `duplicates` or `relates`, `edit` with the whole new text; each with `why` and `page`, and `updated_at`
+   prefix), `link` (`id` <relation> `other`, as the `board` method reads it) with relation `blocks`, `duplicates` or `relates`, `edit` with the whole new text; each with `why` and `page`, and `updated_at`
    from the snapshot on an edit, label or close. A `status:` marker is not proposed: the board shows
    it only as a column, so ask. Closing and cancelling are a `close` with `decide` and reason
    `done`, `duplicate` or `abandoned`; a re-cut is no op, it names `decompose` in the finding. Nothing
