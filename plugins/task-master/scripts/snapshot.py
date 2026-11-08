@@ -36,6 +36,12 @@ Scope flags, recording what the issue read was:
   transitions (and optionally its id). Merged into that issue and validated as the issue's own
   history fields; a key the issue already holds with a different value is an error. Issues
   without a file are listed in history.missing.
+  A file may instead hold a history read with since and moves, as written:
+  {id?, status?{name}, since, moves[{from, to{name}, at, by?}]}. `since` becomes status_since
+  (null: unknown), each move's to.name and at a transition, opened by the first move's `from`
+  at created_at (no moves: the issue's status, unless since is later); started_at and finished_at are left
+  to be derived from the transitions. A `status` other than the issue's is an error (the issue
+  moved between the reads). One file holds one shape, never keys of both.
 
 Normalized issue: the shape the plugin expects from any tool, whichever tool produced it.
     {id, kind, url, title, description, type, status{name, category}, assignees[{id, name}],
@@ -136,6 +142,7 @@ UNFINISHED_CATEGORIES = ("done", "canceled")
 REQUIRED_ISSUE_KEYS = ("id", "title", "description", "status", "labels", "created_at", "updated_at")
 HISTORY_KEYS = ("status_since", "started_at", "finished_at")
 HISTORY_FILE_KEYS = HISTORY_KEYS + ("transitions",)
+MOVES_FILE_KEYS = ("status", "since", "moves")
 SCOPE_KEYS = ("query", "complete", "reported_total", "includes_finished")
 
 
@@ -495,6 +502,50 @@ def history_file_name(issue_id):
     return re.sub(r"[^A-Za-z0-9._-]", "_", str(issue_id)) + ".json"
 
 
+def from_moves(data, issue, path):
+    """A history read with since and moves, as status_since and transitions.
+
+    {id?, status?{name}, since, moves[{from, to{name}, at, by?}]}: `since` is when the issue
+    entered its current status (null when the moves do not end in it); each move's `to.name` and
+    `at` is a transition. The status the issue was created in opens the transitions at
+    created_at: the first move's `from` when it has one; with no moves, the current status
+    unless `since` says the issue entered it after creation."""
+    mixed = [k for k in data if k not in MOVES_FILE_KEYS + ("id",)]
+    if mixed:
+        raise InputError(f"{path}: {', '.join(mixed)} beside since/moves; a history file holds one shape")
+    status = data.get("status")
+    if status is not None:
+        name = status.get("name") if isinstance(status, dict) else status
+        if name != issue["status"]["name"]:
+            raise InputError(f"{path}: the history read shows status {name!r}, the issue read "
+                             f"{issue['status']['name']!r}: the issue moved between the reads; read both again")
+    moves = data.get("moves")
+    if moves is not None and not isinstance(moves, list):
+        raise InputError(f"{path}: moves must be a list or null")
+    transitions = []
+    for j, m in enumerate(moves or []):
+        to = m.get("to") if isinstance(m, dict) else None
+        if not isinstance(to, dict) or not isinstance(to.get("name"), str):
+            raise InputError(f"{path}: moves[{j}] must be {{to: {{name: string}}, at: ISO 8601}}")
+        if parse_time(m.get("at"), f"{path}: moves[{j}].at") is None:
+            raise InputError(f"{path}: moves[{j}].at is missing")
+        transitions.append({"status": to["name"], "at": m["at"]})
+    created = issue.get("created_at")
+    if moves is not None and created is not None:
+        first = moves[0].get("from") if moves else None
+        start = first.get("name") if isinstance(first, dict) else first
+        since = data.get("since")
+        if not moves and (since is None or parse_time(since, f"{path}: since")
+                          == parse_time(created, f"{path}: created_at")):
+            start = issue["status"]["name"]
+        if isinstance(start, str):
+            transitions.insert(0, {"status": start, "at": created})
+    out ={"transitions": transitions if moves is not None else None, "status_since": data.get("since")}
+    if "id" in data:
+        out["id"] = data["id"]
+    return out
+
+
 def load_history(directory, issues):
     """{str(id): history} from DIR/<id>.json; an issue without a file is absent from the result."""
     directory = Path(directory)
@@ -514,6 +565,8 @@ def load_history(directory, issues):
         data = load_json(path)
         if not isinstance(data, dict):
             raise InputError(f"{path}: expected a JSON object")
+        if any(k in data for k in MOVES_FILE_KEYS):
+            data = from_moves(data, o, path)
         unknown = [k for k in data if k not in HISTORY_FILE_KEYS + ("id",)]
         if unknown:
             raise InputError(f"{path}: unknown key(s) {', '.join(unknown)}; expected "
@@ -713,7 +766,10 @@ def main(argv=None):
     p.add_argument("--reported-total", type=_count_flag, help="the total the tool reported for the query")
     p.add_argument("--includes-finished", type=_bool_flag, help="true|false: the query returns finished work")
     p.add_argument("--empty-ok", action="store_true", help="an empty issue list is genuine")
-    p.add_argument("--history", help="directory of per-issue history files, <id>.json")
+    p.add_argument("--history", help="directory of per-issue history files, <id>.json (id characters "
+                                     "outside A-Za-z0-9._- become _), each holding either "
+                                     "status_since/started_at/finished_at/transitions[{status, at}] or "
+                                     "a history read as written: since, moves[{from, to{name}, at}]")
     p.add_argument("--tool", help="the board tool's name, recorded in the snapshot")
     p.add_argument("--tool-version", help="the board tool's version, recorded in the snapshot")
     p.add_argument("--out")

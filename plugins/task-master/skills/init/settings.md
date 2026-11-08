@@ -4,8 +4,8 @@ task-master keeps no file of its own. It reads the project's workflow config fil
 project's agent instructions (`CLAUDE.md`, `AGENTS.md`) name for tool and workflow settings, else a
 `workflow.toml` at the project root, else `.claude/task-master.toml`. A project with no such file
 gets `workflow.toml` proposed by `init`; only if the person declines does `init` propose
-`.claude/task-master.toml`, with the same sections. Every board skill finds the file the same way and passes its path to the scripts as
-`--settings`.
+`.claude/task-master.toml`, with the same sections. Every board skill finds the file the same way
+and passes its path to the scripts as `--settings`.
 
 ## What is read
 
@@ -18,10 +18,10 @@ gets `workflow.toml` proposed by `init`; only if the person declines does `init`
 
 `[board]`'s own keys and tables belong to the board tool and follow its format; task-master reads
 them and never adds keys of its own there. `[board.labels]` and `[board.size]` are the project's,
-and `init` writes them; every `[board.size]` label is also in `[board.labels]`, with its meaning. A status's category (`todo`, `in_progress`, `done`, `canceled`)
-comes with each task from the tool; where the tool keeps its own status table in the file (such as
-`[board.statuses]`), that table is where a status gets its category. Status names are written
-exactly as the tool returns them.
+and `init` writes them; every `[board.size]` label is also in `[board.labels]`, with its meaning. A
+status's category (`todo`, `in_progress`, `done`, `canceled`) comes with each task from the
+tool; where the tool keeps its own status table in the file (such as `[board.statuses]`), that
+table is where a status gets its category. Status names are spelled as the tool returns them.
 
 The tool is the board command the agent instructions name. A command in `[board]` may be the
 tracker's own CLI the tool runs underneath; where the two differ and the instructions do not say
@@ -85,8 +85,8 @@ if `[process.wip]` names it.
 ## Markers and estimates
 
 `blocked`, `waiting` and `untriaged` are labels: the names in `[process.markers]`, else
-`blocked`, `needs-info` and `needs-triage`. A value `status:<name>` declares a column instead of a label. A marker whose label
-is missing from `[board.labels]` is reported as one the board cannot show yet.
+`blocked`, `needs-info` and `needs-triage`. A value `status:<name>` declares a column instead of a
+label. A marker whose label is missing from `[board.labels]` is reported: the board cannot show it.
 
 A task's estimate is its label that is a key of `[board.size]`, read as that key's number. No
 `[board.size]`: the project keeps no estimates. Two size labels on one task: unreadable, named.

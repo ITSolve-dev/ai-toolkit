@@ -1,33 +1,30 @@
 # Dimension: link-contradictions
 
-Which linked tasks sit in states the link rules out? Read `README.md`, *Every dimension*, first.
+## What it looks for
 
-**Reads:** every task's `kind`, `parent`, `subtasks`, `links` of the tool's types for `blocks`
-(either direction: `blocks` and `blocked_by` below) and `relates`, as the question names them; a
-relation with no type named: its step is `not_covered`), `markers`.
+- **Parent finished, child open:** a `finished` task with an unfinished subtask, or the reverse view.
+- **Finished before its blocker:** a `finished` task blocked by an unfinished one; or an open task
+  marked blocked whose every blocker is finished.
+- **Started while blocked:** an `active` task blocked by an unfinished one, with no blocked marker.
 
-## Steps
+**Scope:** `kind`, `parent`, `subtasks`, `markers`, and `links` of the question's types for
+`blocks` (either direction) and `relates`; a relation with no type: `not_covered`. A link the tool
+records in one direction only is listed once per pair.
 
-1. **Parent finished, child open.** A task of kind `finished` whose subtask is not, or a subtask whose
-   parent is finished: finding. The source's example is "A is a linked as a sub-task of B, but B is
-   closed and A is still open." (`wiki/moving-work/what-may-move.md`, Sign of violation). The sign
-   shows that a move ignored a stated relation; it does not show which task is wrong.
-2. **Finished before what it was blocked by.** A `finished` task linked `blocked_by` a task that is
-   not finished, or an open task marked blocked whose every `blocked_by` task is finished: finding
-   (this method's own application of the same sign to blocking links).
-3. **Started while blocked.** A task of kind `active` linked `blocked_by` an unfinished task, with no
-   blocked marker: question, whether the link is stale or the start ignored it (this method's own
-   application).
-4. **Ask which side is wrong.** Propose a question per pair: close the child or reopen the parent,
-   drop a stale link or mark the stop. Never choose, and propose no move: the question carries both
-   options.
-   Practitioners split on whether out-of-sync status matters (same page, two of 10 disagreed), so
-   apply the smell check strictly.
+## Read
+
+- `wiki/moving-work/what-may-move.md`, Sign of violation — the linked-states sign: it shows a move
+  ignored a relation, not which task is wrong; two of ten practitioners disagreed, so apply the
+  smell check strictly. The base states it for parent and subtask; the blocking cases extend it
+  (mark them not from the base).
 
 ## Not a finding
 
-- A `relates` link between tasks in any states.
-- A `duplicates` link, either direction: the `duplicates` dimension owns every one.
-- A cancelled parent with open children the process document says are kept on purpose.
-- An empty `links`, `subtasks` or null `parent`: in a composed snapshot the tool may not have read
-  them; record under `not_covered` which of them the snapshot lacks, never infer no link.
+- A `relates` link in any states; any `duplicates` link (`duplicates` owns them).
+- A cancelled parent with open children the process document keeps on purpose.
+- An empty `links`, `subtasks` or null `parent` in a composed snapshot (README, step 5).
+
+## Finding shape
+
+One per pair, in the README's shape. Return a question per pair carrying both options (close the
+child or reopen the parent; drop a stale link or mark the stop). Never choose; propose no op.

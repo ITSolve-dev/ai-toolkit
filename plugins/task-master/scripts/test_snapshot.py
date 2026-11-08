@@ -555,6 +555,101 @@ def test_cli_history_dir(tmp_path):
     assert json.loads(r.stdout)["issues"][0]["finished_at"] == "2026-01-03T00:00:00Z"
 
 
+# --- a history read with since and moves ------------------------------------------------------
+
+def moves_file(**over):
+    data = {"id": "1", "status": {"name": "In Progress", "category": "in_progress"},
+            "since": "2026-01-05T00:00:00Z",
+            "moves": [{"from": None, "to": {"name": "Todo", "category": "todo"},
+                       "at": "2026-01-01T00:00:00Z", "by": "ann"},
+                      {"from": {"name": "Todo", "category": "todo"},
+                       "to": {"name": "In Progress", "category": "in_progress"},
+                       "at": "2026-01-05T00:00:00Z", "by": "bob"}]}
+    data.update(over)
+    return data
+
+
+def test_moves_shape_becomes_status_since_and_transitions(cfg, tmp_path):
+    (tmp_path / "1.json").write_text(json.dumps(moves_file()), encoding="utf-8")
+    s = snapshot.compose([issue()], STATUSES, None, cfg, "2026-02-01T00:00:00Z",
+                         history=snapshot.load_history(tmp_path, [issue()]))
+    one = s["issues"][0]
+    assert one["status_since"] == "2026-01-05T00:00:00Z"
+    assert one["transitions"] == [{"status": "Todo", "at": "2026-01-01T00:00:00Z"},
+                                  {"status": "In Progress", "at": "2026-01-05T00:00:00Z"}]
+    assert "started_at" not in one and "finished_at" not in one
+    assert s["history"]["merged"] == 1
+
+
+def test_moves_shape_null_since_leaves_status_since_unset(cfg, tmp_path):
+    (tmp_path / "1.json").write_text(json.dumps(moves_file(since=None)), encoding="utf-8")
+    h = snapshot.load_history(tmp_path, [issue()])
+    assert h["1"].get("status_since") is None
+    assert len(h["1"]["transitions"]) == 2
+
+
+def test_moves_without_a_creation_move_start_in_the_first_from(cfg, tmp_path):
+    # Created 01-01 in Todo, one move Todo -> In Progress 01-03, no creation move.
+    data = moves_file(since="2026-01-03T00:00:00Z",
+                      moves=[{"from": {"name": "Todo"}, "to": {"name": "In Progress"},
+                              "at": "2026-01-03T00:00:00Z"}])
+    (tmp_path / "1.json").write_text(json.dumps(data), encoding="utf-8")
+    s = snapshot.compose([issue()], STATUSES, None, cfg, "2026-02-01T00:00:00Z",
+                         history=snapshot.load_history(tmp_path, [issue()]))
+    one = s["issues"][0]
+    assert one["transitions"] == [{"status": "Todo", "at": "2026-01-01T00:00:00Z"},
+                                  {"status": "In Progress", "at": "2026-01-03T00:00:00Z"}]
+    import board_metrics
+    assert board_metrics.history_gap(one) is None
+
+
+@pytest.mark.parametrize("since, expected", [
+    (None, [{"status": "In Progress", "at": "2026-01-01T00:00:00Z"}]),
+    ("2026-01-01T00:00:00Z", [{"status": "In Progress", "at": "2026-01-01T00:00:00Z"}]),
+    ("2026-01-04T00:00:00Z", []),
+])
+def test_no_moves_start_in_the_current_status_unless_since_says_otherwise(tmp_path, since, expected):
+    (tmp_path / "1.json").write_text(json.dumps(moves_file(since=since, moves=[])), encoding="utf-8")
+    assert snapshot.load_history(tmp_path, [issue()])["1"]["transitions"] == expected
+
+
+def test_moves_shape_status_other_than_the_issue_read_fails(tmp_path):
+    (tmp_path / "1.json").write_text(json.dumps(moves_file(status={"name": "Done", "category": "done"})),
+                                     encoding="utf-8")
+    with pytest.raises(snapshot.InputError, match="moved between the reads"):
+        snapshot.load_history(tmp_path, [issue()])
+
+
+@pytest.mark.parametrize("moves", [
+    "nope",
+    [{"to": "In Progress", "at": "2026-01-05T00:00:00Z"}],
+    [{"to": {"name": "In Progress"}}],
+    [{"to": {"name": "In Progress"}, "at": "later"}],
+])
+def test_malformed_moves_fail(tmp_path, moves):
+    (tmp_path / "1.json").write_text(json.dumps(moves_file(moves=moves)), encoding="utf-8")
+    with pytest.raises(snapshot.InputError, match="moves"):
+        snapshot.load_history(tmp_path, [issue()])
+
+
+def test_mixing_the_two_shapes_fails(tmp_path):
+    (tmp_path / "1.json").write_text(json.dumps(moves_file(started_at="2026-01-05T00:00:00Z")),
+                                     encoding="utf-8")
+    with pytest.raises(snapshot.InputError, match="one shape"):
+        snapshot.load_history(tmp_path, [issue()])
+
+
+def test_cli_history_dir_moves_shape(tmp_path):
+    hist = tmp_path / "hist"
+    hist.mkdir()
+    data = moves_file(id="PROJ-1", status={"name": "Done", "category": "done"}, since="2026-01-09T00:00:00Z")
+    (hist / "PROJ-1.json").write_text(json.dumps(data), encoding="utf-8")
+    r = run(*write_cli_inputs(tmp_path, [issue(id="PROJ-1", status="Done")]), "--history", hist)
+    assert r.returncode == 0, r.stderr
+    got = json.loads(r.stdout)["issues"][0]
+    assert got["status_since"] == "2026-01-09T00:00:00Z" and len(got["transitions"]) == 2
+
+
 # --- settings validation and consistency --------------------------------------------------------
 
 @pytest.mark.parametrize("extra, match", [

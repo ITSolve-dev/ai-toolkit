@@ -1,35 +1,35 @@
 # Dimension: unwritten-decisions
 
-Which task points at a decision its text does not hold? Before an agent starts, every decision the
-task depends on is made and written, or explicitly left to the executor
-(`wiki/task-content/conversation-moves-into-the-task.md`, The rule). Read `README.md`, *Every
-dimension*, first.
+## What it looks for
 
-**Reads:** tasks of kind `queued`, `active`, `handed_off`: title and description.
+A task whose text points at a decision it does not hold: "as discussed", "TBD", "details to
+follow", "the usual way", "handle edge cases appropriately", or their equivalent in the task's
+language. The words are in the text, so the sign does not rest on a missing field.
 
-## Steps
+**Scope:** tasks of kind `queued`, `active`, `handed_off`: title and description. `active` and
+`handed_off` are the stronger case: the run already guessed.
 
-1. **Take the stage.** The deadline for closing a task is the moment an agent would take it
-   (`wiki/task-content/conversation-moves-into-the-task.md`, When to do it). So `queued` tasks are in
-   scope, and `active` or `handed_off` ones are stronger findings: the run already guessed.
-2. **Find the pointer.** The text refers to a conversation or memory it does not contain: "as
-   discussed", "TBD", "details to follow", "the usual way", "handle edge cases appropriately", or
-   their equivalent in the task's language (same page, Sign of violation). The words are in the text,
-   so the sign does not rest on a missing field.
-3. **Check it is task-only.** A pointer to something the executor can recover by reading the
-   repository, or to a linked document that holds the decision, is not a gap
-   (`wiki/task-content/recoverable-versus-task-only-facts.md`, The decision). Expected behaviour,
-   constraints and choices that live in someone's head are task-only.
-4. **Comments.** A decision recorded in a comment and missing from the text is a fact stranded
-   outside the task (same page, Fact Stranded Outside the Task). The snapshot carries no comments,
-   so this check goes under `not_covered`.
-5. **Propose** a question to the person who holds the decision, naming the phrase and what it leaves
-   open, and a text edit once answered. Never fill in the decision.
+## Read
+
+- `wiki/task-content/conversation-moves-into-the-task.md` — The rule (every decision made and
+  written, or explicitly left to the executor), Sign of violation, When to do it (the deadline is
+  the moment an agent would take the task), and *Fact Stranded Outside the Task*.
+- `wiki/task-content/recoverable-versus-task-only-facts.md`, The decision — a pointer to what the
+  executor can recover from the repository, or to a linked document holding the decision, is not a
+  gap.
+
+A decision recorded in a comment and missing from the text is a stranded fact, but the snapshot
+carries no comments: that check goes under `not_covered`.
 
 ## Not a finding
 
-- A `before_start` task left thin: it closes as it nears the start (step 1).
+- A `before_start` task left thin.
 - A decision explicitly left to the executor ("implementer's choice").
 - "TBD" or similar inside quoted logs, code or a copied report.
 - A link to a written decision the executor can open.
 - A wait on a named outside party: `unit-of-work`. A missing check of done: `acceptance`.
+
+## Finding shape
+
+The common shape (README), quoting the phrase and saying what it leaves open. Propose a question to
+the person who holds the decision, and a text `edit` once answered. Never fill in the decision.

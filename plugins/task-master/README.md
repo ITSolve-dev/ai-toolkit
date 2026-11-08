@@ -54,7 +54,7 @@ running on text or a passed-in snapshot says which checks that left out: on item
 
 | Agent             | Tools                     | Input → output                                    |
 | ----------------- | ------------------------- | ------------------------------------------------- |
-| `guide`           | `Read, Grep, Glob`        | a question → an answer with citations             |
+| `guide`           | `Read, Grep, Glob`        | a question → an answer citing the pages it read   |
 | `planner`         | `Read, Grep, Glob, Write` | work to organize → tasks, estimates, a layout     |
 | `board-inspector` | `Read, Grep, Glob, Write` | a snapshot and one question → findings or a chart |
 

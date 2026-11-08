@@ -1,50 +1,48 @@
 ---
 name: review-period
 description: >-
-  Review a past iteration or a window of continuous flow against what was promised at its start:
-  the selection and goal against what finished, unfinished work and its likely cause, velocity or
-  throughput, cycle time, age and SLE hits, and the forces behind any gap, read from the project's
-  board and grounded in the plugin's knowledge base. Says plainly which comparisons the board's
-  history cannot support. Use when someone asks how the last sprint went, what became of the plan,
-  why a release finished late, or for a retrospective in figures. A question about how to read such
-  figures goes to ask; what comes next goes to schedule; changes it proposes are applied by board.
+  Reviews a past iteration or flow window against what was promised at its start: plan against
+  fact, unfinished work, velocity or throughput, cycle time and SLE hits, citing the knowledge
+  base and saying which comparisons the history cannot support. Use when asked how the last sprint
+  went or why a release finished late. Not for what comes next: schedule.
 argument-hint: "<period name, or a window's start and end> [snapshot taken at its start] [goal, communicated date or forecast]"
 allowed-tools: Read(${CLAUDE_PLUGIN_ROOT}/knowledge/**), Read(${CLAUDE_PLUGIN_ROOT}/skills/**), Edit(./.task-master/**), Bash(python ${CLAUDE_PLUGIN_ROOT}/scripts/snapshot.py *), Bash(python ${CLAUDE_PLUGIN_ROOT}/scripts/board_metrics.py *)
 ---
 
 # review-period
 
-Runs in your context: you read the board and run the arithmetic; `task-master:board-inspector`
-does the judging, in its own.
+Review a past period in figures: what was promised, what came out, and what explains the
+difference. Nothing is written to the board.
 
-1. **Find the settings and learn the tool** as `${CLAUDE_PLUGIN_ROOT}/skills/board/method.md`,
-   *Before any job*, says. No board: say it is not set up and point to `init`. Continue only on a
-   snapshot the caller passed; otherwise stop there. Note `[process].setup`, `period_days`,
-   `commitment`, `sle`, `doc`, and the obligations decided there.
-2. **Name the period.** Iterations: the sprint the input names; none named, the latest closed one
-   from the tool's sprints command, or a question when the tool lists none. Flow: a window with
-   both dates from the input; none, return a question, because the window decides every figure.
-3. **Decide what can be compared, before reading.** What was promised at the start is known only
-   from the tool's history (the history obligation met) or from a snapshot the caller passes, taken
-   no later than the period's first day. Neither: the plan-against-fact table, scope and estimate
-   changes, and the delay-or-slip test are not made. Today's membership of the period is never
-   offered as its plan: work added since the start would read as planned, and work removed would
+## Process
+
+Plugin root: `${CLAUDE_PLUGIN_ROOT}`. Follow `${CLAUDE_PLUGIN_ROOT}/skills/board/inspector-run.md`
+with `<skill>` = `review-period` and these specifics:
+
+1. **Settings.** No board: continue only on a snapshot the caller passed. Note `[process].setup`,
+   `period_days`, `commitment`, `sle`, `doc`.
+2. **Name the period.** Iterations: the sprint named; none, the latest closed one from the tool's
+   sprints command, or a question if it lists none. Flow: a window with both dates; none, return a
+   question, because the window decides every figure.
+3. **Decide what can be compared, before reading.** The promise at the start is known only from the
+   tool's history or a caller's snapshot taken by the period's first day. Neither: no
+   plan-against-fact table, no scope or estimate changes, no delay-or-slip test. Never offer
+   today's membership as the plan: work added since would read as planned, and work removed would
    vanish.
-4. **Snapshot** the period's tasks, scope `sprint:<name>` (flow: `board`, since finishing in a
-   window is not a filter the board offers), by `${CLAUDE_PLUGIN_ROOT}/skills/board/method.md`,
-   *Reads and the snapshot*, to `.task-master/review-period-snapshot.json`.
-5. **Metrics**, with `<start>` and `<end>` the period's dates (a sprint's own dates under iterations):
-   `python ${CLAUDE_PLUGIN_ROOT}/scripts/board_metrics.py .task-master/review-period-snapshot.json --settings <settings> --window-start <start> --window-end <end> [--sprint "<name>"] [--age-at <end>] [--compare <earlier snapshot>] --out .task-master/review-period-metrics.json`.
-   `--sprint` under iterations. `--age-at` under flow, and only when `<end>` is not after the
-   snapshot's read time. `--compare` with an earlier snapshot taken with the same scope: another
-   scope makes the comparison refuse.
-6. **Write the question** to `.task-master/review-period-question.md`: what the caller asked; the
-   period and its dates; setup, `period_days`, `commitment`, `sle`, `doc`; every
-   obligation met by a fallback;
-   the earlier snapshot and its metrics, if any; any goal, communicated date or forecast passed; and
-   what step 3 ruled out.
-7. **Dispatch `task-master:board-inspector`** with four absolute paths (`${CLAUDE_PLUGIN_ROOT}`
-   expanded, `.task-master/` resolved in the project): the snapshot, the metrics, the
-   question, and `${CLAUDE_PLUGIN_ROOT}/skills/review-period/method.md`.
-8. **Relay its result** in the shape of the `board` method, *The reply*, with the caveat
-   lines *Reads and the snapshot* produced added to `assumptions`. Nothing is written to the board here.
+4. **Snapshot.** Scope `sprint:<name>`; under flow `board`, since finishing in a window is not a
+   board filter.
+5. **Metrics.** `<start>` and `<end>` are the period's dates:
+   `python ${CLAUDE_PLUGIN_ROOT}/scripts/board_metrics.py .task-master/review-period-snapshot.json --settings <settings> --window-start <start> --window-end <end> [--sprint "<name>"] [--age-at <end>] [--compare <earlier snapshot>] --out .task-master/review-period-metrics.json`
+   - `--sprint` under iterations.
+   - `--age-at` under flow, only when `<end>` is not after the snapshot's `taken_at`.
+   - `--compare` with an earlier snapshot of the same scope; another scope refuses.
+6. **Question.** What was asked; the period and dates; setup, `period_days`, `commitment`, `sle`,
+   `doc`; the earlier snapshot, if any; any goal, communicated date or forecast; what step 3 ruled
+   out.
+7. **Dispatch** with `${CLAUDE_PLUGIN_ROOT}/skills/review-period/method.md`.
+8. **Relay** the review, conclusion first, with each comparison not made and why.
+
+## Reference files
+
+- `${CLAUDE_PLUGIN_ROOT}/skills/board/inspector-run.md`: the shared run, step by step.
+- `method.md`: the inspector's procedure and the pages it reads.
