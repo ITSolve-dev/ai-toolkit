@@ -163,9 +163,9 @@ into a changeset before applying, with `snapshot` null, since no board read prec
   and its leaves' titles, with no size.
 - **Leaf:** a `create_child` with `parent` its node's ref (no node: a `create`). Its `body_file`
   holds its five headings under decompose's names, each a `## <heading>` section with its text
-  verbatim, except: a ref to another leaf becomes that leaf's title; every id from decompose's
-  reply is replaced by its text; a `sequence` edge in Links reads "after <title>". A title carries
-  no decompose ref.
+  verbatim, except: a ref to another leaf becomes that leaf's title; a question or assumption id
+  becomes its full sentence; a `sequence` edge in Links reads "after <title>". Reread each
+  sentence after the swap: it must read as written by hand. A title carries no decompose ref.
 - **Placeholder:** like a leaf, but its text says it is one and keeps its coarse size, with no
   size label: it is not sized as near work.
 - **Edges:** a `sequence` edge is a `link` of relation `blocks`, the prerequisite as `id`; a `wait`
@@ -179,9 +179,19 @@ into a changeset before applying, with `snapshot` null, since no board read prec
   assumptions, then copied into those bodies. A held-back group node holds back its leaves;
   a link to a held-back leaf is dropped and named.
 
-Where the help says `blocks` is unavailable on this board (a plan or tier note), ask before the
-first write: keep the order in the bodies' Links only, or link as `relates`, which keeps the pair
-but loses the direction. Never choose for the person.
+Before the first write, ask the person about each of these the help or a read shows:
+
+- **Already applied.** Search the board for the tree's titles. Matches mean an earlier apply of
+  the same result: name them and ask whether to skip, replace, or add anyway. Never create a
+  second copy silently.
+- **Too deep.** The tree is deeper than the board nests (a plan or type note: a task cannot be
+  the parent of a task). Offer: group nodes become labels and leaves hang under the root, or
+  group nodes stay top-level and leaves carry the group in their Links. A dry run may not catch
+  a parent rule, so decide before writing.
+- **No `blocks`.** Keep the order in the bodies' Links only, or link as `relates`, which keeps
+  the pair but loses the direction.
+
+Never choose for the person.
 
 ## Moves
 
