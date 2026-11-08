@@ -5,7 +5,7 @@ and its context: a design doc to cut into tasks, a backlog to size, a sprint to 
 works in its own context, grounded in a curated knowledge base, and returns a result with the page
 each judgement rests on. What to do with that result stays the caller's decision.
 
-Status: in development, not released. Design:
+Status: 0.1.0, first release. Design:
 [`docs/specs/2026-08-24-task-master-design.md`](../../docs/specs/2026-08-24-task-master-design.md).
 
 ## Install
@@ -148,14 +148,14 @@ Pages are not compressed. A pilot showed compression drops the words that say wh
 how sure, and where it applies, and on this base those words are the claim. `knowledge/SCHEMA.md`
 holds the charter and the record of these decisions.
 
-## Not verified yet
+## What has been checked live
 
-**The board skills have not been run against a real board.** `init`, `board`, `tend-board`,
-`triage`, `review-period` and `visualize` have run only on invented data, which shows that their
-steps execute, not that the commands they take from the help work on a live tracker. The design holds that a
-skill resting on a path no live board has exercised does not ship, so the plugin stays unreleased
-until that check is done. Also unchecked: permission rules built on `${CLAUDE_PLUGIN_ROOT}` on
-Windows.
+Run on four sandbox boards (GitLab Free, GitHub Projects, Linear, Jira Cloud), with the board
+command line at 0.2.1 for the GitLab rerun: `init` on all four, `decompose` → `board` on all four,
+`tend-board` on GitLab, GitHub and Jira. Not yet run on a live board: `triage`, `review-period`,
+`visualize`, and `estimate`/`schedule` with board history; they use the same snapshot and
+metrics path `tend-board` exercised. Also unchecked: permission rules built on
+`${CLAUDE_PLUGIN_ROOT}` on Windows.
 
 ## Requires
 

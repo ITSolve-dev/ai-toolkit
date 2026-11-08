@@ -38,7 +38,7 @@
     {
       "name": "task-master",
       "source": "./plugins/task-master",
-      "description": "Board management and planning as an expert the working agent calls: decomposition, estimation, scheduling, triage, board review and period analysis, each grounded in a curated knowledge base bundled with the plugin. Board access goes through the external board-cli.",
+      "description": "Board management and planning as an expert the working agent calls: decomposition, estimation, scheduling, triage, board review and period analysis, each grounded in a curated knowledge base bundled with the plugin. Board access goes through whatever tool the project already uses for its board.",
       "version": "0.1.0",
       "category": "workflow"
     }

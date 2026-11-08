@@ -14,7 +14,7 @@ This repository is a **Claude Code plugin marketplace**: one repo, many plugins 
 | [`domain-driven-guide`](plugins/domain-driven-guide) | 0.1.1 | Ask DDD questions against a bundled, curated knowledge base — answers with citations via the read-only `guide` agent, plus design skills. Built on `llm-wiki`. |
 | [`spec-driven-guide`](plugins/spec-driven-guide) | 0.1.1 | Write design docs, decision records and agent instructions that keep their obligations and shed the mechanism. Bundled base with citations, section-by-section authoring, fan-out review. Built on `llm-wiki`. |
 | [`anti-sycophancy`](plugins/anti-sycophancy) | 0.1.0 | Assessments that don't bend toward the asker. `honest-assessment` shapes answers in the current context and attaches to other plugins' agents; `second-opinion` forks a reviewer into a context that never helped build the idea. |
-| [`task-master`](plugins/task-master) | 0.1.0 | Board management and planning as an expert the working agent calls. In development. Built on `llm-wiki`; reaches the board through whatever tool the project already uses for it. |
+| [`task-master`](plugins/task-master) | 0.1.0 | Board management and planning as an expert the working agent calls. Built on `llm-wiki`; reaches the board through whatever tool the project already uses for it. |
 
 ## Install
 
