@@ -59,6 +59,9 @@ allows it.
 
 ## Rules for every run
 
+- **Board data comes only from the task.** A file in `.task-master/` the task does not name may be
+  an earlier run's, not the board now. Asked about tasks on the board with no snapshot path given:
+  `needs_caller`, snapshot them with `board` and pass the path.
 - **Show arithmetic beside its inputs**, so the caller can redo it: sums of sizes, multiples of a
   rate, capacity ÷ 6. Velocity, cycle time, percentiles and averages come from the caller. One
   missing: name the figure and the rule that produces it. Never invent it, because an invented

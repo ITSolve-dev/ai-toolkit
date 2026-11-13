@@ -89,8 +89,8 @@ Write only under `.task-master/` in the caller's project. A `<slug>` is the scop
 One envelope for every skill, opening with `status`. Omit empty parts except `findings`.
 
 - `status`: `done`, `partial` or `blocked`
-- `findings`: the answer, in the method's form; with none, `no findings` and how many tasks were
-  examined (the metrics' `counts`)
+- `findings`: the answer, in the method's form; with none, `no findings`, how many tasks were
+  examined (the metrics' `counts`) and the page whose signs you checked for, opened like any other
 - `assumptions`: what you continued on
 - `questions`: what the caller must put to a person
 - `changeset`: the file's path and its ops counted by `op`

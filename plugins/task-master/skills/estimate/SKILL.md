@@ -5,7 +5,7 @@ description: >-
   too big to keep, citing the knowledge base; under flow without estimates it checks each against
   the SLE. Use when someone says "estimate these tasks", "point this backlog" or "check our
   estimates". Not for dates (schedule).
-argument-hint: "<tasks as text or a file path> [finished tasks with their sizes]"
+argument-hint: "<tasks as text, a file path, or a board snapshot path from board> [finished tasks with their sizes]"
 allowed-tools: Read(${CLAUDE_PLUGIN_ROOT}/knowledge/**), Read(${CLAUDE_PLUGIN_ROOT}/skills/**), Edit(./.task-master/**)
 context: fork
 agent: task-master:planner
