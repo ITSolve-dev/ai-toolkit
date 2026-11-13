@@ -1,0 +1,15 @@
+{
+  "name": "spartan",
+  "version": "0.1.0",
+  "description": "Short answers in any language: the conclusion first, then only what the reader needs to act on it. Cuts sentences that carry nothing rather than grammar, so it works in Russian as well as English. Levels lite, full and ultra.",
+  "author": {
+    "name": "ITSolve-dev"
+  },
+  "keywords": [
+    "brevity",
+    "concise",
+    "output-style",
+    "tokens",
+    "multilingual"
+  ]
+}
