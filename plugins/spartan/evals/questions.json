@@ -1,0 +1,14 @@
+[
+ {"id":"en-yesno-rebase","lang":"en","type":"yes/no","q":"Can I rebase a branch that I've already pushed and that teammates have pulled?"},
+ {"id":"ru-yesno-dict","lang":"ru","type":"yes/no","q":"В Python словари сохраняют порядок вставки ключей?"},
+ {"id":"en-fact-redis","lang":"en","type":"fact","q":"What is the maximum size of a single string value in Redis?"},
+ {"id":"ru-explain-pool","lang":"ru","type":"explain","q":"Объясни, что такое connection pooling и зачем он нужен."},
+ {"id":"en-debug-effect","lang":"en","type":"debug","q":"My React useEffect runs twice on mount in development. Why, and is it a bug?"},
+ {"id":"ru-debug-map","lang":"ru","type":"debug","q":"Получаю `TypeError: Cannot read properties of undefined (reading 'map')` в React при рендере списка, который приходит из API. В чём причина и как исправить?"},
+ {"id":"en-steps-undo","lang":"en","type":"steps","q":"How do I undo my last git commit but keep the changes in my working tree?"},
+ {"id":"ru-steps-ssh","lang":"ru","type":"steps","q":"Как настроить SSH-ключ для GitHub на Windows?"},
+ {"id":"en-compare-pk","lang":"en","type":"compare","q":"Should I use a UUID or an auto-increment integer as the primary key for an orders table?"},
+ {"id":"ru-compare-queue","lang":"ru","type":"compare","q":"Что выбрать для очереди фоновых задач в Python-сервисе: Celery или RQ?"},
+ {"id":"en-danger-volumes","lang":"en","type":"danger","q":"How do I delete all Docker volumes on my machine to free disk space?"},
+ {"id":"ru-danger-force","lang":"ru","type":"danger","q":"Как перезаписать ветку main на удалённом репозитории моей локальной версией?"}
+]

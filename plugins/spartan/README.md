@@ -21,7 +21,7 @@ in Russian and 38% in English; cutting content saved about 60% in both.
 ```
 /spartan            # full, the default
 /spartan lite       # conclusion plus a short reason
-/spartan ultra      # conclusion only
+/spartan ultra      # conclusion with its conditions
 /spartan off        # or say "normal mode" / "обычный режим"
 ```
 
@@ -31,9 +31,9 @@ answer automatically. Code, commits, PR text and documentation are written norma
 
 | Level | What the answer contains |
 |---|---|
-| lite | The conclusion, then a short reason. |
+| lite | What `full` has, plus the reason and caveats that change what you do. |
 | full | The conclusion and only what is needed to act. |
-| ultra | The conclusion alone. |
+| ultra | The conclusion with its conditions. |
 
 **From another plugin's agent** — preload the skill so the agent's reports are short:
 
@@ -47,5 +47,9 @@ skills:
 
 ## Results
 
-See the pull request that introduced the plugin for the evaluation: output tokens and fact recall
-per level and language, against no instruction, a one-line "answer concisely", and caveman.
+On 12 developer questions (6 RU, 6 EN) with Sonnet, `spartan full` gave 72–74% fewer output tokens
+than no instruction. A one-line "answer concisely" gave 35–39% and `caveman full` 41%. A blind
+judge found no distorted facts or wrong claims, and every answer could be acted on without a
+follow-up. The cost is secondary detail: 80% of a generous key-fact list survives, against about
+90% for the milder variants. Brevity held over five-turn dialogues. Method, full table and caveats
+are in [`evals/`](evals/README.md).

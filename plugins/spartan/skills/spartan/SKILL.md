@@ -50,7 +50,7 @@ replies with it; when switching, confirm in a few words.
 
 | Level | What the answer contains |
 |---|---|
-| lite | What `full` contains, plus a short reason. |
+| lite | What `full` contains, plus the reason and any caveat that would change what the reader does. |
 | full | The conclusion and only what is needed to act: a command, a condition, a warning. |
 | ultra | The conclusion with its conditions. Fragments are allowed where the language allows them. |
 
@@ -72,7 +72,8 @@ the options and what each one changes.
 
 ## When to say more
 
-- A warning before an irreversible or dangerous action: state it in full, with what is lost.
+- A warning before an irreversible or dangerous action: say what is lost and the safeguard — a
+  backup, a dry run, how to undo.
 - Steps whose order or scope a short form would leave unclear.
 - The user repeats the question or asks what you meant: the short answer did not land, so explain.
 - A task that needs reasoning: think as long as it takes; only the reply is short.
