@@ -31,6 +31,33 @@ On Claude Code 2.1.275 or later this works in one step:
 /task-master:board apply .task-master/changeset-tend-board-sprint-24.json
 ```
 
+## How it works
+
+The working agent calls a skill; the skill hands the judging to an agent, which reads the base and
+cites the page behind each judgement; the result comes back to the caller, who decides. Where the
+base has no page, the agent says so instead of answering from general knowledge.
+
+1. **Set up, once: `init`.** Finds the board tool from its `--help`, writes `[process]` into the
+   project's workflow config, proposes permission rules (reads allowed, writes prompt), adds
+   `.task-master/` to `.gitignore`.
+2. **Ask: `ask` → `guide`.** A question about organizing work, answered from the base with citations.
+3. **Plan: `decompose`, `estimate`, `schedule` → `planner`.** A document becomes a tree of tasks
+   (parents, subtasks, the order between them); tasks get relative sizes; sized tasks are laid over
+   iterations from the team's velocity, the date given as a range, or as a forecast under flow.
+   Works on text, needs no board, writes nothing to it.
+4. **Look at the board: `triage`, `tend-board`, `review-period`, `visualize` → `board-inspector`.**
+   The skill, in your context, reads the board into a snapshot file and runs the metrics script; the
+   agent sees only those files and one question, and returns findings and, where something should
+   change, a changeset file. The shared steps are in `skills/board/inspector-run.md`.
+5. **Write: `board`.** The only way anything reaches the board. It applies a changeset from step 3
+   or 4: a preview first, then a permission prompt you answer before the write runs. Before a first write it asks
+   whether the tree is already on the board, what to do when the tree is deeper than the board nests,
+   and how to record order where the board has no `blocks` link.
+
+Every skill replies in one shape: caveats, findings with their pages, questions for the person, the
+changeset path, and what the caller must do itself (`needs_caller`), such as asking someone or
+editing the process document.
+
 ## Skills
 
 | Skill           | For                                                                     | Board                        |
