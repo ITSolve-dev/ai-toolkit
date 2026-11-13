@@ -63,6 +63,9 @@ completeness unknown); `--empty-ok` only when the person confirms the scope is e
   either shape, so convert nothing. An issue left out shows in `history.missing`: say it was scoped
   out, not lost. A history read whose status differs from the list's stops the script: the task
   moved between the reads; read both again.
+- **A script refuses a read:** report its message and stop that analysis. Never edit a raw read
+  to get past it, and never reuse a read from an earlier run: either makes the board look as it
+  never was.
 
 Redirect each read into its file, never into the conversation. A read that warns it returned less
 than the scope is not a snapshot: say so and stop. A list that fills `parent` only under a parent
