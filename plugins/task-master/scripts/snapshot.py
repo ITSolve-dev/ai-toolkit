@@ -63,7 +63,8 @@ Normalized issue: the shape the plugin expects from any tool, whichever tool pro
                     finished, so it cannot stand in
     finished_at   - when it reached a finished status
     transitions   - [{status, at}], every status the issue entered and when, its first status
-                    included; a cumulative flow chart needs it on every issue
+                    included; a cumulative flow chart needs it on every issue. A status the board
+                    has no name for is {status: null, category, at}
   `updated_at` is never a substitute for any of them.
   The tool's own `kind` (if any) is kept as `tool_kind`; `kind` becomes the plugin's kind.
 
@@ -439,9 +440,11 @@ def validate_issue(obj, where):
         if not isinstance(trans, list):
             raise InputError(f"{where}: transitions must be a list or null")
         for j, t in enumerate(trans):
-            if (not isinstance(t, dict) or not isinstance(t.get("status"), str)
-                    or parse_time(t.get("at"), f"{where}: transitions[{j}].at") is None):
-                raise InputError(f"{where}: transitions[{j}] must be {{status: string, at: ISO 8601}}")
+            named = isinstance(t, dict) and (isinstance(t.get("status"), str) or (
+                t.get("status") is None and t.get("category") in CATEGORY_KINDS))
+            if not named or parse_time(t.get("at"), f"{where}: transitions[{j}].at") is None:
+                raise InputError(f"{where}: transitions[{j}] must be {{status: string, or null with a "
+                                 "category, at: ISO 8601}}")
 
 
 def enrich_issue(obj, rules, specs, categories):
@@ -450,7 +453,8 @@ def enrich_issue(obj, rules, specs, categories):
         out["tool_kind"] = obj["kind"]
     name = obj["status"]["name"]
     category = categories.get(name) if name is not None else obj["status"].get("category")
-    out["kind"] = rules.kind(name, category)[0] if name is not None else None
+    # A status with no name still has the board's category (GitLab: closed, its label gone).
+    out["kind"] = rules.kind(name, category)[0] if name is not None else CATEGORY_KINDS.get(category)
     names = label_names(obj["labels"])
     markers = {}
     for marker, (via, what) in specs.items():
@@ -525,11 +529,19 @@ def from_moves(data, issue, path):
     transitions = []
     for j, m in enumerate(moves or []):
         to = m.get("to") if isinstance(m, dict) else None
-        if not isinstance(to, dict) or not isinstance(to.get("name"), str):
-            raise InputError(f"{path}: moves[{j}] must be {{to: {{name: string}}, at: ISO 8601}}")
+        # A status the board has no name for (GitLab: a closed issue whose status label is gone)
+        # comes as name null with its category; it is kept as such, not given a name.
+        nameless = (isinstance(to, dict) and to.get("name") is None
+                    and to.get("category") in CATEGORY_KINDS)
+        if not isinstance(to, dict) or not (isinstance(to.get("name"), str) or nameless):
+            raise InputError(f"{path}: moves[{j}] must be {{to: {{name: string, or null with a "
+                             "category}}, at: ISO 8601}}")
         if parse_time(m.get("at"), f"{path}: moves[{j}].at") is None:
             raise InputError(f"{path}: moves[{j}].at is missing")
-        transitions.append({"status": to["name"], "at": m["at"]})
+        t = {"status": to["name"], "at": m["at"]}
+        if nameless:
+            t["category"] = to["category"]
+        transitions.append(t)
     created = issue.get("created_at")
     if moves is not None and created is not None:
         first = moves[0].get("from") if moves else None

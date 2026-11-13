@@ -613,6 +613,37 @@ def test_no_moves_start_in_the_current_status_unless_since_says_otherwise(tmp_pa
     assert snapshot.load_history(tmp_path, [issue()])["1"]["transitions"] == expected
 
 
+def test_move_into_a_nameless_status_keeps_its_category(tmp_path):
+    # GitLab: closing drops the status label, so the closed issue's status has no name.
+    closed = {"name": None, "category": "done"}
+    data = moves_file(status=closed, since="2026-01-05T00:00:00Z",
+                      moves=[{"from": {"name": "Todo", "category": "todo"}, "to": closed,
+                              "at": "2026-01-05T00:00:00Z"}])
+    (tmp_path / "1.json").write_text(json.dumps(data), encoding="utf-8")
+    one = issue(status=None)
+    one["status"] = closed
+    h = snapshot.load_history(tmp_path, [one])["1"]
+    assert h["transitions"] == [{"status": "Todo", "at": "2026-01-01T00:00:00Z"},
+                                {"status": None, "category": "done", "at": "2026-01-05T00:00:00Z"}]
+    import board_metrics
+    assert board_metrics.history_gap({**one, **h}) is None
+
+
+def test_nameless_status_takes_its_kind_from_the_category(cfg):
+    one = issue()
+    one["status"] = {"name": None, "category": "done"}
+    s = snapshot.compose([one], STATUSES, None, cfg, "2026-02-01T00:00:00Z")
+    assert s["issues"][0]["kind"] == "finished"
+    assert s["issues_without_status"] == ["1"]
+
+
+def test_move_into_a_nameless_status_without_category_fails(tmp_path):
+    data = moves_file(moves=[{"to": {"name": None}, "at": "2026-01-05T00:00:00Z"}])
+    (tmp_path / "1.json").write_text(json.dumps(data), encoding="utf-8")
+    with pytest.raises(snapshot.InputError, match="moves"):
+        snapshot.load_history(tmp_path, [issue()])
+
+
 def test_moves_shape_status_other_than_the_issue_read_fails(tmp_path):
     (tmp_path / "1.json").write_text(json.dumps(moves_file(status={"name": "Done", "category": "done"})),
                                      encoding="utf-8")

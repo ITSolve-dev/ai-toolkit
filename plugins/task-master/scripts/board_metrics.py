@@ -94,7 +94,7 @@ from pathlib import Path
 from zoneinfo import ZoneInfo, ZoneInfoNotFoundError
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
-from snapshot import (KINDS, SCHEMA, InputError, check_unique_ids, count_naive,  # noqa: E402
+from snapshot import (CATEGORY_KINDS, KINDS, SCHEMA, InputError, check_unique_ids, count_naive,  # noqa: E402
                       label_names, load_json, parse_time, validate_issue, validate_settings)
 
 WIP_KINDS = ("active", "handed_off")
@@ -376,9 +376,24 @@ def limits(issues, snap, cfg, given):
 
 # --- history ---------------------------------------------------------------------------------
 
+NAMELESS = "(no name, category "
+
+
+def _state(name, category):
+    """A status as a trail entry: its name, or for a status the board gives no name, its category."""
+    return name if name is not None else f"{NAMELESS}{category})"
+
+
+def kind_of(mapping, st):
+    if st.startswith(NAMELESS):
+        return CATEGORY_KINDS.get(st[len(NAMELESS):-1])
+    return mapping.get(st)
+
+
 def _trail(o):
-    return sorted(((parse_time(t["at"], f"issue {o['id']}: transitions"), t["at"], t["status"])
-                   for t in o["transitions"]), key=lambda x: x[0])
+    return sorted(((parse_time(t["at"], f"issue {o['id']}: transitions"), t["at"],
+                    _state(t["status"], t.get("category"))) for t in o["transitions"]),
+                  key=lambda x: x[0])
 
 
 def history_gap(o):
@@ -386,7 +401,7 @@ def history_gap(o):
     if not o.get("transitions"):
         return None
     tr = _trail(o)
-    if tr[-1][2] != o["status"]["name"]:
+    if tr[-1][2] != _state(o["status"]["name"], o["status"].get("category")):
         return (f"transitions end in {tr[-1][2]!r} but the issue is in {o['status']['name']!r}: the "
                 "history is cut at the end")
     created = parse_time(o["created_at"], f"issue {o['id']}: created_at")
@@ -408,7 +423,7 @@ def start_of(o, started, mapping):
             return None, None, gap
         unmapped = []
         for _, raw, st in _trail(o):
-            kind = mapping.get(st)
+            kind = kind_of(mapping, st)
             if kind is None:
                 unmapped.append(st)
             elif started.of(st, kind):
@@ -1079,7 +1094,7 @@ def cfd(issues, mapping, taken, win, tz, zone):
         for tr in trails:
             entered = [st for at, st in tr if at < cut]
             if entered:
-                kind = mapping.get(entered[-1]) or UNMAPPED
+                kind = kind_of(mapping, entered[-1]) or UNMAPPED
                 row[kind] = row.get(kind, 0) + 1
         points.append({"date": d.isoformat(), "counts": row})
     return {"points": points, "reason": None, "basis": "exact",

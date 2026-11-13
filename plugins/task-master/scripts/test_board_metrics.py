@@ -510,6 +510,20 @@ def test_cfd_per_day_counts_per_kind():
     ]
 
 
+def test_cfd_counts_a_nameless_status_by_its_category():
+    m = {"Todo": "before_start", "In Progress": "active"}
+    closed = {"status": None, "category": "done", "at": "2026-01-02T09:00:00Z"}
+    issues = [issue("1", "finished", None, created="2026-01-01T09:00:00Z",
+                    transitions=tr(("Todo", "2026-01-01T09:00:00Z")) + [closed])]
+    issues[0]["status"]["category"] = "done"
+    s = snap(issues, source="native")
+    s["mapping"] = m
+    s["taken_at"] = "2026-01-02T23:00:00Z"
+    cfd = board_metrics.compute(s, cfg())["series"]["cfd"]
+    assert cfd["points"] == [{"date": "2026-01-01", "counts": {"before_start": 1}},
+                             {"date": "2026-01-02", "counts": {"finished": 1}}]
+
+
 def test_cfd_refuses_if_any_issue_lacks_transitions():
     issues = [issue("1", "active", "In Progress", transitions=tr(("In Progress", "2026-01-02T00:00:00Z"))),
               issue("2", "active", "In Progress")]
