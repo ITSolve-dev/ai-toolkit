@@ -34,6 +34,13 @@
       "description": "Assessment that does not bend toward what the user wants to hear. Ships honest-assessment, the methodology loaded into the current context and attachable to other plugins' agents, and second-opinion, a reviewer forked into a context that never helped build the idea.",
       "version": "0.1.0",
       "category": "workflow"
+    },
+    {
+      "name": "task-master",
+      "source": "./plugins/task-master",
+      "description": "Board management and planning as an expert the working agent calls: decomposition, estimation, scheduling, triage, board review and period analysis, each grounded in a curated knowledge base bundled with the plugin. Board access goes through whatever tool the project already uses for its board.",
+      "version": "0.1.0",
+      "category": "workflow"
     }
   ]
 }
