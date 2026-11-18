@@ -68,17 +68,13 @@ belongs to a different plugin.
 
 ## Reading the base
 
-The base lives in the plugin's install directory, outside your project, so the first read asks for
-permission. Approve it once and everything works. (`ask` carries its own grant and never asks.)
-
-Headless runs can't answer a prompt, so `claude -p` needs the directory passed in — `--add-dir`, or
-`permissions.additionalDirectories` in settings. Without it a review runs with blind dimensions; it
-says so in its report rather than inventing findings, because the agents stop on a failed read
-instead of falling back to another copy of the base.
+The base lives in the plugin's install directory, outside your project. If your client prompts
+for read access, approve that directory. For unattended runs, grant read access in the client
+before starting. A reviewer that cannot read the base reports which checks it skipped.
 
 ## Requires `llm-wiki`
 
-The bundled base is an [llm-wiki](../llm-wiki) — a declared dependency, enabled with this plugin.
+The bundled base is an [llm-wiki](../llm-wiki) — a dependency of this plugin. Enable it if your client does not do so automatically.
 It powers answering (`wiki-query`) and maintaining the base (`wiki-ingest`, `wiki-lint`,
 `wiki-serve`, `wiki-keeper`).
 

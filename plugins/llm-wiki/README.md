@@ -1,6 +1,6 @@
 # llm-wiki
 
-An LLM-maintained knowledge wiki for Claude Code, implementing
+An LLM-maintained knowledge wiki implementing
 [Andrej Karpathy's llm-wiki pattern](https://gist.github.com/karpathy/442a6bf555914893e9891c11519de94f)
 (the source of truth — mirrored in [`references/karpathy-llm-wiki.md`](references/karpathy-llm-wiki.md)).
 
@@ -79,10 +79,9 @@ choices it does not spell out:
 - **Outputs are markdown-centric.** The gist lists richer query outputs (tables, slide decks,
   charts); here answers are markdown pages (which can hold tables). Richer output formats are
   out of scope.
-- **The schema lives in `SCHEMA.md`, not the host agent's instruction file.** The gist names the
-  schema as e.g. `CLAUDE.md`/`AGENTS.md`; here the charter is a dedicated `SCHEMA.md` at the wiki
-  root, so a wiki can nest inside a project that already has its own agent instructions, and so
-  the same file doubles as the wiki-root marker.
+- **The charter lives in `SCHEMA.md` at the wiki root.** This lets a wiki nest in a project with
+  its own agent instructions. The file also marks the wiki root.
+
 - **Scout is an added operation.** The gist's operations are ingest, query, and lint; this plugin
   adds a charter-driven source-scouting step that proposes candidates and never ingests, to assist
   the sourcing the gist leaves to the human.

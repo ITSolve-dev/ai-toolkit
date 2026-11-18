@@ -45,14 +45,9 @@ skills:
 
 **From another skill** — one line in its body: *"Assess per `anti-sycophancy:honest-assessment`."*
 
-**Always-on, in a project** — paste the snippet below into the project's `CLAUDE.md`.
-
-Deliberately a copy, not an `@` import: `${CLAUDE_PLUGIN_ROOT}` changes on every plugin update and
-sibling plugins are not guaranteed adjacent on disk, so a path into the plugin cache would rot.
-
-Keep it short, and resist growing it. `CLAUDE.md` is re-read on every request, so the full
-methodology does not belong there — it would be a permanent context tax charged even on "fix this
-typo", and guidance that is always present stops registering as guidance.
+**Always-on, in a project** — copy the snippet below into your agent's project instructions.
+Copying it keeps the guidance available when an update changes the plugin's install path.
+Keep the shared instructions short because they apply to unrelated tasks too.
 
 ```markdown
 ## Assessment

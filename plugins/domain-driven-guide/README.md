@@ -41,8 +41,8 @@ plugin directory, which is outside your project.
 
 ## Requires `llm-wiki`
 
-The bundled base is an [llm-wiki](../llm-wiki), so the `llm-wiki` plugin is a declared
-dependency and gets enabled with this one. It powers both halves: answering, via `wiki-query`,
+The bundled base is an [llm-wiki](../llm-wiki), so enable that plugin if your client does not do so
+automatically. It powers both halves: answering, via `wiki-query`,
 and maintaining the base, via `wiki-ingest`, `wiki-lint`, `wiki-serve` and `wiki-keeper`.
 
 ## Layout
