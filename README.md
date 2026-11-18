@@ -3,8 +3,9 @@
 Shared, **tool-agnostic** AI toolkit for the **ITSolve-dev** organization — reusable skills,
 agents and plugins meant to be installed and reused across projects.
 
-This repository is a **Claude Code plugin marketplace**: one repo, many plugins under
-`plugins/`, each installable independently.
+Each plugin under `plugins/` follows the [Agent Plugins](https://agent-plugins.org/) standard
+for its manifest and directory layout. Support for hooks, subagents and dependency installation
+varies by client.
 
 ## Plugins
 
@@ -18,30 +19,41 @@ This repository is a **Claude Code plugin marketplace**: one repo, many plugins 
 
 ## Install
 
-```
+**Claude Code** — run these commands in a session:
+
+```text
 /plugin marketplace add ITSolve-dev/ai-toolkit
-/plugin install <plugin>@ai-toolkit
+/plugin install spartan@ai-toolkit
 ```
 
-A plugin that depends on another pulls it in: installing `domain-driven-guide` enables
-`llm-wiki` with it.
+**Codex** — run these commands in a terminal:
+
+```sh
+codex plugin marketplace add ITSolve-dev/ai-toolkit
+codex plugin add spartan@ai-toolkit
+```
+
+Replace `spartan` with any plugin name from the table. In other compatible clients, use the
+client's standard plugin installation flow.
 
 ## Layout
 
-```
+```text
 ai-toolkit/
-├── .claude-plugin/marketplace.json   # marketplace manifest (lists all plugins)
-└── plugins/
-    └── <plugin>/                      # a self-contained plugin
+├── .agents/plugins/marketplace.json  # Codex catalog
+├── .claude-plugin/marketplace.json   # Claude Code catalog
+└── plugins/<plugin>/
+    ├── plugin.json                  # portable manifest
+    └── skills/<skill>/SKILL.md      # skill instructions
 ```
 
 ## Releases
 
-Each plugin is versioned and tagged independently as `<plugin>--v<version>`, which publishes a
-GitHub release. Bump the version in both `plugin.json` and the marketplace entry, then:
+Each plugin is versioned independently. Update its version in the portable manifest and the
+Claude Code marketplace entry. After the change lands, tag the merged commit and push the tag
+to publish the GitHub release. For example, for Spartan version 0.1.0:
 
+```sh
+git tag -a spartan--v0.1.0 <merge-commit> -m "spartan v0.1.0"
+git push origin refs/tags/spartan--v0.1.0
 ```
-claude plugin tag plugins/<plugin> --push
-```
-
-It refuses to tag if those two versions disagree.

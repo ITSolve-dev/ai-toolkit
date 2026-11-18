@@ -1,13 +1,11 @@
 {
+  "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
   "name": "domain-driven-guide",
   "version": "0.1.1",
   "description": "Domain-Driven Design guidance grounded in a curated knowledge base bundled with the plugin: questions answered with citations, and skills for modelling and reviewing a domain.",
   "author": {
     "name": "ITSolve-dev"
   },
-  "dependencies": [
-    "llm-wiki"
-  ],
   "keywords": [
     "ddd",
     "domain-driven-design",

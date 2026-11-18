@@ -1,0 +1,68 @@
+{
+  "name": "ai-toolkit",
+  "interface": {
+    "displayName": "ITSolve AI Toolkit"
+  },
+  "plugins": [
+    {
+      "name": "llm-wiki",
+      "source": {
+        "source": "local",
+        "path": "./plugins/llm-wiki"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "knowledge"
+    },
+    {
+      "name": "domain-driven-guide",
+      "source": {
+        "source": "local",
+        "path": "./plugins/domain-driven-guide"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "knowledge"
+    },
+    {
+      "name": "spec-driven-guide",
+      "source": {
+        "source": "local",
+        "path": "./plugins/spec-driven-guide"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "knowledge"
+    },
+    {
+      "name": "anti-sycophancy",
+      "source": {
+        "source": "local",
+        "path": "./plugins/anti-sycophancy"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "workflow"
+    },
+    {
+      "name": "spartan",
+      "source": {
+        "source": "local",
+        "path": "./plugins/spartan"
+      },
+      "policy": {
+        "installation": "AVAILABLE",
+        "authentication": "ON_INSTALL"
+      },
+      "category": "workflow"
+    }
+  ]
+}

@@ -43,13 +43,6 @@ skills:
 ---
 ```
 
-and declare the dependency, so enabling the host plugin enables this one:
-
-```jsonc
-// plugins/llm-wiki/.claude-plugin/plugin.json
-"dependencies": [{ "name": "anti-sycophancy", "version": "^0.1.0" }]
-```
-
 **From another skill** — one line in its body: *"Assess per `anti-sycophancy:honest-assessment`."*
 
 **Always-on, in a project** — paste the snippet below into the project's `CLAUDE.md`.
@@ -100,7 +93,7 @@ in front of someone.
 
 ```
 anti-sycophancy/
-├── .claude-plugin/plugin.json
+├── plugin.json
 └── skills/
     ├── honest-assessment/
     │   ├── SKILL.md
