@@ -31,7 +31,7 @@ genre, and every record that clears no bar makes the ones that matter harder to 
 
 ## Step 2 — write it
 
-Read `.claude/spec-driven-guide.md` for where records live, the language, and whether this project
+Read `.agents/spec-driven-guide.md` for where records live, the language, and whether this project
 carries a status field. Where it is absent, run [`init`](${CLAUDE_PLUGIN_ROOT}/skills/init/SKILL.md) or ask; a record filed
 outside the log is invisible to the next person, which is this genre's whole failure mode.
 

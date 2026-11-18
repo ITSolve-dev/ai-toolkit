@@ -116,5 +116,5 @@ changing.
 
 ## Language and project conventions
 
-Write in the language the project uses. Where `.claude/spec-driven-guide.md` exists in the working
+Write in the language the project uses. Where `.agents/spec-driven-guide.md` exists in the working
 project, it sets the language and any local conventions, and it wins over the defaults here.
