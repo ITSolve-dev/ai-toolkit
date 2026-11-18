@@ -30,6 +30,7 @@ idea can be an entity in one context and a value in another.
    list and the context. It fetches the tests from the base and returns the classification per
    concept with its reasoning, an identity strategy wherever the answer is entity, and where
    behaviour and validation belong.
+   Include the absolute path to [the bundled base](../../knowledge/), resolved from this installed skill.
 
 5. **Watch for the third answer.** Some concepts are neither — the behaviour has no natural
    owner, or construction itself is the problem. Do not force the binary.

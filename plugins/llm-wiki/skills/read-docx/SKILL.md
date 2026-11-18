@@ -10,6 +10,9 @@ allowed-tools: Bash(uv run *)
 
 # read-docx
 
+In the commands below, substitute the absolute directory containing this installed `SKILL.md`
+for `<skill-dir>`. Run the commands from the user's working directory.
+
 An adapter. Turns one `.docx` into `raw/<slug>.md` per the
 [adapter contract](../../references/adapter-contract.md).
 
@@ -23,12 +26,12 @@ An adapter. Turns one `.docx` into `raw/<slug>.md` per the
 
 ```bash
 # Pandoc (requires the pandoc binary on PATH)
-uv run --no-project "${CLAUDE_PLUGIN_ROOT}/skills/read-docx/scripts/extract.py" \
+uv run --no-project "<skill-dir>/scripts/extract.py" \
   <source.docx> --raw-dir <wiki-root>/raw [--slug NAME]
 
 # Mammoth fallback (installs on demand)
 uv run --no-project --with mammoth \
-  "${CLAUDE_PLUGIN_ROOT}/skills/read-docx/scripts/extract.py" \
+  "<skill-dir>/scripts/extract.py" \
   <source.docx> --raw-dir <wiki-root>/raw --mammoth
 ```
 

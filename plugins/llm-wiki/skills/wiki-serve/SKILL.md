@@ -14,7 +14,7 @@ Serve the compiled `wiki/` markdown with **MkDocs Material**, in two steps.
 ## 1. Ensure the config exists (once per wiki)
 
 If the wiki has no `mkdocs.yml`, create it from the template with `site_name` filled in: read
-`${CLAUDE_PLUGIN_ROOT}/assets/mkdocs.yml.template`, set `site_name` to the wiki's name, and
+[the bundled template](../../assets/mkdocs.yml.template), set `site_name` to the wiki's name, and
 write the result to `<wiki-root>/mkdocs.yml` (an owned file — the write is auto-approved).
 
 `docs_dir: wiki` already points it at the compiled pages, and the template wires up

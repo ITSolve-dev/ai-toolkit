@@ -25,7 +25,8 @@ An audit, not a redesign. The reading happens in parallel inspectors; only findi
 
 4. **Fan out one inspector per dimension, in parallel.** Dispatch
    `domain-driven-guide:model-inspector` once per dimension, each given the scope, the gate
-   result, and its single dimension:
+   result, the absolute path to [the bundled base](../../knowledge/) resolved from this installed
+   skill, and its single dimension:
 
    - behaviour placement — whether the objects that own the rules are the ones enforcing them
    - value modelling — concepts the domain treats as whole values but the code carries as bare

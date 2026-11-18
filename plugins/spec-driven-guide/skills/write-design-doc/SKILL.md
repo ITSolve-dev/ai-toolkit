@@ -14,16 +14,16 @@ A design doc argues that a design is the right one. Its load-bearing content is 
 the description of what will be built — a document describing the same design without the argument
 is a different genre, and a less useful one, because nobody can disagree with it.
 
-Apply [`writing-discipline`](${CLAUDE_PLUGIN_ROOT}/skills/writing-discipline/SKILL.md) throughout. This skill adds only what
+Apply [`writing-discipline`](../writing-discipline/SKILL.md) throughout. This skill adds only what
 the genre owes on top of it.
 
 ## Steps
 
-1. **Get the brief.** Without one, run [`prepare-brief`](${CLAUDE_PLUGIN_ROOT}/skills/prepare-brief/SKILL.md) first. Writing
+1. **Get the brief.** Without one, run [`prepare-brief`](../prepare-brief/SKILL.md) first. Writing
    from an unconfirmed problem statement is what produces the rewrite cycle.
 
    Read `.agents/spec-driven-guide.md` for where design docs live and what language they are
-   written in. Where it is absent, run [`init`](${CLAUDE_PLUGIN_ROOT}/skills/init/SKILL.md) or ask — do not guess a path, a
+   written in. Where it is absent, run [`init`](../init/SKILL.md) or ask — do not guess a path, a
    document filed somewhere nobody looks is the same as one not written.
 
 2. **Fix the reader and the grain, in writing, before prose.** One sentence, shown to the user and
@@ -45,7 +45,7 @@ the genre owes on top of it.
 
 5. **Close.** Assemble, then re-read for defects that exist only between sections — a term used two
    ways, a decision stated in one section and contradicted in another, a section whose reader is
-   different from the one fixed in step 2. Then run [`review-doc`](${CLAUDE_PLUGIN_ROOT}/skills/review-doc/SKILL.md).
+   different from the one fixed in step 2. Then run [`review-doc`](../review-doc/SKILL.md).
 
 ## What the genre owes
 

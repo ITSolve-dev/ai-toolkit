@@ -36,6 +36,7 @@ meaning the same thing.
    inventory, the scope, and the situation from step 1. It fetches the criteria from the base
    and returns the boundaries, each subdomain classified, and every relationship labelled with
    its integration pattern and direction.
+   Include the absolute path to [the bundled base](../../knowledge/), resolved from this installed skill.
 
 6. **Settle the classification with the user.** Which subdomain is core is a business judgement,
    not a technical one, and it governs where effort goes afterwards. Do not infer it — but when

@@ -30,6 +30,7 @@ belong together, but which must be consistent together — and what rule forces 
    invariants and the scope. It fetches the rules of thumb and their reasoning from the base and
    returns the smallest cluster that still holds each invariant, its root, what is referenced by
    identity rather than held, and which rules move outside the boundary.
+   Include the absolute path to [the bundled base](../../knowledge/), resolved from this installed skill.
 
 4. **Test the result against the operations.** If any operation still needs two aggregates
    changed atomically, the boundary is wrong or a concept in the language is missing. Treat it

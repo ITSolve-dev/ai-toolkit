@@ -11,6 +11,9 @@ allowed-tools: Bash(uv run *)
 
 # wiki-lint
 
+In the commands below, substitute the absolute directory containing this installed `SKILL.md`
+for `<skill-dir>`. Run the commands from the user's working directory.
+
 Karpathy's lint: a periodic health check for what rots as a wiki grows — contradictions
 between pages, claims gone stale, orphan pages, concepts mentioned but lacking a page, missing
 cross-references, and coverage gaps. Two tiers with a clear authority boundary.
@@ -21,8 +24,8 @@ cross-references, and coverage gaps. Two tiers with a clear authority boundary.
    frontmatter, broken `[[links]]`, orphan pages, and index regeneration. Run the scripts:
 
    ```bash
-   uv run --no-project "${CLAUDE_PLUGIN_ROOT}/skills/wiki-lint/scripts/build_index.py" <wiki-root>
-   uv run --no-project "${CLAUDE_PLUGIN_ROOT}/skills/wiki-lint/scripts/lint_mechanical.py" <wiki-root>
+   uv run --no-project "<skill-dir>/scripts/build_index.py" <wiki-root>
+   uv run --no-project "<skill-dir>/scripts/lint_mechanical.py" <wiki-root>
    ```
 
    This tier also runs **automatically** via the plugin's [Stop hook](../../hooks/hooks.json)
