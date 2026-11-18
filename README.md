@@ -3,8 +3,8 @@
 Shared, **tool-agnostic** AI toolkit for the **ITSolve-dev** organization — reusable skills,
 agents and plugins meant to be installed and reused across projects.
 
-Each plugin lives under `plugins/` and can be installed independently. Spartan follows the
-[Agent Plugins](https://agent-plugins.org/) standard for its manifest and directory layout.
+This repository is a **Claude Code plugin marketplace**: one repo, many plugins under
+`plugins/`, each installable independently.
 
 ## Plugins
 
@@ -16,7 +16,7 @@ Each plugin lives under `plugins/` and can be installed independently. Spartan f
 | [`anti-sycophancy`](plugins/anti-sycophancy) | 0.1.0 | Assessments that don't bend toward the asker. `honest-assessment` shapes answers in the current context and attaches to other plugins' agents; `second-opinion` forks a reviewer into a context that never helped build the idea. |
 | [`spartan`](plugins/spartan) | 0.1.0 | Short answers in any language: the conclusion first, then only what the reader needs to act. Cuts content, not grammar, so it works in Russian as well as English. Levels `lite`, `full`, `ultra`. |
 
-## Install with Claude Code
+## Install
 
 ```
 /plugin marketplace add ITSolve-dev/ai-toolkit
