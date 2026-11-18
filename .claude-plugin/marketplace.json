@@ -34,6 +34,13 @@
       "description": "Assessment that does not bend toward what the user wants to hear. Ships honest-assessment, the methodology loaded into the current context and attachable to other plugins' agents, and second-opinion, a reviewer forked into a context that never helped build the idea.",
       "version": "0.1.0",
       "category": "workflow"
+    },
+    {
+      "name": "spartan",
+      "source": "./plugins/spartan",
+      "description": "Short answers in any language: the conclusion first, then only what the reader needs to act on it. Cuts sentences that carry nothing rather than grammar, so it works in Russian as well as English. Levels lite, full and ultra.",
+      "version": "0.1.0",
+      "category": "workflow"
     }
   ]
 }
