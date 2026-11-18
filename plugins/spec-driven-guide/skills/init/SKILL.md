@@ -1,7 +1,7 @@
 ---
 name: init
 description: >-
-  Set up spec-driven-guide for this project — writes .claude/spec-driven-guide.md with the language
+  Set up spec-driven-guide for this project — writes .agents/spec-driven-guide.md with the language
   documents are written in, where design docs and decision records live, and any house conventions.
   Use on first use of the plugin in a repository, when the writing skills ask where to put a file,
   or when the project's documentation conventions have changed and the config is stale.
@@ -13,6 +13,10 @@ The config exists so the writing skills stop asking the same questions in every 
 **committed**, not local: these are the team's conventions, not one person's preferences, and a
 document written to a different convention by whoever ran the skill last is the problem it prevents.
 
+If only `.claude/spec-driven-guide.md` exists, create `.agents/` if needed and move that file
+there unchanged before applying any requested updates. If both exist, use the file in `.agents/`
+and leave the other copy untouched.
+
 ## Steps
 
 1. **Infer before asking.** Look at the repository: existing `docs/` layout, any `adr/` or
@@ -22,7 +26,7 @@ document written to a different convention by whoever ran the skill last is the 
 2. **Confirm and fill the gaps.** Present what you inferred and ask only about what you could not
    see. Where the repository has no documents at all, propose defaults and say they are proposals.
 
-3. **Write `.claude/spec-driven-guide.md`**:
+3. **Write `.agents/spec-driven-guide.md`**:
 
    ```markdown
    ---

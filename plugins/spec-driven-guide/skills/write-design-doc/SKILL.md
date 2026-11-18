@@ -22,7 +22,7 @@ the genre owes on top of it.
 1. **Get the brief.** Without one, run [`prepare-brief`](${CLAUDE_PLUGIN_ROOT}/skills/prepare-brief/SKILL.md) first. Writing
    from an unconfirmed problem statement is what produces the rewrite cycle.
 
-   Read `.claude/spec-driven-guide.md` for where design docs live and what language they are
+   Read `.agents/spec-driven-guide.md` for where design docs live and what language they are
    written in. Where it is absent, run [`init`](${CLAUDE_PLUGIN_ROOT}/skills/init/SKILL.md) or ask — do not guess a path, a
    document filed somewhere nobody looks is the same as one not written.
 
