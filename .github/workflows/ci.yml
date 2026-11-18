@@ -16,6 +16,25 @@ jobs:
           curl -fsSL https://claude.ai/install.sh | bash
           echo "$HOME/.local/bin" >> "$GITHUB_PATH"
 
+      - name: Check portable manifests and marketplace entries
+        run: |
+          for dir in plugins/*/; do
+            path="./${dir%/}"
+            name=$(basename "$dir")
+            version=$(jq -er --arg name "$name" '
+              select(.name == $name and .["$schema"] == "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json")
+              | .version | strings | select(length > 0)
+            ' "$dir/plugin.json")
+            jq -e --arg name "$name" --arg path "$path" --arg version "$version" '
+              [.plugins[] | select(.name == $name)] | length == 1 and
+              (.[0] | .source == $path and .version == $version)
+            ' .claude-plugin/marketplace.json
+            jq -e --arg name "$name" --arg path "$path" '
+              [.plugins[] | select(.name == $name)] | length == 1 and
+              (.[0].source | .source == "local" and .path == $path)
+            ' .agents/plugins/marketplace.json
+          done
+
       - name: Validate marketplace + plugins
         run: |
           claude plugin validate . --strict

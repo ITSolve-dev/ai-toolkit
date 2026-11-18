@@ -43,10 +43,10 @@ skills:
 ---
 ```
 
-and declare the dependency, so enabling the host plugin enables this one:
+and declare the dependency in the host plugin's Claude Code marketplace entry:
 
 ```jsonc
-// plugins/llm-wiki/.claude-plugin/plugin.json
+// .claude-plugin/marketplace.json — inside the llm-wiki entry
 "dependencies": [{ "name": "anti-sycophancy", "version": "^0.1.0" }]
 ```
 
@@ -100,7 +100,7 @@ in front of someone.
 
 ```
 anti-sycophancy/
-├── .claude-plugin/plugin.json
+├── plugin.json
 └── skills/
     ├── honest-assessment/
     │   ├── SKILL.md
