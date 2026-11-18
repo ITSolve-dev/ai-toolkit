@@ -10,6 +10,9 @@ allowed-tools: Bash(uv run *)
 
 # read-html
 
+In the commands below, substitute the absolute directory containing this installed `SKILL.md`
+for `<skill-dir>`. Run the commands from the user's working directory.
+
 An adapter. Turns one URL or `.html` file into `raw/<slug>.md` per the
 [adapter contract](../../references/adapter-contract.md), using Trafilatura to extract the
 main article as markdown (it outputs markdown directly — no markdownify needed).
@@ -18,7 +21,7 @@ main article as markdown (it outputs markdown directly — no markdownify needed
 
 ```bash
 uv run --no-project --with trafilatura \
-  "${CLAUDE_PLUGIN_ROOT}/skills/read-html/scripts/extract.py" \
+  "<skill-dir>/scripts/extract.py" \
   <url-or-file.html> --raw-dir <wiki-root>/raw [--slug NAME]
 ```
 
@@ -31,7 +34,7 @@ domain), concatenates each page as its own section, and builds a chapter structu
 
 ```bash
 uv run --no-project --with trafilatura \
-  "${CLAUDE_PLUGIN_ROOT}/skills/read-html/scripts/extract.py" \
+  "<skill-dir>/scripts/extract.py" \
   <toc-or-start-url> --raw-dir <wiki-root>/raw --follow [--cap 40] [--title "Work Title"] [--slug NAME]
 ```
 

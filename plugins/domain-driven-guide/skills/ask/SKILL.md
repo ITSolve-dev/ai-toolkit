@@ -6,7 +6,6 @@ description: >-
   value objects, repositories, domain services, domain events, context mapping, CQRS, event
   sourcing, DDD anti-patterns — and "does this code actually follow DDD".
 argument-hint: "<your DDD question>"
-allowed-tools: Read(${CLAUDE_PLUGIN_ROOT}/knowledge/**)
 context: fork
 agent: domain-driven-guide:guide
 background: false
@@ -15,6 +14,9 @@ background: false
 Answer this Domain-Driven Design question from the knowledge base:
 
 $ARGUMENTS
+
+Use [the bundled base](../../knowledge/) relative to this installed skill. Pass its absolute path
+to the guide when delegating the question.
 
 ## How to answer
 

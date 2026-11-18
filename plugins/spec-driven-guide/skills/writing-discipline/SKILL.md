@@ -12,7 +12,7 @@ Genre-neutral. The genre skills add what a design doc or a decision record owes 
 
 Each rule below carries the symptom that reveals its violation **in the text**, and a page in the
 bundled base holding the reasoning. Read the page when a case is borderline; the symptom is enough
-for the clear ones. Base root: `${CLAUDE_PLUGIN_ROOT}/knowledge` — open pages there, not from a copy
+for the clear ones. Base root: [the bundled knowledge directory](../../knowledge/), relative to this installed skill — open pages there, not from a copy
 of this plugin that happens to sit in the project you are working in.
 
 ## 1. State the commitment, not the means
