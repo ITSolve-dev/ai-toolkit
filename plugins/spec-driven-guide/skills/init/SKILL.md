@@ -13,10 +13,6 @@ The config exists so the writing skills stop asking the same questions in every 
 **committed**, not local: these are the team's conventions, not one person's preferences, and a
 document written to a different convention by whoever ran the skill last is the problem it prevents.
 
-If only `.claude/spec-driven-guide.md` exists, create `.agents/` if needed and move that file
-there unchanged before applying any requested updates. If both exist, use the file in `.agents/`
-and leave the other copy untouched.
-
 ## Steps
 
 1. **Infer before asking.** Look at the repository: existing `docs/` layout, any `adr/` or
