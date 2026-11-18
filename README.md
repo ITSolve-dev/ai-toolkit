@@ -34,9 +34,7 @@ codex plugin add spartan@ai-toolkit
 ```
 
 Replace `spartan` with any plugin name from the table. In other compatible clients, use the
-client's standard plugin installation flow. The two guide plugins use `llm-wiki`. Claude Code
-installs that dependency automatically. In clients without dependency resolution, install
-`llm-wiki` too.
+client's standard plugin installation flow.
 
 ## Layout
 

@@ -43,13 +43,6 @@ skills:
 ---
 ```
 
-and declare the dependency in the host plugin's Claude Code marketplace entry:
-
-```jsonc
-// .claude-plugin/marketplace.json — inside the llm-wiki entry
-"dependencies": [{ "name": "anti-sycophancy", "version": "^0.1.0" }]
-```
-
 **From another skill** — one line in its body: *"Assess per `anti-sycophancy:honest-assessment`."*
 
 **Always-on, in a project** — paste the snippet below into the project's `CLAUDE.md`.
