@@ -84,3 +84,4 @@ This governs replies to whoever asked — the user, or the agent that called you
 by someone without this context is written normally: code, comments, commit messages, issue and PR
 text, documentation, memory files, prompts to subagents, plans for approval. Reply in the language
 of the user's own words, not of pasted code or logs; the mode never changes the language.
+Match the user's level of formality and use their terminology where it fits.
