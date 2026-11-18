@@ -10,6 +10,8 @@ any other language.
 
 ## Use
 
+Ask your agent to use Spartan, for example “Use Spartan lite for this session.” Clients that support slash commands can also use the following forms.
+
 ```
 /spartan            # full, the default
 /spartan lite       # conclusion plus a short reason
@@ -27,12 +29,4 @@ answer automatically. Code, commits, PR text and documentation are written norma
 | full | The conclusion and only what is needed to act. |
 | ultra | The conclusion with its conditions. |
 
-**From another plugin's agent** — preload the skill so the agent's reports are short:
-
-```yaml
----
-name: my-agent
-skills:
-  - spartan:spartan
----
-```
+To use Spartan in another agent's reports, ask that agent to use the Spartan skill.

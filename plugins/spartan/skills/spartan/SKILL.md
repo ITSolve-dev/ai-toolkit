@@ -1,6 +1,5 @@
 ---
 name: spartan
-argument-hint: "[lite|full|ultra|off]"
 description: >-
   Short answers in any language for the rest of the session: the conclusion first, then only what
   the reader needs to act on it. Levels lite, full (default) and ultra; "/spartan off" or "normal
