@@ -36,24 +36,15 @@ codex plugin add spartan@ai-toolkit
 Replace `spartan` with any plugin name from the table. In other compatible clients, use the
 client's standard plugin installation flow.
 
-**OpenCode v2** — install one plugin or the entire toolkit from Git:
+**OpenCode v2** — install one plugin or the whole toolkit:
 
 ```sh
-# One plugin (replace spartan with a plugin name from the table)
 opencode plugin add 'github:ITSolve-dev/ai-toolkit#main::path:plugins/spartan'
-
-# Entire toolkit
 opencode plugin add 'github:ITSolve-dev/ai-toolkit#main'
 ```
 
-Use `opencode plugin list` to see installed packages and mention `@spartan` in a prompt to
-load the skill. The two `ask` skills have distinct IDs: `@domain-driven-guide-ask` and
-`@spec-driven-guide-ask`.
-
-OpenCode packages register the existing skills and include their supporting files. They
-do not register Claude Code hooks, slash commands or subagents, or install dependencies
-declared by another client's marketplace. Workflows depending on those features may not
-behave the same way in OpenCode.
+Replace `spartan` with any plugin name. Use `@spartan` to load the skill. Hooks, slash
+commands, subagents, and marketplace dependencies are not installed.
 
 ## Layout
 
