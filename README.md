@@ -11,11 +11,11 @@ varies by client.
 
 | Plugin | Version | What it does |
 |--------|---------|--------------|
-| [`llm-wiki`](plugins/llm-wiki) | 0.1.2 | LLM-maintained knowledge wiki (Karpathy pattern): ingest → compile → query → lint, local serve, multi-source adapters (book/html/docx). Ships the `wiki-keeper` expert agent. |
-| [`domain-driven-guide`](plugins/domain-driven-guide) | 0.1.2 | Ask DDD questions against a bundled, curated knowledge base — answers with citations via the read-only `guide` agent, plus design skills. Built on `llm-wiki`. |
-| [`spec-driven-guide`](plugins/spec-driven-guide) | 0.1.3 | Write design docs, decision records and agent instructions that keep their obligations and shed the mechanism. Bundled base with citations, section-by-section authoring, fan-out review. Built on `llm-wiki`. |
-| [`anti-sycophancy`](plugins/anti-sycophancy) | 0.1.1 | Assessments that don't bend toward the asker. `honest-assessment` shapes answers in the current context and attaches to other plugins' agents; `second-opinion` forks a reviewer into a context that never helped build the idea. |
-| [`spartan`](plugins/spartan) | 0.1.0 | Short answers in any language: the conclusion first, then only what the reader needs to act. Cuts content, not grammar, so it works in Russian as well as English. Levels `lite`, `full`, `ultra`. |
+| [`llm-wiki`](plugins/llm-wiki) | 0.1.3 | LLM-maintained knowledge wiki (Karpathy pattern): ingest → compile → query → lint, local serve, multi-source adapters (book/html/docx). Ships the `wiki-keeper` expert agent. |
+| [`domain-driven-guide`](plugins/domain-driven-guide) | 0.1.3 | Ask DDD questions against a bundled, curated knowledge base — answers with citations via the read-only `guide` agent, plus design skills. Built on `llm-wiki`. |
+| [`spec-driven-guide`](plugins/spec-driven-guide) | 0.1.4 | Write design docs, decision records and agent instructions that keep their obligations and shed the mechanism. Bundled base with citations, section-by-section authoring, fan-out review. Built on `llm-wiki`. |
+| [`anti-sycophancy`](plugins/anti-sycophancy) | 0.1.2 | Assessments that don't bend toward the asker. `honest-assessment` shapes answers in the current context and attaches to other plugins' agents; `second-opinion` forks a reviewer into a context that never helped build the idea. |
+| [`spartan`](plugins/spartan) | 0.1.1 | Short answers in any language: the conclusion first, then only what the reader needs to act. Cuts content, not grammar, so it works in Russian as well as English. Levels `lite`, `full`, `ultra`. |
 
 ## Install
 

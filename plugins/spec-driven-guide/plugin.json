@@ -1,7 +1,7 @@
 {
   "$schema": "https://agent-plugins.org/schemas/1.0.0/plugin.schema.json",
   "name": "spec-driven-guide",
-  "version": "0.1.3",
+  "version": "0.1.4",
   "description": "The theory half of development driven by documents: writing design docs, decision records and agent instructions that shed implementation mechanism while keeping their obligations. Grounded in a curated knowledge base bundled with the plugin, and checked by a fan-out review of what was written.",
   "author": {
     "name": "ITSolve-dev"
