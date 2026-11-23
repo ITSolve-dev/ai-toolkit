@@ -69,8 +69,8 @@ ai-toolkit/
 ## Releases
 
 Each plugin is versioned independently. Update its version in the portable manifest and the
-Claude Code marketplace entry, then run `node scripts/generate-opencode-packages.mjs` to
-refresh the OpenCode package files. After the change lands, tag the merged commit and push the tag
+Claude Code marketplace entry and the plugin's OpenCode `package.json`. After the change
+lands, tag the merged commit and push the tag
 to publish the GitHub release. For example, for Spartan version 0.1.0:
 
 ```sh

@@ -11,9 +11,6 @@ jobs:
     steps:
       - uses: actions/checkout@v7
 
-      - name: Check generated OpenCode packages
-        run: node scripts/generate-opencode-packages.mjs --check
-
       - name: Install Claude Code
         run: |
           curl -fsSL https://claude.ai/install.sh | bash
