@@ -10,6 +10,9 @@ allowed-tools: Bash(uv run *)
 
 # read-book
 
+In the commands below, substitute the absolute directory containing this installed `SKILL.md`
+for `<skill-dir>`. Run the commands from the user's working directory.
+
 An adapter. Turns one PDF/EPUB into `raw/<slug>.md` per the
 [adapter contract](../../references/adapter-contract.md) — nothing filtered, structure
 preserved, provenance recorded.
@@ -27,12 +30,12 @@ Dependencies install on demand via `uv` (keeps the base plugin light):
 ```bash
 # accurate (Docling)
 uv run --no-project --with docling \
-  "${CLAUDE_PLUGIN_ROOT}/skills/read-book/scripts/extract.py" \
+  "<skill-dir>/scripts/extract.py" \
   <source.pdf|epub> --raw-dir <wiki-root>/raw
 
 # fast (pymupdf4llm)
 uv run --no-project --with pymupdf4llm \
-  "${CLAUDE_PLUGIN_ROOT}/skills/read-book/scripts/extract.py" \
+  "<skill-dir>/scripts/extract.py" \
   <source.pdf> --raw-dir <wiki-root>/raw --fast
 ```
 

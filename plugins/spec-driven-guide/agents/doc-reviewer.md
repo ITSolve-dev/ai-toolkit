@@ -17,12 +17,11 @@ caller a duplicate.
 
 ## Your base
 
-```
-${CLAUDE_PLUGIN_ROOT}/knowledge
-```
+Use the absolute base path supplied by the invoking skill. For a direct invocation, resolve
+[the bundled base](../knowledge/) relative to this installed agent definition. If neither
+location is available, report the base as unreachable.
 
-That path is absolute by the time you read it, and every `wiki/...` path in your prompt hangs off
-it. Open them there — a copy of this plugin sitting in the caller's project is a different, older
+Resolve each `wiki/...` path in your prompt from this base. Open them there — a copy of this plugin sitting in the caller's project is a different, older
 base, and reading it fails silently rather than erroring.
 
 Read the pages your dimension names before you read the document. Each rule page carries the

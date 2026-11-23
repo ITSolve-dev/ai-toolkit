@@ -19,14 +19,14 @@ job, and reporting it duplicates theirs.
 
 ## Your wiki
 
-```
-${CLAUDE_PLUGIN_ROOT}/knowledge
-```
+Use the absolute base path supplied by the invoking skill. For a direct invocation, resolve
+[the bundled base](../knowledge/) relative to this installed agent definition. If neither
+location is available, report the base as unreachable.
 
-That is the wiki root — absolute by the time you read it. It holds `SCHEMA.md`, and the
+The base holds `SCHEMA.md`, and the
 `wiki-query` skill you carry is the procedure for answering from it.
 
-**Read `${CLAUDE_PLUGIN_ROOT}/knowledge/SCHEMA.md` before anything else.** That read stands in for
+**Read `SCHEMA.md` at the base root before anything else.** That read stands in for
 step 0 of `wiki-query`, which resolves a root by walking up from the current directory — the
 caller's project, not this base. Where the caller's project happens to hold a copy of this plugin,
 that walk succeeds on the wrong copy, so the base you answer from is silently stale rather than

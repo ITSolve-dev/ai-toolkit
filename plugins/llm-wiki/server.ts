@@ -1,0 +1,44 @@
+import { readFile } from "node:fs/promises"
+import { fileURLToPath } from "node:url"
+import { Plugin, Skill } from "@opencode/plugin"
+import { parse } from "yaml"
+
+const skills = {
+  "read-book": "read-book",
+  "read-docx": "read-docx",
+  "read-html": "read-html",
+  "wiki-ingest": "wiki-ingest",
+  "wiki-init": "wiki-init",
+  "wiki-lint": "wiki-lint",
+  "wiki-query": "wiki-query",
+  "wiki-scout": "wiki-scout",
+  "wiki-serve": "wiki-serve"
+}
+
+export async function register(ctx: Pick<Plugin.Context, "skill">) {
+  const definitions = await Promise.all(Object.entries(skills).map(async ([directory, id]) => {
+    const path = fileURLToPath(new URL(`./skills/${directory}/SKILL.md`, import.meta.url))
+    const source = await readFile(path, "utf8")
+    const match = /^---\r?\n([\s\S]*?)\r?\n---\r?\n([\s\S]*)$/.exec(source)
+    if (!match) throw new Error(`Missing YAML frontmatter: ${path}`)
+    const [, frontmatter, content] = match
+    const { name, description } = parse(frontmatter) ?? {}
+    if (typeof name !== "string" || typeof description !== "string") {
+      throw new Error(`Expected name and description in ${path}`)
+    }
+    return {
+      id: Skill.ID.make(id),
+      name: Skill.Name.make(name),
+      description,
+      path: Skill.Info.fields.path.make(path),
+      content,
+    }
+  }))
+  await ctx.skill.transform((editor) => {
+    for (const skill of definitions) {
+      if (!editor.get(skill.id)) editor.add(skill)
+    }
+  })
+}
+
+export default Plugin.define({ id: "itsolve.llm-wiki", setup: register })

@@ -1,0 +1,17 @@
+{
+  "name": "@itsolve-dev/opencode-anti-sycophancy",
+  "version": "0.1.1",
+  "type": "module",
+  "exports": {
+    ".": "./server.ts"
+  },
+  "files": [
+    "server.ts",
+    "plugin.json",
+    "skills"
+  ],
+  "dependencies": {
+    "@opencode/plugin": "2.4.1",
+    "yaml": "^2.8.0"
+  }
+}

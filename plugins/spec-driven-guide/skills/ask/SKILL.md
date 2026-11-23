@@ -6,7 +6,6 @@ description: >-
   what to leave out, which document type this is, how to phrase a statement so it can be checked,
   what a decision record owes, how to review a document — and "is this passage too much detail".
 argument-hint: "<your question about writing the document>"
-allowed-tools: Read(${CLAUDE_PLUGIN_ROOT}/knowledge/**)
 context: fork
 agent: spec-driven-guide:guide
 background: false
@@ -15,6 +14,9 @@ background: false
 Answer this question about writing documents that drive development, from the knowledge base:
 
 $ARGUMENTS
+
+Use [the bundled base](../../knowledge/) relative to this installed skill. Pass its absolute path
+to the guide when delegating the question.
 
 ## How to answer
 

@@ -1,0 +1,20 @@
+{
+  "name": "@itsolve-dev/opencode-ai-toolkit",
+  "version": "0.1.0",
+  "type": "module",
+  "exports": {
+    ".": "./server.ts"
+  },
+  "files": [
+    "server.ts",
+    "plugins/anti-sycophancy",
+    "plugins/domain-driven-guide",
+    "plugins/llm-wiki",
+    "plugins/spartan",
+    "plugins/spec-driven-guide"
+  ],
+  "dependencies": {
+    "@opencode/plugin": "2.4.1",
+    "yaml": "^2.8.0"
+  }
+}

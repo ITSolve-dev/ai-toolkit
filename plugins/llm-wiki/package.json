@@ -1,0 +1,22 @@
+{
+  "name": "@itsolve-dev/opencode-llm-wiki",
+  "version": "0.1.2",
+  "type": "module",
+  "exports": {
+    ".": "./server.ts"
+  },
+  "files": [
+    "server.ts",
+    "plugin.json",
+    "agents",
+    "assets",
+    "hooks",
+    "references",
+    "skills",
+    "workflows"
+  ],
+  "dependencies": {
+    "@opencode/plugin": "2.4.1",
+    "yaml": "^2.8.0"
+  }
+}

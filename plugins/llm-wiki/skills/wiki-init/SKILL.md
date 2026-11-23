@@ -11,6 +11,9 @@ allowed-tools: Bash(uv *)
 
 # wiki-init
 
+In the commands below, substitute the absolute directory containing this installed `SKILL.md`
+for `<skill-dir>`. Run the commands from the user's working directory.
+
 Bootstrap a new wiki. Not part of Karpathy's gist (which is abstract about setup) but the
 practical quick-start every implementation adds. After this runs, `wiki-ingest`,
 `wiki-query` and `wiki-lint` have a wiki to operate on.
@@ -48,7 +51,7 @@ stay inert. Don't install it silently.
    [`directory-layout.md`](../../references/directory-layout.md):
 
    ```bash
-   uv run --no-project "${CLAUDE_PLUGIN_ROOT}/skills/wiki-init/scripts/init_wiki.py" <target-dir>
+   uv run --no-project "<skill-dir>/scripts/init_wiki.py" <target-dir>
    ```
 
    It stamps the layout and prints what it created, leaving any existing file untouched.

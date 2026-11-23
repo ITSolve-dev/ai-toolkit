@@ -36,6 +36,16 @@ codex plugin add spartan@ai-toolkit
 Replace `spartan` with any plugin name from the table. In other compatible clients, use the
 client's standard plugin installation flow.
 
+**OpenCode v2** — install one plugin or the whole toolkit:
+
+```sh
+opencode plugin add 'github:ITSolve-dev/ai-toolkit#main::path:plugins/spartan'
+opencode plugin add 'github:ITSolve-dev/ai-toolkit#main'
+```
+
+Replace `spartan` with any plugin name. Use `@spartan` to load the skill. Hooks, slash
+commands, subagents, and marketplace dependencies are not installed.
+
 ## Layout
 
 ```text
@@ -50,7 +60,8 @@ ai-toolkit/
 ## Releases
 
 Each plugin is versioned independently. Update its version in the portable manifest and the
-Claude Code marketplace entry. After the change lands, tag the merged commit and push the tag
+Claude Code marketplace entry and the plugin's OpenCode `package.json`. After the change
+lands, tag the merged commit and push the tag
 to publish the GitHub release. For example, for Spartan version 0.1.0:
 
 ```sh

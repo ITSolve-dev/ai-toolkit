@@ -30,23 +30,14 @@ Dependencies: standard library only.
 from __future__ import annotations
 
 import argparse
-import os
 import re
 import sys
 from pathlib import Path
 
 
-def plugin_root() -> Path:
-    """Locate the plugin root (…/llm-wiki), preferring $CLAUDE_PLUGIN_ROOT."""
-    env = os.environ.get("CLAUDE_PLUGIN_ROOT")
-    if env:
-        return Path(env)
-    # …/skills/wiki-init/scripts/init_wiki.py -> parents[3] == plugin root
-    return Path(__file__).resolve().parents[3]
-
-
 def assets_dir() -> Path:
-    return plugin_root() / "assets"
+    """Locate the templates bundled with this installed script."""
+    return Path(__file__).resolve().parents[3] / "assets"
 
 
 def is_forbidden_root(target: Path) -> bool:

@@ -12,7 +12,7 @@ One pass by one reader finds the defects that reader is primed for. This skill r
 reviewers in parallel and one reader who ignores the rules entirely and just tries to use the
 document — that last one finds what none of the others can, because what it finds is absent.
 
-Base root: `${CLAUDE_PLUGIN_ROOT}/knowledge`. Every `wiki/...` path below is relative to it,
+Base root: [the bundled knowledge directory](../../knowledge/), relative to this installed skill. Every `wiki/...` path below is relative to it,
 including the ones you read yourself in steps 3 and 4 — you are running in the user's project, so
 they resolve nowhere else.
 
@@ -31,7 +31,7 @@ the fix is approving the prompt; headlessly it is passing the plugin directory i
 2. **Dispatch in parallel**, in one message: one `spec-driven-guide:doc-reviewer` per dimension
    below, plus one `spec-driven-guide:reader` with a concrete task drawn from what the document is
    for. Give each reviewer the document path, the genre/reader/grain from step 1, and its dimension
-   with the pages named.
+   with the pages named and the absolute path to the bundled base.
 
    | Dimension | Pages it works from |
    |---|---|
